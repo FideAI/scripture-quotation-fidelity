@@ -1,0 +1,35 @@
+{
+  "amendments": [
+    {
+      "effect_on_confirmatory_design": "none",
+      "id": "governance_only_no_administrative_cost_or_wall_time_stop",
+      "summary": "Cost and runtime became monitored provenance rather than stopping ceilings."
+    },
+    {
+      "effect_on_confirmatory_design": "none",
+      "id": "execution_partition_route_method_prompt_family",
+      "summary": "Execution was divided into 48 durable blocks without changing cells, prompts, scores, or analyses."
+    }
+  ],
+  "artifact_sha256": {
+    "contextual_annotations": "aeb446d4c3d53b28f1bf2a54e640c69f669d94f5c0f93f1e662be63e90d0c72b",
+    "core_manifest": "dcfe997f47c0c42790b23ee72caa70d56f8ce624ac6a8121d215379a6f27b662",
+    "deviation_log": "e592895333fcb6a46385aba51214db7e2c39380efb36af705b595daffd998341",
+    "execution_matrix": "22514cc81bd5e9b57acbb36a85c12bdd788386a721256d702b392d5900e320cd",
+    "scoring_rubric": "f658462260466248aaa853fdda67a6d5f9829541ee3fc85c7f41bd5165f43105",
+    "source_panel": "7f87ecf4d41bfc380d9304618521429fd7bf984231bab040655edc7145d20e1c",
+    "source_registry": "d9e4c2b18045288252aa6b12bdf7f4ee413b0fdacf437f60ff34e1199574d1f1",
+    "target_pack": "3fb2f28107339fa07b5e1ec6c96f18ef34dfd8d48e7e8cca77ad9be1c7afa406"
+  },
+  "execution": {
+    "completed_at_utc": "2026-07-27T05:08:33Z",
+    "started_at_utc": "2026-07-26T23:11:30Z"
+  },
+  "execution_engine_commit": "4952206358af3b001c2b44284a0633f1fd07ca98",
+  "lock_id": "FID056-P01-EXPANDED-LOCK-2026-07-26",
+  "locked_at_utc": "2026-07-26T22:28:40Z",
+  "registration_type": "internal_sha256_lock",
+  "schema_version": "fid056_public_prospective_lock_v1",
+  "shared_implementation_commit": "b67849d55181fdffb3ee28d405733dd5eb35e4bc",
+  "status": "locked_before_confirmatory_execution"
+}

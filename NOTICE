@@ -1,0 +1,46 @@
+Scripture Quotation Fidelity (FID-056)
+Copyright 2026 Fide AI
+
+This public repository contains papers, protocol, documentation, released
+datasets, results, provenance records, and example materials for studying how
+AI systems deliver exact text from authoritative sources.
+
+LICENSING
+---------
+
+Content is licensed under CC BY 4.0. This covers the papers, protocol,
+documentation, datasets, results, provenance records, review materials, and
+examples. See LICENSE.
+
+Source code in scripts/ is licensed under Apache License 2.0. See LICENSE-CODE.
+
+Where both could apply, the code license governs anything executable and the
+content license governs everything else.
+
+EXCLUSIONS
+----------
+
+This repository does not include private execution infrastructure, raw model
+outputs, partner-private traces, restricted source text, provider credentials,
+or held-out prompts. See docs/repository_boundary.md.
+
+SOURCE TEXT
+-----------
+
+No authoritative passage text is released. Passage identity is disclosed
+through normalized-text SHA-256 digests only, which lets a replicator confirm
+they hold the same edition without either party transmitting the text.
+
+The three editions evaluated in Paper 01 are the Berean Standard Bible (public
+domain), the World English Bible Updated (public domain), and the Literal
+Standard Version (CC BY-SA). Restricted editions were excluded from the primary
+phase and require separate authorization.
+
+Public protocol examples use King James Version wording for illustration. Users
+outside the United States should verify local rights status before
+redistributing any source text.
+
+CITATION
+--------
+
+See CITATION.cff.

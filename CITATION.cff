@@ -1,0 +1,31 @@
+cff-version: 1.2.0
+title: "Scripture Quotation Fidelity (FID-056)"
+message: "If you use this repository, please cite the Paper 01 preferred citation below."
+type: software
+authors:
+  - family-names: Chao
+    given-names: Alex
+    affiliation: Fide AI
+    email: alex@fideai.org
+repository-code: "https://github.com/FideAI/scripture-quotation-fidelity"
+abstract: "Open research on how AI systems deliver exact text from authoritative sources, studied through English Scripture quotation. Includes protocol, deidentified derived scores, results, provenance records, and analysis code."
+keywords:
+  - large language models
+  - AI evaluation
+  - retrieval augmented generation
+  - source fidelity
+  - quotation fidelity
+  - authoritative quotation
+  - deterministic rendering
+  - scripture
+license: CC-BY-4.0
+license-url: "https://github.com/FideAI/scripture-quotation-fidelity/blob/main/LICENSE"
+preferred-citation:
+  type: article
+  title: "When Not to Generate: How AI Systems Quote Scripture, and What Authoritative Quotation Requires"
+  authors:
+    - family-names: Chao
+      given-names: Alex
+      affiliation: Fide AI
+  year: 2026
+  notes: "Working manuscript; public release pending review."

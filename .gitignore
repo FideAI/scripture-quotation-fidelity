@@ -1,0 +1,26 @@
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+.DS_Store
+__pycache__/
+.env
+.env.*
+raw_outputs/
+product_traces/
+private_results/
+partner_handoffs/
+held_out/
+source_corpora/
+*.sqlite
+*.db
+
+# local scratch
+tmp/
+*.pdf.bak
+
+build/

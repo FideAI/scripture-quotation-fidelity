@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/FideAI/scripture-quotation-fidelity/main/protocol/scenario_schema.json",
+  "title": "Authoritative Quotation Public Scenario",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "scenario_id",
+    "protocol_version",
+    "domain",
+    "source_family",
+    "source_work",
+    "requested_version",
+    "prompt_family",
+    "condition",
+    "prompt",
+    "expected_reference",
+    "expected_text",
+    "rights_status",
+    "release_split"
+  ],
+  "properties": {
+    "scenario_id": {
+      "type": "string",
+      "pattern": "^esd-v0-[a-z0-9-]+$"
+    },
+    "protocol_version": {
+      "type": "string"
+    },
+    "domain": {
+      "type": "string"
+    },
+    "source_family": {
+      "type": "string",
+      "enum": [
+        "explicit_single_span",
+        "explicit_multi_span",
+        "long_span",
+        "indirect_reference",
+        "version_sensitive",
+        "source_supplied"
+      ]
+    },
+    "source_work": {
+      "type": "string"
+    },
+    "requested_version": {
+      "type": "string"
+    },
+    "prompt_family": {
+      "type": "string"
+    },
+    "condition": {
+      "type": "string",
+      "enum": [
+        "native_parametric_quote",
+        "source_supplied_quote",
+        "tool_call_quote",
+        "reference_token_then_replace",
+        "licensed_or_partner_delivery"
+      ]
+    },
+    "prompt": {
+      "type": "string"
+    },
+    "expected_reference": {
+      "type": "object",
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "required": ["scheme", "canonical_id", "selector"],
+          "properties": {
+            "scheme": {"type": "string"},
+            "canonical_id": {"type": "string"},
+            "selector": {"type": "object", "additionalProperties": true}
+          }
+        },
+        {
+          "description": "Deprecated v0 Scripture shape; migrate fields into domain_extension.",
+          "additionalProperties": false,
+          "required": ["work", "book", "chapter_start", "verse_start", "chapter_end", "verse_end"],
+          "properties": {
+            "work": {"type": "string"}, "book": {"type": "string"},
+            "chapter_start": {"type": "integer"}, "verse_start": {"type": "integer"},
+            "chapter_end": {"type": "integer"}, "verse_end": {"type": "integer"}
+          }
+        }
+      ]
+    },
+    "domain_extension": {
+      "type": "object",
+      "description": "Domain-specific fields validated by a separately named extension schema.",
+      "properties": {"schema": {"type": "string"}},
+      "required": ["schema"],
+      "additionalProperties": true
+    },
+    "expected_text": {
+      "type": "string"
+    },
+    "source_supplied_text": {
+      "type": "string"
+    },
+    "rights_status": {
+      "type": "string"
+    },
+    "release_split": {
+      "type": "string",
+      "enum": ["public_example", "public_protocol_seed"]
+    },
+    "notes": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "shuffle_seed": 5601,
+  "items": {
+    "01": {
+      "review_id": "T016",
+      "expected_reference": "Numbers 21:8-9",
+      "passage_stratum": "indirect_event_reference"
+    },
+    "02": {
+      "review_id": "T011",
+      "expected_reference": "Matthew 5:3-10",
+      "passage_stratum": "long_passage_guardrail_probe"
+    },
+    "03": {
+      "review_id": "T014",
+      "expected_reference": "Revelation 21:1-4",
+      "passage_stratum": "long_passage_guardrail_probe"
+    },
+    "04": {
+      "review_id": "T018",
+      "expected_reference": "Luke 2:10-12",
+      "passage_stratum": "indirect_event_reference"
+    },
+    "05": {
+      "review_id": "T015",
+      "expected_reference": "Matthew 22:37-40",
+      "passage_stratum": "long_passage_guardrail_probe"
+    },
+    "06": {
+      "review_id": "T020",
+      "expected_reference": "James 1:5",
+      "passage_stratum": "indirect_event_reference"
+    },
+    "07": {
+      "review_id": "T017",
+      "expected_reference": "John 3:14-15",
+      "passage_stratum": "indirect_event_reference"
+    },
+    "08": {
+      "review_id": "T012",
+      "expected_reference": "1 Corinthians 13:4-7",
+      "passage_stratum": "long_passage_guardrail_probe"
+    },
+    "09": {
+      "review_id": "T006",
+      "expected_reference": "Psalm 23:1-3",
+      "passage_stratum": "explicit_short_passage"
+    },
+    "10": {
+      "review_id": "T007",
+      "expected_reference": "Proverbs 3:5-6",
+      "passage_stratum": "explicit_short_passage"
+    },
+    "11": {
+      "review_id": "T009",
+      "expected_reference": "Philippians 4:6-7",
+      "passage_stratum": "explicit_short_passage"
+    },
+    "12": {
+      "review_id": "T004",
+      "expected_reference": "Hebrews 11:1",
+      "passage_stratum": "explicit_single_verse"
+    },
+    "13": {
+      "review_id": "T005",
+      "expected_reference": "John 14:6",
+      "passage_stratum": "explicit_single_verse"
+    },
+    "14": {
+      "review_id": "T001",
+      "expected_reference": "John 3:16",
+      "passage_stratum": "explicit_single_verse"
+    },
+    "15": {
+      "review_id": "T002",
+      "expected_reference": "Genesis 1:1",
+      "passage_stratum": "explicit_single_verse"
+    },
+    "16": {
+      "review_id": "T003",
+      "expected_reference": "Romans 8:28",
+      "passage_stratum": "explicit_single_verse"
+    },
+    "17": {
+      "review_id": "T010",
+      "expected_reference": "Deuteronomy 6:4-5",
+      "passage_stratum": "explicit_short_passage"
+    },
+    "18": {
+      "review_id": "T013",
+      "expected_reference": "Isaiah 53:4-6",
+      "passage_stratum": "long_passage_guardrail_probe"
+    },
+    "19": {
+      "review_id": "T019",
+      "expected_reference": "Micah 6:8",
+      "passage_stratum": "indirect_event_reference"
+    },
+    "20": {
+      "review_id": "T008",
+      "expected_reference": "Ephesians 2:8-9",
+      "passage_stratum": "explicit_short_passage"
+    }
+  }
+}

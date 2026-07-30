@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/FideAI/scripture-quotation-fidelity/main/protocol/scripture_reference.schema.json",
+  "title": "Scripture Reference Extension",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "work", "book", "chapter_start", "verse_start", "chapter_end", "verse_end"],
+  "properties": {
+    "schema": {"const": "scripture_reference.v1"},
+    "work": {"type": "string"},
+    "book": {"type": "string"},
+    "chapter_start": {"type": "integer", "minimum": 1},
+    "verse_start": {"type": "integer", "minimum": 1},
+    "chapter_end": {"type": "integer", "minimum": 1},
+    "verse_end": {"type": "integer", "minimum": 1}
+  }
+}

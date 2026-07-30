@@ -1,0 +1,58 @@
+name: verify
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  reproduce:
+    name: Reproduce analysis and audit release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+
+      - name: Install ripgrep
+        run: sudo apt-get update && sudo apt-get install -y ripgrep
+
+      - name: Regenerate results from released derived scores
+        run: make analyze
+
+      - name: Fail if regenerated results differ from committed results
+        run: git diff --exit-code -- papers/*/results
+
+      - name: Verify release manifest and headline counts
+        run: make verify-release
+
+      - name: Release audit
+        run: make release-audit
+
+  paper:
+    name: Build paper
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+
+      - name: Install tectonic
+        # Third-party action, pinned to the v4.0.5 tag object.
+        uses: wtfjoke/setup-tectonic@eb29fd68b7d3f76011906b6e45ea4320c8de5d2f
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Compile
+        run: make paper
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: paper
+          path: papers/*/paper/main.pdf

@@ -1,0 +1,17 @@
+Creative Commons Attribution 4.0 International
+
+This license applies to the CONTENT of this repository: the paper, protocol,
+documentation, released datasets, results, provenance records, review
+materials, and public example materials.
+
+Source code in `scripts/` is licensed separately under the Apache License 2.0.
+See `LICENSE-CODE`.
+
+You are free to share and adapt the content, including for commercial
+purposes, provided that appropriate credit is given, a link to the license is
+provided, and any changes are indicated.
+
+License text:
+https://creativecommons.org/licenses/by/4.0/legalcode
+
+SPDX-License-Identifier: CC-BY-4.0

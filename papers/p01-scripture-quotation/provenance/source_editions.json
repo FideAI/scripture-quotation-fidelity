@@ -1,0 +1,1109 @@
+{
+  "schema_version": "fid056_p01_source_editions_v1",
+  "purpose": "Release-safe disclosure of the source-of-record editions used as ground truth. Digests are over normalized passage text; no passage text is included.",
+  "derived_from": {
+    "artifact": "source_registry",
+    "sha256": "d9e4c2b18045288252aa6b12bdf7f4ee413b0fdacf437f60ff34e1199574d1f1",
+    "matches_prospective_lock": true,
+    "lock_id": "FID056-P01-EXPANDED-LOCK-2026-07-26",
+    "locked_at_utc": "2026-07-26T22:28:40Z"
+  },
+  "registry_id": "fid056_p01_english_translation_spectrum_candidate_v1",
+  "registry_schema_version": "fid056_source_registry_v2",
+  "verified_at_utc": "2026-07-26T20:38:10+00:00",
+  "verification_method": "Two uncached retrievals through the pinned shared runtime; matching normalized-text SHA-256 hashes. This checks retrieval stability, not independence of the upstream provider.",
+  "normalization_note": "Digests are computed over whitespace-collapsed UTF-8 text. A replicator can hash their own normalized copy of a passage and compare against these values to confirm they hold the same edition text, without either party transmitting the text.",
+  "primary_phase_editions": [
+    "BSB",
+    "WEBU",
+    "LSV"
+  ],
+  "excluded_editions_note": "Editions marked blocked_pending_ai_use_authorization were present in the locked registry but excluded from the primary phase. They require separate source and source-to-model authorization and prospective specification.",
+  "editions": [
+    {
+      "translation_id": "BSB",
+      "name": "Berean Standard Bible",
+      "edition": "2023 public-domain edition",
+      "provider": "ao_lab",
+      "provider_source_id": "BSB",
+      "rights_basis": "public_domain",
+      "public_text_release": true,
+      "execution_status": "approved",
+      "in_primary_phase": true,
+      "normalization_version": "collapse_whitespace_utf8_v1",
+      "verification_status": "repeat_fetch_verified",
+      "passage_digests": [
+        {
+          "target_id": "JOHN-003-016",
+          "reference": "John 3:16",
+          "normalized_text_sha256": "c6a0fb4f76669b4e0da63d455371ed06c7445569d3dcc6c0fbdd589150dcc9ce",
+          "verse_count": 1,
+          "word_count": 27
+        },
+        {
+          "target_id": "GENESIS-001-001",
+          "reference": "Genesis 1:1",
+          "normalized_text_sha256": "0bc170116587172a120cb698b726b5c532a5c22e6b69c9655fea65dcec5dd19a",
+          "verse_count": 1,
+          "word_count": 10
+        },
+        {
+          "target_id": "ROMANS-008-028",
+          "reference": "Romans 8:28",
+          "normalized_text_sha256": "6a820bd51d6d4298e671111d7b277877bc8656d517a137f452a058721a6d232b",
+          "verse_count": 1,
+          "word_count": 24
+        },
+        {
+          "target_id": "HEBREWS-011-001",
+          "reference": "Hebrews 11:1",
+          "normalized_text_sha256": "ccfc028284c65eac13f5f5e9e7107471a601a0f72da99d68353dd9202dd660c8",
+          "verse_count": 1,
+          "word_count": 19
+        },
+        {
+          "target_id": "JOHN-014-006",
+          "reference": "John 14:6",
+          "normalized_text_sha256": "d6749a32f37c97b42a3b4c60ca6e32291aeebf369e8da4bcedd20c547b61ca6f",
+          "verse_count": 1,
+          "word_count": 21
+        },
+        {
+          "target_id": "PSALM-023-001-003",
+          "reference": "Psalm 23:1-3",
+          "normalized_text_sha256": "c4a3653b3930df78be5d88624fffd8f4336d39c83a65da4186a692fb6a66dd79",
+          "verse_count": 3,
+          "word_count": 41
+        },
+        {
+          "target_id": "PROVERBS-003-005-006",
+          "reference": "Proverbs 3:5-6",
+          "normalized_text_sha256": "ee6b2c8ddbc73e249a0bc9fd6290cdf18f7d8857503143d8ce8f4c2534ff32c0",
+          "verse_count": 2,
+          "word_count": 28
+        },
+        {
+          "target_id": "EPHESIANS-002-008-009",
+          "reference": "Ephesians 2:8-9",
+          "normalized_text_sha256": "a93db6cd933f9e2566621e232765d3103702560d4f59979c15af15de014e6115",
+          "verse_count": 2,
+          "word_count": 31
+        },
+        {
+          "target_id": "PHILIPPIANS-004-006-007",
+          "reference": "Philippians 4:6-7",
+          "normalized_text_sha256": "30a0a93a5f698a434077ce172b764a9513d46beab386f907e768896ac3a6c86e",
+          "verse_count": 2,
+          "word_count": 37
+        },
+        {
+          "target_id": "DEUTERONOMY-006-004-005",
+          "reference": "Deuteronomy 6:4-5",
+          "normalized_text_sha256": "35baeb90555fce67cda5772a2cab982bd2dcd0fe61a0a13d707561e81efcaeb6",
+          "verse_count": 2,
+          "word_count": 33
+        },
+        {
+          "target_id": "MATTHEW-005-003-010",
+          "reference": "Matthew 5:3-10",
+          "normalized_text_sha256": "790c2da8d74458328bb2cb21641877d776978bbd5fc8e49b4bf965d02ca6f6e9",
+          "verse_count": 8,
+          "word_count": 96
+        },
+        {
+          "target_id": "ONE-CORINTHIANS-013-004-007",
+          "reference": "1 Corinthians 13:4-7",
+          "normalized_text_sha256": "1e0df7ec3b77bee3e5d7bb23794434aeda35f8c18c14e6e205f6e413ca36a778",
+          "verse_count": 4,
+          "word_count": 61
+        },
+        {
+          "target_id": "ISAIAH-053-004-006",
+          "reference": "Isaiah 53:4-6",
+          "normalized_text_sha256": "1af4b1a402cf4393edc82e1d0c2b60fea83b2b3d5ef70c4810df3af05f0e701a",
+          "verse_count": 3,
+          "word_count": 77
+        },
+        {
+          "target_id": "REVELATION-021-001-004",
+          "reference": "Revelation 21:1-4",
+          "normalized_text_sha256": "6e4ccac8afab303944a87a5b79af1f9b52eef0ac6f6d81baa52519f609656490",
+          "verse_count": 4,
+          "word_count": 117
+        },
+        {
+          "target_id": "MATTHEW-022-037-040",
+          "reference": "Matthew 22:37-40",
+          "normalized_text_sha256": "7b475030b6e342e761f77970d79c902df20737c6635e16582fad989ae41c0b4d",
+          "verse_count": 4,
+          "word_count": 50
+        },
+        {
+          "target_id": "NUMBERS-021-008-009",
+          "reference": "Numbers 21:8-9",
+          "normalized_text_sha256": "02b5b4ab2e6074c4cbab0402176316d40754517da1b2d99dc4d3a43d9bcc3938",
+          "verse_count": 2,
+          "word_count": 52
+        },
+        {
+          "target_id": "JOHN-003-014-015",
+          "reference": "John 3:14-15",
+          "normalized_text_sha256": "f9985de65b82d03c0e2c36359b05d962136d88379be102216462b5d37caff010",
+          "verse_count": 2,
+          "word_count": 29
+        },
+        {
+          "target_id": "LUKE-002-010-012",
+          "reference": "Luke 2:10-12",
+          "normalized_text_sha256": "91c7e2cf244788596cd1677d383adf1fc1fc13f0637403d99c97b76f64eea665",
+          "verse_count": 3,
+          "word_count": 67
+        },
+        {
+          "target_id": "MICAH-006-008",
+          "reference": "Micah 6:8",
+          "normalized_text_sha256": "eb4386b75fc810a82a42af88e14cf77e5cde5909191fa4fa742d8d559b265235",
+          "verse_count": 1,
+          "word_count": 31
+        },
+        {
+          "target_id": "JAMES-001-005",
+          "reference": "James 1:5",
+          "normalized_text_sha256": "1f020eeb738d8079379a4cd69d87b200bb703e6fd2f14b815f3782e1571463ca",
+          "verse_count": 1,
+          "word_count": 26
+        }
+      ]
+    },
+    {
+      "translation_id": "WEBU",
+      "name": "World English Bible, Updated",
+      "edition": "Updated edition",
+      "provider": "ao_lab",
+      "provider_source_id": "eng_webu",
+      "rights_basis": "public_domain",
+      "public_text_release": true,
+      "execution_status": "approved",
+      "in_primary_phase": true,
+      "normalization_version": "collapse_whitespace_utf8_v1",
+      "verification_status": "repeat_fetch_verified",
+      "passage_digests": [
+        {
+          "target_id": "JOHN-003-016",
+          "reference": "John 3:16",
+          "normalized_text_sha256": "7db85de9a4f045565dda9959858363754da10754bed9a238c06aeea13f2d6af5",
+          "verse_count": 1,
+          "word_count": 25
+        },
+        {
+          "target_id": "GENESIS-001-001",
+          "reference": "Genesis 1:1",
+          "normalized_text_sha256": "e1e1f5e1738c9f78a106da32b1b203168c41b74d4a4f8d3e0ef4d1f7759ea766",
+          "verse_count": 1,
+          "word_count": 10
+        },
+        {
+          "target_id": "ROMANS-008-028",
+          "reference": "Romans 8:28",
+          "normalized_text_sha256": "a888b0970cca3b084691a863a5e42eeeeed600c932f9fb3e18d6dd43173d89d6",
+          "verse_count": 1,
+          "word_count": 23
+        },
+        {
+          "target_id": "HEBREWS-011-001",
+          "reference": "Hebrews 11:1",
+          "normalized_text_sha256": "3ccae381aeb93b5263571af0682f6ae917e5b70bf6b93fc3104e3916ee80f9f2",
+          "verse_count": 1,
+          "word_count": 13
+        },
+        {
+          "target_id": "JOHN-014-006",
+          "reference": "John 14:6",
+          "normalized_text_sha256": "d5b1db2cafed05f03e9dcc8969eef8a7e89a2fb88082c3c23652b6d58019209c",
+          "verse_count": 1,
+          "word_count": 22
+        },
+        {
+          "target_id": "PSALM-023-001-003",
+          "reference": "Psalm 23:1-3",
+          "normalized_text_sha256": "42292b012393f8c025885ac9aa2e9053e165cfd11f475a004c2a3ae48e17a622",
+          "verse_count": 3,
+          "word_count": 39
+        },
+        {
+          "target_id": "PROVERBS-003-005-006",
+          "reference": "Proverbs 3:5-6",
+          "normalized_text_sha256": "18127a4bf731b619e205a5aca73e9f89dfd1e33b3207d9ac27bc944ae128304e",
+          "verse_count": 2,
+          "word_count": 28
+        },
+        {
+          "target_id": "EPHESIANS-002-008-009",
+          "reference": "Ephesians 2:8-9",
+          "normalized_text_sha256": "a9d5de1b22b7a97d6b21dd9f5e9f78657335c83eaf188fc8ac3268c84d643bee",
+          "verse_count": 2,
+          "word_count": 28
+        },
+        {
+          "target_id": "PHILIPPIANS-004-006-007",
+          "reference": "Philippians 4:6-7",
+          "normalized_text_sha256": "115a2e3b23c98432283aeaff9c7698d1e7ffd888d89d1b701a4d553736875985",
+          "verse_count": 2,
+          "word_count": 40
+        },
+        {
+          "target_id": "DEUTERONOMY-006-004-005",
+          "reference": "Deuteronomy 6:4-5",
+          "normalized_text_sha256": "f92cf70a302dbb1eeca812047948678a9cceff71d82b44f292f6ec70fcfe916d",
+          "verse_count": 2,
+          "word_count": 31
+        },
+        {
+          "target_id": "MATTHEW-005-003-010",
+          "reference": "Matthew 5:3-10",
+          "normalized_text_sha256": "215be9600b4e48621d6709131b78f398bda6c63c03d4120735bc8032cd3e563a",
+          "verse_count": 8,
+          "word_count": 96
+        },
+        {
+          "target_id": "ONE-CORINTHIANS-013-004-007",
+          "reference": "1 Corinthians 13:4-7",
+          "normalized_text_sha256": "cefece999454fbc72d21e722f9249e67e39a875f95296202dc021a4e3f0f3063",
+          "verse_count": 4,
+          "word_count": 54
+        },
+        {
+          "target_id": "ISAIAH-053-004-006",
+          "reference": "Isaiah 53:4-6",
+          "normalized_text_sha256": "75741e294aeb0c20cd139b6dde58ffc70ec961d880bc0fea38b3013b7c811340",
+          "verse_count": 3,
+          "word_count": 75
+        },
+        {
+          "target_id": "REVELATION-021-001-004",
+          "reference": "Revelation 21:1-4",
+          "normalized_text_sha256": "58c5c627e289f6c3ec7b9122ddb3d2e1907e694429f3102af4e3f53eb1f44baf",
+          "verse_count": 4,
+          "word_count": 116
+        },
+        {
+          "target_id": "MATTHEW-022-037-040",
+          "reference": "Matthew 22:37-40",
+          "normalized_text_sha256": "bfc410dfbdc357a78b1fe2db10d1c88a04ee0f8ea1d943ce71d5e66bad5e25c0",
+          "verse_count": 4,
+          "word_count": 54
+        },
+        {
+          "target_id": "NUMBERS-021-008-009",
+          "reference": "Numbers 21:8-9",
+          "normalized_text_sha256": "3d7a7e901d2c841ef5a3593d595fb8781fc4335085ad8646d2134dc2dcced8b5",
+          "verse_count": 2,
+          "word_count": 58
+        },
+        {
+          "target_id": "JOHN-003-014-015",
+          "reference": "John 3:14-15",
+          "normalized_text_sha256": "061a9449eb96fdb86978498e6a180e66cee8e1a830f36d82f0c6705c1893d955",
+          "verse_count": 2,
+          "word_count": 31
+        },
+        {
+          "target_id": "LUKE-002-010-012",
+          "reference": "Luke 2:10-12",
+          "normalized_text_sha256": "23216be87b57dbfd5464f023f0e7e736823a550e95981d8539abb1319cf5e439",
+          "verse_count": 3,
+          "word_count": 63
+        },
+        {
+          "target_id": "MICAH-006-008",
+          "reference": "Micah 6:8",
+          "normalized_text_sha256": "cb25ff83f39f19fe0762e46f19223b930171add3a6b3600013d61a3ecfa0957c",
+          "verse_count": 1,
+          "word_count": 30
+        },
+        {
+          "target_id": "JAMES-001-005",
+          "reference": "James 1:5",
+          "normalized_text_sha256": "7e0829f51cdb0aee5785c003554affa2a3c57daa1c7b08935f100a3b53c85649",
+          "verse_count": 1,
+          "word_count": 27
+        }
+      ]
+    },
+    {
+      "translation_id": "LSV",
+      "name": "Literal Standard Version",
+      "edition": "2020",
+      "provider": "ao_lab",
+      "provider_source_id": "eng_lsv",
+      "rights_basis": "CC_BY_SA; attribution and share-alike obligations apply to released text",
+      "public_text_release": false,
+      "execution_status": "approved",
+      "in_primary_phase": true,
+      "normalization_version": "collapse_whitespace_utf8_v1",
+      "verification_status": "repeat_fetch_verified",
+      "passage_digests": [
+        {
+          "target_id": "JOHN-003-016",
+          "reference": "John 3:16",
+          "normalized_text_sha256": "0cc427eec4ae6d99d6a25ca8150ecb9d37e0b7278508a4b6ac20dd5d6d8832d5",
+          "verse_count": 1,
+          "word_count": 28
+        },
+        {
+          "target_id": "GENESIS-001-001",
+          "reference": "Genesis 1:1",
+          "normalized_text_sha256": "c650c1d43783d7e0032d8f85a2241bf64d69d4e4d05a15341631f8181ee7725c",
+          "verse_count": 1,
+          "word_count": 10
+        },
+        {
+          "target_id": "ROMANS-008-028",
+          "reference": "Romans 8:28",
+          "normalized_text_sha256": "9ee28de52160999096ffd026be3b38ba4620be83bcd4dac3eb85cbee78198344",
+          "verse_count": 1,
+          "word_count": 23
+        },
+        {
+          "target_id": "HEBREWS-011-001",
+          "reference": "Hebrews 11:1",
+          "normalized_text_sha256": "1d2ecc2d439fe6153dcd95efbb70f58e507dd86ea0c1a73d20069932e4866768",
+          "verse_count": 1,
+          "word_count": 16
+        },
+        {
+          "target_id": "JOHN-014-006",
+          "reference": "John 14:6",
+          "normalized_text_sha256": "51217e47dfe8fb600b76f16a3ddee14fb8f73a9a7c149a589696ed29537cc45b",
+          "verse_count": 1,
+          "word_count": 24
+        },
+        {
+          "target_id": "PSALM-023-001-003",
+          "reference": "Psalm 23:1-3",
+          "normalized_text_sha256": "8920ac3f41b864a7174e00413e602a950a57893c639338fbacb455d05f725af4",
+          "verse_count": 3,
+          "word_count": 47
+        },
+        {
+          "target_id": "PROVERBS-003-005-006",
+          "reference": "Proverbs 3:5-6",
+          "normalized_text_sha256": "82ab24692ec4645814b7c653593e3a0241b41565e3bd9e7c2f17db746730cc31",
+          "verse_count": 2,
+          "word_count": 29
+        },
+        {
+          "target_id": "EPHESIANS-002-008-009",
+          "reference": "Ephesians 2:8-9",
+          "normalized_text_sha256": "f553ccb78bfcecbff7467aaa435ce7fadc1ae2ae64e3b7612334bf45579104b2",
+          "verse_count": 2,
+          "word_count": 27
+        },
+        {
+          "target_id": "PHILIPPIANS-004-006-007",
+          "reference": "Philippians 4:6-7",
+          "normalized_text_sha256": "2096b06206851c3d30ae4d970bb31c7334fc63582125e959be706329302abf59",
+          "verse_count": 2,
+          "word_count": 42
+        },
+        {
+          "target_id": "DEUTERONOMY-006-004-005",
+          "reference": "Deuteronomy 6:4-5",
+          "normalized_text_sha256": "7b7c8f1ee7813399adadcb3b6be7cf1ea335eaa06e8c1012a36bc214f29bd0b7",
+          "verse_count": 2,
+          "word_count": 29
+        },
+        {
+          "target_id": "MATTHEW-005-003-010",
+          "reference": "Matthew 5:3-10",
+          "normalized_text_sha256": "a74d467aa22c890ba5b7ec59be136f997c668be3797cff140763e71589cce4f4",
+          "verse_count": 8,
+          "word_count": 77
+        },
+        {
+          "target_id": "ONE-CORINTHIANS-013-004-007",
+          "reference": "1 Corinthians 13:4-7",
+          "normalized_text_sha256": "4261838d5120915fe0f25fb51d7f6bf34f98897095b9872d56b69915c10b6428",
+          "verse_count": 4,
+          "word_count": 59
+        },
+        {
+          "target_id": "ISAIAH-053-004-006",
+          "reference": "Isaiah 53:4-6",
+          "normalized_text_sha256": "0025c62f23df31d653e97f210e93afe8b123fff6124911212ecaf704adfeb67c",
+          "verse_count": 3,
+          "word_count": 81
+        },
+        {
+          "target_id": "REVELATION-021-001-004",
+          "reference": "Revelation 21:1-4",
+          "normalized_text_sha256": "dc90996b72ac93da4eb877944b89c8c5fc198993d0783d4312e2607e5603dfc5",
+          "verse_count": 4,
+          "word_count": 124
+        },
+        {
+          "target_id": "MATTHEW-022-037-040",
+          "reference": "Matthew 22:37-40",
+          "normalized_text_sha256": "0d494dfd38932d7e6e7572673ff8fb5f4f30d975e844c668192372263200173a",
+          "verse_count": 4,
+          "word_count": 57
+        },
+        {
+          "target_id": "NUMBERS-021-008-009",
+          "reference": "Numbers 21:8-9",
+          "normalized_text_sha256": "9f26dc4ff55b5ed0350323bb4109d8f931f930967eebf91564540243f136c1b7",
+          "verse_count": 2,
+          "word_count": 67
+        },
+        {
+          "target_id": "JOHN-003-014-015",
+          "reference": "John 3:14-15",
+          "normalized_text_sha256": "bde85fcae870b63e0cb2b044cfb96fde958156ac7a5b3d7e5c1c6319e93aa419",
+          "verse_count": 2,
+          "word_count": 38
+        },
+        {
+          "target_id": "LUKE-002-010-012",
+          "reference": "Luke 2:10-12",
+          "normalized_text_sha256": "84a4e4d7f67d8e7d0956bc98dfeb0b03b4ce7bf602278268c1470c13ccd07199",
+          "verse_count": 3,
+          "word_count": 62
+        },
+        {
+          "target_id": "MICAH-006-008",
+          "reference": "Micah 6:8",
+          "normalized_text_sha256": "4e96c72e4192faa66c6e78f03074bc4ab91b68780ee5fb41f69fc684cdc254ab",
+          "verse_count": 1,
+          "word_count": 32
+        },
+        {
+          "target_id": "JAMES-001-005",
+          "reference": "James 1:5",
+          "normalized_text_sha256": "600276a3b4c94c8b97a66388632e3e5295bf91dc5c3946c253b7b57d038be312",
+          "verse_count": 1,
+          "word_count": 28
+        }
+      ]
+    },
+    {
+      "translation_id": "ESV",
+      "name": "English Standard Version",
+      "edition": "2025",
+      "provider": "esv",
+      "provider_source_id": "ESV_API_V3",
+      "rights_basis": "authenticated Crossway ESV API access; no public text release",
+      "public_text_release": false,
+      "execution_status": "blocked_pending_ai_use_authorization",
+      "in_primary_phase": false,
+      "normalization_version": "collapse_whitespace_utf8_v1",
+      "verification_status": "repeat_fetch_verified",
+      "passage_digests": [
+        {
+          "target_id": "JOHN-003-016",
+          "reference": "John 3:16",
+          "normalized_text_sha256": "32e40b04d0b88fd0d930834ebe4d9f5f6550bceee01b31ecace16afe6185fe2f",
+          "verse_count": 1,
+          "word_count": 24
+        },
+        {
+          "target_id": "GENESIS-001-001",
+          "reference": "Genesis 1:1",
+          "normalized_text_sha256": "e1e1f5e1738c9f78a106da32b1b203168c41b74d4a4f8d3e0ef4d1f7759ea766",
+          "verse_count": 1,
+          "word_count": 10
+        },
+        {
+          "target_id": "ROMANS-008-028",
+          "reference": "Romans 8:28",
+          "normalized_text_sha256": "1d77ca32bca082b65d620a949f5a51e72d08201f1406e42fffb67509ebf0263c",
+          "verse_count": 1,
+          "word_count": 24
+        },
+        {
+          "target_id": "HEBREWS-011-001",
+          "reference": "Hebrews 11:1",
+          "normalized_text_sha256": "4f9f0f7198dba10f09a46b3d6255e00d87033415d0481c92b95977835417172a",
+          "verse_count": 1,
+          "word_count": 15
+        },
+        {
+          "target_id": "JOHN-014-006",
+          "reference": "John 14:6",
+          "normalized_text_sha256": "4a611e476117c20ccb618564af6e8387f2996ac3c50d4be04cdbf4aa17488e3d",
+          "verse_count": 1,
+          "word_count": 23
+        },
+        {
+          "target_id": "PSALM-023-001-003",
+          "reference": "Psalm 23:1-3",
+          "normalized_text_sha256": "444c59039ccaeff89e81fd8c0fa4c6e81f4d88d79dc228f35830f6855b95d4c2",
+          "verse_count": 3,
+          "word_count": 38
+        },
+        {
+          "target_id": "PROVERBS-003-005-006",
+          "reference": "Proverbs 3:5-6",
+          "normalized_text_sha256": "a1869e11b0b3c6ca979dfed69d47379e17c3e1b37243f2fdd52700744bd4b257",
+          "verse_count": 2,
+          "word_count": 29
+        },
+        {
+          "target_id": "EPHESIANS-002-008-009",
+          "reference": "Ephesians 2:8-9",
+          "normalized_text_sha256": "85171e0c9b006246fa5d86dfaaab4360d7206fa65bd45e0c494016f5d9d9940c",
+          "verse_count": 2,
+          "word_count": 33
+        },
+        {
+          "target_id": "PHILIPPIANS-004-006-007",
+          "reference": "Philippians 4:6-7",
+          "normalized_text_sha256": "5300877d1213579843b62fd5a238405e91ddb4cc8988321545f0ff1d43c66967",
+          "verse_count": 2,
+          "word_count": 42
+        },
+        {
+          "target_id": "DEUTERONOMY-006-004-005",
+          "reference": "Deuteronomy 6:4-5",
+          "normalized_text_sha256": "3630a486231d963d4ca49f284d0e34bff7975c4cc2a2fd829eae7d876932e752",
+          "verse_count": 2,
+          "word_count": 32
+        },
+        {
+          "target_id": "MATTHEW-005-003-010",
+          "reference": "Matthew 5:3-10",
+          "normalized_text_sha256": "64f13bc4b395e5e14f78601192af7511c6ea31a27d90de290f2d7b9b96b0286e",
+          "verse_count": 8,
+          "word_count": 95
+        },
+        {
+          "target_id": "ONE-CORINTHIANS-013-004-007",
+          "reference": "1 Corinthians 13:4-7",
+          "normalized_text_sha256": "a4f518b5b3905d673a4e866c9938911350b5604d65ef470066498208f303c462",
+          "verse_count": 4,
+          "word_count": 55
+        },
+        {
+          "target_id": "ISAIAH-053-004-006",
+          "reference": "Isaiah 53:4-6",
+          "normalized_text_sha256": "cd9083177786f3086da377f97f3e701109d4d1a730051db203e546f9c4c99a3d",
+          "verse_count": 3,
+          "word_count": 75
+        },
+        {
+          "target_id": "REVELATION-021-001-004",
+          "reference": "Revelation 21:1-4",
+          "normalized_text_sha256": "0d6de9944d26d43f29d3109c16e6d7e5ed5f32ae2fdd951acc9e3988df40e651",
+          "verse_count": 4,
+          "word_count": 122
+        },
+        {
+          "target_id": "MATTHEW-022-037-040",
+          "reference": "Matthew 22:37-40",
+          "normalized_text_sha256": "918196c7b6b9658ec44ef5e3ff45a6098a4b330195f93d6e4e716fba61a17439",
+          "verse_count": 4,
+          "word_count": 57
+        },
+        {
+          "target_id": "NUMBERS-021-008-009",
+          "reference": "Numbers 21:8-9",
+          "normalized_text_sha256": "490a7b11651313dea76283c1a3143736877cde633f493932f2b802b61602ce31",
+          "verse_count": 2,
+          "word_count": 54
+        },
+        {
+          "target_id": "JOHN-003-014-015",
+          "reference": "John 3:14-15",
+          "normalized_text_sha256": "65504bcd2c05ccf2f777fbaeacb0bcfa97de833341132c9ccd61cbeafd605d86",
+          "verse_count": 2,
+          "word_count": 28
+        },
+        {
+          "target_id": "LUKE-002-010-012",
+          "reference": "Luke 2:10-12",
+          "normalized_text_sha256": "dfcd37488805b936674e5076ab20f5bd0272ba8b4d907a9d155ecb5e5610d5a6",
+          "verse_count": 3,
+          "word_count": 66
+        },
+        {
+          "target_id": "MICAH-006-008",
+          "reference": "Micah 6:8",
+          "normalized_text_sha256": "32a31c4f612f0673301288dce1b985d3ca4884e3b7b3ad2696f2782bf82c5fd3",
+          "verse_count": 1,
+          "word_count": 32
+        },
+        {
+          "target_id": "JAMES-001-005",
+          "reference": "James 1:5",
+          "normalized_text_sha256": "1f8f017af13a148e3f2e3a2430702de3dd922b1f98d751c067b81531e3ebe166",
+          "verse_count": 1,
+          "word_count": 23
+        }
+      ]
+    },
+    {
+      "translation_id": "NASB1995",
+      "name": "New American Standard Bible 1995",
+      "edition": "1995",
+      "provider": "api_bible",
+      "provider_source_id": "b8ee27bcd1cae43a-01",
+      "rights_basis": "authenticated API.Bible access and Lockman dynamic AI quotation policy; no public text release",
+      "public_text_release": false,
+      "execution_status": "blocked_pending_ai_use_authorization",
+      "in_primary_phase": false,
+      "normalization_version": "collapse_whitespace_utf8_v1",
+      "verification_status": "repeat_fetch_verified",
+      "passage_digests": [
+        {
+          "target_id": "JOHN-003-016",
+          "reference": "John 3:16",
+          "normalized_text_sha256": "1296f52e6578931101aa251ff4cc035d5757985ad561a75e8ab030dfab5145b3",
+          "verse_count": 1,
+          "word_count": 25
+        },
+        {
+          "target_id": "GENESIS-001-001",
+          "reference": "Genesis 1:1",
+          "normalized_text_sha256": "0bc170116587172a120cb698b726b5c532a5c22e6b69c9655fea65dcec5dd19a",
+          "verse_count": 1,
+          "word_count": 10
+        },
+        {
+          "target_id": "ROMANS-008-028",
+          "reference": "Romans 8:28",
+          "normalized_text_sha256": "7a93d6199868fc6ccf2f999d61e95d1b7f0530bf82bf070a520013213b12ee54",
+          "verse_count": 1,
+          "word_count": 27
+        },
+        {
+          "target_id": "HEBREWS-011-001",
+          "reference": "Hebrews 11:1",
+          "normalized_text_sha256": "4f9f0f7198dba10f09a46b3d6255e00d87033415d0481c92b95977835417172a",
+          "verse_count": 1,
+          "word_count": 15
+        },
+        {
+          "target_id": "JOHN-014-006",
+          "reference": "John 14:6",
+          "normalized_text_sha256": "96bafd0e73a67471c099ae6d2df2d3b419a7123c0441ae0d1419268eca82ed87",
+          "verse_count": 1,
+          "word_count": 23
+        },
+        {
+          "target_id": "PSALM-023-001-003",
+          "reference": "Psalm 23:1-3",
+          "normalized_text_sha256": "3ea2f272fd9606cc103ba72a0298b9d11a20e0cc724fb28c070176b67e3c351b",
+          "verse_count": 3,
+          "word_count": 39
+        },
+        {
+          "target_id": "PROVERBS-003-005-006",
+          "reference": "Proverbs 3:5-6",
+          "normalized_text_sha256": "9515ac4b5619500843746c2589c0120332db30d0076567993ef9398d38721839",
+          "verse_count": 2,
+          "word_count": 29
+        },
+        {
+          "target_id": "EPHESIANS-002-008-009",
+          "reference": "Ephesians 2:8-9",
+          "normalized_text_sha256": "a355c4dc11130f3c5080664624e4da4e30e8cad6e1c9e990fb0b6f07924e4c05",
+          "verse_count": 2,
+          "word_count": 32
+        },
+        {
+          "target_id": "PHILIPPIANS-004-006-007",
+          "reference": "Philippians 4:6-7",
+          "normalized_text_sha256": "c50c933093ac55ee6ce355c031f333df6a0b650223280e01d58e7383654aa1ab",
+          "verse_count": 2,
+          "word_count": 40
+        },
+        {
+          "target_id": "DEUTERONOMY-006-004-005",
+          "reference": "Deuteronomy 6:4-5",
+          "normalized_text_sha256": "f6fec1be3877c952b504dbd58fb4104a5c9e6f8433e0a2e3cf3ab9eca6612f08",
+          "verse_count": 2,
+          "word_count": 33
+        },
+        {
+          "target_id": "MATTHEW-005-003-010",
+          "reference": "Matthew 5:3-10",
+          "normalized_text_sha256": "3c3c746f73ff0a113043fce1d65c9c9b37bfc27a372d0d7540bfef265941a45b",
+          "verse_count": 8,
+          "word_count": 98
+        },
+        {
+          "target_id": "ONE-CORINTHIANS-013-004-007",
+          "reference": "1 Corinthians 13:4-7",
+          "normalized_text_sha256": "b56bb972313134df3587782b0e96aea34bf6211c234c10cc98352b1f36f2f8ff",
+          "verse_count": 4,
+          "word_count": 61
+        },
+        {
+          "target_id": "ISAIAH-053-004-006",
+          "reference": "Isaiah 53:4-6",
+          "normalized_text_sha256": "cf23804d3e71f028a1d448bc6233fc573faae1cbb3e32627ad187dafd20de1db",
+          "verse_count": 3,
+          "word_count": 82
+        },
+        {
+          "target_id": "REVELATION-021-001-004",
+          "reference": "Revelation 21:1-4",
+          "normalized_text_sha256": "0399d432cd307b4e6e4c96df7d278418c9b84ed1c82849010053c521dafcc7e4",
+          "verse_count": 4,
+          "word_count": 123
+        },
+        {
+          "target_id": "MATTHEW-022-037-040",
+          "reference": "Matthew 22:37-40",
+          "normalized_text_sha256": "90f05aefe70f06d905e3307c12477199b6aa5693234e38d1b9d37283e048a2ec",
+          "verse_count": 4,
+          "word_count": 57
+        },
+        {
+          "target_id": "NUMBERS-021-008-009",
+          "reference": "Numbers 21:8-9",
+          "normalized_text_sha256": "6a3e8ca452a47bd0a9d2fabe92f9d9ddfc3bc18ffa09e46a55e2d05014e04367",
+          "verse_count": 2,
+          "word_count": 66
+        },
+        {
+          "target_id": "JOHN-003-014-015",
+          "reference": "John 3:14-15",
+          "normalized_text_sha256": "565036fa20264a7ab015f1c38e762f7b1695cbf916bd0d84736b88010f1b3c94",
+          "verse_count": 2,
+          "word_count": 29
+        },
+        {
+          "target_id": "LUKE-002-010-012",
+          "reference": "Luke 2:10-12",
+          "normalized_text_sha256": "a827be31f604f12fb768b7a26c0289a9a26ca0855694010b4e9c2966f0d8bcc7",
+          "verse_count": 3,
+          "word_count": 67
+        },
+        {
+          "target_id": "MICAH-006-008",
+          "reference": "Micah 6:8",
+          "normalized_text_sha256": "97c54f2b52a60278fa52e5a2b8da03491e2519c8acdd3a83fe2ab101538c8858",
+          "verse_count": 1,
+          "word_count": 31
+        },
+        {
+          "target_id": "JAMES-001-005",
+          "reference": "James 1:5",
+          "normalized_text_sha256": "a2b277c130a471760fd5697fa089bbe3399c781d5d5096ca5b59a2e97f03a90c",
+          "verse_count": 1,
+          "word_count": 27
+        }
+      ]
+    },
+    {
+      "translation_id": "NIV2011",
+      "name": "New International Version 2011",
+      "edition": "2011",
+      "provider": "api_bible",
+      "provider_source_id": "78a9f6124f344018-01",
+      "rights_basis": "authenticated API.Bible access; source-to-model use requires applicable Biblica AI license",
+      "public_text_release": false,
+      "execution_status": "blocked_pending_ai_use_authorization",
+      "in_primary_phase": false,
+      "normalization_version": "collapse_whitespace_utf8_v1",
+      "verification_status": "repeat_fetch_verified",
+      "passage_digests": [
+        {
+          "target_id": "JOHN-003-016",
+          "reference": "John 3:16",
+          "normalized_text_sha256": "9ccca040433329be09e6462476f875d196416639f09466f301a30521d178c793",
+          "verse_count": 1,
+          "word_count": 26
+        },
+        {
+          "target_id": "GENESIS-001-001",
+          "reference": "Genesis 1:1",
+          "normalized_text_sha256": "0bc170116587172a120cb698b726b5c532a5c22e6b69c9655fea65dcec5dd19a",
+          "verse_count": 1,
+          "word_count": 10
+        },
+        {
+          "target_id": "ROMANS-008-028",
+          "reference": "Romans 8:28",
+          "normalized_text_sha256": "42c6190e3181d677cf9af1546f7ffd2abda048df9c23f5065906df6b7a094be4",
+          "verse_count": 1,
+          "word_count": 25
+        },
+        {
+          "target_id": "HEBREWS-011-001",
+          "reference": "Hebrews 11:1",
+          "normalized_text_sha256": "b4c496ab17a075313504f1d9bd1e87f9e7170a2341218c1531809c0768e7469c",
+          "verse_count": 1,
+          "word_count": 17
+        },
+        {
+          "target_id": "JOHN-014-006",
+          "reference": "John 14:6",
+          "normalized_text_sha256": "d2b3055171bb7ce524c5d00f54ee21cebedd98393927ffd07859dbb962e55f84",
+          "verse_count": 1,
+          "word_count": 21
+        },
+        {
+          "target_id": "PSALM-023-001-003",
+          "reference": "Psalm 23:1-3",
+          "normalized_text_sha256": "94f15eb2860b84767f1c86dbbbc19f4147c17a066a3744e76013948e1b84f19b",
+          "verse_count": 3,
+          "word_count": 37
+        },
+        {
+          "target_id": "PROVERBS-003-005-006",
+          "reference": "Proverbs 3:5-6",
+          "normalized_text_sha256": "bda6e2dc6e5f480f27d43d774bde3b3153751f4e46ca93b1a6e146e39928e29d",
+          "verse_count": 2,
+          "word_count": 29
+        },
+        {
+          "target_id": "EPHESIANS-002-008-009",
+          "reference": "Ephesians 2:8-9",
+          "normalized_text_sha256": "290c8e044f6b2014e83a7f55f67164729dcf2202ba9b216f132a661b3f118078",
+          "verse_count": 2,
+          "word_count": 31
+        },
+        {
+          "target_id": "PHILIPPIANS-004-006-007",
+          "reference": "Philippians 4:6-7",
+          "normalized_text_sha256": "d01f1a8ae3437ba1e306245a6c57e55a075998183464e81999ff45c6c70e6f45",
+          "verse_count": 2,
+          "word_count": 40
+        },
+        {
+          "target_id": "DEUTERONOMY-006-004-005",
+          "reference": "Deuteronomy 6:4-5",
+          "normalized_text_sha256": "43fabcc5ced4f9d21ca1c9800826f6b93143422b3df77e9da884a9c5a5239a9f",
+          "verse_count": 2,
+          "word_count": 30
+        },
+        {
+          "target_id": "MATTHEW-005-003-010",
+          "reference": "Matthew 5:3-10",
+          "normalized_text_sha256": "a0862bcbb59baf1ad5e382f34bab60c21d8314a74778914658566c8f7de542fd",
+          "verse_count": 8,
+          "word_count": 96
+        },
+        {
+          "target_id": "ONE-CORINTHIANS-013-004-007",
+          "reference": "1 Corinthians 13:4-7",
+          "normalized_text_sha256": "39514f4b0749b5998c50930ed50cf8ed86f01e534aec411bd8bdc9123293cfd7",
+          "verse_count": 4,
+          "word_count": 58
+        },
+        {
+          "target_id": "ISAIAH-053-004-006",
+          "reference": "Isaiah 53:4-6",
+          "normalized_text_sha256": "fb9141acd7a4bada53d2befdde54c52b76eb78be571cf243db9e26f637f2b5ae",
+          "verse_count": 3,
+          "word_count": 79
+        },
+        {
+          "target_id": "REVELATION-021-001-004",
+          "reference": "Revelation 21:1-4",
+          "normalized_text_sha256": "126b7693d1d2c8ca5595050e62abb962e3e171b919983614e28febbe341fcfdb",
+          "verse_count": 4,
+          "word_count": 122
+        },
+        {
+          "target_id": "MATTHEW-022-037-040",
+          "reference": "Matthew 22:37-40",
+          "normalized_text_sha256": "6e8f4eaebd92372da07e853564c60e30386609d9f03bc0c233c3d037f112a189",
+          "verse_count": 4,
+          "word_count": 51
+        },
+        {
+          "target_id": "NUMBERS-021-008-009",
+          "reference": "Numbers 21:8-9",
+          "normalized_text_sha256": "2b990d6e599c0ccbabfc0c07d8e8785d126bf06c966f209f9016a9627c6201e3",
+          "verse_count": 2,
+          "word_count": 54
+        },
+        {
+          "target_id": "JOHN-003-014-015",
+          "reference": "John 3:14-15",
+          "normalized_text_sha256": "89bb3df337b0afbb9aae7c9865760a4da55493f7984536b9e22bd08cd646ed4d",
+          "verse_count": 2,
+          "word_count": 29
+        },
+        {
+          "target_id": "LUKE-002-010-012",
+          "reference": "Luke 2:10-12",
+          "normalized_text_sha256": "c198750e090bec29ba46e4db2e34196c82027761626ec664a5b7066f14b7ac72",
+          "verse_count": 3,
+          "word_count": 63
+        },
+        {
+          "target_id": "MICAH-006-008",
+          "reference": "Micah 6:8",
+          "normalized_text_sha256": "8b7e562baaca4d0739d400b6b794c131ca1302f8562b869f1d115e1b3e40f9e5",
+          "verse_count": 1,
+          "word_count": 31
+        },
+        {
+          "target_id": "JAMES-001-005",
+          "reference": "James 1:5",
+          "normalized_text_sha256": "f6fadfc130438992151e6bf18217f453d688f842e8b26704e4bf4611ffc2cb6a",
+          "verse_count": 1,
+          "word_count": 25
+        }
+      ]
+    },
+    {
+      "translation_id": "NLT",
+      "name": "New Living Translation",
+      "edition": "2015",
+      "provider": "api_bible",
+      "provider_source_id": "d6e14a625393b4da-01",
+      "rights_basis": "authenticated API.Bible access; source-to-model use requires explicit authorization review",
+      "public_text_release": false,
+      "execution_status": "blocked_pending_ai_use_authorization",
+      "in_primary_phase": false,
+      "normalization_version": "collapse_whitespace_utf8_v1",
+      "verification_status": "repeat_fetch_verified",
+      "passage_digests": [
+        {
+          "target_id": "JOHN-003-016",
+          "reference": "John 3:16",
+          "normalized_text_sha256": "74c2a20be210b594f1b9ca7f83f373ed7e8dfc4cf36c030869c3b3b813eda47a",
+          "verse_count": 1,
+          "word_count": 29
+        },
+        {
+          "target_id": "GENESIS-001-001",
+          "reference": "Genesis 1:1",
+          "normalized_text_sha256": "0bc170116587172a120cb698b726b5c532a5c22e6b69c9655fea65dcec5dd19a",
+          "verse_count": 1,
+          "word_count": 10
+        },
+        {
+          "target_id": "ROMANS-008-028",
+          "reference": "Romans 8:28",
+          "normalized_text_sha256": "29f787b43b4518816ad4b0c04312660f1f0e542682c33554c8f59fbe2e8ee320",
+          "verse_count": 1,
+          "word_count": 27
+        },
+        {
+          "target_id": "HEBREWS-011-001",
+          "reference": "Hebrews 11:1",
+          "normalized_text_sha256": "e3c7d016d36bbc4801de373280ccd8856867ea7ea725359ae7900b4e48e85075",
+          "verse_count": 1,
+          "word_count": 18
+        },
+        {
+          "target_id": "JOHN-014-006",
+          "reference": "John 14:6",
+          "normalized_text_sha256": "a320dbffe4935cd4ebe3d969c3305a0ea164a82a8b3d0a9660cca44aacba8576",
+          "verse_count": 1,
+          "word_count": 22
+        },
+        {
+          "target_id": "PSALM-023-001-003",
+          "reference": "Psalm 23:1-3",
+          "normalized_text_sha256": "2f617615c2306eb04e2215df1325f3f0c7e390c080f4a2c0ba65a13edf3845e6",
+          "verse_count": 3,
+          "word_count": 39
+        },
+        {
+          "target_id": "PROVERBS-003-005-006",
+          "reference": "Proverbs 3:5-6",
+          "normalized_text_sha256": "890210e08b0347000d57d043494e4ab48b6ef4a46dbf092745b9f27829d902bc",
+          "verse_count": 2,
+          "word_count": 31
+        },
+        {
+          "target_id": "EPHESIANS-002-008-009",
+          "reference": "Ephesians 2:8-9",
+          "normalized_text_sha256": "21d221673a63b506f96b4d876feb4c2e2fd3870eb9656f822e869444e2a36167",
+          "verse_count": 2,
+          "word_count": 42
+        },
+        {
+          "target_id": "PHILIPPIANS-004-006-007",
+          "reference": "Philippians 4:6-7",
+          "normalized_text_sha256": "d6f4f6724ad8790de98ad27b4ba9f93eeca9d35b570060dfec6d22bf971eacab",
+          "verse_count": 2,
+          "word_count": 47
+        },
+        {
+          "target_id": "DEUTERONOMY-006-004-005",
+          "reference": "Deuteronomy 6:4-5",
+          "normalized_text_sha256": "fa0646ecf68af99135e96c67cfddad52becc04e5b928450954ee2e9b982b0ec0",
+          "verse_count": 2,
+          "word_count": 30
+        },
+        {
+          "target_id": "MATTHEW-005-003-010",
+          "reference": "Matthew 5:3-10",
+          "normalized_text_sha256": "210541541bb818e1ff51967b9224d1a2bd321b2911b0a50e95e8f8494a96c362",
+          "verse_count": 8,
+          "word_count": 112
+        },
+        {
+          "target_id": "ONE-CORINTHIANS-013-004-007",
+          "reference": "1 Corinthians 13:4-7",
+          "normalized_text_sha256": "88adfa92201f1c93df35636b94408c3fa9b2599750123661eb9ecfd1bee8cdf8",
+          "verse_count": 4,
+          "word_count": 62
+        },
+        {
+          "target_id": "ISAIAH-053-004-006",
+          "reference": "Isaiah 53:4-6",
+          "normalized_text_sha256": "88286d91b043131e8ad9e8803bcbcb61843d019a91cfb142839b005aa12391d8",
+          "verse_count": 3,
+          "word_count": 86
+        },
+        {
+          "target_id": "REVELATION-021-001-004",
+          "reference": "Revelation 21:1-4",
+          "normalized_text_sha256": "864f24ccb5f47aaace1e5fa70b748043c0920d6375423fbd453b7deaea36fd2c",
+          "verse_count": 4,
+          "word_count": 111
+        },
+        {
+          "target_id": "MATTHEW-022-037-040",
+          "reference": "Matthew 22:37-40",
+          "normalized_text_sha256": "d18bf9b847cbdff639c01f5eb7c74c38fdffc4d652f35b8dbe343b0ecc843b15",
+          "verse_count": 4,
+          "word_count": 53
+        },
+        {
+          "target_id": "NUMBERS-021-008-009",
+          "reference": "Numbers 21:8-9",
+          "normalized_text_sha256": "39a85d917f959b1191061ba315e1499c9c21ae2cdaa240ff5d741ca11d3958ee",
+          "verse_count": 2,
+          "word_count": 61
+        },
+        {
+          "target_id": "JOHN-003-014-015",
+          "reference": "John 3:14-15",
+          "normalized_text_sha256": "910d57fd9db33b6cb1ed8b47c3b57fcaf29b5335b20f7bb470ae496258409bf1",
+          "verse_count": 2,
+          "word_count": 34
+        },
+        {
+          "target_id": "LUKE-002-010-012",
+          "reference": "Luke 2:10-12",
+          "normalized_text_sha256": "e371830608dd0dbba9648770c0ea136a906b72592ff4669a3d60d901ddd8d2e4",
+          "verse_count": 3,
+          "word_count": 61
+        },
+        {
+          "target_id": "MICAH-006-008",
+          "reference": "Micah 6:8",
+          "normalized_text_sha256": "7a61d135f919e939dba45f43077e41a63b06fa2fd32836fb590cc86154b2f979",
+          "verse_count": 1,
+          "word_count": 34
+        },
+        {
+          "target_id": "JAMES-001-005",
+          "reference": "James 1:5",
+          "normalized_text_sha256": "b7ec0ddf266604dcf23465a83b395d2bc2b95c9f6e94fcb5edeb56f7ca2083b7",
+          "verse_count": 1,
+          "word_count": 22
+        }
+      ]
+    }
+  ]
+}
