@@ -1,14 +1,17 @@
 # Contributions and Disclosures
 
-## Current Authorship Record
+## Authorship
 
-Alex Chao: conceptualization, methodology, study design, software integration,
-validation, formal analysis, investigation, data curation, visualization,
-writing, supervision, project administration, and execution funding.
+Alex Chao is the sole author: conceptualization, methodology, study design,
+software integration, validation, formal analysis, investigation, data
+curation, visualization, writing, supervision, and project administration.
 
-The final author list must follow the target venue's authorship policy. This
-record should be updated before submission if additional contributors satisfy
-the venue's criteria and accept responsibility for the manuscript.
+The manuscript carries no author-contributions section, since a contributions
+statement allocates credit among multiple authors and there is only one. If a
+target venue requires one regardless, the roles above supply it.
+
+This record should be updated if additional contributors come to satisfy a
+venue's authorship criteria and accept responsibility for the manuscript.
 
 ## Organizational Contributions
 
