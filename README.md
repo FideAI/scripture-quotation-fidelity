@@ -42,6 +42,10 @@ This is an open evaluation methodology, not a leaderboard.
 > **When Not to Generate: How AI Systems Quote Scripture, and What
 > Authoritative Quotation Requires**
 
+📄 [Read the paper (PDF)](papers/p01-scripture-quotation/paper/main.pdf) ·
+[LaTeX source](papers/p01-scripture-quotation/paper/main.tex) ·
+[dataset](papers/p01-scripture-quotation/data/)
+
 Across 8,640 matched requests, the same Scripture requests were routed through
 four designs — the model quotes from memory; the passage is placed in front of
 it to copy; it is given a lookup tool; or it only names the passage and
@@ -78,8 +82,8 @@ Three can begin immediately against the released Paper 01 dataset with no new
 model spend: **delegation to sources of record** (one route bypassed its tool
 29% of the time while five others essentially never did), **reference
 selection** (the largest unresolved failure, at 84.03%), and **source
-availability** (one edition collapsed to near-zero recall on every model
-tested). Two more — **paraphrase labeling** and **context preservation** — are
+availability** (the LSV collapsed to near-zero recall on every model tested,
+while the BSB ranged from 16.7% to 64.2%). Two more — **paraphrase labeling** and **context preservation** — are
 named by the call and owned by nobody.
 
 See [`docs/research_program.md`](docs/research_program.md) for the full agenda,
@@ -123,7 +127,7 @@ Artifacts keep their `fid056_p01_` prefixes on purpose: they trace each file
 back to public research call FID-056 and to the prospective lock. See
 [above](#this-repository-answers-a-public-research-call).
 
-## What Is Not Included
+## What is not included
 
 Private execution code, raw model outputs, held-out prompts, restricted source
 text, partner traces, and credentials. This is a deliberate boundary, described
@@ -146,24 +150,37 @@ make release-audit    # scan for secrets, private paths, forbidden artifacts
 `make analyze` calls no model endpoint. An exact rerun against hosted models is
 not guaranteed, since endpoints, routing, and provider defaults change.
 
-## Publishing
+## Contributing
 
-```bash
-make arxiv        # stage build/arxiv/ : source tarball + plain-text abstract
-make hf-dataset   # stage build/huggingface/ : parquet + dataset card
+Open studies are genuinely unclaimed, and several need expertise Fide AI does
+not have. See [`docs/research_program.md`](docs/research_program.md) for what is
+open and how to claim it, [`CONTRIBUTING.md`](CONTRIBUTING.md) for what belongs
+here, and [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md) for the standard we hold
+in a repository that touches religious texts and practice.
+
+Security or private-data concerns go through [`SECURITY.md`](SECURITY.md),
+never a public issue.
+
+Maintainers: build and release procedures are in
+[`AGENTS.md`](AGENTS.md) and [`docs/publishing.md`](docs/publishing.md).
+
+## Citation
+
+```bibtex
+@misc{chao2026whennottogenerate,
+  title  = {When Not to Generate: How AI Systems Quote Scripture,
+            and What Authoritative Quotation Requires},
+  author = {Chao, Alex},
+  year   = {2026},
+  note   = {Fide AI. Study FID-056-P01.},
+  url    = {https://github.com/FideAI/scripture-quotation-fidelity}
+}
 ```
 
-Both stage into `build/` and upload nothing. `make arxiv` refuses to package a
-`.tex` containing comments, since arXiv publishes submitted source publicly.
-`make hf-dataset` refuses to stage if a raw-text column appears in the derived
-scores. See [`docs/publishing.md`](docs/publishing.md).
+Machine-readable metadata is in [`CITATION.cff`](CITATION.cff).
 
 ## License
 
 Content is CC BY 4.0 ([`LICENSE`](LICENSE)). Code in `scripts/` is Apache-2.0
 ([`LICENSE-CODE`](LICENSE-CODE)). No authoritative passage text is released;
 passage identity is disclosed through digests only.
-
-## Citation
-
-See [`CITATION.cff`](CITATION.cff).

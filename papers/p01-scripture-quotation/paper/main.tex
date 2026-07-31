@@ -212,7 +212,9 @@ access, exact rendering, and final-output integrity, and shows that quotation
 failures are only interpretable when attributed to a stage. Third, it releases
 an open evaluation methodology, deidentified derived scores, and reproducible
 analyses while keeping private execution code, raw model traces, and
-rights-constrained text outside the public artifact. Three questions organize
+rights-constrained text outside the public artifact. The study answers a public
+call for research on sacred-text fidelity \citep{fid056call}, and the
+repository records which parts of that call remain open. Three questions organize
 the study: how architecture-adherent exactness differs across the four
 architectures; at which stage failures occur; and how prompt form, passage
 length, edition, model family, and repeated sampling interact with those
@@ -964,7 +966,8 @@ training-data variable.
 \section{Open Evaluation and Reproducibility}
 \label{sec:open-release}
 
-The public repository releases:
+The public repository is available at
+\url{https://github.com/FideAI/scripture-quotation-fidelity}. It releases:
 
 \begin{itemize}[leftmargin=*,topsep=4pt,itemsep=2pt]
   \item this paper and citation metadata;
@@ -1128,10 +1131,12 @@ record is speaking.
 
 \section*{Data and Code Availability}
 
-The public repository releases the full deidentified derived-score dataset,
-target registry, executed prompt templates, functional tool schema,
-source-edition record with per-target text digests, release-safe
-prospective-lock and deviation records, and standalone analysis code. It excludes generated prose, authoritative passage text, provider
+The public repository,
+\url{https://github.com/FideAI/scripture-quotation-fidelity}, releases the full
+deidentified derived-score dataset, target registry, executed prompt templates,
+functional tool schema, source-edition record with per-target text digests,
+release-safe prospective-lock and deviation records, and standalone analysis
+code. It excludes generated prose, authoritative passage text, provider
 response identifiers, raw tool traces, credentials, restricted-source
 payloads, and private execution-engine code. The released package reproduces
 the quantitative tables and contrasts without model endpoint access.

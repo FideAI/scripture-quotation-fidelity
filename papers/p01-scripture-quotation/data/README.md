@@ -2,8 +2,8 @@
 
 `fid056_p01_deidentified_trials.csv.gz` contains one row for each of the 8,640
 scheduled observations. It includes experimental factors, terminal-error
-status, derived scoring fields, failure tags, release-safe hashes, token usage,
-and cost. It excludes generated prose, authoritative passage text, provider
+status, derived scoring fields, failure tags, release-safe digests, token
+usage, and provider-reported cost. It excludes generated prose, authoritative passage text, provider
 response identifiers, credentials, and raw tool traces.
 
 `fid056_p01_targets.jsonl` contains the twenty public target references,

@@ -12,9 +12,9 @@
       "sha256": "9b23aa171a1e23d16a63e943ace90975d5cc45d95b5cb110a7768d65b439cfc6"
     },
     {
-      "bytes": 957,
+      "bytes": 3377,
       "path": "CONTRIBUTING.md",
-      "sha256": "66e78464f2494405afd365aa210d38b3926f5a5f7f41d0e96f58c6c05ebeb418"
+      "sha256": "e20433f62e916bf63aa5276bc6daa0625d144a427f42cae872577826bcea67ce"
     },
     {
       "bytes": 631,
@@ -37,14 +37,14 @@
       "sha256": "c1ec8860517efa158fd09d402c10d661b71a81c6ff60a91285c768f622580942"
     },
     {
-      "bytes": 7662,
+      "bytes": 8393,
       "path": "README.md",
-      "sha256": "ade9b3ed170637a616b99402ee3117ac00a86603424ea12415775f5a18511682"
+      "sha256": "690630a823b4d2d689f529bb39ec74b6f19177c080927a5c90e202af9bd20e6f"
     },
     {
-      "bytes": 318,
+      "bytes": 1491,
       "path": "SECURITY.md",
-      "sha256": "be0643eee842c5ea013540b39b29769d597d16c7d08a5b81294a0180866f2cf1"
+      "sha256": "85fdb653474554892ea572061b682ebe335ae0bebf1072ca65efe8017845a1a4"
     },
     {
       "bytes": 3857,
@@ -97,9 +97,9 @@
       "sha256": "233b38a72ba46daff8d8bcfac5a0313ffa2d8c63bfdfe7c13e04ee1dff651775"
     },
     {
-      "bytes": 1197,
+      "bytes": 1216,
       "path": "papers/p01-scripture-quotation/data/README.md",
-      "sha256": "db14dc663a320fc1fa4af9fcbd09f097307617a549213314b1f5a2df802a9630"
+      "sha256": "94c69bf0527515466ac650a3b3f5e481fd66afa93988ff7dccf5157ff7218e45"
     },
     {
       "bytes": 389909,
@@ -157,19 +157,19 @@
       "sha256": "0301a01062a4bbee7fef4021ef276ef4a3c30bfe5f8b03623fa35ec24bc1939b"
     },
     {
-      "bytes": 178354,
+      "bytes": 180220,
       "path": "papers/p01-scripture-quotation/paper/main.pdf",
-      "sha256": "0e222f05319327c31d4930a7465fa32ac2f111b39c8a397d03044086a45ceb89"
+      "sha256": "4bd32967a38641bfcc2252c64cd9a96bcd6d8c6d5d6a0e9c25f238b65199d1e0"
     },
     {
-      "bytes": 63534,
+      "bytes": 63832,
       "path": "papers/p01-scripture-quotation/paper/main.tex",
-      "sha256": "e84329da2cdd14b2a1c54b2844be41e306ec44b569d8fd9a38d8fb3d9d9c8cd8"
+      "sha256": "1ce348a98bbf1dda50ab7aff152cfef9554a20707e332de843e404857672b1e5"
     },
     {
-      "bytes": 13411,
+      "bytes": 13784,
       "path": "papers/p01-scripture-quotation/paper/references.bib",
-      "sha256": "0362fbf5c4dfac899f5eb67541c2157928a73edf81fcf70cfd01c3a3e743d691"
+      "sha256": "a0a3bebd7bd15c1c1d35dcae60cdc0388764fa8c518428e318818b5294f1922f"
     },
     {
       "bytes": 1246,
