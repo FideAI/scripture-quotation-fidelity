@@ -374,15 +374,14 @@ confirmatory execution began. This was not a public registry deposit. The lock
 fixed the target pack, source registry, prompt families, model routes,
 conditions, repetitions, scoring rules, denominator policy, and bootstrap
 procedure. Integration and calibration runs were excluded from confirmatory
-estimates. Two post-lock changes removed budget and wall-clock
-stopping ceilings and divided execution into resumable blocks; neither changed
-a prompt, source, model, observation, score, or analysis.
+estimates. Two post-lock changes were administrative---they removed budget and
+wall-clock stopping ceilings and split execution into resumable blocks---and
+changed no prompt, source, model, observation, score, or analysis.
 
-The public replication package records the lock time, input digests, shared
-implementation revision, and post-lock deviations. It also releases the exact
-executed system and caller templates, the per-target values substituted into
-them, the functional tool schema, and the sampling and retry policy. Authoritative passage text is omitted from
-the prompt artifact, but its release-safe digest is retained where applicable.
+The replication package releases the lock receipt and deviation record together
+with the executed prompts, tool schema, and sampling policy, so the declared
+design can be checked against what ran. Authoritative passage text is withheld;
+its release-safe digest is published in its place.
 
 The primary phase contained:
 
@@ -586,25 +585,19 @@ delivered exact text substantially more often than generation from model
 memory. Second, connecting a source did not remove failure; it moved failure
 to a different stage of the source-delivery chain. Third, passage length and the need to
 infer a reference exposed weaknesses that pooled condition rates alone would
-miss. We begin with execution integrity and the primary comparison, then trace
-those failures through the chain.
+miss. We confirm the design completed, then give the primary comparison and
+trace those failures through the chain.
 
-\subsection{The scheduled design was retained despite provider errors}
+\subsection{The design completed as scheduled}
 
-All 48 route--method--prompt-family blocks completed, yielding all 8,640
-scheduled observations and unique trial and execution-request identities.
-Thirty-three observations ended in terminal provider errors: 23 on the
-DeepSeek route and 10 on the Kimi route. Thirty-two errors occurred in native
-generation and one in tool-mediated retrieval. No failed observation was
-re-prompted or replaced.
-
-Response-level provider and response-ID metadata were present for 8,594
-observations. The 46 gaps were confined to DeepSeek or Kimi native-generation
-observations; 32 were terminal errors and 14 completed. The one remaining
-terminal error occurred in tool-mediated retrieval and retained its provider
-metadata. Requested routes still
-had one upstream pinned and fallbacks disabled. We retain this as disclosed
-provenance missingness rather than excluding the observations.
+All 8,640 scheduled observations were obtained. Thirty-three ended in terminal
+provider errors, almost all in native generation, and no failed observation was
+re-prompted or replaced. These count as failures in the primary denominator
+rather than being dropped, which is the conservative choice: excluding them
+raises native exactness only from 25.00\% to 25.38\% and tool-mediated
+exactness from 80.09\% to 80.13\%. Provider errors therefore do not explain
+any result below. Full execution provenance, including per-route error counts
+and disclosed metadata gaps, is in the replication package.
 
 \subsection{Source-connected systems quoted far more exactly than generation from memory}
 
@@ -837,10 +830,8 @@ therefore added information beyond a single run.
 
 \subsection{Failure review located errors at different stages}
 
-After primary scores were frozen, we conducted a route-blinded qualitative
-review. Six failure strata were defined and five observations per stratum were
-selected by a deterministic SHA-256 ordering of trial identifiers. The review
-was descriptive and did not alter scores.
+A route-blinded review of sampled failures, conducted after primary scores were
+frozen, shows what each architecture's failures actually looked like.
 
 Native failures included near-exact surface differences, lexical drift toward
 another familiar rendering, incomplete spans, blended wording, and refusals.
@@ -851,20 +842,10 @@ wrong boundaries. Deterministic selection failures frequently expanded an
 event to include narrative setup, narrowed a requested range to its most
 salient verse, or appended an edition label that violated the strict interface.
 
-These observations support mechanism-level interpretation, not subtype
-prevalence estimates. No raw response is included in the public manuscript.
-
-\subsection{Provider errors did not explain the main result}
-
-Complete-case sensitivity changed native exactness from 25.00\% to 25.38\%
-and tool exactness from 80.09\% to 80.13\%; the all-scheduled-observation
-analysis remains primary.
-
-The run used 1,954,958 input tokens, 3,285,730 output tokens, and 2,772,266
-reasoning tokens. The execution recorded 11,483 provider API attempts,
-including bounded transport retries, and 10,641 successful model responses.
-Attempts exceed observations because transport failures were retried, so this
-count does not measure how many times a model was asked to answer.
+The pattern is consistent with the staged reading above: each architecture
+failed at the decision it still owned. These are mechanisms, not prevalence
+estimates; the sampling procedure is documented in the replication package, and
+no raw response is reproduced here.
 
 \section{Discussion}
 \label{sec:discussion}
@@ -970,35 +951,21 @@ training-data variable.
 \section{Open Evaluation and Reproducibility}
 \label{sec:open-release}
 
-The public repository is available at
-\url{https://github.com/FideAI/scripture-quotation-fidelity}. It releases:
+The public repository,
+\url{https://github.com/FideAI/scripture-quotation-fidelity}, releases the
+deidentified 8,640-row derived-score dataset, the scoring specification and
+schemas, the executed prompts and tool schema, the source-edition record with
+per-target text digests, the prospective-lock receipt, and standalone analysis
+code. Together these reproduce every quantitative claim in this paper without
+network access or model spend.
 
-\begin{itemize}[leftmargin=*,topsep=4pt,itemsep=2pt]
-  \item this paper and citation metadata;
-  \item the authoritative-quotation methodology and scoring specification;
-  \item scenario and reference schemas;
-  \item the exact executed prompts, functional tool schema, and release-safe
-        target registry;
-  \item the source-edition record, with per-target normalized-text digests for
-        every edition in the locked registry;
-  \item a deidentified 8,640-row derived-score dataset that excludes generated
-        prose and source text;
-  \item reviewed aggregate and target-level tables and a result card;
-  \item the prospective-lock receipt and deviation summary;
-  \item standalone code for the target-level, target-cluster bootstrap, and
-        post-hoc cluster-robust analyses;
-  \item claims, responsible-use, and release policies; and
-  \item documentation mapping the public methodology to a private execution
-        engine.
-\end{itemize}
-
-The public repository excludes private runner code, credentials, provider
-response identifiers, raw model outputs, held-out prompts, partner-private
-traces, and restricted source text. This is a deliberate reproducibility
-boundary. The released derived scores and analysis code reproduce the
-quantitative claims without network access. An exact endpoint rerun remains
-subject to model and routing drift and requires an independent execution
-implementation plus appropriately authorized sources.
+Three things are withheld: authoritative passage text, which carries rights
+obligations; raw model outputs and provider response identifiers, which carry
+custody obligations; and private execution code and credentials. Withholding
+raw outputs is a real limit---a reader cannot inspect what a model actually
+said---and it is the reason the failure review reports mechanisms rather than
+transcripts. An exact rerun against live endpoints is in any case not
+guaranteed, since routing, model versions, and provider defaults change.
 
 The shared condition implementation was executed from a pinned revision of The
 Apologist Project's \texttt{llm-scripture-fidelity} repository
