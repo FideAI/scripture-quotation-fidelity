@@ -122,9 +122,9 @@
       "sha256": "20d7ba40e13b5ca57e24571aaa376314d874cd2739cba64f3dc9ce1bfe212696"
     },
     {
-      "bytes": 3762,
+      "bytes": 3849,
       "path": "papers/p01-scripture-quotation/docs/contributions_and_disclosures.md",
-      "sha256": "97d2825f26533208c223e574f7bf91822924f3b22ba00032515a9a9df62f8962"
+      "sha256": "eef5be1637650d6d517a6f24ec6f8bb54979c0af9b0c28329516db8f6be956e8"
     },
     {
       "bytes": 1877,
@@ -157,9 +157,9 @@
       "sha256": "0301a01062a4bbee7fef4021ef276ef4a3c30bfe5f8b03623fa35ec24bc1939b"
     },
     {
-      "bytes": 182514,
+      "bytes": 182825,
       "path": "papers/p01-scripture-quotation/paper/main.pdf",
-      "sha256": "7b080c83bb9f688cb4c4c51a6fdf710ba00f79bfe447ed8c22b7e5712c4a2281"
+      "sha256": "84c3a3b45ba811a3c9f1069ab773f64de62a38be21b9e7d9c459761f1824109b"
     },
     {
       "bytes": 65621,
@@ -167,9 +167,9 @@
       "sha256": "9d267436c147cfcb07c9fda7667f278daaf0b1b8b486e8a2c2ad6c0533b1903d"
     },
     {
-      "bytes": 14208,
+      "bytes": 14317,
       "path": "papers/p01-scripture-quotation/paper/references.bib",
-      "sha256": "c0cffb88266eddd4ae89a683a32c76c42bda12fff26b9f257f76dba359b682c0"
+      "sha256": "73115665da40dd8dff62d403c7630b55c70d9f0dfe6e93a4e21edb4d2f7addb7"
     },
     {
       "bytes": 1246,

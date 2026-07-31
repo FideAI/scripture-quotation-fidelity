@@ -19,8 +19,9 @@ release boundary, and manuscript claims.
 The Apologist Project developed and maintains the shared condition
 implementation used in local execution
 (<https://github.com/apologist-project/llm-scripture-fidelity>, pinned revision
-`b67849d55181fdffb3ee28d405733dd5eb35e4bc`), and contributed to how the four
-architectures were operationalized. It did not set the research question or
+`b67849d55181fdffb3ee28d405733dd5eb35e4bc`, archived at Software Heritage as
+`swh:1:rev:b67849d55181fdffb3ee28d405733dd5eb35e4bc`), and contributed to how
+the four architectures were operationalized. It did not set the research question or
 crossed design, hold credentials, run confirmatory execution, control the
 analysis, hold evidence custody, or make the release decision.
 
