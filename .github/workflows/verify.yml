@@ -52,6 +52,9 @@ jobs:
       - name: Compile
         run: make paper
 
+      - name: Fail if the rebuilt PDF differs from the committed one
+        run: git diff --exit-code -- 'papers/*/paper/main.pdf'
+
       - uses: actions/upload-artifact@v4
         with:
           name: paper

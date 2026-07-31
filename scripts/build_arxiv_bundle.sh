@@ -14,6 +14,10 @@
 
 set -euo pipefail
 
+# Match the reproducible-build epoch used by scripts/build_paper.sh so staging
+# an arXiv bundle does not change the committed PDF's digest.
+export SOURCE_DATE_EPOCH="${SOURCE_DATE_EPOCH:-1753574400}"
+
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 PAPER_REL="${1:-papers/p01-scripture-quotation}"
 PAPER_DIR="$ROOT_DIR/$PAPER_REL/paper"

@@ -3,6 +3,12 @@
 # Copyright 2026 Fide AI
 set -euo pipefail
 
+# Tectonic embeds a build timestamp, so PDF output is otherwise non-reproducible
+# and every compile invalidates the release manifest. Pin the epoch to the
+# study's prospective-lock date so the same source always yields the same bytes.
+export SOURCE_DATE_EPOCH="${SOURCE_DATE_EPOCH:-1753574400}"
+
+
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 PAPER_DIR="$ROOT_DIR/papers/p01-scripture-quotation/paper"
 

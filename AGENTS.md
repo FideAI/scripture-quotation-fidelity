@@ -23,6 +23,14 @@ checking `$TECTONIC`, then `tectonic` on `PATH`, then
 `/opt/homebrew/bin/tectonic`. Do not assume a bare `tectonic` is on `PATH`;
 some non-interactive shells omit Homebrew paths.
 
+## Reproducible PDF builds
+
+`scripts/build_paper.sh` exports `SOURCE_DATE_EPOCH`. Tectonic embeds a build
+timestamp, so without it every compile produces different bytes, invalidating
+the release manifest and failing CI. Do not remove the pin. If you must
+override it, run `make manifest` afterwards and expect the PDF digest to
+change.
+
 ## Boundaries
 
 Do not add private execution code, raw model outputs, held-out prompts,
