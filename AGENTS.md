@@ -27,9 +27,12 @@ some non-interactive shells omit Homebrew paths.
 
 `scripts/build_paper.sh` exports `SOURCE_DATE_EPOCH`. Tectonic embeds a build
 timestamp, so without it every compile produces different bytes, invalidating
-the release manifest and failing CI. Do not remove the pin. If you must
-override it, run `make manifest` afterwards and expect the PDF digest to
-change.
+the release manifest. Do not remove the pin.
+
+The pin makes builds reproducible for a given tectonic version and platform,
+not across them: a Linux rebuild will not match a macOS-built PDF byte for
+byte. So if you commit a rebuilt PDF, run `make manifest` in the same commit.
+CI verifies the manifest but does not assert cross-platform byte equality.
 
 ## Boundaries
 
