@@ -157,14 +157,14 @@
       "sha256": "0301a01062a4bbee7fef4021ef276ef4a3c30bfe5f8b03623fa35ec24bc1939b"
     },
     {
-      "bytes": 180219,
+      "bytes": 180599,
       "path": "papers/p01-scripture-quotation/paper/main.pdf",
-      "sha256": "042b90f94ea141485bf126ba4ad263800044a68d091211273a8bdb5a86472de5"
+      "sha256": "9483d57c1b7b10ae06da07aa0c20d9fb07bcc60249bb1d7161c9335b0798f544"
     },
     {
-      "bytes": 63832,
+      "bytes": 64286,
       "path": "papers/p01-scripture-quotation/paper/main.tex",
-      "sha256": "1ce348a98bbf1dda50ab7aff152cfef9554a20707e332de843e404857672b1e5"
+      "sha256": "35bbc991c201666c68ec9b7814993d910ff3cb26cb6a5d33bfe54fe96fdbb36e"
     },
     {
       "bytes": 13784,

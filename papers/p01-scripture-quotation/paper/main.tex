@@ -68,7 +68,7 @@ Deterministic insertion was near-perfect once the model named the right
 passage---1,813 of 1,815---and powerless when it did not. Exact quotation is
 not one skill but a chain, and each link fails on its own terms. This measures
 textual delivery, not whether a passage was well chosen, rightly interpreted,
-or pastorally apt.
+or pastorally appropriate.
 \end{abstract}
 
 \section{Introduction}
@@ -374,14 +374,14 @@ confirmatory execution began. This was not a public registry deposit. The lock
 fixed the target pack, source registry, prompt families, model routes,
 conditions, repetitions, scoring rules, denominator policy, and bootstrap
 procedure. Integration and calibration runs were excluded from confirmatory
-estimates. Post-lock administrative changes removed administrative
-stopping ceilings and divided execution into durable blocks; they did not
-change a prompt, source, model, observation, score, or analysis.
+estimates. Two post-lock changes removed budget and wall-clock
+stopping ceilings and divided execution into resumable blocks; neither changed
+a prompt, source, model, observation, score, or analysis.
 
 The public replication package records the lock time, input digests, shared
 implementation revision, and post-lock deviations. It also releases the exact
-executed system and caller templates, target substitutions, functional tool
-schema, and sampling/turn policy. Authoritative passage text is omitted from
+executed system and caller templates, the per-target values substituted into
+them, the functional tool schema, and the sampling and retry policy. Authoritative passage text is omitted from
 the prompt artifact, but its release-safe digest is retained where applicable.
 
 The primary phase contained:
@@ -420,10 +420,10 @@ great-commandment pair, and adjacent passages in John 3.
 Each target had an explicit-reference prompt and an edition-neutral contextual
 description. The contextual descriptions did not name the book, chapter, or
 verse and were designed to avoid distinctive wording from any tested edition.
-An initial review identified six descriptions requiring revision. Those six
-underwent a structurally blinded focused reapproval and produced six exact
-reference identifications. The original twenty-item review was not fully
-blinded, so only the focused six-item result is described as blinded evidence.
+An initial review identified six descriptions that needed revision. The
+revised six were then reviewed again under blinding, and all six were matched
+to the intended reference. Because the original twenty-item review was not
+fully blinded, only this six-item result is reported as blinded evidence.
 
 \subsection{Source editions}
 
@@ -473,7 +473,8 @@ they are not claims about later versions or general vendor performance.
 Requests used OpenRouter-compatible routing with one upstream provider pinned,
 fallbacks disabled, required parameter support, and data-collecting routes
 denied. Provider-default sampling was used with temperature omitted. Every
-cell was observed in three epochs. Semantic retries were zero. Bounded
+cell was observed in three epochs. A failed observation was never re-prompted
+in an attempt to obtain a better answer: semantic retries were zero. Bounded
 transport retries were allowed, and terminal provider errors remained
 non-deliveries in the primary denominator.
 
@@ -517,10 +518,11 @@ an executable call did not count as tool use.
 The model was instructed to return exactly one placeholder of the form
 \texttt{<quote>\{\{QUOTE:<reference>\}\}</quote>}. A local deterministic
 layer parsed the reference, fetched the selected edition and span, and replaced
-the placeholder. The primary score used the strict executed grammar. A
-prospectively specified analysis-only tolerant parser separately assessed whether one
-unambiguous expected reference could be recovered from malformed formatting;
-it never changed the observed output or primary score.
+the placeholder. The primary score required the strict placeholder grammar exactly as
+executed. A tolerant parser, specified in advance and used only for analysis,
+separately assessed whether a single unambiguous reference could still be
+recovered from malformed output; it never altered the observed output or the
+primary score.
 
 \subsection{Outcomes and estimands}
 \label{sec:analysis}
@@ -549,8 +551,8 @@ We also report:
 \end{itemize}
 
 Normalization covered limited surface variation and was never used to erase a
-translation or edition difference. The strict endpoint remained byte-sensitive
-to the protocol's expected final text after declared wrapper handling.
+translation or edition difference. After the declared handling of wrapper markup, the strict
+endpoint compared the final text byte for byte.
 
 \paragraph{Estimands and uncertainty.}
 
@@ -593,8 +595,8 @@ All 48 route--method--prompt-family blocks completed, yielding all 8,640
 scheduled observations and unique trial and execution-request identities.
 Thirty-three observations ended in terminal provider errors: 23 on the
 DeepSeek route and 10 on the Kimi route. Thirty-two errors occurred in native
-generation and one in tool-mediated retrieval. No semantic replacement sample
-was run.
+generation and one in tool-mediated retrieval. No failed observation was
+re-prompted or replaced.
 
 Response-level provider and response-ID metadata were present for 8,594
 observations. The 46 gaps were confined to DeepSeek or Kimi native-generation
@@ -721,12 +723,12 @@ The aggregate rates become more informative when read as a sequence of gates
 (Table~\ref{tab:components}). Source-supplied quotation removed the first two
 gates: the model did not have to identify or retrieve the passage because the
 authoritative span was already in context. Even so, 138 final outputs were
-inexact. Making authoritative text available therefore approached, but did
-not create, deterministic copying.
+inexact. Placing authoritative text in context brought the system close to
+deterministic copying without achieving it.
 
 The tool condition reintroduced source access as a model decision. A tool invocation was
-observed in 2,052 of 2,160 observations (95.00\%), but the requested retrieval
-was used in only 1,818 (84.17\%). The remaining trace-level failures included
+observed in 2,052 of 2,160 observations (95.00\%), but the tool was called for
+the requested span in only 1,818 (84.17\%). The remaining trace-level failures included
 107 bypasses and 234 calls for a span other than the requested span, plus one
 terminal error. Among observations satisfying tool method adherence, 1,730 of
 1,818 (95.16\%) achieved architecture-adherent exactness. The tool itself was not
@@ -734,9 +736,8 @@ the guarantee; correct use of the tool was.
 
 The deterministic condition moved responsibility again. Strict reference
 selection was correct in 1,815 of 2,160 observations (84.03\%). Among those
-correct selections, 1,813 produced an exact final quotation (99.89\%). Once the
-correct reference crossed the interface, the renderer behaved almost
-deterministically. The dominant uncertainty was upstream: whether the model
+correct selections, 1,813 produced an exact final quotation (99.89\%). Once a correct reference
+reached the renderer, its output was almost always exact. The dominant uncertainty was upstream: whether the model
 selected the right passage.
 
 Formatting and selection were related but not identical. The outer placeholder
@@ -775,7 +776,7 @@ relative to explicit references. Deterministic rendering fell by 3.25 \pp{},
 consistent with the model having to identify a span before the renderer could
 act.
 
-\subsection{Long passages remained difficult even with source access}
+\subsection{The requested edition mattered most without a source}
 
 \begin{table}[t]
 \centering
@@ -800,6 +801,8 @@ Native exactness varied sharply by edition (Table~\ref{tab:edition}), reaching
 edition-sensitive. These results establish an interaction with requested
 edition in this panel. They do not identify its cause and cannot be used to
 infer undisclosed training-data frequency.
+
+\subsection{Long passages remained difficult even with source access}
 
 \begin{figure}[t]
 \centering
@@ -843,7 +846,7 @@ Native failures included near-exact surface differences, lexical drift toward
 another familiar rendering, incomplete spans, blended wording, and refusals.
 Source-supplied failures included both typography-only differences and
 substantive alteration or omission. Tool failures separated into bypass,
-tool-like text without an executable call, and authentic retrieval of the
+tool-like text without an executable call, and genuine calls that retrieved the
 wrong boundaries. Deterministic selection failures frequently expanded an
 event to include narrative setup, narrowed a requested range to its most
 salient verse, or appended an edition label that violated the strict interface.
@@ -860,7 +863,8 @@ analysis remains primary.
 The run used 1,954,958 input tokens, 3,285,730 output tokens, and 2,772,266
 reasoning tokens. The execution recorded 11,483 provider API attempts,
 including bounded transport retries, and 10,641 successful model responses.
-Provider-attempt counts are not equivalent to semantic turns.
+Attempts exceed observations because transport failures were retried, so this
+count does not measure how many times a model was asked to answer.
 
 \section{Discussion}
 \label{sec:discussion}
@@ -1010,15 +1014,17 @@ This work is a measurement study. It is not legal advice, copyright clearance,
 theological certification, pastoral-safety approval, product endorsement, or
 deployment authorization.
 
-Rights status is an architectural input. BSB and WEBU were evaluated as
+Rights status constrains which architectures are available at all: an edition
+that cannot be sent to a model cannot be supplied in context or returned by a
+tool. BSB and WEBU were evaluated as
 public-domain sources; LSV was used under its stated open license, with no LSV
 passage text included in the public result package. Restricted translations
 require separate source and source-to-model authorization. Technical ability
 to reproduce text does not itself establish a right to distribute it.
 
-For Christian readers, ``fidelity'' has a deliberately narrow meaning here:
+Throughout this paper, ``fidelity'' has a deliberately narrow meaning:
 fidelity to the requested English source text and span. Christian traditions
-also use the term for faithfulness to Scripture's meaning, canonical context,
+also use the word for faithfulness to Scripture's meaning, canonical context,
 doctrine, and lived obedience. Nothing in the experiment reduces those
 questions to string matching.
 
@@ -1057,8 +1063,9 @@ variability, not longitudinal stability.
 
 \paragraph{Provider-default sampling.}
 Temperature and other generation controls were omitted and left at provider
-defaults. This improves ecological comparability to the evaluated access path
-but limits causal interpretation of sampling parameters.
+defaults. This keeps the comparison close to how these endpoints
+behave in ordinary use, but it prevents any causal claim about sampling
+parameters.
 
 \paragraph{Strict interface contract.}
 The deterministic primary result includes failures caused by a deliberately
@@ -1070,8 +1077,8 @@ invalidate the locked primary comparison.
 \paragraph{Automated exactness.}
 Exact matching is appropriate for the declared endpoint, but failure tags and
 normalized views depend on implementation choices. A post-run route-blinded
-review checked mechanisms in a small diagnostic sample; it was not a second
-population annotation study.
+review examined mechanisms in a small diagnostic sample; it did not re-annotate
+the full set of observations.
 
 \paragraph{Dependence and fixed-panel inference.}
 Target-cluster bootstrap intervals describe variation within this target
@@ -1079,8 +1086,8 @@ panel, while model routes and editions remain fixed. Target-level distributions
 and a post-hoc target-cluster-robust fixed-panel sensitivity analysis make this
 dependence visible, but neither supports population inference to all Scripture
 requests, models, or editions. With only twenty target clusters, uncertainty
-estimates remain coarse; a larger probability-oriented target sample would be
-needed for population claims.
+estimates remain coarse; population claims would require a larger probability
+sample of passages.
 
 \paragraph{Contextual-description review.}
 The six revised contextual descriptions received a structurally blinded
@@ -1113,10 +1120,10 @@ left to the model.
 
 The practical lesson is not that one method wins every comparison. It is that
 authoritative quotation should be designed and evaluated as a sequence of
-observable responsibilities. Models may identify what a user means. Source
-interfaces may retrieve what is authorized. Deterministic components may
-render what must not change. Final-output checks must establish what the user
-actually received.
+observable responsibilities. A model can identify what a user
+means. A source interface can retrieve what is authorized. A deterministic
+component can render what must not change. And a final-output check can
+establish what the user actually received.
 
 Return to the opening request about Jesus and the serpent in the wilderness.
 The system should be able to show whether the model identified the intended
