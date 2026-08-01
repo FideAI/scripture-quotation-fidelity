@@ -58,14 +58,14 @@ Locked in advance, we route 8,640 matched Scripture requests through four
 designs across six model families, three open English editions, and twenty
 passages. Quoting from memory delivered the requested edition exactly 25.00\%
 of the time, an authorized lookup tool 80.09\%, and deterministic insertion
-83.94\%. Supplying the passage directly reached 93.61\%, but that condition is
-an oracle rather than a rival: it never selects or retrieves, and no deployed
-system knows the answer in advance. Connecting a source did not remove failure;
-it moved failure onto whatever the model still decided. Models called the tool
-in 95.00\% of cases yet asked it for the right passage in only 84.17\%. Holding
-the source constant sharpens the practical finding: handed the exact text, a
-generative layer still altered it 6.39\% of the time, against 0.11\% for
-non-generative rendering. Exact quotation is not one skill but a chain, and
+83.94\%. Supplying the exact passage in context, which removes
+any need to find or fetch it, still reached only 93.61\%: handed the text and
+asked to repeat it, models altered it 6.39\% of the time. Connecting a source
+did not remove failure; it moved failure onto whatever the model still decided.
+Models called the tool in 95.00\% of cases yet asked it for the right passage
+in only 84.17\%. Where a generative layer altered supplied text 6.39\% of the
+time, a non-generative renderer given a correct reference altered it 0.11\% of
+the time. Exact quotation is not one skill but a chain, and
 each link fails on its own terms. This measures textual delivery, not whether a
 passage was well chosen, rightly interpreted, or pastorally appropriate.
 \end{abstract}
@@ -506,16 +506,13 @@ owns the source words and the decisions that precede them.}
 The model received no source text and no tool. This condition represents the
 common behavior of asking a general assistant to quote from memory.
 
-\paragraph{Source-supplied quotation (oracle).}
+\paragraph{Source-supplied quotation.}
 The authoritative span was placed in the model context and the model was asked
-to return it unchanged. This is deliberately not a retrieval architecture:
-there is no lookup, and no decision about what to retrieve, because the correct
-span is supplied in advance. It is an oracle condition that isolates a single
-question---once authoritative text is already available, does the generative
-layer preserve it?---and it bounds what any perfect retrieval system could
-deliver. It is reported alongside the three deployable architectures, but it is
-not one of them, and comparisons that treat it as a peer will overstate it by
-the amount that source selection costs the others.
+to return it unchanged. Nothing has to be found or fetched, so this condition
+asks one question: once the correct text is already present, does the
+generative layer preserve it? Because the answer is supplied in advance, the
+result is a ceiling on what any retrieval system could deliver rather than a
+score a deployed system could match.
 
 \paragraph{Tool-mediated retrieval.}
 The model received an authorized \texttt{get\_passage} tool and was instructed
@@ -644,18 +641,21 @@ observations (Figure~\ref{fig:condition-outcomes};
 Table~\ref{tab:primary}); in other words, three out of four
 requests failed the strict endpoint when the model had to supply the passage
 from memory. Every source-connected intervention substantially improved on
-that baseline. The oracle condition had the highest pooled rate, followed by
-deterministic rendering and tool-mediated retrieval.
+that baseline. Source-supplied quotation had the highest pooled rate, followed
+by deterministic rendering and tool-mediated retrieval.
 
-That ordering should not be read as a ranking of deployable architectures. The
-oracle condition is handed the correct span and therefore never fails at
-selection or access, while the other three must obtain the text themselves. Its
-rate is an upper bound on what perfect retrieval could achieve, not a
-competitor's score. The clearest evidence is in the prompt-family results
-below: when requests became harder to resolve, every condition that performs
-selection degraded, and the oracle condition did not move
-(Table~\ref{tab:prompt}). Section~\ref{sec:results} returns to this with a
-comparison that holds the source constant.
+The source-supplied rate is the most surprising number in the table, and not
+because it is high. The model was given the exact requested text and asked to
+return it unchanged, with nothing to identify and nothing to retrieve, and it
+still altered the text in 6.39\% of observations. Whatever else an architecture
+does, placing authoritative text in a generative context does not guarantee
+that the text survives.
+
+That figure is also a ceiling rather than a competing score, since no deployed
+system is handed the answer in advance. The prompt-family results below make
+the asymmetry visible: when requests became harder to resolve, every condition
+that performs selection degraded and this one did not move
+(Table~\ref{tab:prompt}).
 
 \begin{table}[htbp]
 \centering
@@ -791,11 +791,10 @@ comparison but understates how often the model identified the right passage.
 
 \subsection{Holding the source constant isolates the rendering stage}
 
-The pooled condition rates in Table~\ref{tab:primary} compare architectures that
-carry different burdens: the oracle condition is handed the correct span, while
-the others must obtain it. A comparison that holds the source constant asks a
-narrower and more actionable question---once a system has the right text or the
-right reference, how faithfully does it deliver it?
+The pooled rates in Table~\ref{tab:primary} compare architectures carrying
+different burdens. Holding the source constant asks a narrower question: once a
+system has the right text or the right reference, how faithfully does it
+deliver it?
 
 \begin{table}[htbp]
 \centering
@@ -815,12 +814,13 @@ selection and access failures are excluded from all three.}
 \label{tab:rendering}
 \end{table}
 
-Table~\ref{tab:rendering} isolates the stage that follows source acquisition. A
-generative layer handed the exact text still altered it in 6.39\% of
-observations, and a generative layer that had just retrieved the text through
-an authorized tool altered it in 4.84\%. A non-generative renderer given a
-correct reference altered it in 0.11\%---roughly a fiftyfold reduction relative
-to supplying the text in context.
+The pattern is consistent across the two generative rows and sharply different
+in the third. A model handed the exact text altered it in 6.39\% of
+observations; a model that had just retrieved the text itself altered it in
+4.84\%; a non-generative renderer given a correct reference altered it in
+0.11\%, roughly a fiftyfold reduction. We report the difference without
+attributing a cause: the study was not designed to determine why a model alters
+text it has just been given.
 
 This is the strongest practical result in the study, and it is narrower than the
 pooled comparison. It says nothing about which architecture delivers correct
@@ -861,8 +861,8 @@ removes identification as a variable for every architecture. Even there,
 generation from memory succeeded in only 27.41\% of observations: naming the
 passage does not make a model reproduce it.
 
-Contextual descriptions had little pooled effect on the oracle condition, where
-the authoritative span was already present---further evidence that this
+Contextual descriptions had little pooled effect on source-supplied quotation,
+where the authoritative span was already present---further evidence that this
 condition does not participate in selection. Their largest effect appeared in
 tool-mediated retrieval, where exactness fell by 20.19 \pp{} relative to
 explicit references. Deterministic rendering fell by 3.25 \pp{}, consistent
@@ -956,9 +956,9 @@ architectures outperformed generation from memory. That is true, but
 incomplete. The more useful finding is that each architecture made a different
 part of the journey reliable.
 
-The oracle condition removed identification and retrieval by construction,
-leaving preservation as the only risk---and preservation still failed 6.39\% of
-the time. Tool mediation gave the model access to a source of record, but also
+Source supply removed identification and retrieval by construction, leaving
+preservation as the only risk---and preservation still failed 6.39\% of the
+time. Tool mediation gave the model access to a source of record, but also
 gave it decisions about whether to call the tool and which span to request.
 Deterministic rendering made the words nearly certain after a successful
 handoff, while leaving reference selection exposed. The failures did not
@@ -1105,17 +1105,14 @@ Reference conventions, translation ecosystems, source authority, and language
 technology differ elsewhere. Cross-lingual and cross-domain claims require new
 studies.
 
-\paragraph{The oracle condition is not a deployable comparison.}
-Source-supplied quotation is handed the correct span and therefore bypasses
+\paragraph{Source supply is a ceiling, not a competing architecture.}
+The source-supplied condition is handed the correct span, so it bypasses
 selection and access entirely. Its rate bounds what perfect retrieval could
-deliver; it does not estimate what any retrieval-augmented system would achieve,
-since a real system must decide what to fetch. Comparisons that place it
-alongside the three deployable architectures overstate it by exactly the cost
-of source selection, which for the deterministic condition was the difference
-between 84.03\% and 99.89\%. A study that gave every condition the same
-selection burden---for instance by having the model choose a reference, then
-retrieving it, then supplying it---would answer a different and also useful
-question, and would require its own prospective specification.
+deliver; it does not estimate what a real retrieval-augmented system would
+achieve, since such a system must still decide what to fetch. A design that
+gave every condition the same selection burden---having the model choose a
+reference, retrieving it, then supplying it---would answer a different and
+useful question, and would need its own prospective specification.
 
 \paragraph{Edition versioning.}
 Ground truth was a fixed stored copy of each edition, verified stable by
