@@ -34,6 +34,15 @@ not across them: a Linux rebuild will not match a macOS-built PDF byte for
 byte. So if you commit a rebuilt PDF, run `make manifest` in the same commit.
 CI verifies the manifest but does not assert cross-platform byte equality.
 
+## Editing the paper by hand
+
+VS Code or Cursor with the LaTeX Workshop extension. `.vscode/settings.json`
+configures a tectonic recipe that pins the same `SOURCE_DATE_EPOCH` as
+`make paper`, so editor builds and release builds produce identical bytes.
+
+After any edit that changes the PDF, run `make manifest` before committing, or
+`make verify-release` fails on a digest mismatch.
+
 ## Boundaries
 
 Do not add private execution code, raw model outputs, held-out prompts,

@@ -24,3 +24,6 @@ tmp/
 *.pdf.bak
 
 build/
+
+# editor build intermediates
+papers/*/paper/*.synctex.gz

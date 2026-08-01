@@ -1,0 +1,38 @@
+{
+  "latex-workshop.latex.outDir": "%DIR%",
+
+  "latex-workshop.latex.tools": [
+    {
+      "name": "tectonic",
+      "command": "tectonic",
+      "args": [
+        "-X", "compile",
+        "--synctex",
+        "--keep-intermediates",
+        "%DOC_EXT%"
+      ],
+      "env": {
+        "SOURCE_DATE_EPOCH": "1753574400"
+      }
+    }
+  ],
+
+  "latex-workshop.latex.recipes": [
+    { "name": "tectonic", "tools": ["tectonic"] }
+  ],
+
+  "latex-workshop.latex.autoBuild.run": "onFileChange",
+  "latex-workshop.view.pdf.viewer": "tab",
+  "latex-workshop.synctex.afterBuild.enabled": true,
+
+  "latex-workshop.latex.autoClean.run": "never",
+
+  "[latex]": {
+    "editor.wordWrap": "bounded",
+    "editor.wordWrapColumn": 80,
+    "editor.rulers": [80],
+    "editor.tabSize": 2
+  },
+
+  "files.associations": { "*.tex": "latex" }
+}
