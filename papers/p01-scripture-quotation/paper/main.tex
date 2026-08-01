@@ -416,7 +416,13 @@ annotated rather than treated as fully independent evidence: the Shema and
 great-commandment pair, and adjacent passages in John 3.
 
 Each target had an explicit-reference prompt and an edition-neutral contextual
-description. The contextual descriptions did not name the book, chapter, or
+description. The distinction is who supplies the reference. In the
+explicit-reference family the caller names it---``Quote [reference] from the
+[edition] exactly''---so no architecture has to identify the passage, and the
+comparison isolates obtaining and delivering it. In the contextual family the
+caller describes the passage without naming book, chapter, or verse, so
+identification becomes part of the task. Every target was evaluated under both,
+crossed with all four architectures. The contextual descriptions did not name the book, chapter, or
 verse and were designed to avoid distinctive wording from any tested edition.
 An initial review identified six descriptions that needed revision. The
 revised six were then reviewed again under blinding, and all six were matched
@@ -751,8 +757,37 @@ syntax-related failure tag, usually because the model added an edition label to
 the reference payload. The analysis-only tolerant parser identified the
 expected reference in 1,954 observations (90.46\%), including 158 of those 161
 syntax-tagged cases. This does not change the strict 83.94\% primary result.
-It shows that interface conformance and semantic reference selection are
-different questions.
+
+Separating the two by prompt family shows that they fail in opposite
+circumstances (Table~\ref{tab:interface}). When the caller named the reference,
+the model conformed to the strict grammar in only 85.56\% of observations, yet
+the tolerant parser recovered the intended reference in 99.91\%: the model
+almost always knew which passage was wanted and simply wrote the placeholder
+wrongly. When the caller described the passage instead, the pattern reversed---
+grammar conformance rose to 99.54\% while recovered references fell to
+81.02\%, because the difficulty had moved from formatting to identification.
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{lrr}
+\toprule
+Deterministic condition & Explicit reference & Contextual description \\
+\midrule
+Strict grammar satisfied & 85.56\% & 99.54\% \\
+Intended reference recovered & 99.91\% & 81.02\% \\
+\bottomrule
+\end{tabular}
+\caption{Interface conformance against reference identification, by caller
+prompt family ($N=1{,}080$ per cell). Recovery uses the prospectively specified
+analysis-only tolerant parser and never altered the primary score.}
+\label{tab:interface}
+\end{table}
+
+Interface conformance and semantic reference selection are therefore different
+questions, and a single accuracy figure conflates them. The strict endpoint
+charges both to the same account, which is the conservative choice for a locked
+comparison but understates how often the model identified the right passage.
 
 \subsection{Holding the source constant isolates the rendering stage}
 
@@ -820,12 +855,18 @@ per cell).}
 \label{tab:prompt}
 \end{table}
 
-Contextual descriptions had little pooled effect on source-supplied
-reproduction, where the authoritative span was already present. Their largest
-effect appeared in tool-mediated retrieval: exactness fell by 20.19 \pp{}
-relative to explicit references. Deterministic rendering fell by 3.25 \pp{},
-consistent with the model having to identify a span before the renderer could
-act.
+The explicit-reference column is the case where a user already knows which
+passage they want and says so. It is the narrower question of delivery, and it
+removes identification as a variable for every architecture. Even there,
+generation from memory succeeded in only 27.41\% of observations: naming the
+passage does not make a model reproduce it.
+
+Contextual descriptions had little pooled effect on the oracle condition, where
+the authoritative span was already present---further evidence that this
+condition does not participate in selection. Their largest effect appeared in
+tool-mediated retrieval, where exactness fell by 20.19 \pp{} relative to
+explicit references. Deterministic rendering fell by 3.25 \pp{}, consistent
+with the model having to identify a span before the renderer could act.
 
 \subsection{The requested edition mattered most without a source}
 
@@ -954,7 +995,11 @@ principles.
         system state rather than inferred only from generated prose.
   \item \textbf{Separate selection from rendering.} Structured selection makes
         upstream uncertainty observable and permits a non-generative component
-        to own final text.
+        to own final text. Measure the interface separately from the choice it
+        carries: when the caller named the reference, our strict grammar was
+        satisfied 85.56\% of the time while the intended reference was
+        recoverable 99.91\% of the time, so a single score would have charged
+        a formatting defect to comprehension.
   \item \textbf{Verify tool behavior, not tool availability.} A tool definition
         does not establish invocation, correct lookup, or faithful rendering.
   \item \textbf{Test the final user-visible buffer.} Exact source bytes can
@@ -1100,10 +1145,13 @@ parameters.
 
 \paragraph{Strict interface contract.}
 The deterministic primary result includes failures caused by a deliberately
-strict reference grammar. Tolerant analysis shows that many syntax-tagged
-outputs contained the intended reference. A production system could adopt a
-more permissive parser, but changing the parser after observing results would
-invalidate the locked primary comparison.
+strict reference grammar, and that cost is concentrated where the caller named
+the reference: grammar conformance there was 85.56\% against 99.91\% reference
+recovery. A production system would likely adopt a more permissive parser and
+would recover much of that gap. We do not report what such a system would have
+scored, because selecting a parser after observing results would invalidate the
+locked comparison; the two components are reported separately so a reader can
+see the size of the effect without our having chosen it.
 
 \paragraph{Automated exactness.}
 Exact matching is appropriate for the declared endpoint, but failure tags and
