@@ -43,7 +43,7 @@
 \maketitle
 
 \begin{abstract}
-People increasingly ask AI assistants for Scripture---in sermon preparation,
+People increasingly ask AI assistants for Scripture in sermon preparation,
 teaching, and pastoral conversation. These are not ordinary information
 requests: someone asking for a passage wants particular words, in a particular
 translation, from a source they could have opened themselves. A reply that
@@ -58,16 +58,17 @@ Locked in advance, we route 8,640 matched Scripture requests through four
 designs across six model families, three open English editions, and twenty
 passages. Quoting from memory delivered the requested edition exactly 25.00\%
 of the time, an authorized lookup tool 80.09\%, and deterministic insertion
-83.94\%. Supplying the exact passage in context, which removes
-any need to find or fetch it, still reached only 93.61\%: handed the text and
-asked to repeat it, models altered it 6.39\% of the time. Connecting a source
-did not remove failure; it moved failure onto whatever the model still decided.
-Models called the tool in 95.00\% of cases yet asked it for the right passage
-in only 84.17\%. Where a generative layer altered supplied text 6.39\% of the
-time, a non-generative renderer given a correct reference altered it 0.11\% of
-the time. Exact quotation is not one skill but a chain, and
-each link fails on its own terms. This measures textual delivery, not whether a
-passage was well chosen, rightly interpreted, or pastorally appropriate.
+83.94\%. Supplying the exact passage in context, which removes any
+need to find or fetch it, still reached only 93.61\%, meaning models altered
+the text 6.39\% of the time. Connecting a source did not remove failure; it
+moved failure onto whatever the model still decided. Models called the tool in
+95.00\% of cases yet asked it for the right passage in only 84.17\%. A
+non-generative renderer, by contrast, altered the text in 0.11\% of cases once
+it was given a correct reference. Exact quotation is therefore not one skill but a chain---choosing
+the passage, reaching an authorized copy, reproducing it, delivering it
+intact---and each link has to be checked separately. We measure that delivery
+only, not whether a passage was well chosen, rightly interpreted, or pastorally
+appropriate.
 \end{abstract}
 
 \section{Introduction}
