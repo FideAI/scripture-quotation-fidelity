@@ -168,21 +168,30 @@ translations make edition identity observable rather than assumed, span length
 can be varied systematically, and indirect prompts force semantic
 identification before rendering.
 
-The results are stark and, we think, more interesting than a ranking. Native
-generation from model memory met the strict endpoint in 25.00\% of
-observations, against 93.61\% for source-supplied quotation, 80.09\% for
-tool-mediated retrieval, and 83.94\% for deterministic rendering. Because the
+The results are stark and more interesting than a ranking. Generating from
+model memory met the strict endpoint in 25.00\% of observations, tool-mediated
+retrieval in 80.09\%, and deterministic rendering in 83.94\%. Because the
 endpoint requires the \emph{requested} edition, much of the native gap is
 edition substitution rather than general unfamiliarity: native exactness ranged
 from 41.53\% for the Berean Standard Bible to 5.00\% for the Literal Standard
-Version. The central finding is what
-happened after a source was connected. Failure did not disappear; it migrated
-toward whichever decision the architecture still left to the model. A source
-tool was invoked in 95.00\% of tool observations but used for the requested
-lookup in only 84.17\%. Deterministic rendering was exact in 1,813 of 1,815
-cases once the model had selected the correct reference---but the model
-selected correctly in only 84.03\% of observations, and no renderer can repair
-a wrong selection. Each architecture made one stage reliable and left another
+Version.
+
+Source-supplied quotation reached 93.61\%. That condition is a ceiling rather
+than a rival, since the correct text is handed over and nothing has to be found
+or fetched, and the instructive part is that the ceiling is not higher: asked
+only to repeat text placed in front of it, the model altered that text in
+6.39\% of observations.
+
+The central finding is what happened once a source was connected. Failure did
+not disappear; it migrated toward whichever decision the architecture still
+left to the model. A source tool was invoked in 95.00\% of tool observations
+but used for the requested lookup in only 84.17\%. Deterministic rendering was
+exact in 1,813 of 1,815 cases once the model had selected the correct
+reference---but the model selected correctly in only 84.03\% of observations,
+and no renderer can repair a wrong selection. Holding the source constant makes
+the contrast plain: where a generative layer altered text it had been given in
+6.39\% of cases, a non-generative renderer given a correct reference altered it
+in 0.11\%. Each architecture made one stage reliable and left another
 exposed.
 
 What transfers from this is the structure, not the numbers. The same shape
@@ -588,13 +597,15 @@ purposive target panel into a probability sample.
 \section{Results}
 \label{sec:results}
 
-Three findings organize the results. First, every source-connected condition
+Four findings organize the results. First, every source-connected condition
 delivered exact text substantially more often than generation from model
-memory. Second, connecting a source did not remove failure; it moved failure
-to a different stage of the source-delivery chain. Third, passage length and the need to
-infer a reference exposed weaknesses that pooled condition rates alone would
-miss. We confirm the design completed, then give the primary comparison and
-trace those failures through the chain.
+memory. Second, connecting a source did not remove failure; it moved failure to
+a different stage of the source-delivery chain. Third, once the correct source
+had been obtained, a non-generative renderer preserved it far more reliably
+than a generative one. Fourth, passage length and the need to infer a reference
+exposed weaknesses that pooled condition rates alone would miss. We confirm the
+design completed, then give the primary comparison and trace those failures
+through the chain.
 
 \subsection{The design completed as scheduled}
 
@@ -819,9 +830,10 @@ The pattern is consistent across the two generative rows and sharply different
 in the third. A model handed the exact text altered it in 6.39\% of
 observations; a model that had just retrieved the text itself altered it in
 4.84\%; a non-generative renderer given a correct reference altered it in
-0.11\%, roughly a fiftyfold reduction. We report the difference without
-attributing a cause: the study was not designed to determine why a model alters
-text it has just been given.
+0.11\%, two observations out of 1,815. In absolute terms that is 138 corrupted
+deliveries against two. We report the difference without attributing a cause:
+the study was not designed to determine why a model alters text it has just
+been given.
 
 This is the strongest practical result in the study, and it is narrower than the
 pooled comparison. It says nothing about which architecture delivers correct
@@ -977,8 +989,7 @@ The study therefore does not show that deterministic rendering is the best
 architecture overall; its own selection stage succeeded only 84.03\% of the
 time. What it shows is narrower and more useful: once the correct source has
 been obtained, a non-generative component reproduces it far more reliably than
-a generative one, by 0.11\% against 6.39\%. Guarantees must be assigned to
-stages. A renderer can guarantee the bytes it emits without guaranteeing
+a generative one. Guarantees must be assigned to stages. A renderer can guarantee the bytes it emits without guaranteeing
 that the model asked for the right source. A tool can make authoritative text
 available without guaranteeing that the model will use it. And a source placed
 in context can still be changed by the generative layer that presents it.
@@ -1020,13 +1031,17 @@ Native generation was especially unreliable for long passages and for the LSV
 edition. A fluent response should not be assumed to preserve the requested
 translation.
 
-Three checks follow directly from the results and can be applied to a system an
+Four checks follow directly from the results and can be applied to a system an
 institution is evaluating. Ask whether the requested edition is named and
 carried through to the delivered text rather than inferred. Ask for evidence
 that an authorized source was actually consulted for the requested span, since
-the availability of a lookup tool did not establish its correct use here. And
-test long passages and event-style requests specifically, because both degraded
-under every architecture we evaluated.
+the availability of a lookup tool did not establish its correct use here. Ask
+whether the verse text a user sees is inserted directly or passed through the
+model on its way to the screen: a system that retrieves the right verse and
+then asks a model to repeat it altered that text in 6.39\% of our observations,
+while a system that inserted it without regenerating it altered it in 0.11\%.
+And test long passages and event-style requests specifically, because both
+degraded under every architecture we evaluated.
 
 These results also put a measured figure beside a widely circulated industry
 estimate that models misquote Scripture between 15\% and 60\% of the time
