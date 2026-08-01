@@ -54,21 +54,20 @@ failure. A response can be factually accurate, properly cited, and semantically
 faithful, and still be the wrong text.
 
 When the words themselves are the answer, who should be responsible for them?
-We route matched Scripture requests through four designs---the model quotes
-from memory; the passage is placed in front of it to copy; it is given a lookup
-tool; or it only names the passage and non-generative code inserts the text.
-Locked in advance, the study covers 8,640 requests across six model families,
-three open English editions, and twenty passages. Quoting from memory produced
-the requested edition exactly 25.00\% of the time; supplying the text raised
-that to 93.61\%, a lookup tool to 80.09\%, and deterministic insertion to
-83.94\%. The central finding is that connecting a source did not remove failure
-but moved it onto whatever the model still decided. Models called the tool in
-95.00\% of cases yet asked it for the right passage in only 84.17\%.
-Deterministic insertion was near-perfect once the model named the right
-passage---1,813 of 1,815---and powerless when it did not. Exact quotation is
-not one skill but a chain, and each link fails on its own terms. This measures
-textual delivery, not whether a passage was well chosen, rightly interpreted,
-or pastorally appropriate.
+Locked in advance, we route 8,640 matched Scripture requests through four
+designs across six model families, three open English editions, and twenty
+passages. Quoting from memory delivered the requested edition exactly 25.00\%
+of the time, an authorized lookup tool 80.09\%, and deterministic insertion
+83.94\%. Supplying the passage directly reached 93.61\%, but that condition is
+an oracle rather than a rival: it never selects or retrieves, and no deployed
+system knows the answer in advance. Connecting a source did not remove failure;
+it moved failure onto whatever the model still decided. Models called the tool
+in 95.00\% of cases yet asked it for the right passage in only 84.17\%. Holding
+the source constant sharpens the practical finding: handed the exact text, a
+generative layer still altered it 6.39\% of the time, against 0.11\% for
+non-generative rendering. Exact quotation is not one skill but a chain, and
+each link fails on its own terms. This measures textual delivery, not whether a
+passage was well chosen, rightly interpreted, or pastorally appropriate.
 \end{abstract}
 
 \section{Introduction}
@@ -488,7 +487,7 @@ caller asks the same question in every matched cell, so the comparison changes
 the delivery path rather than the user's request
 (Figure~\ref{fig:delivery-paths}).
 
-\begin{figure}[t]
+\begin{figure}[htbp]
 \centering
 \includegraphics[width=\textwidth]{fig1_delivery_paths.pdf}
 \caption{The four evaluated paths through the source-delivery chain. The
@@ -501,11 +500,16 @@ owns the source words and the decisions that precede them.}
 The model received no source text and no tool. This condition represents the
 common behavior of asking a general assistant to quote from memory.
 
-\paragraph{Source-supplied quotation.}
+\paragraph{Source-supplied quotation (oracle).}
 The authoritative span was placed in the model context and the model was asked
-to return it unchanged. This approximates a simple retrieval or source-injection
-architecture while isolating whether the generative layer preserves available
-text.
+to return it unchanged. This is deliberately not a retrieval architecture:
+there is no lookup, and no decision about what to retrieve, because the correct
+span is supplied in advance. It is an oracle condition that isolates a single
+question---once authoritative text is already available, does the generative
+layer preserve it?---and it bounds what any perfect retrieval system could
+deliver. It is reported alongside the three deployable architectures, but it is
+not one of them, and comparisons that treat it as a peer will overstate it by
+the amount that source selection costs the others.
 
 \paragraph{Tool-mediated retrieval.}
 The model received an authorized \texttt{get\_passage} tool and was instructed
@@ -601,7 +605,7 @@ and disclosed metadata gaps, is in the replication package.
 
 \subsection{Source-connected systems quoted far more exactly than generation from memory}
 
-\begin{figure}[t]
+\begin{figure}[htbp]
 \centering
 \includegraphics[width=0.88\textwidth]{fig2_condition_outcomes.pdf}
 \caption{Common final-text exactness and architecture-adherent
@@ -610,7 +614,7 @@ where some exact final answers did not satisfy the declared tool-use gates.}
 \label{fig:condition-outcomes}
 \end{figure}
 
-\begin{table}[t]
+\begin{table}[htbp]
 \centering
 \small
 \begin{tabular}{lrrrr}
@@ -634,12 +638,20 @@ observations (Figure~\ref{fig:condition-outcomes};
 Table~\ref{tab:primary}); in other words, three out of four
 requests failed the strict endpoint when the model had to supply the passage
 from memory. Every source-connected intervention substantially improved on
-that baseline. Source-supplied quotation had the highest pooled rate,
-followed by deterministic rendering and tool-mediated retrieval. That ordering
-is useful descriptively, but it does not yet explain what each architecture
-made reliable.
+that baseline. The oracle condition had the highest pooled rate, followed by
+deterministic rendering and tool-mediated retrieval.
 
-\begin{table}[t]
+That ordering should not be read as a ranking of deployable architectures. The
+oracle condition is handed the correct span and therefore never fails at
+selection or access, while the other three must obtain the text themselves. Its
+rate is an upper bound on what perfect retrieval could achieve, not a
+competitor's score. The clearest evidence is in the prompt-family results
+below: when requests became harder to resolve, every condition that performs
+selection degraded, and the oracle condition did not move
+(Table~\ref{tab:prompt}). Section~\ref{sec:results} returns to this with a
+comparison that holds the source constant.
+
+\begin{table}[htbp]
 \centering
 \small
 \begin{tabular}{lrr}
@@ -663,7 +675,7 @@ The prospectively specified deterministic-versus-native risk difference was
 variation across the twenty target clusters, not a probability sample of all
 possible Bible passages or user requests.
 
-\begin{table}[t]
+\begin{table}[htbp]
 \centering
 \small
 \begin{tabular}{lrrrr}
@@ -694,7 +706,7 @@ confirmatory claims.
 
 \subsection{Each architecture left a different model decision exposed}
 
-\begin{table}[t]
+\begin{table}[htbp]
 \centering
 \small
 \begin{tabular}{lrrrrr}
@@ -742,9 +754,55 @@ syntax-tagged cases. This does not change the strict 83.94\% primary result.
 It shows that interface conformance and semantic reference selection are
 different questions.
 
+\subsection{Holding the source constant isolates the rendering stage}
+
+The pooled condition rates in Table~\ref{tab:primary} compare architectures that
+carry different burdens: the oracle condition is handed the correct span, while
+the others must obtain it. A comparison that holds the source constant asks a
+narrower and more actionable question---once a system has the right text or the
+right reference, how faithfully does it deliver it?
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{lrrr}
+\toprule
+Stage reached & Exact & $N$ & Text wrong \\
+\midrule
+Exact span supplied in context & 2,022 & 2,160 & 6.39\% \\
+Tool retrieved the requested span & 1,730 & 1,818 & 4.84\% \\
+Correct reference reached the renderer & 1,813 & 1,815 & 0.11\% \\
+\bottomrule
+\end{tabular}
+\caption{Delivery fidelity conditional on having obtained the correct source.
+Each row is restricted to observations that reached the corresponding stage, so
+selection and access failures are excluded from all three.}
+\label{tab:rendering}
+\end{table}
+
+Table~\ref{tab:rendering} isolates the stage that follows source acquisition. A
+generative layer handed the exact text still altered it in 6.39\% of
+observations, and a generative layer that had just retrieved the text through
+an authorized tool altered it in 4.84\%. A non-generative renderer given a
+correct reference altered it in 0.11\%---roughly a fiftyfold reduction relative
+to supplying the text in context.
+
+This is the strongest practical result in the study, and it is narrower than the
+pooled comparison. It says nothing about which architecture delivers correct
+text most often end to end, because it conditions away the stage where
+deterministic rendering actually fails. It says that if the correct source has
+been obtained, generation is the wrong mechanism for reproducing it.
+
+Both readings are reported because they answer different questions. The locked
+primary endpoint asks whether the user received the requested text at all.
+Table~\ref{tab:rendering} asks which component should own the words once the
+source is settled. Neither replaces the other, and the components combined here
+were among the outcomes specified before execution
+(Section~\ref{sec:analysis}).
+
 \subsection{Contextual requests mainly challenged reference identification}
 
-\begin{table}[t]
+\begin{table}[htbp]
 \centering
 \small
 \begin{tabular}{lrr}
@@ -771,7 +829,7 @@ act.
 
 \subsection{The requested edition mattered most without a source}
 
-\begin{table}[t]
+\begin{table}[htbp]
 \centering
 \small
 \begin{tabular}{lrrr}
@@ -797,7 +855,7 @@ infer undisclosed training-data frequency.
 
 \subsection{Long passages remained difficult even with source access}
 
-\begin{figure}[t]
+\begin{figure}[htbp]
 \centering
 \includegraphics[width=0.88\textwidth]{fig3_passage_difficulty.pdf}
 \caption{Architecture-adherent exactness by passage stratum
@@ -857,12 +915,13 @@ architectures outperformed generation from memory. That is true, but
 incomplete. The more useful finding is that each architecture made a different
 part of the journey reliable.
 
-Source supply made identification and retrieval unnecessary, leaving
-preservation as the main risk. Tool mediation gave the model access to a source
-of record, but also gave it decisions about whether to call the tool and which
-span to request. Deterministic rendering made the words reliable after a
-successful handoff, while leaving reference selection exposed. The failures
-did not disappear as architecture changed; they migrated toward the remaining
+The oracle condition removed identification and retrieval by construction,
+leaving preservation as the only risk---and preservation still failed 6.39\% of
+the time. Tool mediation gave the model access to a source of record, but also
+gave it decisions about whether to call the tool and which span to request.
+Deterministic rendering made the words nearly certain after a successful
+handoff, while leaving reference selection exposed. The failures did not
+disappear as architecture changed; they migrated toward the remaining
 model-owned decisions.
 
 Two request properties made that migration visible. Contextual descriptions
@@ -872,9 +931,12 @@ first: this is not noise around the same task, it is an additional reasoning
 stage. And the requested edition mattered most when the model answered from
 memory, which is where edition identity is least constrained.
 
-The study therefore does not show that deterministic rendering is universally
-better than source-supplied quotation. It shows why guarantees must be assigned
-to stages. A renderer can guarantee the bytes it emits without guaranteeing
+The study therefore does not show that deterministic rendering is the best
+architecture overall; its own selection stage succeeded only 84.03\% of the
+time. What it shows is narrower and more useful: once the correct source has
+been obtained, a non-generative component reproduces it far more reliably than
+a generative one, by 0.11\% against 6.39\%. Guarantees must be assigned to
+stages. A renderer can guarantee the bytes it emits without guaranteeing
 that the model asked for the right source. A tool can make authoritative text
 available without guaranteeing that the model will use it. And a source placed
 in context can still be changed by the generative layer that presents it.
@@ -997,6 +1059,18 @@ The experiment used three English editions and one sacred-text domain.
 Reference conventions, translation ecosystems, source authority, and language
 technology differ elsewhere. Cross-lingual and cross-domain claims require new
 studies.
+
+\paragraph{The oracle condition is not a deployable comparison.}
+Source-supplied quotation is handed the correct span and therefore bypasses
+selection and access entirely. Its rate bounds what perfect retrieval could
+deliver; it does not estimate what any retrieval-augmented system would achieve,
+since a real system must decide what to fetch. Comparisons that place it
+alongside the three deployable architectures overstate it by exactly the cost
+of source selection, which for the deterministic condition was the difference
+between 84.03\% and 99.89\%. A study that gave every condition the same
+selection burden---for instance by having the model choose a reference, then
+retrieving it, then supplying it---would answer a different and also useful
+question, and would require its own prospective specification.
 
 \paragraph{Edition versioning.}
 Ground truth was a fixed stored copy of each edition, verified stable by
