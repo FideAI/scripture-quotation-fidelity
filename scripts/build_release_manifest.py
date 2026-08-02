@@ -12,7 +12,6 @@ import hashlib
 import json
 from pathlib import Path
 
-
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "papers/p01-scripture-quotation/provenance/release_manifest.json"
 PAPER = "papers/p01-scripture-quotation/"

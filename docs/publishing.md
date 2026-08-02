@@ -35,7 +35,7 @@ includes only `main.tex`, `main.bbl`, the `.bst`, and the figures.
 
 `cs.CY` (Computers and Society) is the category that carries the
 religion-and-technology framing; without it the paper reads to browsers as a
-narrow RAG evaluation.
+narrow source-delivery evaluation.
 
 The abstract field is plain text with a **1,920 character limit**. The generated
 file currently uses about 1,820, so there is little headroom — check the count

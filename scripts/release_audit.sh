@@ -72,6 +72,11 @@ if ! uv run --script scripts/verify_release.py; then
   failed=1
 fi
 
+if ! uv run --script scripts/build_hf_dataset.py >/dev/null; then
+  printf 'FAIL: Hugging Face release staging failed\n'
+  failed=1
+fi
+
 if (( failed )); then
   exit 1
 fi

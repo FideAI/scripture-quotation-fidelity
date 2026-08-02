@@ -54,16 +54,17 @@ failure. A response can be factually accurate, properly cited, and semantically
 faithful, and still be the wrong text.
 
 When the words themselves are the answer, who should be responsible for them?
-Locked in advance, we route 8,640 matched Scripture requests through four
+We route 8,640 matched Scripture requests through four
 designs across six model families, three open English editions, and twenty
 passages. Quoting from memory delivered the requested edition exactly 25.00\%
-of the time, an authorized lookup tool 80.09\%, and deterministic insertion
-83.94\%. Supplying the exact passage in context, which removes any
+of the time and an authorized lookup tool 80.09\%. Deterministic insertion
+reached 91.25\%, and 99.91\% when the user named the reference. Supplying the
+exact passage in context, which removes any
 need to find or fetch it, still reached only 93.61\%, meaning models altered
 the text 6.39\% of the time. Connecting a source did not remove failure; it
 moved failure onto whatever the model still decided. Models called the tool in
 95.00\% of cases yet asked it for the right passage in only 84.17\%. A
-non-generative renderer, by contrast, altered the text in 0.11\% of cases once
+non-generative renderer, by contrast, altered the text in 0.10\% of cases once
 it was given a correct reference. Exact quotation is therefore not one skill but a chain---choosing
 the passage, reaching an authorized copy, reproducing it, delivering it
 intact---and each link has to be checked separately. We measure that delivery
@@ -152,7 +153,7 @@ Authoritative quotation is a property of the whole source-delivery chain, not a
 model knowledge property.
 
 We therefore hold the user's request fixed and vary which component owns the
-words. Matched requests were routed through four architectures: generation from
+words. Matched requests were routed through four evaluation conditions: generation from
 model memory, reproduction of source text supplied in context, retrieval
 through an authorized \texttt{get\_passage} tool, and model selection of a
 structured reference followed by deterministic rendering. The prospectively
@@ -161,7 +162,7 @@ six model families, three open English editions, twenty passages, two prompt
 forms, and three repetitions. This is a matched crossed comparison rather than
 a benchmark or leaderboard, and the primary endpoint is deliberately
 demanding: the user-visible output must equal the requested text exactly, with
-condition-specific evidence that the declared architecture was actually
+condition-specific evidence that the declared delivery path was actually
 followed. Scripture makes this comparison unusually tractable---verse
 references supply a conventional addressing scheme, multiple English
 translations make edition identity observable rather than assumed, span length
@@ -169,8 +170,9 @@ can be varied systematically, and indirect prompts force semantic
 identification before rendering.
 
 The results are stark and more interesting than a ranking. Generating from
-model memory met the strict endpoint in 25.00\% of observations, tool-mediated
-retrieval in 80.09\%, and deterministic rendering in 83.94\%. Because the
+model memory met the exact-delivery endpoint in 25.00\% of observations,
+tool-mediated retrieval in 80.09\%, and deterministic rendering in 91.25\%.
+Because the
 endpoint requires the \emph{requested} edition, much of the native gap is
 edition substitution rather than general unfamiliarity: native exactness ranged
 from 41.53\% for the Berean Standard Bible to 5.00\% for the Literal Standard
@@ -183,15 +185,18 @@ only to repeat text placed in front of it, the model altered that text in
 6.39\% of observations.
 
 The central finding is what happened once a source was connected. Failure did
-not disappear; it migrated toward whichever decision the architecture still
+not disappear; it migrated toward whichever decision the delivery path still
 left to the model. A source tool was invoked in 95.00\% of tool observations
-but used for the requested lookup in only 84.17\%. Deterministic rendering was
-exact in 1,813 of 1,815 cases once the model had selected the correct
-reference---but the model selected correctly in only 84.03\% of observations,
-and no renderer can repair a wrong selection. Holding the source constant makes
+but used for the requested lookup in only 84.17\%. The deterministic path
+delivered 1,971 of 2,160 requests exactly (91.25\%). It
+delivered 1,079 of 1,080 explicit-reference requests exactly (99.91\%), while
+contextual requests remained limited by passage identification (82.59\%). Once
+a correct reference reached the renderer, rendering itself was exact in 1,971
+of 1,973 cases. No renderer can repair a genuinely wrong selection.
+Holding the source constant makes
 the contrast plain: where a generative layer altered text it had been given in
 6.39\% of cases, a non-generative renderer given a correct reference altered it
-in 0.11\%. Each architecture made one stage reliable and left another
+in 0.10\%. Each condition made one stage reliable and left another
 exposed.
 
 What transfers from this is the structure, not the numbers. The same shape
@@ -215,17 +220,17 @@ appropriate.
 \paragraph{Contributions.}
 The paper makes three contributions. First, it gives a rigorous empirical
 account of Scripture quotation across twenty passages, three open English
-editions, six model families, and four system architectures. Second, it defines
+editions, six model families, and four delivery conditions. Second, it defines
 a \emph{source-delivery chain} that separates source selection, authorized
 access, exact rendering, and final-output integrity, and shows that quotation
-failures are only interpretable when attributed to a stage. Third, it releases
-an open evaluation methodology, deidentified derived scores, and reproducible
-analyses while keeping private execution code, raw model traces, and
+failures are only interpretable when attributed to a stage. Third, it defines
+a planned open release of the evaluation methodology, deidentified derived
+scores, and reproducible analyses while keeping private execution code, raw model traces, and
 rights-constrained text outside the public artifact. The study answers a public
 call for research on sacred-text fidelity \citep{fid056call}, and the
 repository records which parts of that call remain open. Three questions organize
-the study: how architecture-adherent exactness differs across the four
-architectures; at which stage failures occur; and how prompt form, passage
+the study: how path-adherent exactness differs across the four
+conditions; at which stage failures occur; and how prompt form, passage
 length, edition, model family, and repeated sampling interact with those
 failures.
 
@@ -238,6 +243,16 @@ A successful quotation needs four things to go right. The system must identify
 what text the user means, obtain it through the declared path, preserve its
 wording, and deliver that wording intact. Failure at any one stage defeats the
 quotation request even if every other stage succeeds.
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=\textwidth]{figv1_system_overview.pdf}
+\caption{The systems model and matched experimental conditions. Panel (a)
+shows the four stages required for exact quotation; panel (b) shows how the
+experiment reallocates selection, source access, and ownership of the final
+source words while holding the user's request fixed.}
+\label{fig:delivery-paths}
+\end{figure}
 
 Formally, let a request specify, explicitly or implicitly, a source work $W$,
 an edition $E$, and a span $B$. Let $T(W,E,B)$ be the authoritative text
@@ -259,7 +274,7 @@ The strict endpoint is conjunctive:
   \label{eq:e2e}
 \end{equation}
 
-The operational evidence for each term depends on architecture. In native
+The operational evidence for each term depends on condition. In native
 generation there is no external access event to verify; exact final output is
 the decisive behavior. In a tool condition, access requires an observed call
 for the requested span rather than merely the presence of a tool definition.
@@ -284,7 +299,7 @@ groundedness.
 The requirement is also narrower. The evaluation does not ask whether the source
 itself is true, wise, clinically appropriate, legally controlling, or
 theologically interpreted correctly. It asks whether a system delivered the
-requested source faithfully under its declared architecture.
+requested source faithfully under its declared delivery path.
 
 \subsection{Scripture as the study domain}
 \label{sec:scripture-domain}
@@ -373,7 +388,7 @@ obtained, rendered, and preserved the requested source.
 \label{sec:study-design}
 
 The experiment holds the request panel fixed and changes the route by which a
-quotation reaches the user. This makes architecture, rather than passage choice
+quotation reaches the user. This makes delivery path, rather than passage choice
 or model mix, the primary comparison.
 
 \subsection{Prospective specification and execution boundary}
@@ -387,7 +402,7 @@ estimates. Two post-lock changes were administrative---they removed budget and
 wall-clock stopping ceilings and split execution into resumable blocks---and
 changed no prompt, source, model, observation, score, or analysis.
 
-The replication package releases the lock receipt and deviation record together
+The replication package records the lock receipt and deviation record together
 with the executed prompts, tool schema, and sampling policy, so the declared
 design can be checked against what ran. Authoritative passage text is withheld;
 its release-safe digest is published in its place.
@@ -428,11 +443,11 @@ great-commandment pair, and adjacent passages in John 3.
 Each target had an explicit-reference prompt and an edition-neutral contextual
 description. The distinction is who supplies the reference. In the
 explicit-reference family the caller names it---``Quote [reference] from the
-[edition] exactly''---so no architecture has to identify the passage, and the
+[edition] exactly''---so no condition has to identify the passage, and the
 comparison isolates obtaining and delivering it. In the contextual family the
 caller describes the passage without naming book, chapter, or verse, so
 identification becomes part of the task. Every target was evaluated under both,
-crossed with all four architectures. The contextual descriptions did not name the book, chapter, or
+crossed with all four conditions. The contextual descriptions did not name the book, chapter, or
 verse and were designed to avoid distinctive wording from any tested edition.
 An initial review identified six descriptions that needed revision. The
 revised six were then reviewed again under blinding, and all six were matched
@@ -492,9 +507,9 @@ in an attempt to obtain a better answer: semantic retries were zero. Bounded
 transport retries were allowed, and terminal provider errors remained
 non-deliveries in the primary denominator.
 
-\subsection{Architecture conditions}
+\subsection{Delivery conditions}
 
-The four conditions give the model progressively different responsibilities.
+The four conditions assign distinct responsibilities to the model and system.
 In the first, the model must supply the words itself. In the second, the words
 are already present and the model must preserve them. In the third, the model
 must obtain the words through a tool and then return them. In the fourth, the
@@ -502,15 +517,8 @@ model selects only the reference; a deterministic layer owns the words. The
 caller asks the same question in every matched cell, so the comparison changes
 the delivery path rather than the user's request
 (Figure~\ref{fig:delivery-paths}).
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=\textwidth]{fig1_delivery_paths.pdf}
-\caption{The four evaluated paths through the source-delivery chain. The
-caller request is matched across conditions; what changes is which component
-owns the source words and the decisions that precede them.}
-\label{fig:delivery-paths}
-\end{figure}
+Panel (b) makes the comparison explicit: the experiment changes which
+component selects the passage, reaches the source, and supplies the words.
 
 \paragraph{Native parametric quotation.}
 The model received no source text and no tool. This condition represents the
@@ -534,26 +542,35 @@ an executable call did not count as tool use.
 The model was instructed to return exactly one placeholder of the form
 \texttt{<quote>\{\{QUOTE:<reference>\}\}</quote>}. A local deterministic
 layer parsed the reference, fetched the selected edition and span, and replaced
-the placeholder. The primary score required the strict placeholder grammar exactly as
-executed. A tolerant parser, specified in advance and used only for analysis,
-separately assessed whether a single unambiguous reference could still be
-recovered from malformed output; it never altered the observed output or the
-primary score.
+the placeholder. During execution, the runner incorrectly rejected an otherwise
+valid reference when the model redundantly appended the already requested
+edition. We corrected that implementation error by accepting one valid
+reference followed by a textual edition annotation and replaying all 2,160
+saved deterministic responses through the original source fixtures. No model
+response was regenerated. The original literal-interface result and complete
+reconciliation are reported in Appendix~\ref{app:parser-audit}.
 
 \subsection{Outcomes and estimands}
 \label{sec:analysis}
 
 \paragraph{Primary and common outcomes.}
 
-The locked primary endpoint, \eetwo, required strict final-output equality and
+The planned endpoint, \eetwo, required strict final-output equality and
 all condition-specific selection, lookup, replacement, and method-adherence
-checks. We call it \emph{architecture-adherent exactness} throughout: the
-gates differ by condition because the declared architectures differ. The
+checks. We call it \emph{path-adherent exactness} throughout; the locked
+materials use the synonymous label \emph{architecture-adherent exactness}. The
+gates differ by condition because the declared delivery paths differ. The
 common cross-condition text outcome is final-output exactness, which asks only
 whether the complete user-visible output equals the requested text. Both are
 reported so that a process failure is not mistaken for a textual mismatch, or
 vice versa. No weighted composite score was used. Terminal errors counted as
 failures in the intention-to-observe denominator.
+
+The reported exact-delivery outcome leaves the first three conditions unchanged.
+For deterministic rendering, it uses the exact final output produced by the
+complete corrected replay. The study design and planned contrasts were fixed
+before execution; this implementation correction was made after inspecting
+failures and is disclosed separately from that prospective lock.
 
 We also report:
 
@@ -573,7 +590,7 @@ endpoint compared the final text byte for byte.
 \paragraph{Estimands and uncertainty.}
 
 Condition rates use all 2,160 scheduled observations per condition and are
-accompanied by raw counts. The prospectively specified primary contrast is the paired risk
+accompanied by raw counts. The planned primary contrast is the paired risk
 difference between deterministic rendering and native generation. We also
 report paired source-supplied and tool-mediated contrasts. Paired intervals
 come from a 10,000-resample target-cluster bootstrap with seed 5601. Clustering
@@ -620,12 +637,43 @@ and disclosed metadata gaps, is in the replication package.
 
 \subsection{Source-connected systems quoted far more exactly than generation from memory}
 
-\begin{figure}[htbp]
+The four conditions do not carry the same burden. Source-supplied quotation is
+a gold-passage preservation ceiling: it receives the correct span and performs
+neither selection nor retrieval. The other paths leave one or both of those
+decisions exposed. We therefore report the pooled rates as a descriptive map
+of the staged system, not as a winner-take-all comparison of equal treatment
+arms; the stage-held comparisons below isolate the narrower mechanisms.
+
+Native parametric quotation produced an exact final quotation in one quarter of
+observations (Figure~\ref{fig:condition-outcomes};
+Table~\ref{tab:primary}); in other words, three out of four
+requests failed the strict endpoint when the model had to supply the passage
+from memory. Every source-connected condition had a substantially higher rate than
+that baseline. Source-supplied quotation had the highest pooled rate, followed
+closely by deterministic rendering and then tool-mediated retrieval.
+Tool-mediated final text was exact in 82.31\% of observations,
+including some cases that did not satisfy the declared tool-use gates; its
+path-adherent rate remains 80.09\%.
+
+The source-supplied rate is the most surprising number in the table, and not
+because it is high. The model was given the exact requested text and asked to
+return it unchanged, with nothing to identify and nothing to retrieve, and it
+still altered the text in 6.39\% of observations. Whatever else a delivery path
+does, placing authoritative text in a generative context does not guarantee
+that the text survives.
+
+That figure is also a ceiling rather than a competing score, since no deployed
+system is handed the answer in advance. The prompt-family results below make
+the asymmetry visible: when requests became harder to resolve, every condition
+that performs selection degraded and this one did not move
+(Figure~\ref{fig:prompt}).
+
+\begin{figure}[!ht]
 \centering
 \includegraphics[width=0.88\textwidth]{fig2_condition_outcomes.pdf}
-\caption{Common final-text exactness and architecture-adherent
-exactness by condition. The measures differ only for tool-mediated retrieval,
-where some exact final answers did not satisfy the declared tool-use gates.}
+\caption{Exact delivery by condition with descriptive observation-level Wilson
+95\% intervals. All scheduled observations, including terminal provider
+errors, remain in the denominator.}
 \label{fig:condition-outcomes}
 \end{figure}
 
@@ -634,62 +682,42 @@ where some exact final answers did not satisfy the declared tool-use gates.}
 \small
 \begin{tabular}{lrrrr}
 \toprule
-Condition & Final exact & \eetwo{} exact & $N$ & \eetwo{} rate \\
+Condition & Exact & $N$ & Rate & Wilson 95\% CI \\
 \midrule
-Native parametric quotation & 540 & 540 & 2,160 & 25.00\% \\
-Source-supplied quotation & 2,022 & 2,022 & 2,160 & 93.61\% \\
-Tool-mediated retrieval & 1,778 & 1,730 & 2,160 & 80.09\% \\
-Deterministic rendering & 1,813 & 1,813 & 2,160 & 83.94\% \\
+Native parametric quotation & 540 & 2,160 & 25.00\% & [23.22, 26.87] \\
+Source-supplied quotation & 2,022 & 2,160 & 93.61\% & [92.50, 94.57] \\
+Tool-mediated retrieval & 1,730 & 2,160 & 80.09\% & [78.36, 81.72] \\
+Deterministic rendering & 1,971 & 2,160 & 91.25\% & [89.98, 92.37] \\
 \bottomrule
 \end{tabular}
-\caption{Common final-text exactness and architecture-adherent
-exactness. All scheduled observations, including terminal
-provider errors, remain in the denominator.}
+\caption{Exact delivery across the four delivery conditions. Wilson
+intervals are descriptive observation-level summaries; dependence-aware paired
+contrasts are reported separately.}
 \label{tab:primary}
 \end{table}
-
-Native parametric quotation produced an exact final quotation in one quarter of
-observations (Figure~\ref{fig:condition-outcomes};
-Table~\ref{tab:primary}); in other words, three out of four
-requests failed the strict endpoint when the model had to supply the passage
-from memory. Every source-connected intervention substantially improved on
-that baseline. Source-supplied quotation had the highest pooled rate, followed
-by deterministic rendering and tool-mediated retrieval.
-
-The source-supplied rate is the most surprising number in the table, and not
-because it is high. The model was given the exact requested text and asked to
-return it unchanged, with nothing to identify and nothing to retrieve, and it
-still altered the text in 6.39\% of observations. Whatever else an architecture
-does, placing authoritative text in a generative context does not guarantee
-that the text survives.
-
-That figure is also a ceiling rather than a competing score, since no deployed
-system is handed the answer in advance. The prompt-family results below make
-the asymmetry visible: when requests became harder to resolve, every condition
-that performs selection degraded and this one did not move
-(Table~\ref{tab:prompt}).
+\FloatBarrier
 
 \begin{table}[htbp]
 \centering
 \small
 \begin{tabular}{lrr}
 \toprule
-Treatment vs.\ native & Paired risk difference & Cluster bootstrap 95\% interval \\
+Condition minus native & Paired risk difference & Cluster bootstrap 95\% interval \\
 \midrule
 Source supplied & +68.61 \pp & [+61.71, +75.60] \\
 Tool mediated & +55.09 \pp & [+46.48, +63.47] \\
-Deterministic rendering & +58.94 \pp & [+51.16, +66.67] \\
+Deterministic rendering & +66.25 \pp & [+58.47, +73.98] \\
 \bottomrule
 \end{tabular}
-\caption{Paired effects on architecture-adherent exactness. Complete pairs:
-2,160 for each contrast.}
+\caption{Paired descriptive differences in exact delivery. Complete pairs:
+2,160 for each comparison. The conditions intentionally assign different
+responsibilities and are not equal-burden treatment arms.}
 \label{tab:effects}
 \end{table}
 
-The prospectively specified deterministic-versus-native risk difference was
-+58.94 \pp{}
-(Table~\ref{tab:effects}). The source-supplied contrast was larger at +68.61
-\pp{}, and the tool-mediated contrast was +55.09 \pp{}. The intervals describe
+The deterministic-versus-native risk difference was +66.25 \pp{}
+(Table~\ref{tab:effects}). The source-supplied contrast was +68.61 \pp{}, and
+the tool-mediated contrast was +55.09 \pp{}. The intervals describe
 variation across the twenty target clusters, not a probability sample of all
 possible Bible passages or user requests.
 
@@ -703,107 +731,66 @@ Condition & Target median & IQR & Minimum & Maximum \\
 Native parametric & 18.98\% & [10.65, 39.58] & 0.00\% & 56.48\% \\
 Source supplied & 98.61\% & [92.82, 100.00] & 55.56\% & 100.00\% \\
 Tool mediated & 88.43\% & [72.45, 94.44] & 34.26\% & 96.30\% \\
-Deterministic rendering & 89.35\% & [83.33, 92.59] & 46.30\% & 96.30\% \\
+Deterministic rendering & 99.07\% & [90.28, 100.00] & 56.48\% & 100.00\% \\
 \bottomrule
 \end{tabular}
-\caption{Distribution of architecture-adherent exactness across the twenty
-targets. Each target rate pools the balanced route, edition, prompt, and epoch
-panel ($N=108$ per condition and target).}
+\caption{Distribution of exact delivery across the twenty targets. Each target
+rate pools the balanced route, edition, prompt, and epoch panel ($N=108$ per
+condition and target).}
 \label{tab:target-distribution}
 \end{table}
 
-The target distributions show that the pooled effects were not driven by one
+The target distributions show that the pooled condition differences were not driven by one
 or two passages (Table~\ref{tab:target-distribution}), but they also expose
 substantial target heterogeneity. In the post-hoc cluster-robust sensitivity
 model, adjusted risk differences were +68.61 \pp{} for source supplied
 ($t_{19}$ interval [+60.83, +76.39]), +55.09 \pp{} for tool mediated
-([+45.68, +64.50]), and +58.94 \pp{} for deterministic rendering
-([+50.36, +67.51]). These estimates are nearly identical to the paired
-fixed-panel contrasts and are interpreted as sensitivity results, not new
-confirmatory claims.
+([+45.68, +64.50]), and +66.25 \pp{} for deterministic rendering
+([+57.63, +74.87]). These estimates are
+interpreted as sensitivity results, not new confirmatory claims.
 
-\subsection{Each architecture left a different model decision exposed}
-
-\begin{table}[htbp]
-\centering
-\small
-\begin{tabular}{lrrrrr}
-\toprule
-Condition & Answered & Exact text & Method adherence & Final exact & \eetwo \\
-\midrule
-Native & 98.29\% & 25.14\% & -- & 25.00\% & 25.00\% \\
-Source supplied & 100.00\% & 93.66\% & 100.00\% & 93.61\% & 93.61\% \\
-Tool mediated & 99.81\% & 82.31\% & 84.17\% & 82.31\% & 80.09\% \\
-Deterministic rendering & 100.00\% & 83.98\% & 92.55\% & 83.94\% & 83.94\% \\
-\bottomrule
-\end{tabular}
-\caption{Selected component rates. ``Method adherence'' is
-condition-specific and should not be compared as a general model capability.}
-\label{tab:components}
-\end{table}
+\subsection{Each delivery path left a different model decision exposed}
 
 The aggregate rates become more informative when read as a sequence of gates
-(Table~\ref{tab:components}). Source-supplied quotation removed the first two
+(Figure~\ref{fig:components}). Source-supplied quotation removed the first two
 gates: the model did not have to identify or retrieve the passage because the
 authoritative span was already in context. Even so, 138 final outputs were
 inexact. Placing authoritative text in context brought the system close to
 deterministic copying without achieving it.
+The complete component metric matrix is retained in Appendix
+Table~\ref{tab:components}.
 
 The tool condition reintroduced source access as a model decision. A tool invocation was
 observed in 2,052 of 2,160 observations (95.00\%), but the tool was called for
 the requested span in only 1,818 (84.17\%). The remaining trace-level failures included
 107 bypasses and 234 calls for a span other than the requested span, plus one
 terminal error. Among observations satisfying tool method adherence, 1,730 of
-1,818 (95.16\%) achieved architecture-adherent exactness. The tool itself was not
+1,818 (95.16\%) achieved path-adherent exactness. The tool itself was not
 the guarantee; correct use of the tool was.
 
-The deterministic condition moved responsibility again. Strict reference
-selection was correct in 1,815 of 2,160 observations (84.03\%). Among those
-correct selections, 1,813 produced an exact final quotation (99.89\%). Once a correct reference
-reached the renderer, its output was almost always exact. The dominant uncertainty was upstream: whether the model
-selected the right passage.
+The deterministic condition moved responsibility again. The model selected the
+expected reference and completed lookup and replacement in 1,973 of 2,160
+observations (91.34\%). Of those handoffs, 1,971 produced an exact final
+quotation (99.90\%). Once the correct reference reached the renderer, its output
+was almost always exact; remaining end-to-end failures were therefore dominated
+by reference or span selection rather than reproduction. The implementation
+correction supporting these counts is audited in
+Appendix~\ref{app:parser-audit}.
 
-Formatting and selection were related but not identical. The outer placeholder
-was recognized in 2,159 observations, while 161 observations carried a
-syntax-related failure tag, usually because the model added an edition label to
-the reference payload. The analysis-only tolerant parser identified the
-expected reference in 1,954 observations (90.46\%), including 158 of those 161
-syntax-tagged cases. This does not change the strict 83.94\% primary result.
-
-Separating the two by prompt family shows that they fail in opposite
-circumstances (Table~\ref{tab:interface}). When the caller named the reference,
-the model conformed to the strict grammar in only 85.56\% of observations, yet
-the tolerant parser recovered the intended reference in 99.91\%: the model
-almost always knew which passage was wanted and simply wrote the placeholder
-wrongly. When the caller described the passage instead, the pattern reversed---
-grammar conformance rose to 99.54\% while recovered references fell to
-81.02\%, because the difficulty had moved from formatting to identification.
-
-\begin{table}[htbp]
+\begin{figure}[!ht]
 \centering
-\small
-\begin{tabular}{lrr}
-\toprule
-Deterministic condition & Explicit reference & Contextual description \\
-\midrule
-Strict grammar satisfied & 85.56\% & 99.54\% \\
-Intended reference recovered & 99.91\% & 81.02\% \\
-\bottomrule
-\end{tabular}
-\caption{Interface conformance against reference identification, by caller
-prompt family ($N=1{,}080$ per cell). Recovery uses the prospectively specified
-analysis-only tolerant parser and never altered the primary score.}
-\label{tab:interface}
-\end{table}
-
-Interface conformance and semantic reference selection are therefore different
-questions, and a single accuracy figure conflates them. The strict endpoint
-charges both to the same account, which is the conservative choice for a locked
-comparison but understates how often the model identified the right passage.
+\includegraphics[width=0.92\textwidth]{figv4_failure_migration.pdf}
+\caption{Failure moves to the stages that remain model-controlled. Filled
+markers show the share of all scheduled observations reaching the named
+source stage; open markers show path-adherent exact final delivery.
+The source-supplied condition begins at 100\% because the exact span is given
+by construction.}
+\label{fig:components}
+\end{figure}
 
 \subsection{Holding the source constant isolates the rendering stage}
 
-The pooled rates in Table~\ref{tab:primary} compare architectures carrying
+The pooled rates in Table~\ref{tab:primary} compare conditions carrying
 different burdens. Holding the source constant asks a narrower question: once a
 system has the right text or the right reference, how faithfully does it
 deliver it?
@@ -817,7 +804,7 @@ Stage reached & Exact & $N$ & Text wrong \\
 \midrule
 Exact span supplied in context & 2,022 & 2,160 & 6.39\% \\
 Tool retrieved the requested span & 1,730 & 1,818 & 4.84\% \\
-Correct reference reached the renderer & 1,813 & 1,815 & 0.11\% \\
+Correct reference reached the renderer & 1,971 & 1,973 & 0.10\% \\
 \bottomrule
 \end{tabular}
 \caption{Delivery fidelity conditional on having obtained the correct source.
@@ -830,19 +817,19 @@ The pattern is consistent across the two generative rows and sharply different
 in the third. A model handed the exact text altered it in 6.39\% of
 observations; a model that had just retrieved the text itself altered it in
 4.84\%; a non-generative renderer given a correct reference altered it in
-0.11\%, two observations out of 1,815. In absolute terms that is 138 corrupted
+0.10\%, two observations out of 1,973. In absolute terms that is 138 corrupted
 deliveries against two. We report the difference without attributing a cause:
 the study was not designed to determine why a model alters text it has just
 been given.
 
 This is the strongest practical result in the study, and it is narrower than the
-pooled comparison. It says nothing about which architecture delivers correct
+pooled comparison. It says nothing about which delivery path provides correct
 text most often end to end, because it conditions away the stage where
 deterministic rendering actually fails. It says that if the correct source has
 been obtained, generation is the wrong mechanism for reproducing it.
 
-Both readings are reported because they answer different questions. The locked
-primary endpoint asks whether the user received the requested text at all.
+Both readings are reported because they answer different questions. The
+end-to-end endpoint asks whether the user received the requested text at all.
 Table~\ref{tab:rendering} asks which component should own the words once the
 source is settled. Neither replaces the other, and the components combined here
 were among the outcomes specified before execution
@@ -850,27 +837,9 @@ were among the outcomes specified before execution
 
 \subsection{Contextual requests mainly challenged reference identification}
 
-\begin{table}[htbp]
-\centering
-\small
-\begin{tabular}{lrr}
-\toprule
-Condition & Explicit reference & Contextual description \\
-\midrule
-Native & 27.41\% & 22.59\% \\
-Source supplied & 93.52\% & 93.70\% \\
-Tool mediated & 90.19\% & 70.00\% \\
-Deterministic rendering & 85.56\% & 82.31\% \\
-\bottomrule
-\end{tabular}
-\caption{Architecture-adherent exactness by caller prompt family ($N=1{,}080$
-per cell).}
-\label{tab:prompt}
-\end{table}
-
 The explicit-reference column is the case where a user already knows which
 passage they want and says so. It is the narrower question of delivery, and it
-removes identification as a variable for every architecture. Even there,
+removes identification as a variable for every condition. Even there,
 generation from memory succeeded in only 27.41\% of observations: naming the
 passage does not make a model reproduce it.
 
@@ -878,8 +847,17 @@ Contextual descriptions had little pooled effect on source-supplied quotation,
 where the authoritative span was already present---further evidence that this
 condition does not participate in selection. Their largest effect appeared in
 tool-mediated retrieval, where exactness fell by 20.19 \pp{} relative to
-explicit references. Deterministic rendering fell by 3.25 \pp{}, consistent
-with the model having to identify a span before the renderer could act.
+explicit references. Deterministic rendering fell by 17.31 \pp{}, leaving
+contextual reference identification as its main unresolved burden.
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.82\textwidth]{figv5_prompt_family.pdf}
+\caption{Exact delivery by caller prompt family ($N=1{,}080$ per cell).
+Contextual descriptions add a passage-identification burden, producing the
+largest declines in the tool-mediated and deterministic conditions.}
+\label{fig:prompt}
+\end{figure}
 
 \subsection{The requested edition mattered most without a source}
 
@@ -893,11 +871,10 @@ Condition & BSB & WEBU & LSV \\
 Native & 41.53\% & 28.47\% & 5.00\% \\
 Source supplied & 94.44\% & 93.75\% & 92.64\% \\
 Tool mediated & 80.97\% & 79.72\% & 79.58\% \\
-Deterministic rendering & 87.92\% & 83.61\% & 80.28\% \\
+Deterministic rendering & 92.22\% & 90.56\% & 90.97\% \\
 \bottomrule
 \end{tabular}
-\caption{Architecture-adherent exactness by requested edition ($N=720$ per
-cell).}
+\caption{Exact delivery by requested edition ($N=720$ per cell).}
 \label{tab:edition}
 \end{table}
 
@@ -909,41 +886,44 @@ infer undisclosed training-data frequency.
 
 \subsection{Long passages remained difficult even with source access}
 
+Long passages were the most difficult stratum under every condition
+(Figure~\ref{fig:passage}). Native exactness fell to 5.37\%. Even when the
+source was supplied, long-passage exactness was 85.93\%, indicating that
+rendering failures were not limited to source selection. Tool-mediated
+exactness was 68.33\%, and deterministic exactness was 81.85\%;
+both conditions could still lose accuracy through span selection before exact
+text could be delivered.
+
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.88\textwidth]{fig3_passage_difficulty.pdf}
-\caption{Architecture-adherent exactness by passage stratum
-($N=540$ per cell). ``Indirect event'' describes target construction; both
-prompt families were evaluated for every target.}
+\caption{Exact delivery by passage stratum ($N=540$ per cell). ``Indirect
+event'' describes target construction; both prompt families were evaluated for
+every target.}
 \label{fig:passage}
 \end{figure}
 
-Long passages were the most difficult stratum under every architecture
-(Figure~\ref{fig:passage}). Native exactness fell to 5.37\%. Even when the
-source was supplied, long-passage exactness was 85.93\%, indicating that
-rendering failures were not limited to source selection. Tool and deterministic
-conditions also lost accuracy through span selection before exact text could be
-delivered.
-
-\subsection{Effects varied by route but persisted across repetitions}
+\subsection{Condition patterns varied by route but persisted across repetitions}
 
 Every route improved substantially over its own native condition, but the
-relative ordering of interventions differed (Appendix
+relative ordering of conditions differed (Appendix
 Table~\ref{tab:model}). This
-heterogeneity cautions against treating ``RAG,'' ``tool use,'' or
+heterogeneity cautions against treating ``source supply,'' ``tool use,'' or
 ``deterministic rendering'' as model-independent properties.
 
-Aggregate epoch rates were stable: 24.17--25.56\% for native, 93.47--93.75\%
-for source supplied, 79.72--80.69\% for tool mediated, and 83.47--84.17\% for
-deterministic rendering. Cell-level behavior was not perfectly stable. Of 720
+Aggregate epoch rates were stable: 24.17--25.56\% for native,
+93.47--93.75\% for source supplied, 79.72--80.69\% for tool mediated, and
+91.11--91.39\% for deterministic rendering. Cell-level behavior was not
+perfectly stable. Of 720
 matched cells per condition, all three epochs succeeded in 122 native, 650
-source-supplied, 504 tool-mediated, and 537 deterministic cells. Repetition
+source-supplied, 504 tool-mediated, and 638 deterministic cells. Repetition
 therefore added information beyond a single run.
 
 \subsection{Failure review located errors at different stages}
 
-A route-blinded review of sampled failures, conducted after primary scores were
-frozen, shows what each architecture's failures actually looked like.
+A route-blinded review of sampled failures, conducted after model responses and
+execution traces were fixed, shows what each condition's failures actually
+looked like.
 
 Native failures included near-exact surface differences, lexical drift toward
 another familiar rendering, incomplete spans, blended wording, and refusals.
@@ -954,7 +934,7 @@ wrong boundaries. Deterministic selection failures frequently expanded an
 event to include narrative setup, narrowed a requested range to its most
 salient verse, or appended an edition label that violated the strict interface.
 
-The pattern is consistent with the staged reading above: each architecture
+The pattern is consistent with the staged reading above: each condition
 failed at the decision it still owned. These are mechanisms, not prevalence
 estimates; the sampling procedure is documented in the replication package, and
 no raw response is reproduced here.
@@ -965,8 +945,8 @@ no raw response is reproduced here.
 \subsection{Quotation reliability moved through the source-delivery chain}
 
 The simplest reading of the primary table is that source-connected
-architectures outperformed generation from memory. That is true, but
-incomplete. The more useful finding is that each architecture made a different
+conditions outperformed generation from memory. That is true, but
+incomplete. The more useful finding is that each condition made a different
 part of the journey reliable.
 
 Source supply removed identification and retrieval by construction, leaving
@@ -975,7 +955,7 @@ time. Tool mediation gave the model access to a source of record, but also
 gave it decisions about whether to call the tool and which span to request.
 Deterministic rendering made the words nearly certain after a successful
 handoff, while leaving reference selection exposed. The failures did not
-disappear as architecture changed; they migrated toward the remaining
+disappear as the delivery path changed; they migrated toward the remaining
 model-owned decisions.
 
 Two request properties made that migration visible. Contextual descriptions
@@ -986,8 +966,10 @@ stage. And the requested edition mattered most when the model answered from
 memory, which is where edition identity is least constrained.
 
 The study therefore does not show that deterministic rendering is the best
-architecture overall; its own selection stage succeeded only 84.03\% of the
-time. What it shows is narrower and more useful: once the correct source has
+delivery path overall. It delivered exact text in 91.25\% of observations, with
+remaining failures concentrated in reference or span selection, especially for
+contextual and long-passage requests. What
+the experiment shows is narrower and more useful: once the correct source has
 been obtained, a non-generative component reproduces it far more reliably than
 a generative one. Guarantees must be assigned to stages. A renderer can guarantee the bytes it emits without guaranteeing
 that the model asked for the right source. A tool can make authoritative text
@@ -1007,11 +989,9 @@ principles.
         system state rather than inferred only from generated prose.
   \item \textbf{Separate selection from rendering.} Structured selection makes
         upstream uncertainty observable and permits a non-generative component
-        to own final text. Measure the interface separately from the choice it
-        carries: when the caller named the reference, our strict grammar was
-        satisfied 85.56\% of the time while the intended reference was
-        recoverable 99.91\% of the time, so a single score would have charged
-        a formatting defect to comprehension.
+        to own final text. When the caller named the reference, deterministic
+        delivery reached 99.91\%; when the system had to identify the passage,
+        selection remained exposed.
   \item \textbf{Verify tool behavior, not tool availability.} A tool definition
         does not establish invocation, correct lookup, or faithful rendering.
   \item \textbf{Test the final user-visible buffer.} Exact source bytes can
@@ -1020,7 +1000,7 @@ principles.
 \end{enumerate}
 
 These principles follow from the chain, not from Scripture, and apply wherever
-a source of record exists. The measured effect sizes do not: those require
+a source of record exists. The measured rates do not: those require
 domain-specific replication.
 
 \subsection{Implications for Christian institutions}
@@ -1039,9 +1019,9 @@ the availability of a lookup tool did not establish its correct use here. Ask
 whether the verse text a user sees is inserted directly or passed through the
 model on its way to the screen: a system that retrieves the right verse and
 then asks a model to repeat it altered that text in 6.39\% of our observations,
-while a system that inserted it without regenerating it altered it in 0.11\%.
+while a system that inserted it without regenerating it altered it in 0.10\%.
 And test long passages and event-style requests specifically, because both
-degraded under every architecture we evaluated.
+degraded under every condition we evaluated.
 
 These results also put a measured figure beside a widely circulated industry
 estimate that models misquote Scripture between 15\% and 60\% of the time
@@ -1063,8 +1043,8 @@ authority.
 \section{Open Evaluation and Reproducibility}
 \label{sec:open-release}
 
-The public repository,
-\url{https://github.com/FideAI/scripture-quotation-fidelity}, releases the
+The pre-release repository is private during review. At public release,
+\url{https://github.com/FideAI/scripture-quotation-fidelity} will provide the
 deidentified 8,640-row derived-score dataset, the scoring specification and
 schemas, the executed prompts and tool schema, the source-edition record with
 per-target text digests, the prospective-lock receipt, and standalone analysis
@@ -1094,7 +1074,7 @@ This work is a measurement study. It is not legal advice, copyright clearance,
 theological certification, pastoral-safety approval, product endorsement, or
 deployment authorization.
 
-Rights status constrains which architectures are available at all: an edition
+Rights status constrains which conditions are available at all: an edition
 that cannot be sent to a model cannot be supplied in context or returned by a
 tool. BSB and WEBU were evaluated as
 public-domain sources; LSV was used under its stated open license, with no LSV
@@ -1143,7 +1123,7 @@ upstream provider's text is itself authoritative for a given publisher.
 \paragraph{Open editions only.}
 The primary experiment does not measure restricted translations. It therefore
 cannot establish how licensing, provider quotation policies, or source-transfer
-permissions affect the four architectures.
+permissions affect the four conditions.
 
 \paragraph{Model and route drift.}
 Results apply to six named routes on July 26--27, 2026. Hosted models, routing,
@@ -1156,15 +1136,12 @@ defaults. This keeps the comparison close to how these endpoints
 behave in ordinary use, but it prevents any causal claim about sampling
 parameters.
 
-\paragraph{Strict interface contract.}
-The deterministic primary result includes failures caused by a deliberately
-strict reference grammar, and that cost is concentrated where the caller named
-the reference: grammar conformance there was 85.56\% against 99.91\% reference
-recovery. A production system would likely adopt a more permissive parser and
-would recover much of that gap. We do not report what such a system would have
-scored, because selecting a parser after observing results would invalidate the
-locked comparison; the two components are reported separately so a reader can
-see the size of the effect without our having chosen it.
+\paragraph{Implementation correction.}
+The deterministic runner initially rejected correct references carrying a
+redundant edition annotation. We report the complete corrected replay as the
+substantive exact-delivery result. Because the correction followed failure
+inspection, a replication should specify it prospectively; the original score,
+rule, and reconciliation remain available in Appendix~\ref{app:parser-audit}.
 
 \paragraph{Automated exactness.}
 Exact matching is appropriate for the declared endpoint, but failure tags and
@@ -1207,7 +1184,7 @@ AI systems should not always generate. In this study, native parametric
 quotation delivered the requested edition exactly in 25.00\% of observations.
 Supplying authoritative text, connecting a source tool, or delegating final
 rendering to a deterministic layer all produced large improvements, but none
-eliminated failure. Each architecture moved failure to the decision it still
+eliminated failure. Each condition moved failure to the decision it still
 left to the model.
 
 The practical lesson is not that one method wins every comparison. It is that
@@ -1230,8 +1207,8 @@ record is speaking.
 
 \section*{Data and Code Availability}
 
-The public repository,
-\url{https://github.com/FideAI/scripture-quotation-fidelity}, releases the full
+The pre-release repository is private during review. At public release,
+\url{https://github.com/FideAI/scripture-quotation-fidelity} will provide the full
 deidentified derived-score dataset, target registry, executed prompt templates,
 functional tool schema, source-edition record with per-target text digests,
 release-safe prospective-lock and deviation records, and standalone analysis
@@ -1243,9 +1220,9 @@ the quantitative tables and contrasts without model endpoint access.
 \section*{Acknowledgments}
 
 We thank The Apologist Project, which developed and maintains the shared
-condition implementation used to execute the four architectures
+condition implementation used to execute the four conditions
 \citep{apologist2026impl}, and which contributed to how those conditions were
-operationalized: what each architecture had to do in practice for a quotation
+operationalized: what each condition had to do in practice for a quotation
 to count as delivered through it. That work shaped the instrument this study
 depends on, and the study would have been materially harder to run without it.
 
@@ -1263,14 +1240,17 @@ Because it also contributed to how the conditions were operationalized, that
 interest touches the instrument and not only the topic, and readers should
 weigh the results accordingly.
 
-Three features of the study bear on that concern. Condition definitions,
-scoring rules, and the primary endpoint were fixed in an internal hash-lock
-before confirmatory execution. Fide AI, not the partner, held the credentials,
-executed the study, performed the analysis, and controlled the claims boundary.
-And the architecture closest to a deterministic Scripture-delivery product did
-not finish first: source-supplied quotation reached 93.61\% against 83.94\%
-for deterministic rendering, and the Discussion states that the study does not
-show deterministic rendering to be universally preferable.
+Three features of the study bear on that concern. The crossed design, condition
+definitions, and planned contrasts were fixed in an internal hash-lock before
+execution; the deterministic parser correction is separately disclosed. Fide
+AI, not the partner, held the credentials, executed the study, performed the
+analysis, and controlled the claims boundary. Because the deterministic
+condition is closest to a product category in which the partner has an
+interest, the paper reports its pooled and conditional results separately:
+91.25\% end to end and 99.90\% after a correct reference handoff. The 93.61\%
+source-supplied ceiling carries different responsibilities and is not treated
+as an equal-burden competitor. The Discussion makes no overall delivery-path
+ranking.
 
 The study did not evaluate or certify a deployed commercial product.
 
@@ -1315,44 +1295,104 @@ source registry, scoring rubric, and deviation log by SHA-256 digest.
 \section{Route-by-Condition Results}
 \label{app:route-results}
 
-\begin{table}[h]
+\begin{table}[!ht]
 \centering
 \small
 \begin{tabular}{lrrrr}
 \toprule
 Evaluated route & Native & Source supplied & Tool & Deterministic \\
 \midrule
-Claude Sonnet 5 & 12.78\% & 82.22\% & 78.06\% & 75.56\% \\
-DeepSeek V4 Pro & 32.22\% & 96.11\% & 83.61\% & 89.17\% \\
-Gemini 3.5 Flash & 16.11\% & 98.06\% & 86.94\% & 91.94\% \\
-GLM-5.2 & 20.00\% & 93.61\% & 75.56\% & 85.83\% \\
-GPT-5.6 Sol & 35.28\% & 97.22\% & 92.50\% & 71.39\% \\
-Kimi K3 & 33.61\% & 94.44\% & 63.89\% & 89.72\% \\
+Claude Sonnet 5 & 12.78\% & 82.22\% & 78.06\% & 87.78\% \\
+DeepSeek V4 Pro & 32.22\% & 96.11\% & 83.61\% & 90.00\% \\
+Gemini 3.5 Flash & 16.11\% & 98.06\% & 86.94\% & 94.17\% \\
+GLM-5.2 & 20.00\% & 93.61\% & 75.56\% & 90.00\% \\
+GPT-5.6 Sol & 35.28\% & 97.22\% & 92.50\% & 95.28\% \\
+Kimi K3 & 33.61\% & 94.44\% & 63.89\% & 90.28\% \\
 \bottomrule
 \end{tabular}
-\caption{Descriptive route-by-condition architecture-adherent exactness
-($N=360$ per cell). Rows are ordered alphabetically, not by performance; this
-is not a model leaderboard.}
+\caption{Descriptive route-by-condition exact delivery ($N=360$ per cell).
+Rows are ordered alphabetically, not by performance; this is not a model
+leaderboard.}
 \label{tab:model}
+\end{table}
+
+\pagebreak
+\section{Component Metrics}
+\label{app:component-metrics}
+
+\begin{table}[!ht]
+\centering
+\small
+\begin{tabular}{lrrrrr}
+\toprule
+Condition & Answered & Exact text & Method adherence & Final exact & \eetwo \\
+\midrule
+Native & 98.29\% & 25.14\% & -- & 25.00\% & 25.00\% \\
+Source supplied & 100.00\% & 93.66\% & 100.00\% & 93.61\% & 93.61\% \\
+Tool mediated & 99.81\% & 82.31\% & 84.17\% & 82.31\% & 80.09\% \\
+Deterministic rendering & 100.00\% & 91.25\% & 91.34\% & 91.25\% & 91.25\% \\
+\bottomrule
+\end{tabular}
+\caption{Complete component rates underlying Figure~\ref{fig:components}.
+``Method adherence'' is condition-specific and should not be compared as a
+general model capability.}
+\label{tab:components}
+\end{table}
+\FloatBarrier
+
+\section{Implementation Correction Audit}
+\label{app:parser-audit}
+
+The executed deterministic runner required a literal reference payload and
+therefore rejected correct references when a model redundantly appended the
+already requested edition, for example
+\texttt{\{\{QUOTE:Matthew 22:37--40 LSV\}\}}. This was an implementation defect
+relative to the intended construct: passage selection and exact delivery, not
+adherence to a bespoke placeholder grammar.
+
+We replayed all 2,160 saved deterministic responses through a corrected parser
+that accepts one valid reference followed by a textual edition annotation while
+rejecting a second reference or alternate range. The replay used the original
+source fixtures and made no new model calls.
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{lrrr}
+\toprule
+Deterministic analysis & Exact & $N$ & Rate \\
+\midrule
+Executed literal interface & 1,813 & 2,160 & 83.94\% \\
+Corrected complete replay & 1,971 & 2,160 & 91.25\% \\
+Corrected replay, explicit prompts & 1,079 & 1,080 & 99.91\% \\
+Corrected replay, contextual prompts & 892 & 1,080 & 82.59\% \\
+\bottomrule
+\end{tabular}
+\caption{Reconciliation of the executed literal parser and the corrected
+deterministic-delivery analysis. The main paper reports the corrected replay.}
+\label{tab:parser-audit}
 \end{table}
 
 \section{Failure Tags}
 \label{app:failure-tags}
 
-Observed structured tags included 345 wrong or unparseable deterministic
-reference selections, 234 tool calls that did not retrieve the requested span,
-161 invalid deterministic reference payloads or placeholder failures, 161
+Under the executed literal interface, observed structured tags included 345
+wrong or unparseable deterministic reference selections, 234 tool calls that
+did not retrieve the requested span, 161 invalid deterministic reference
+payloads or placeholder failures, 161
 selected-reference lookup failures, and 107 tool-bypass observations. Tags
 can co-occur and must not be summed as unique failed observations. Native and
 source-supplied text mismatches are represented primarily through exact,
 normalized, coverage, and answer-presence metrics rather than these
-architecture-specific tags.
+condition-specific tags. As reconciled in
+Table~\ref{tab:parser-audit}, 158 deterministic failures were unambiguous
+correct references with textual edition annotations.
 
 \section{Claims Boundary}
 \label{app:claims}
 
 Results apply only to the named routes, dates, twenty-target panel, two prompt
-families, three open English editions, four architecture conditions, and
+families, three open English editions, four delivery conditions, and
 declared scoring protocol. The study does not establish:
 
 \begin{itemize}[leftmargin=*,topsep=4pt,itemsep=2pt]

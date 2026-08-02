@@ -1,69 +1,145 @@
 analysis,level,condition,exact,n,rate_percent,interval_or_note
-primary,overall,native_parametric,540,2160,25.00,"descriptive observation-level Wilson 95% CI 23.22-26.87"
-primary,overall,source_supplied,2022,2160,93.61,"descriptive observation-level Wilson 95% CI 92.50-94.57"
-primary,overall,tool_mediated,1730,2160,80.09,"descriptive observation-level Wilson 95% CI 78.36-81.72"
-primary,overall,deterministic_rendering,1813,2160,83.94,"descriptive observation-level Wilson 95% CI 82.33-85.42"
-common_final_output,overall,native_parametric,540,2160,25.00,"strict user-visible text equality"
-common_final_output,overall,source_supplied,2022,2160,93.61,"strict user-visible text equality"
-common_final_output,overall,tool_mediated,1778,2160,82.31,"strict user-visible text equality"
-common_final_output,overall,deterministic_rendering,1813,2160,83.94,"strict user-visible text equality"
-prompt_family,explicit_reference,native_parametric,296,1080,27.41,descriptive
-prompt_family,explicit_reference,source_supplied,1010,1080,93.52,descriptive
-prompt_family,explicit_reference,tool_mediated,974,1080,90.19,descriptive
-prompt_family,explicit_reference,deterministic_rendering,924,1080,85.56,descriptive
-prompt_family,contextual_description,native_parametric,244,1080,22.59,descriptive
-prompt_family,contextual_description,source_supplied,1012,1080,93.70,descriptive
-prompt_family,contextual_description,tool_mediated,756,1080,70.00,descriptive
-prompt_family,contextual_description,deterministic_rendering,889,1080,82.31,descriptive
-edition,BSB,native_parametric,299,720,41.53,descriptive
-edition,BSB,source_supplied,680,720,94.44,descriptive
-edition,BSB,tool_mediated,583,720,80.97,descriptive
-edition,BSB,deterministic_rendering,633,720,87.92,descriptive
-edition,WEBU,native_parametric,205,720,28.47,descriptive
-edition,WEBU,source_supplied,675,720,93.75,descriptive
-edition,WEBU,tool_mediated,574,720,79.72,descriptive
-edition,WEBU,deterministic_rendering,602,720,83.61,descriptive
-edition,LSV,native_parametric,36,720,5.00,descriptive
-edition,LSV,source_supplied,667,720,92.64,descriptive
-edition,LSV,tool_mediated,573,720,79.58,descriptive
-edition,LSV,deterministic_rendering,578,720,80.28,descriptive
-passage_stratum,single_verse,native_parametric,226,540,41.85,descriptive
-passage_stratum,single_verse,source_supplied,526,540,97.41,descriptive
-passage_stratum,single_verse,tool_mediated,467,540,86.48,descriptive
-passage_stratum,single_verse,deterministic_rendering,485,540,89.81,descriptive
-passage_stratum,short_passage,native_parametric,148,540,27.41,descriptive
-passage_stratum,short_passage,source_supplied,509,540,94.26,descriptive
-passage_stratum,short_passage,tool_mediated,444,540,82.22,descriptive
-passage_stratum,short_passage,deterministic_rendering,465,540,86.11,descriptive
-passage_stratum,indirect_event,native_parametric,137,540,25.37,descriptive
-passage_stratum,indirect_event,source_supplied,523,540,96.85,descriptive
-passage_stratum,indirect_event,tool_mediated,450,540,83.33,descriptive
-passage_stratum,indirect_event,deterministic_rendering,468,540,86.67,descriptive
-passage_stratum,long_passage,native_parametric,29,540,5.37,descriptive
-passage_stratum,long_passage,source_supplied,464,540,85.93,descriptive
-passage_stratum,long_passage,tool_mediated,369,540,68.33,descriptive
-passage_stratum,long_passage,deterministic_rendering,395,540,73.15,descriptive
-model_family,Claude_Sonnet_5,native_parametric,46,360,12.78,descriptive
-model_family,Claude_Sonnet_5,source_supplied,296,360,82.22,descriptive
-model_family,Claude_Sonnet_5,tool_mediated,281,360,78.06,descriptive
-model_family,Claude_Sonnet_5,deterministic_rendering,272,360,75.56,descriptive
-model_family,DeepSeek_V4_Pro,native_parametric,116,360,32.22,descriptive
-model_family,DeepSeek_V4_Pro,source_supplied,346,360,96.11,descriptive
-model_family,DeepSeek_V4_Pro,tool_mediated,301,360,83.61,descriptive
-model_family,DeepSeek_V4_Pro,deterministic_rendering,321,360,89.17,descriptive
-model_family,Gemini_3_5_Flash,native_parametric,58,360,16.11,descriptive
-model_family,Gemini_3_5_Flash,source_supplied,353,360,98.06,descriptive
-model_family,Gemini_3_5_Flash,tool_mediated,313,360,86.94,descriptive
-model_family,Gemini_3_5_Flash,deterministic_rendering,331,360,91.94,descriptive
-model_family,GPT_5_6_Sol,native_parametric,127,360,35.28,descriptive
-model_family,GPT_5_6_Sol,source_supplied,350,360,97.22,descriptive
-model_family,GPT_5_6_Sol,tool_mediated,333,360,92.50,descriptive
-model_family,GPT_5_6_Sol,deterministic_rendering,257,360,71.39,descriptive
-model_family,GLM_5_2,native_parametric,72,360,20.00,descriptive
-model_family,GLM_5_2,source_supplied,337,360,93.61,descriptive
-model_family,GLM_5_2,tool_mediated,272,360,75.56,descriptive
-model_family,GLM_5_2,deterministic_rendering,309,360,85.83,descriptive
-model_family,Kimi_K3,native_parametric,121,360,33.61,descriptive
-model_family,Kimi_K3,source_supplied,340,360,94.44,descriptive
-model_family,Kimi_K3,tool_mediated,230,360,63.89,descriptive
-model_family,Kimi_K3,deterministic_rendering,323,360,89.72,descriptive
+locked_primary,overall,native_parametric,540,2160,25.0,descriptive observation-level Wilson 95% CI 23.22-26.87
+locked_primary,overall,source_supplied,2022,2160,93.61,descriptive observation-level Wilson 95% CI 92.50-94.57
+locked_primary,overall,tool_mediated,1730,2160,80.09,descriptive observation-level Wilson 95% CI 78.36-81.72
+locked_primary,overall,deterministic_rendering,1813,2160,83.94,descriptive observation-level Wilson 95% CI 82.33-85.42
+locked_common_final_output,overall,native_parametric,540,2160,25.0,strict user-visible text equality
+locked_common_final_output,overall,source_supplied,2022,2160,93.61,strict user-visible text equality
+locked_common_final_output,overall,tool_mediated,1778,2160,82.31,strict user-visible text equality
+locked_common_final_output,overall,deterministic_rendering,1813,2160,83.94,strict user-visible text equality
+locked_prompt_family,explicit_reference,native_parametric,296,1080,27.41,descriptive
+locked_prompt_family,explicit_reference,source_supplied,1010,1080,93.52,descriptive
+locked_prompt_family,explicit_reference,tool_mediated,974,1080,90.19,descriptive
+locked_prompt_family,explicit_reference,deterministic_rendering,924,1080,85.56,descriptive
+locked_prompt_family,contextual_description,native_parametric,244,1080,22.59,descriptive
+locked_prompt_family,contextual_description,source_supplied,1012,1080,93.7,descriptive
+locked_prompt_family,contextual_description,tool_mediated,756,1080,70.0,descriptive
+locked_prompt_family,contextual_description,deterministic_rendering,889,1080,82.31,descriptive
+locked_edition,BSB,native_parametric,299,720,41.53,descriptive
+locked_edition,BSB,source_supplied,680,720,94.44,descriptive
+locked_edition,BSB,tool_mediated,583,720,80.97,descriptive
+locked_edition,BSB,deterministic_rendering,633,720,87.92,descriptive
+locked_edition,WEBU,native_parametric,205,720,28.47,descriptive
+locked_edition,WEBU,source_supplied,675,720,93.75,descriptive
+locked_edition,WEBU,tool_mediated,574,720,79.72,descriptive
+locked_edition,WEBU,deterministic_rendering,602,720,83.61,descriptive
+locked_edition,LSV,native_parametric,36,720,5.0,descriptive
+locked_edition,LSV,source_supplied,667,720,92.64,descriptive
+locked_edition,LSV,tool_mediated,573,720,79.58,descriptive
+locked_edition,LSV,deterministic_rendering,578,720,80.28,descriptive
+locked_passage_stratum,single_verse,native_parametric,226,540,41.85,descriptive
+locked_passage_stratum,single_verse,source_supplied,526,540,97.41,descriptive
+locked_passage_stratum,single_verse,tool_mediated,467,540,86.48,descriptive
+locked_passage_stratum,single_verse,deterministic_rendering,485,540,89.81,descriptive
+locked_passage_stratum,short_passage,native_parametric,148,540,27.41,descriptive
+locked_passage_stratum,short_passage,source_supplied,509,540,94.26,descriptive
+locked_passage_stratum,short_passage,tool_mediated,444,540,82.22,descriptive
+locked_passage_stratum,short_passage,deterministic_rendering,465,540,86.11,descriptive
+locked_passage_stratum,indirect_event,native_parametric,137,540,25.37,descriptive
+locked_passage_stratum,indirect_event,source_supplied,523,540,96.85,descriptive
+locked_passage_stratum,indirect_event,tool_mediated,450,540,83.33,descriptive
+locked_passage_stratum,indirect_event,deterministic_rendering,468,540,86.67,descriptive
+locked_passage_stratum,long_passage,native_parametric,29,540,5.37,descriptive
+locked_passage_stratum,long_passage,source_supplied,464,540,85.93,descriptive
+locked_passage_stratum,long_passage,tool_mediated,369,540,68.33,descriptive
+locked_passage_stratum,long_passage,deterministic_rendering,395,540,73.15,descriptive
+locked_model_family,Claude_Sonnet_5,native_parametric,46,360,12.78,descriptive
+locked_model_family,Claude_Sonnet_5,source_supplied,296,360,82.22,descriptive
+locked_model_family,Claude_Sonnet_5,tool_mediated,281,360,78.06,descriptive
+locked_model_family,Claude_Sonnet_5,deterministic_rendering,272,360,75.56,descriptive
+locked_model_family,DeepSeek_V4_Pro,native_parametric,116,360,32.22,descriptive
+locked_model_family,DeepSeek_V4_Pro,source_supplied,346,360,96.11,descriptive
+locked_model_family,DeepSeek_V4_Pro,tool_mediated,301,360,83.61,descriptive
+locked_model_family,DeepSeek_V4_Pro,deterministic_rendering,321,360,89.17,descriptive
+locked_model_family,Gemini_3_5_Flash,native_parametric,58,360,16.11,descriptive
+locked_model_family,Gemini_3_5_Flash,source_supplied,353,360,98.06,descriptive
+locked_model_family,Gemini_3_5_Flash,tool_mediated,313,360,86.94,descriptive
+locked_model_family,Gemini_3_5_Flash,deterministic_rendering,331,360,91.94,descriptive
+locked_model_family,GPT_5_6_Sol,native_parametric,127,360,35.28,descriptive
+locked_model_family,GPT_5_6_Sol,source_supplied,350,360,97.22,descriptive
+locked_model_family,GPT_5_6_Sol,tool_mediated,333,360,92.5,descriptive
+locked_model_family,GPT_5_6_Sol,deterministic_rendering,257,360,71.39,descriptive
+locked_model_family,GLM_5_2,native_parametric,72,360,20.0,descriptive
+locked_model_family,GLM_5_2,source_supplied,337,360,93.61,descriptive
+locked_model_family,GLM_5_2,tool_mediated,272,360,75.56,descriptive
+locked_model_family,GLM_5_2,deterministic_rendering,309,360,85.83,descriptive
+locked_model_family,Kimi_K3,native_parametric,121,360,33.61,descriptive
+locked_model_family,Kimi_K3,source_supplied,340,360,94.44,descriptive
+locked_model_family,Kimi_K3,tool_mediated,230,360,63.89,descriptive
+locked_model_family,Kimi_K3,deterministic_rendering,323,360,89.72,descriptive
+parser_adjusted,overall,native_parametric,540,2160,25.0,unchanged from locked architecture-adherent outcome
+parser_adjusted,overall,source_supplied,2022,2160,93.61,unchanged from locked architecture-adherent outcome
+parser_adjusted,overall,tool_mediated,1730,2160,80.09,unchanged from locked architecture-adherent outcome
+parser_adjusted,overall,deterministic_rendering,1971,2160,91.25,corrected complete parser replay
+parser_adjusted,contextual_description,native_parametric,244,1080,22.59,unchanged from locked architecture-adherent outcome
+parser_adjusted,contextual_description,source_supplied,1012,1080,93.7,unchanged from locked architecture-adherent outcome
+parser_adjusted,contextual_description,tool_mediated,756,1080,70.0,unchanged from locked architecture-adherent outcome
+parser_adjusted,contextual_description,deterministic_rendering,892,1080,82.59,corrected complete parser replay
+parser_adjusted,explicit_reference,native_parametric,296,1080,27.41,unchanged from locked architecture-adherent outcome
+parser_adjusted,explicit_reference,source_supplied,1010,1080,93.52,unchanged from locked architecture-adherent outcome
+parser_adjusted,explicit_reference,tool_mediated,974,1080,90.19,unchanged from locked architecture-adherent outcome
+parser_adjusted,explicit_reference,deterministic_rendering,1079,1080,99.91,corrected complete parser replay
+parser_adjusted,BSB,native_parametric,299,720,41.53,unchanged from locked architecture-adherent outcome
+parser_adjusted,BSB,source_supplied,680,720,94.44,unchanged from locked architecture-adherent outcome
+parser_adjusted,BSB,tool_mediated,583,720,80.97,unchanged from locked architecture-adherent outcome
+parser_adjusted,BSB,deterministic_rendering,664,720,92.22,corrected complete parser replay
+parser_adjusted,LSV,native_parametric,36,720,5.0,unchanged from locked architecture-adherent outcome
+parser_adjusted,LSV,source_supplied,667,720,92.64,unchanged from locked architecture-adherent outcome
+parser_adjusted,LSV,tool_mediated,573,720,79.58,unchanged from locked architecture-adherent outcome
+parser_adjusted,LSV,deterministic_rendering,655,720,90.97,corrected complete parser replay
+parser_adjusted,WEBU,native_parametric,205,720,28.47,unchanged from locked architecture-adherent outcome
+parser_adjusted,WEBU,source_supplied,675,720,93.75,unchanged from locked architecture-adherent outcome
+parser_adjusted,WEBU,tool_mediated,574,720,79.72,unchanged from locked architecture-adherent outcome
+parser_adjusted,WEBU,deterministic_rendering,652,720,90.56,corrected complete parser replay
+parser_adjusted,short_passage,native_parametric,148,540,27.41,unchanged from locked architecture-adherent outcome
+parser_adjusted,short_passage,source_supplied,509,540,94.26,unchanged from locked architecture-adherent outcome
+parser_adjusted,short_passage,tool_mediated,444,540,82.22,unchanged from locked architecture-adherent outcome
+parser_adjusted,short_passage,deterministic_rendering,508,540,94.07,corrected complete parser replay
+parser_adjusted,single_verse,native_parametric,226,540,41.85,unchanged from locked architecture-adherent outcome
+parser_adjusted,single_verse,source_supplied,526,540,97.41,unchanged from locked architecture-adherent outcome
+parser_adjusted,single_verse,tool_mediated,467,540,86.48,unchanged from locked architecture-adherent outcome
+parser_adjusted,single_verse,deterministic_rendering,522,540,96.67,corrected complete parser replay
+parser_adjusted,indirect_event,native_parametric,137,540,25.37,unchanged from locked architecture-adherent outcome
+parser_adjusted,indirect_event,source_supplied,523,540,96.85,unchanged from locked architecture-adherent outcome
+parser_adjusted,indirect_event,tool_mediated,450,540,83.33,unchanged from locked architecture-adherent outcome
+parser_adjusted,indirect_event,deterministic_rendering,499,540,92.41,corrected complete parser replay
+parser_adjusted,long_passage,native_parametric,29,540,5.37,unchanged from locked architecture-adherent outcome
+parser_adjusted,long_passage,source_supplied,464,540,85.93,unchanged from locked architecture-adherent outcome
+parser_adjusted,long_passage,tool_mediated,369,540,68.33,unchanged from locked architecture-adherent outcome
+parser_adjusted,long_passage,deterministic_rendering,442,540,81.85,corrected complete parser replay
+parser_adjusted,Claude_Sonnet_5,native_parametric,46,360,12.78,unchanged from locked architecture-adherent outcome
+parser_adjusted,Claude_Sonnet_5,source_supplied,296,360,82.22,unchanged from locked architecture-adherent outcome
+parser_adjusted,Claude_Sonnet_5,tool_mediated,281,360,78.06,unchanged from locked architecture-adherent outcome
+parser_adjusted,Claude_Sonnet_5,deterministic_rendering,316,360,87.78,corrected complete parser replay
+parser_adjusted,DeepSeek_V4_Pro,native_parametric,116,360,32.22,unchanged from locked architecture-adherent outcome
+parser_adjusted,DeepSeek_V4_Pro,source_supplied,346,360,96.11,unchanged from locked architecture-adherent outcome
+parser_adjusted,DeepSeek_V4_Pro,tool_mediated,301,360,83.61,unchanged from locked architecture-adherent outcome
+parser_adjusted,DeepSeek_V4_Pro,deterministic_rendering,324,360,90.0,corrected complete parser replay
+parser_adjusted,Gemini_3_5_Flash,native_parametric,58,360,16.11,unchanged from locked architecture-adherent outcome
+parser_adjusted,Gemini_3_5_Flash,source_supplied,353,360,98.06,unchanged from locked architecture-adherent outcome
+parser_adjusted,Gemini_3_5_Flash,tool_mediated,313,360,86.94,unchanged from locked architecture-adherent outcome
+parser_adjusted,Gemini_3_5_Flash,deterministic_rendering,339,360,94.17,corrected complete parser replay
+parser_adjusted,Kimi_K3,native_parametric,121,360,33.61,unchanged from locked architecture-adherent outcome
+parser_adjusted,Kimi_K3,source_supplied,340,360,94.44,unchanged from locked architecture-adherent outcome
+parser_adjusted,Kimi_K3,tool_mediated,230,360,63.89,unchanged from locked architecture-adherent outcome
+parser_adjusted,Kimi_K3,deterministic_rendering,325,360,90.28,corrected complete parser replay
+parser_adjusted,GPT_5_6_Sol,native_parametric,127,360,35.28,unchanged from locked architecture-adherent outcome
+parser_adjusted,GPT_5_6_Sol,source_supplied,350,360,97.22,unchanged from locked architecture-adherent outcome
+parser_adjusted,GPT_5_6_Sol,tool_mediated,333,360,92.5,unchanged from locked architecture-adherent outcome
+parser_adjusted,GPT_5_6_Sol,deterministic_rendering,343,360,95.28,corrected complete parser replay
+parser_adjusted,GLM_5_2,native_parametric,72,360,20.0,unchanged from locked architecture-adherent outcome
+parser_adjusted,GLM_5_2,source_supplied,337,360,93.61,unchanged from locked architecture-adherent outcome
+parser_adjusted,GLM_5_2,tool_mediated,272,360,75.56,unchanged from locked architecture-adherent outcome
+parser_adjusted,GLM_5_2,deterministic_rendering,324,360,90.0,corrected complete parser replay
+parser_adjusted,epoch_1,native_parametric,184,720,25.56,unchanged from locked architecture-adherent outcome
+parser_adjusted,epoch_1,source_supplied,674,720,93.61,unchanged from locked architecture-adherent outcome
+parser_adjusted,epoch_1,tool_mediated,575,720,79.86,unchanged from locked architecture-adherent outcome
+parser_adjusted,epoch_1,deterministic_rendering,657,720,91.25,corrected complete parser replay
+parser_adjusted,epoch_2,native_parametric,174,720,24.17,unchanged from locked architecture-adherent outcome
+parser_adjusted,epoch_2,source_supplied,673,720,93.47,unchanged from locked architecture-adherent outcome
+parser_adjusted,epoch_2,tool_mediated,581,720,80.69,unchanged from locked architecture-adherent outcome
+parser_adjusted,epoch_2,deterministic_rendering,656,720,91.11,corrected complete parser replay
+parser_adjusted,epoch_3,native_parametric,182,720,25.28,unchanged from locked architecture-adherent outcome
+parser_adjusted,epoch_3,source_supplied,675,720,93.75,unchanged from locked architecture-adherent outcome
+parser_adjusted,epoch_3,tool_mediated,574,720,79.72,unchanged from locked architecture-adherent outcome
+parser_adjusted,epoch_3,deterministic_rendering,658,720,91.39,corrected complete parser replay

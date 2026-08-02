@@ -6,8 +6,8 @@ is in `data/`.
 
 - `fid056_p01_result_card.md` gives the study scope, primary findings,
   interpretation, integrity disclosures, and claims boundary.
-- `fid056_p01_aggregate_results.csv` provides machine-readable aggregate
-  counts for the primary result and descriptive prompt, edition, passage, and
+- `fid056_p01_aggregate_results.csv` provides machine-readable locked and
+  corrected aggregate counts plus descriptive prompt, edition, passage, and
   model-family interactions.
 - `fid056_p01_target_level_results.csv` reports outcomes by target and
   condition.
@@ -17,6 +17,8 @@ is in `data/`.
   target-cluster bootstrap.
 - `fid056_p01_cluster_robust_sensitivity.csv` reports a post-hoc
   target-cluster-robust fixed-panel sensitivity analysis.
+- `fid056_p01_permissive_parser_replay.csv` and `.json` reconcile the complete
+  deterministic replay with the originally executed literal-parser outcome.
 
 Do not commit raw model outputs, private partner traces, held-out prompts,
 restricted source text, provider credentials, or licensed-source payloads.

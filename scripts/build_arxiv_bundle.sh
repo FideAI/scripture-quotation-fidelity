@@ -43,7 +43,18 @@ mkdir -p "$STAGE/figures"
 
 cp "$PAPER_DIR/main.tex" "$PAPER_DIR/main.bbl" "$STAGE/"
 cp "$PAPER_DIR"/*.bst "$STAGE/" 2>/dev/null || true
-cp "$PAPER_DIR"/figures/*.pdf "$STAGE/figures/"
+while IFS= read -r figure; do
+  [[ -n "$figure" ]] || continue
+  if [[ ! -f "$PAPER_DIR/figures/$figure" ]]; then
+    echo "Missing referenced figure: $figure" >&2
+    exit 1
+  fi
+  cp "$PAPER_DIR/figures/$figure" "$STAGE/figures/"
+done < <(
+  grep -oE '\\includegraphics(\[[^]]*\])?\{[^}]+\}' "$PAPER_DIR/main.tex" |
+    sed -E 's/.*\{([^}]+)\}/\1/' |
+    sort -u
+)
 
 # arXiv source is public. Refuse to ship notes-to-self.
 if grep -qE '^\s*%|[^\\]%.*[A-Za-z]' "$STAGE/main.tex"; then
@@ -83,4 +94,3 @@ paras = [" ".join(p.split()) for p in body.strip().split("\n\n") if p.strip()]
 print("\n\n".join(paras))
 PY
 echo "==> Wrote $BUILD_DIR/abstract.txt"
-

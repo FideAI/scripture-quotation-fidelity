@@ -1,9 +1,13 @@
 condition,outcome,targets,mean,median,q1,q3,minimum,maximum
 native_parametric,architecture_adherent,20,0.25,0.189815,0.106481,0.395833,0.0,0.564815
 native_parametric,final_output_exact,20,0.25,0.189815,0.106481,0.395833,0.0,0.564815
+native_parametric,parser_adjusted,20,0.25,0.189815,0.106481,0.395833,0.0,0.564815
 source_supplied,architecture_adherent,20,0.936111,0.986111,0.928241,1.0,0.555556,1.0
 source_supplied,final_output_exact,20,0.936111,0.986111,0.928241,1.0,0.555556,1.0
+source_supplied,parser_adjusted,20,0.936111,0.986111,0.928241,1.0,0.555556,1.0
 tool_mediated,architecture_adherent,20,0.800926,0.884259,0.724537,0.944444,0.342593,0.962963
 tool_mediated,final_output_exact,20,0.823148,0.916667,0.75463,0.972222,0.361111,0.990741
+tool_mediated,parser_adjusted,20,0.800926,0.884259,0.724537,0.944444,0.342593,0.962963
 deterministic_rendering,architecture_adherent,20,0.839352,0.893519,0.833333,0.925926,0.462963,0.962963
-deterministic_rendering,final_output_exact,20,0.839352,0.893519,0.833333,0.925926,0.462963,0.962963
+deterministic_rendering,final_output_exact,20,0.9125,0.990741,0.902778,1.0,0.564815,1.0
+deterministic_rendering,parser_adjusted,20,0.9125,0.990741,0.902778,1.0,0.564815,1.0

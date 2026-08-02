@@ -25,7 +25,6 @@ from typing import Any
 
 import yaml
 
-
 CONDITION_NAMES = {
     "unassisted": "native_parametric",
     "rag": "source_supplied",
@@ -72,6 +71,11 @@ OUTPUT_FIELDS = (
     "terminal_error",
     "error_class",
     *METRIC_FIELDS,
+    "locked_end_to_end_exact",
+    "corrected_end_to_end_exact",
+    "locked_final_output_exact",
+    "corrected_final_output_exact",
+    "parser_correction_applied",
     "failure_tags",
     "selected_reference_parsed",
     "tolerant_recovered_reference",
@@ -117,12 +121,14 @@ def _write_jsonl(path: Path, rows: list[dict[str, Any]]) -> None:
 
 
 def _gzip_csv(path: Path, rows: list[dict[str, Any]]) -> None:
-    with path.open("wb") as raw:
-        with gzip.GzipFile(filename="", mode="wb", fileobj=raw, mtime=0) as zipped:
-            with io.TextIOWrapper(zipped, encoding="utf-8", newline="") as text:
-                writer = csv.DictWriter(text, fieldnames=OUTPUT_FIELDS)
-                writer.writeheader()
-                writer.writerows(rows)
+    with (
+        path.open("wb") as raw,
+        gzip.GzipFile(filename="", mode="wb", fileobj=raw, mtime=0) as zipped,
+        io.TextIOWrapper(zipped, encoding="utf-8", newline="") as text,
+    ):
+        writer = csv.DictWriter(text, fieldnames=OUTPUT_FIELDS)
+        writer.writeheader()
+        writer.writerows(rows)
 
 
 def _scalar(value: Any) -> Any:
@@ -133,11 +139,17 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--trials", required=True, type=Path)
     parser.add_argument("--targets", required=True, type=Path)
+    parser.add_argument("--parser-replay", required=True, type=Path)
     parser.add_argument("--output-dir", required=True, type=Path)
     args = parser.parse_args()
 
     public_targets, targets_by_reference = _read_targets(args.targets)
     args.output_dir.mkdir(parents=True, exist_ok=True)
+    with args.parser_replay.open(newline="", encoding="utf-8") as handle:
+        replay_rows = list(csv.DictReader(handle))
+    replay_by_id = {row["release_trial_id"]: row for row in replay_rows}
+    if len(replay_rows) != 2_160 or len(replay_by_id) != len(replay_rows):
+        raise ValueError("Parser replay must contain 2,160 unique rows")
 
     rows: list[dict[str, Any]] = []
     seen_ids: set[str] = set()
@@ -217,10 +229,37 @@ def main() -> None:
                 # errors as failures. Materialize zero rather than a blank so
                 # downstream software cannot silently drop those observations.
                 row[metric] = 0.0 if metrics.get(metric) is None else metrics[metric]
+            row["locked_end_to_end_exact"] = row["end_to_end_exact"]
+            row["locked_final_output_exact"] = row["final_output_exact"]
+            replay = replay_by_id.get(release_id)
+            if method == "buffer_transform_selection":
+                if replay is None:
+                    raise ValueError(f"Missing parser replay row: {release_id}")
+                row["corrected_end_to_end_exact"] = int(
+                    replay["permissive_parser_replay_exact"]
+                )
+                row["corrected_final_output_exact"] = int(
+                    replay["permissive_parser_replay_final_output_exact"]
+                )
+                row["parser_correction_applied"] = int(
+                    row["corrected_end_to_end_exact"]
+                    != row["locked_end_to_end_exact"]
+                )
+            else:
+                row["corrected_end_to_end_exact"] = row["end_to_end_exact"]
+                row["corrected_final_output_exact"] = row["final_output_exact"]
+                row["parser_correction_applied"] = 0
             rows.append(row)
 
     if len(rows) != 8640:
         raise ValueError(f"Expected 8,640 trials, found {len(rows):,}")
+    deterministic_ids = {
+        row["release_trial_id"]
+        for row in rows
+        if row["condition"] == "deterministic_rendering"
+    }
+    if deterministic_ids != set(replay_by_id):
+        raise ValueError("Parser replay IDs do not match deterministic trial IDs")
 
     rows.sort(
         key=lambda row: (

@@ -30,7 +30,7 @@ no new model spend and no restricted sources. Those are marked **data in hand**.
 
 | ID | Study | Readiness |
 |---|---|---|
-| P01 | Scripture quotation across four architectures | Complete |
+| P01 | Scripture quotation across four delivery conditions | Complete |
 | P02 | Model delegation to sources of record | Data in hand |
 | P03 | Reference selection | Data in hand |
 | P04 | Source availability and parametric recall | Data in hand |
@@ -78,12 +78,13 @@ test interventions. No restricted sources.
 
 ### P03 · Reference selection
 
-The largest unresolved failure in Paper 01. Deterministic rendering was 99.89%
-reliable *given* a correct reference, and the model supplied one in only 84.03%
-of observations — 345 wrong or unparseable selections. Contextual descriptions
-cost tool-mediated retrieval 20.19 percentage points. Separately, an
-analysis-only tolerant parser recovered the intended reference in 90.46% of
-observations, including 158 of 161 syntax-tagged cases.
+The largest unresolved failure in Paper 01 appears after separating interface
+syntax from passage choice. Replaying every saved output through a conservative,
+annotation-aware parser showed that deterministic rendering was 99.90% reliable
+*given* that the correct reference reached the renderer (1,971/1,973). End-to-end
+exact delivery was 91.25% overall and 99.91% for explicit-reference prompts.
+Contextual delivery remained at 82.59%, while contextual descriptions cost
+tool-mediated retrieval 20.19 percentage points.
 
 **Question.** How much of selection failure is genuine misidentification versus
 interface non-conformance, and what makes a passage hard to identify from
