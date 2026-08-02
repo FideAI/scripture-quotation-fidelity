@@ -10,21 +10,28 @@ outcomes anchor cross-condition interpretation:
 
 - a common final-output equality outcome, evaluated identically in every
   condition; and
-- an architecture-adherent end-to-end outcome, which additionally requires the
+- a path-adherent end-to-end outcome, which additionally requires the
   process evidence applicable to the declared condition.
 
 ## Primary Endpoint and Components
 
-- `final_output_exact` is the common binary text outcome. The complete stripped
-  user-visible output must equal the requested source span under the declared
-  wrapper policy.
-- `end_to_end_exact` is the locked binary architecture-adherent endpoint. It
-  requires `final_output_exact` plus all condition-applicable evidence: requested
+- `locked_final_output_exact` is the originally executed common binary text
+  outcome. `corrected_final_output_exact` applies the disclosed parser replay
+  to deterministic observations and is the paper's common text outcome.
+  `final_output_exact` remains a backward-compatible alias for the locked field.
+  In either form, the complete stripped user-visible output must equal the
+  requested source span under the declared wrapper policy.
+- `locked_end_to_end_exact` is the originally executed literal-parser endpoint.
+  `corrected_end_to_end_exact` is the paper's main endpoint after complete
+  parser replay. `end_to_end_exact` remains a backward-compatible alias for the
+  locked field. Both require the corresponding final-output outcome plus all
+  condition-applicable evidence: requested
   tool invocation and verified lookup in the tool condition; correct structured
   selection, source lookup, replacement, and integrity in the deterministic
   condition; and the corresponding declared gates in other conditions.
-- Because the process gates differ by architecture, `end_to_end_exact` is not a
-  text-only construct. Reports must show `final_output_exact` alongside it.
+- Because the process gates differ by delivery condition, the end-to-end
+  outcomes are not text-only constructs. Reports must show the corresponding
+  final-output outcome alongside them.
 - Normalized matches are diagnostic and cannot substitute for either strict
   endpoint.
 - `exact_text_match`: whether the complete final output matches the expected
@@ -58,9 +65,30 @@ outcomes anchor cross-condition interpretation:
   has not been independently verified.
 
 Do not combine these components into a weighted primary score. Component
-applicability varies by architecture and must be stated in result tables.
-Risk differences for `end_to_end_exact` estimate architecture-adherent delivery,
+applicability varies by delivery condition and must be stated in result tables.
+Risk differences for the end-to-end outcomes estimate path-adherent delivery,
 not a pure effect on user-visible text equality.
+
+## Interface Compliance and Semantic Selection
+
+For structured-reference conditions, reports must distinguish literal grammar
+compliance from whether one unambiguous requested reference can be recovered.
+A response must not be labeled a wrong-reference failure solely because it adds
+a redundant textual edition annotation to an otherwise valid reference.
+
+Any parser-adjusted analysis must:
+
+- preserve and report the originally locked interface score;
+- state whether the parser rule was prospective or post hoc;
+- replay all eligible saved responses, not only inspected failures;
+- reject ambiguous payloads containing a second reference or alternate range;
+- use the original fixed source fixtures and make no new model calls; and
+- release enough per-response classifications and parser provenance to
+  reconcile the adjusted result without exposing withheld text.
+
+The Paper 01 implementation correction follows these rules. The paper reports
+the complete corrected replay as its substantive exact-delivery result and
+preserves the executed literal-interface result as an appendix audit.
 
 ## Normalization
 

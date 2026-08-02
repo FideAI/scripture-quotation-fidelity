@@ -53,7 +53,7 @@ domain-appropriate expertise.
 ## Confirmatory Comparison
 
 Fide AI executed a matched, crossed experiment in which the same eligible
-target and user request appeared under four architecture conditions:
+target and user request appeared under four delivery conditions:
 
 1. **Native generation:** quotation from parametric knowledge without a supplied
    source or tool.
@@ -63,9 +63,11 @@ target and user request appeared under four architecture conditions:
 4. **Structured reference and deterministic rendering:** the model selects a
    structured reference and an authorized source layer renders the final text.
 
-The evaluation harness controls architecture without changing the underlying
-user request. This supports paired comparisons within the same target, request,
-model, and source version.
+The evaluation harness assigns a delivery condition without changing the
+underlying user request. This supports matched descriptive comparisons within
+the same target, request, model, and source version. Because the conditions
+assign different selection, retrieval, and rendering responsibilities, they
+are not interpreted as equal-burden treatment arms.
 
 Fide-controlled implementations form the confirmatory comparison. External
 partner systems are separately identified evidence streams and do not define
@@ -82,8 +84,8 @@ The completed confirmatory study was:
 - evaluated on six named and pinned model-family routes; and
 - repeated three times per matched cell.
 
-The final matrix contained twenty targets, two prompt families, four
-architecture conditions, three editions, six routes, and three epochs.
+The final matrix contained twenty targets, two prompt families, four delivery
+conditions, three editions, six routes, and three epochs.
 
 Restricted translations require documented authorization and a verification
 design distinguishing independent verification from partner attestation.
@@ -95,7 +97,8 @@ follow-on FID-056 papers.
 
 ## Outcomes
 
-The primary endpoint is **architecture-adherent quotation exactness**: the complete final output
+The locked materials call the endpoint **architecture-adherent quotation
+exactness**; the paper uses **path-adherent exact delivery**. The complete final output
 equals the requested authoritative span without omitted or extraneous text.
 Tool and deterministic conditions additionally require verified lookup and
 intact rendering.

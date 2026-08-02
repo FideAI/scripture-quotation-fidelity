@@ -1,7 +1,9 @@
 # Scripture Quotation Fidelity
 
-Open research on how AI systems deliver exact text from authoritative sources,
-studied through English Scripture quotation.
+Pre-release research on how AI systems deliver exact text from authoritative
+sources, studied through English Scripture quotation. The repository remains
+private during manuscript review and is intended for public release with the
+paper and approved result artifacts.
 
 When someone asks an AI assistant for a passage of Scripture, the reply usually
 sounds right. A fluent answer can blend two translations, drop a verse, or
@@ -51,20 +53,30 @@ four designs — the model quotes from memory; the passage is placed in front of
 it to copy; it is given a lookup tool; or it only names the passage and
 non-generative code inserts the text.
 
-| Design | Exact, architecture-adherent |
-|---|---|
+| Design | Exact delivery |
+|---|---:|
 | Quotes from memory | 25.00% |
 | Text supplied in context | 93.61% |
 | Authorized lookup tool | 80.09% |
-| Deterministic insertion | 83.94% |
+| Deterministic insertion | 91.25% |
+
+These conditions intentionally assign different responsibilities. In
+particular, text supplied in context is a gold-passage preservation ceiling:
+the correct reference and text are already given, so the model performs neither
+selection nor retrieval. The four rates describe the staged delivery system;
+they are not equal-burden treatment effects.
 
 The central finding is that connecting a source did not remove failure but
 moved it onto whatever the model still decided. Models called the tool in
 95.00% of cases yet asked it for the right passage in only 84.17%.
-Deterministic insertion was near-perfect once the model named the right passage
-— 1,813 of 1,815 — and powerless when it did not.
+Deterministic insertion was exact in 99.91% of explicit-reference requests and
+82.59% of contextual requests, showing that reference identification rather
+than final rendering remained its principal limitation.
 
-These are architecture-condition results within the declared study, not general
+The result package separately audits an implementation correction to the
+deterministic parser; no model outputs were regenerated.
+
+These are delivery-condition results within the declared study, not general
 model rankings. See the
 [result card](papers/p01-scripture-quotation/results/fid056_p01_result_card.md)
 for interpretation and limits, and the
@@ -81,7 +93,7 @@ fields.
 Three can begin immediately against the released Paper 01 dataset with no new
 model spend: **delegation to sources of record** (one route bypassed its tool
 29% of the time while five others essentially never did), **reference
-selection** (the largest unresolved failure, at 84.03%), and **source
+selection** (now separated from literal interface compliance), and **source
 availability** (the LSV collapsed to near-zero recall on every model tested,
 while the BSB ranged from 16.7% to 64.2%). Two more — **paraphrase labeling** and **context preservation** — are
 named by the call and owned by nobody.

@@ -67,8 +67,8 @@ Trial-level derived scores from **"When Not to Generate: How AI Systems Quote
 Scripture, and What Authoritative Quotation Requires"** (FID-056-P01).
 
 8,640 matched requests for English Scripture passages, each routed through one
-of four architectures, scored for whether the user-visible output exactly
-matched the requested edition and whether the declared architecture was
+of four delivery conditions, scored for whether the user-visible output exactly
+matched the requested edition and whether the declared delivery path was
 actually followed.
 
 - Paper and code: https://github.com/FideAI/scripture-quotation-fidelity
@@ -96,13 +96,13 @@ declared conditions.
 
 Each of 20 passages was requested under every combination of:
 
-- **4 architectures** — two columns name these. `condition` is the analysis
+- **4 delivery conditions** — two columns name these. `condition` is the analysis
   label; `executed_method` is the engine's label for the same thing:
 
   | `condition` | `executed_method` | What the system does |
   |---|---|---|
   | `native_parametric` | `unassisted` | Quotes from memory |
-  | `source_supplied` | `rag` | Passage supplied in context to copy |
+  | `source_supplied` | `rag` | Gold passage supplied in context to copy; no retrieval is performed |
   | `tool_mediated` | `tool_call` | Authorized lookup tool |
   | `deterministic_rendering` | `buffer_transform_selection` | Model names the passage; non-generative code inserts the text |
 
@@ -113,23 +113,30 @@ Each of 20 passages was requested under every combination of:
 
 ## Headline results
 
-| Architecture | Architecture-adherent exactness |
+| Delivery condition | Exact delivery |
 |---|---|
 | Quote from memory | 25.00% |
 | Text supplied in context | 93.61% |
 | Authorized lookup tool | 80.09% |
-| Deterministic insertion | 83.94% |
+| Deterministic insertion | 91.25% |
 
 Connecting a source did not remove failure; it moved failure onto whatever the
 model still decided. A tool was invoked in 95.00% of tool observations but used
 for the requested lookup in only 84.17%.
 
+The release separately audits a deterministic-parser implementation correction;
+all saved responses were replayed and no model outputs were regenerated.
+
 ## Key columns
 
 | Column | Meaning |
 |---|---|
-| `end_to_end_exact` | Primary endpoint: exact text **and** declared architecture followed |
-| `final_output_exact` | Common outcome: user-visible output equals requested text |
+| `corrected_end_to_end_exact` | Main endpoint after the disclosed parser correction: exact text **and** declared path followed |
+| `locked_end_to_end_exact` | Originally executed literal-parser endpoint retained for audit |
+| `corrected_final_output_exact` | User-visible output equality after corrected deterministic replay |
+| `locked_final_output_exact` | Originally executed final-output equality retained for audit |
+| `end_to_end_exact`, `final_output_exact` | Backward-compatible aliases for the locked fields |
+| `parser_correction_applied` | Whether the corrected parser recovered this observation |
 | `exact`, `normalized` | Text match, strict and after declared normalization |
 | `selection_correct` | Model identified the intended reference |
 | `tool_invoked`, `tool_used` | Tool called at all vs. called for the requested span |
@@ -142,7 +149,7 @@ for the requested lookup in only 84.17%.
 ```python
 import pandas as pd
 df = pd.read_parquet("trials.parquet")
-df.groupby("condition")["end_to_end_exact"].mean().mul(100).round(2)
+df.groupby("condition")["corrected_end_to_end_exact"].mean().mul(100).round(2)
 ```
 
 Terminal provider errors (33 observations) remain in the denominator by
@@ -188,6 +195,29 @@ def main() -> None:
         raise SystemExit(f"Refusing to stage: raw-content columns present: {sorted(leaked)}")
     if len(trials) != 8640:
         raise SystemExit(f"Expected 8,640 rows, found {len(trials):,}")
+    required_outcomes = {
+        "locked_end_to_end_exact",
+        "corrected_end_to_end_exact",
+        "locked_final_output_exact",
+        "corrected_final_output_exact",
+        "parser_correction_applied",
+    }
+    missing_outcomes = required_outcomes - set(trials.columns)
+    if missing_outcomes:
+        raise SystemExit(
+            f"Missing locked/corrected outcome columns: {sorted(missing_outcomes)}"
+        )
+    corrected = trials.groupby("condition")["corrected_end_to_end_exact"].sum()
+    expected = {
+        "native_parametric": 540,
+        "source_supplied": 2022,
+        "tool_mediated": 1730,
+        "deterministic_rendering": 1971,
+    }
+    if corrected.to_dict() != expected:
+        raise SystemExit(
+            f"Corrected endpoint counts do not match the paper: {corrected.to_dict()}"
+        )
 
     targets = pd.DataFrame(
         json.loads(line) for line in TARGETS.read_text().splitlines() if line.strip()

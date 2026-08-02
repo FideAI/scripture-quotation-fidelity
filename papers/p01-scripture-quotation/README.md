@@ -25,11 +25,14 @@ retrieval or deterministic source systems?
 
 8,640 matched observations: 20 targets × 2 prompt families × 4 conditions ×
 3 editions × 6 model routes × 3 epochs. The request panel is held fixed and the
-delivery path varies, so architecture is the comparison rather than passage
-choice or model mix.
+delivery path varies. The four conditions intentionally assign different
+responsibilities, so pooled rates describe the staged system rather than
+equal-burden treatment arms.
 
-The primary endpoint requires strict final-output equality **and**
-condition-specific evidence that the declared architecture was followed.
+The exact-delivery endpoint requires strict final-output equality **and**
+condition-specific evidence that the declared delivery path was followed. The
+paper reports the complete corrected deterministic replay and preserves the
+executed literal-parser result in an appendix audit.
 
 ## Contents
 

@@ -11,7 +11,7 @@ Three repositories or artifact zones should remain distinct:
 
 | Zone | Owner | Default visibility | Purpose |
 | --- | --- | --- | --- |
-| Authoritative Quotation public research package | Fide AI | Public/open | Paper, methodology, public scenarios, schemas, release policy, and approved result artifacts |
+| Authoritative Quotation research package | Fide AI | Private during review; intended public/open release | Paper, methodology, public scenarios, schemas, release policy, and approved result artifacts |
 | `fide-eval-engine` and FID-056 execution study | Fide AI | Private/proprietary | Manifests, providers, orchestration, raw outputs, held-out prompts, restricted corpora, analysis staging, and release review |
 | The Apologist Project implementation | The Apologist Project | Private/proprietary by default | Product code, partner execution harness, credentials, provider integrations, private traces, and internal analysis |
 
@@ -19,9 +19,9 @@ An organization may separately choose to open-source a deliberately scoped
 research harness, but that is not required by the Fide study and must not expose
 product code, credentials, restricted source material, or private traces.
 
-## Public Repository Contents
+## Intended Public Repository Contents
 
-The public repository may contain:
+After a paper-specific release decision, the public repository may contain:
 
 - paper source, bibliography, and compiled paper;
 - public research question and study plan;
@@ -96,9 +96,10 @@ Fide private execution                 Partner private execution
        paper + protocol + approved derived artifacts
 ```
 
-Files are copied into the public repository only after a paper-specific release
-decision. The public repository must never be used as an execution output
-directory or as temporary storage for raw evidence.
+The research package remains private during manuscript and release review.
+Files are promoted into its public release only after a paper-specific release
+decision. It must never be used as an execution output directory or as
+temporary storage for raw evidence.
 
 ## Public Result Package
 

@@ -24,7 +24,7 @@ implementation used in local execution
 (<https://github.com/apologist-project/llm-scripture-fidelity>, pinned revision
 `b67849d55181fdffb3ee28d405733dd5eb35e4bc`, archived at Software Heritage as
 `swh:1:rev:b67849d55181fdffb3ee28d405733dd5eb35e4bc`), and contributed to how
-the four architectures were operationalized. It did not set the research question or
+the four evaluation conditions were operationalized. It did not set the research question or
 crossed design, hold credentials, run confirmatory execution, control the
 analysis, hold evidence custody, or make the release decision.
 
@@ -63,9 +63,12 @@ subject matter, and the manuscript says so directly.
 Three features of the design bear on the concern: condition definitions,
 scoring rules, and the primary endpoint were hash-locked before confirmatory
 execution; Fide AI held credentials, executed, analyzed, and controlled the
-claims boundary; and the architecture closest to a deterministic
-Scripture-delivery product did not finish first (source-supplied quotation
-93.61% versus deterministic rendering 83.94%).
+claims boundary; and the condition closest to a deterministic Scripture-delivery
+product is reported both end to end (91.25%) and after a correct reference
+handoff (99.90%). The source-supplied ceiling (93.61%) carries different
+responsibilities and is not treated as an equal-burden competitor. The
+deterministic parser implementation correction is disclosed in the manuscript
+and planned release artifacts.
 
 The study did not evaluate or certify a deployed commercial product. The author
 must provide any additional personal financial or organizational interests

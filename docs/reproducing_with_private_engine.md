@@ -1,9 +1,10 @@
 # Reproduction and the Private Execution Boundary
 
-The public repository defines the evaluation protocol, scenario schema,
+The intended public release defines the evaluation protocol, scenario schema,
 scoring specification, exact executed prompts and tool contract, release-safe
-provenance, deidentified derived scores, and analysis code. Model execution
-and raw-trace custody remain in private infrastructure.
+provenance, deidentified derived scores, and analysis code. The repository
+remains private during review. Model execution and raw-trace custody remain in
+private infrastructure before and after release.
 
 The protocol separates selection fidelity from rendering fidelity. A reproduction
 should report whether the system selected the correct source/version/span, whether

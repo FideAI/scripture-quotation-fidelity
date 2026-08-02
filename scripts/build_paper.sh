@@ -11,6 +11,17 @@ export SOURCE_DATE_EPOCH="${SOURCE_DATE_EPOCH:-1753574400}"
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 PAPER_DIR="$ROOT_DIR/papers/p01-scripture-quotation/paper"
+PAPER_SOURCE="${1:-main.tex}"
+
+if [[ "$PAPER_SOURCE" != "$(basename "$PAPER_SOURCE")" || "$PAPER_SOURCE" != *.tex ]]; then
+  echo "Paper source must be a .tex filename in $PAPER_DIR" >&2
+  exit 2
+fi
+
+if [[ ! -f "$PAPER_DIR/$PAPER_SOURCE" ]]; then
+  echo "Paper source not found: $PAPER_DIR/$PAPER_SOURCE" >&2
+  exit 2
+fi
 
 find_tectonic() {
   if [[ -n "${TECTONIC:-}" && -x "$TECTONIC" ]]; then
@@ -50,5 +61,4 @@ fi
 
 echo "Using tectonic: $TECTONIC_BIN"
 cd "$PAPER_DIR"
-"$TECTONIC_BIN" main.tex
-
+"$TECTONIC_BIN" "$PAPER_SOURCE"

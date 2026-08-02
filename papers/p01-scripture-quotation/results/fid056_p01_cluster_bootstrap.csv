@@ -4,4 +4,7 @@ architecture_adherent_rate,tool_mediated_vs_native_parametric,0.550926,0.464815,
 architecture_adherent_rate,deterministic_rendering_vs_native_parametric,0.589352,0.511574,0.666667,20,10000,5601
 final_output_exact_rate,source_supplied_vs_native_parametric,0.686111,0.61713,0.756019,20,10000,5601
 final_output_exact_rate,tool_mediated_vs_native_parametric,0.573148,0.488889,0.654167,20,10000,5601
-final_output_exact_rate,deterministic_rendering_vs_native_parametric,0.589352,0.511574,0.666667,20,10000,5601
+final_output_exact_rate,deterministic_rendering_vs_native_parametric,0.6625,0.584722,0.739815,20,10000,5601
+parser_adjusted_rate,source_supplied_vs_native_parametric,0.686111,0.61713,0.756019,20,10000,5601
+parser_adjusted_rate,tool_mediated_vs_native_parametric,0.550926,0.464815,0.634722,20,10000,5601
+parser_adjusted_rate,deterministic_rendering_vs_native_parametric,0.6625,0.584722,0.739815,20,10000,5601

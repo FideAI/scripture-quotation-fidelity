@@ -6,7 +6,8 @@ Compile the paper from the repository root:
 make paper
 ```
 
-`make paper` first regenerates the three explanatory PDF figures from
+`make paper` builds the canonical visual manuscript. It first regenerates the
+paper's PDF figures from
 `scripts/build_paper_figures.py`, then compiles `main.tex` with the repository
 Tectonic wrapper. Run `make figures` to rebuild only the figures.
 
@@ -18,3 +19,7 @@ Direct compile command used in this workspace:
 ```bash
 /opt/homebrew/bin/tectonic main.tex
 ```
+
+The build wrapper accepts a paper filename in this directory when a temporary
+review variant must be compiled, but publication tooling always uses the
+canonical `main.tex`.

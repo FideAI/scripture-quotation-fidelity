@@ -1,0 +1,139 @@
+{
+  "analysis_status": "post_hoc_parser_sensitivity",
+  "model_outputs_rerun": false,
+  "partner_parser": {
+    "commit": "3eef0650e63fd06e38647ea40b23068bcc545956",
+    "dirty": false,
+    "references_sha256": "5cb957cfc6fdf4ed97c7aaa9b3b7a9a6efc3b439edbf58bb2f0b57e61730b992",
+    "solvers_sha256": "aeaa8027055ba48981c3236185e268cef1cb00a101ce1e4b3c8b8686c9959deb"
+  },
+  "summary": {
+    "model_route": {
+      "anthropic/claude-sonnet-5": {
+        "observations": 360,
+        "permissive_parser_replay_exact": 316,
+        "permissive_parser_replay_final_output_exact": 316,
+        "permissive_parser_replay_final_output_rate": 0.8777777777777778,
+        "permissive_parser_replay_rate": 0.8777777777777778,
+        "recovered_by_permissive_parser": 44,
+        "strict_exact": 272,
+        "strict_rate": 0.7555555555555555
+      },
+      "deepseek/deepseek-v4-pro": {
+        "observations": 360,
+        "permissive_parser_replay_exact": 324,
+        "permissive_parser_replay_final_output_exact": 324,
+        "permissive_parser_replay_final_output_rate": 0.9,
+        "permissive_parser_replay_rate": 0.9,
+        "recovered_by_permissive_parser": 3,
+        "strict_exact": 321,
+        "strict_rate": 0.8916666666666667
+      },
+      "google/gemini-3.5-flash": {
+        "observations": 360,
+        "permissive_parser_replay_exact": 339,
+        "permissive_parser_replay_final_output_exact": 339,
+        "permissive_parser_replay_final_output_rate": 0.9416666666666667,
+        "permissive_parser_replay_rate": 0.9416666666666667,
+        "recovered_by_permissive_parser": 8,
+        "strict_exact": 331,
+        "strict_rate": 0.9194444444444444
+      },
+      "moonshotai/kimi-k3": {
+        "observations": 360,
+        "permissive_parser_replay_exact": 325,
+        "permissive_parser_replay_final_output_exact": 325,
+        "permissive_parser_replay_final_output_rate": 0.9027777777777778,
+        "permissive_parser_replay_rate": 0.9027777777777778,
+        "recovered_by_permissive_parser": 2,
+        "strict_exact": 323,
+        "strict_rate": 0.8972222222222223
+      },
+      "openai/gpt-5.6-sol": {
+        "observations": 360,
+        "permissive_parser_replay_exact": 343,
+        "permissive_parser_replay_final_output_exact": 343,
+        "permissive_parser_replay_final_output_rate": 0.9527777777777777,
+        "permissive_parser_replay_rate": 0.9527777777777777,
+        "recovered_by_permissive_parser": 86,
+        "strict_exact": 257,
+        "strict_rate": 0.7138888888888889
+      },
+      "z-ai/glm-5.2": {
+        "observations": 360,
+        "permissive_parser_replay_exact": 324,
+        "permissive_parser_replay_final_output_exact": 324,
+        "permissive_parser_replay_final_output_rate": 0.9,
+        "permissive_parser_replay_rate": 0.9,
+        "recovered_by_permissive_parser": 15,
+        "strict_exact": 309,
+        "strict_rate": 0.8583333333333333
+      }
+    },
+    "overall": {
+      "observations": 2160,
+      "permissive_parser_replay_exact": 1971,
+      "permissive_parser_replay_final_output_exact": 1971,
+      "permissive_parser_replay_final_output_rate": 0.9125,
+      "permissive_parser_replay_rate": 0.9125,
+      "recovered_by_permissive_parser": 158,
+      "strict_exact": 1813,
+      "strict_rate": 0.8393518518518519
+    },
+    "prompt_family": {
+      "contextual_description": {
+        "observations": 1080,
+        "permissive_parser_replay_exact": 892,
+        "permissive_parser_replay_final_output_exact": 892,
+        "permissive_parser_replay_final_output_rate": 0.825925925925926,
+        "permissive_parser_replay_rate": 0.825925925925926,
+        "recovered_by_permissive_parser": 3,
+        "strict_exact": 889,
+        "strict_rate": 0.8231481481481482
+      },
+      "explicit_reference": {
+        "observations": 1080,
+        "permissive_parser_replay_exact": 1079,
+        "permissive_parser_replay_final_output_exact": 1079,
+        "permissive_parser_replay_final_output_rate": 0.9990740740740741,
+        "permissive_parser_replay_rate": 0.9990740740740741,
+        "recovered_by_permissive_parser": 155,
+        "strict_exact": 924,
+        "strict_rate": 0.8555555555555555
+      }
+    },
+    "translation": {
+      "BSB": {
+        "observations": 720,
+        "permissive_parser_replay_exact": 664,
+        "permissive_parser_replay_final_output_exact": 664,
+        "permissive_parser_replay_final_output_rate": 0.9222222222222223,
+        "permissive_parser_replay_rate": 0.9222222222222223,
+        "recovered_by_permissive_parser": 31,
+        "strict_exact": 633,
+        "strict_rate": 0.8791666666666667
+      },
+      "LSV": {
+        "observations": 720,
+        "permissive_parser_replay_exact": 655,
+        "permissive_parser_replay_final_output_exact": 655,
+        "permissive_parser_replay_final_output_rate": 0.9097222222222222,
+        "permissive_parser_replay_rate": 0.9097222222222222,
+        "recovered_by_permissive_parser": 77,
+        "strict_exact": 578,
+        "strict_rate": 0.8027777777777778
+      },
+      "WEBU": {
+        "observations": 720,
+        "permissive_parser_replay_exact": 652,
+        "permissive_parser_replay_final_output_exact": 652,
+        "permissive_parser_replay_final_output_rate": 0.9055555555555556,
+        "permissive_parser_replay_rate": 0.9055555555555556,
+        "recovered_by_permissive_parser": 50,
+        "strict_exact": 602,
+        "strict_rate": 0.8361111111111111
+      }
+    }
+  },
+  "trials_sha256": "34834a954ebe35733230a7c1a9a2f1309d8b0051a630ca8534ac86fd8f72d86a"
+}
