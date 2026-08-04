@@ -24,24 +24,49 @@ PAPER_DIR="$ROOT_DIR/$PAPER_REL/paper"
 BUILD_DIR="$ROOT_DIR/build/arxiv"
 STAGE="$BUILD_DIR/$(basename "$PAPER_REL")"
 
+find_tectonic() {
+  if [[ -n "${TECTONIC:-}" && -x "$TECTONIC" ]]; then
+    printf '%s\n' "$TECTONIC"
+    return 0
+  fi
+
+  if command -v tectonic >/dev/null 2>&1; then
+    command -v tectonic
+    return 0
+  fi
+
+  if [[ -x "/opt/homebrew/bin/tectonic" ]]; then
+    printf '%s\n' "/opt/homebrew/bin/tectonic"
+    return 0
+  fi
+
+  return 1
+}
+
 if [[ ! -f "$PAPER_DIR/main.tex" ]]; then
   echo "No main.tex under $PAPER_DIR" >&2
   exit 1
 fi
 
+TECTONIC_BIN="$(find_tectonic || true)"
+if [[ -z "$TECTONIC_BIN" ]]; then
+  echo "Could not find tectonic; install it or set TECTONIC to its executable path." >&2
+  exit 127
+fi
+
 # A current .bbl is required: arXiv will not reliably run bibtex.
 echo "==> Compiling to refresh main.bbl"
-( cd "$PAPER_DIR" && tectonic -X compile main.tex --keep-intermediates --synctex=0 >/dev/null 2>&1 )
+( cd "$PAPER_DIR" && "$TECTONIC_BIN" -X compile main.tex --keep-intermediates >/dev/null )
 
-if [[ ! -f "$PAPER_DIR/main.bbl" ]]; then
-  echo "main.bbl was not produced; cannot submit without it" >&2
+if [[ ! -f "$PAPER_DIR/main.bbl" ]] || ! grep -q '\\bibitem' "$PAPER_DIR/main.bbl"; then
+  echo "main.bbl was not produced with bibliography entries; cannot submit without it" >&2
   exit 1
 fi
 
 rm -rf "$STAGE"
 mkdir -p "$STAGE/figures"
 
-cp "$PAPER_DIR/main.tex" "$PAPER_DIR/main.bbl" "$STAGE/"
+cp "$PAPER_DIR/main.tex" "$PAPER_DIR/main.bbl" "$PAPER_DIR/references.bib" "$STAGE/"
 cp "$PAPER_DIR"/*.bst "$STAGE/" 2>/dev/null || true
 while IFS= read -r figure; do
   [[ -n "$figure" ]] || continue

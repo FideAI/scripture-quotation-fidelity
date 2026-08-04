@@ -41,7 +41,7 @@ executed literal-parser result in an appendix audit.
 | `paper/` | LaTeX source, bibliography, generated figures, compiled PDF |
 | `data/` | Deidentified 8,640-row derived scores; release-safe target registry |
 | `results/` | Aggregate, target-level, bootstrap, and sensitivity results; result card |
-| `provenance/` | Prospective lock, deviation summary, source editions, release manifest |
+| `provenance/` | Public release-decision summary, prospective lock, deviation summary, source editions, release manifest |
 | `review/` | Blinded contextual-description reviewer packet and response template |
 | `docs/` | Public research plan, claims boundary, data availability, disclosures |
 

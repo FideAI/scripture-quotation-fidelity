@@ -19,6 +19,9 @@ ROOT = Path(__file__).resolve().parents[1]
 TRIALS = ROOT / "papers/p01-scripture-quotation/data/fid056_p01_deidentified_trials.csv.gz"
 TARGETS = ROOT / "papers/p01-scripture-quotation/data/fid056_p01_targets.jsonl"
 MANIFEST = ROOT / "papers/p01-scripture-quotation/provenance/release_manifest.json"
+RELEASE_DECISION = ROOT / (
+    "papers/p01-scripture-quotation/provenance/release_decision_summary.json"
+)
 REPLAY_CSV = ROOT / (
     "papers/p01-scripture-quotation/results/"
     "fid056_p01_permissive_parser_replay.csv"
@@ -224,6 +227,75 @@ def main() -> None:
     if not MANIFEST.exists():
         raise SystemExit("Missing provenance/release_manifest.json; run make manifest")
     manifest = json.loads(MANIFEST.read_text())
+    if manifest.get("schema_version") != 2:
+        raise SystemExit("Release manifest must use schema version 2")
+    if manifest.get("research_program_id") != "FID-056":
+        raise SystemExit("Release manifest has the wrong research program")
+    if manifest.get("paper_id") != "FID-056-P01":
+        raise SystemExit("Release manifest has the wrong paper ID")
+
+    release_decision = json.loads(RELEASE_DECISION.read_text())
+    required_decision_fields = {
+        "schema_version",
+        "decision_id",
+        "decision_date",
+        "decision_authority",
+        "human_review",
+        "research_program_id",
+        "paper_id",
+        "status",
+        "approved_artifacts",
+        "blocked_artifacts",
+        "claims_limit",
+        "review_basis",
+    }
+    missing_decision_fields = required_decision_fields - set(release_decision)
+    if missing_decision_fields:
+        raise SystemExit(
+            f"Release decision is missing fields: {sorted(missing_decision_fields)}"
+        )
+    if release_decision.get("schema_version") != "fid056_public_release_decision_summary_v1":
+        raise SystemExit("Release decision has the wrong schema version")
+    if release_decision.get("research_program_id") != "FID-056":
+        raise SystemExit("Release decision has the wrong research program")
+    if release_decision.get("paper_id") != "FID-056-P01":
+        raise SystemExit("Release decision has the wrong paper ID")
+    decision_reference = release_decision.get("decision_id")
+    if release_decision.get("human_review") != "completed":
+        raise SystemExit("Human release review is not complete")
+    if release_decision.get("status") != "approved_public_reproduction_packet":
+        raise SystemExit("Public reproduction packet is not approved")
+    required_approved_artifacts = {
+        "manuscript",
+        "deidentified_derived_score_dataset",
+        "reviewed_result_tables",
+        "public_reproduction_packet",
+    }
+    if set(release_decision.get("approved_artifacts", ())) != required_approved_artifacts:
+        raise SystemExit("Release decision does not approve the complete public packet")
+    required_blocked_artifacts = {
+        "raw_model_outputs",
+        "held_out_prompts",
+        "restricted_source_text",
+        "provider_response_identifiers",
+        "raw_tool_traces",
+        "credentials",
+        "private_execution_engine_source",
+        "partner_private_traces",
+    }
+    if set(release_decision.get("blocked_artifacts", ())) != required_blocked_artifacts:
+        raise SystemExit("Release decision does not preserve the complete private boundary")
+    if len(release_decision.get("claims_limit", "").strip()) < 40:
+        raise SystemExit("Release decision claims limit is missing or too short")
+    for relative in release_decision.get("review_basis", ()):
+        if not (ROOT / relative).is_file():
+            raise SystemExit(f"Release decision review basis is missing: {relative}")
+    manifest_decision = manifest.get("release_decision", {})
+    if manifest_decision.get("decision_id") != decision_reference:
+        raise SystemExit("Release manifest decision reference does not reconcile")
+    if manifest_decision.get("summary_path") != RELEASE_DECISION.relative_to(ROOT).as_posix():
+        raise SystemExit("Release manifest has the wrong decision-summary path")
+
     manifest_paths = {record["path"] for record in manifest["files"]}
     canonical = {
         "papers/p01-scripture-quotation/paper/main.tex",
@@ -233,7 +305,27 @@ def main() -> None:
         raise SystemExit("Release manifest is missing the canonical paper")
     if any("main_visual" in path for path in manifest_paths):
         raise SystemExit("Release manifest contains a non-canonical visual variant")
+    required_record_fields = {
+        "path",
+        "bytes",
+        "sha256",
+        "rights_classification",
+        "evidence_source",
+        "verification_mode",
+        "release_decision_reference",
+    }
     for record in manifest["files"]:
+        if set(record) != required_record_fields:
+            raise SystemExit(
+                f"Manifest metadata is incomplete for {record.get('path', '<unknown>')}"
+            )
+        if record["release_decision_reference"] != decision_reference:
+            raise SystemExit(
+                f"Manifest decision reference drifted for {record['path']}"
+            )
+        for field in ("rights_classification", "evidence_source", "verification_mode"):
+            if not record[field].strip():
+                raise SystemExit(f"Manifest {field} is empty for {record['path']}")
         path = ROOT / record["path"]
         if not path.is_file():
             raise SystemExit(f"Manifest file is missing: {record['path']}")

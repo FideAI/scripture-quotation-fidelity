@@ -130,7 +130,7 @@ papers/
     paper/       LaTeX source and figures
     data/        deidentified derived scores and release-safe target registry
     results/     reviewed aggregate and target-level results
-    provenance/  prospective lock, deviations, source editions, manifest
+    provenance/  release decision, prospective lock, deviations, source editions, manifest
     review/      blinded reviewer materials
     docs/        paper-scoped plan, claims boundary, and disclosures
 ```
