@@ -254,12 +254,12 @@
       "verification_mode": "SHA-256 digest"
     },
     {
-      "bytes": 724,
+      "bytes": 717,
       "evidence_source": "FID-056-P01 manuscript source and generated publication artifacts",
       "path": "papers/p01-scripture-quotation/paper/README.md",
       "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
       "rights_classification": "CC-BY-4.0",
-      "sha256": "16e6cc4cafbab9798f225b84bbddcf3d6594837b1810af811c1ff5af44852f3a",
+      "sha256": "2af5cce000eeddd83cb9bb8132ad7a7809839659975e2a5641f97450b293a4b0",
       "verification_mode": "SHA-256 digest"
     },
     {
@@ -317,21 +317,21 @@
       "verification_mode": "regenerated from released results and visually inspected"
     },
     {
-      "bytes": 216273,
+      "bytes": 217292,
       "evidence_source": "FID-056-P01 manuscript source and generated publication artifacts",
       "path": "papers/p01-scripture-quotation/paper/main.pdf",
       "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
       "rights_classification": "CC-BY-4.0",
-      "sha256": "11cedad4eda8230769be874a5a807847128b526a08380e51522dc4537ea96813",
+      "sha256": "8fca1e69962e38bfcdeac57e5fd510635c0b4d50af3a111e259d382eae61265b",
       "verification_mode": "source compilation, visual inspection, and SHA-256 digest"
     },
     {
-      "bytes": 72726,
+      "bytes": 73190,
       "evidence_source": "FID-056-P01 manuscript source and generated publication artifacts",
       "path": "papers/p01-scripture-quotation/paper/main.tex",
       "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
       "rights_classification": "CC-BY-4.0",
-      "sha256": "5bb262e5d9b20fd4d04b3d1882defcd6ba1430b49bd0f6439e8f5c6821c731f2",
+      "sha256": "93d7fe8528881bf17851b959cf1a8c235c931fb43c3d72ecc14bf31f10a6d91b",
       "verification_mode": "source compilation and SHA-256 digest"
     },
     {
