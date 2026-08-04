@@ -13,7 +13,7 @@ lands on the passage we expected. Without that check, a low
 reference-identification rate could mean the systems failed, or it could mean
 our descriptions were bad.
 
-The validation reported in the working manuscript does not establish this. Its
+The validation reported in the manuscript does not establish this. Its
 limitations were, in the manuscript's own words, that the reviewer was an AI
 system and the same reviewing identity that authored the initial critique, and
 that only six of the twenty descriptions received blinded treatment. This

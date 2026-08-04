@@ -1045,17 +1045,18 @@ authority.
 \section{Open Evaluation and Reproducibility}
 \label{sec:open-release}
 
-The pre-release repository is private during review. At public release,
-\url{https://github.com/FideAI/scripture-quotation-fidelity} will provide the
+The public repository at
+\url{https://github.com/FideAI/scripture-quotation-fidelity} provides the
 deidentified 8,640-row derived-score dataset, the scoring specification and
 schemas, the executed prompts and tool schema, the source-edition record with
 per-target text digests, the prospective-lock receipt, and standalone analysis
 code. Together these reproduce every quantitative claim in this paper without
 network access or model spend.
 
-Three things are withheld: authoritative passage text, which carries rights
-obligations; raw model outputs and provider response identifiers, which carry
-custody obligations; and private execution code and credentials. Withholding
+Three things are withheld: authoritative passage text from the evaluated
+editions, which carries rights obligations; raw model outputs and provider
+response identifiers, which carry custody obligations; and private execution
+code and credentials. Withholding
 raw outputs is a real limit---a reader cannot inspect what a model actually
 said---and it is the reason the failure review reports mechanisms rather than
 transcripts. An exact rerun against live endpoints is in any case not
@@ -1209,15 +1210,16 @@ record is speaking.
 
 \section*{Data and Code Availability}
 
-The pre-release repository is private during review. At public release,
-\url{https://github.com/FideAI/scripture-quotation-fidelity} will provide the full
+The public repository at
+\url{https://github.com/FideAI/scripture-quotation-fidelity} provides the full
 deidentified derived-score dataset, target registry, executed prompt templates,
 functional tool schema, source-edition record with per-target text digests,
 release-safe prospective-lock and deviation records, and standalone analysis
-code. It excludes generated prose, authoritative passage text, provider
-response identifiers, raw tool traces, credentials, restricted-source
-payloads, and private execution-engine code. The released package reproduces
-the quantitative tables and contrasts without model endpoint access.
+code. It excludes generated prose, authoritative passage text from the
+evaluated editions, provider response identifiers, raw tool traces,
+credentials, restricted-source payloads, and private execution-engine code.
+The released package reproduces the quantitative tables and contrasts without
+model endpoint access.
 
 \section*{Acknowledgments}
 
