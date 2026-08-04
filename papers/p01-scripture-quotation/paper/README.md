@@ -6,7 +6,7 @@ Compile the paper from the repository root:
 make paper
 ```
 
-`make paper` builds the canonical visual manuscript. It first regenerates the
+`make paper` builds the canonical manuscript. It first regenerates the
 paper's PDF figures from
 `scripts/build_paper_figures.py`, then compiles `main.tex` with the repository
 Tectonic wrapper. Run `make figures` to rebuild only the figures.

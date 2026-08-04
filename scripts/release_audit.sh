@@ -81,4 +81,4 @@ if (( failed )); then
   exit 1
 fi
 
-printf 'Release audit passed. Human release review is still required.\n'
+printf 'Release audit passed. Human release review is recorded in the public decision summary.\n'

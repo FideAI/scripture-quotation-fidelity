@@ -2,357 +2,674 @@
   "artifact_scope": "public_replication_package",
   "files": [
     {
-      "bytes": 1198,
+      "bytes": 1200,
+      "evidence_source": "public repository governance and documentation",
       "path": "CITATION.cff",
-      "sha256": "d8a167384e42039f1f59cc02d213db4d961dfb767b18c2f4149fd57eb07a9af2"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "CC-BY-4.0",
+      "sha256": "766a9c0706bd5b663975b416ae6b1fbb53c7141bbb204a8466e89d4b6c61ff1b",
+      "verification_mode": "SHA-256 digest"
     },
     {
       "bytes": 1640,
+      "evidence_source": "public repository governance and documentation",
       "path": "CODE_OF_CONDUCT.md",
-      "sha256": "9b23aa171a1e23d16a63e943ace90975d5cc45d95b5cb110a7768d65b439cfc6"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "CC-BY-4.0",
+      "sha256": "9b23aa171a1e23d16a63e943ace90975d5cc45d95b5cb110a7768d65b439cfc6",
+      "verification_mode": "SHA-256 digest"
     },
     {
       "bytes": 3377,
+      "evidence_source": "public repository governance and documentation",
       "path": "CONTRIBUTING.md",
-      "sha256": "e20433f62e916bf63aa5276bc6daa0625d144a427f42cae872577826bcea67ce"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "CC-BY-4.0",
+      "sha256": "e20433f62e916bf63aa5276bc6daa0625d144a427f42cae872577826bcea67ce",
+      "verification_mode": "SHA-256 digest"
     },
     {
       "bytes": 631,
+      "evidence_source": "public repository governance and documentation",
       "path": "LICENSE",
-      "sha256": "733b427e07fac055647721b671acfcfc3ece190dbdec33e41c96d4659f9c3acf"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "CC-BY-4.0",
+      "sha256": "733b427e07fac055647721b671acfcfc3ece190dbdec33e41c96d4659f9c3acf",
+      "verification_mode": "SHA-256 digest"
     },
     {
       "bytes": 12026,
+      "evidence_source": "public repository governance and documentation",
       "path": "LICENSE-CODE",
-      "sha256": "1a4b76bcee9fc5267dc9a221f4ca5a15ce855e0ad8c8e79f7de8a632c91f2888"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "CC-BY-4.0",
+      "sha256": "1a4b76bcee9fc5267dc9a221f4ca5a15ce855e0ad8c8e79f7de8a632c91f2888",
+      "verification_mode": "SHA-256 digest"
     },
     {
       "bytes": 648,
+      "evidence_source": "public repository governance and documentation",
       "path": "Makefile",
-      "sha256": "c274c24f30decc90ac80eec8c6a54c0626477bb1ac0f3321e29ad0e6394f7cee"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "CC-BY-4.0",
+      "sha256": "c274c24f30decc90ac80eec8c6a54c0626477bb1ac0f3321e29ad0e6394f7cee",
+      "verification_mode": "SHA-256 digest"
     },
     {
       "bytes": 1641,
+      "evidence_source": "public repository governance and documentation",
       "path": "NOTICE",
-      "sha256": "c1ec8860517efa158fd09d402c10d661b71a81c6ff60a91285c768f622580942"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "CC-BY-4.0",
+      "sha256": "c1ec8860517efa158fd09d402c10d661b71a81c6ff60a91285c768f622580942",
+      "verification_mode": "SHA-256 digest"
     },
     {
-      "bytes": 9083,
+      "bytes": 9615,
+      "evidence_source": "public repository governance and documentation",
       "path": "README.md",
-      "sha256": "4d416462928fbf03828668ecf2d5e81dfcbe92b3128f6ae56eb77911463612b9"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "CC-BY-4.0",
+      "sha256": "beab7c304dfc6ae267cf9f00ee5582c16bd1c123de8a6de4de947c0f8e7539ab",
+      "verification_mode": "SHA-256 digest"
     },
     {
       "bytes": 1491,
+      "evidence_source": "public repository governance and documentation",
       "path": "SECURITY.md",
-      "sha256": "85fdb653474554892ea572061b682ebe335ae0bebf1072ca65efe8017845a1a4"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "CC-BY-4.0",
+      "sha256": "85fdb653474554892ea572061b682ebe335ae0bebf1072ca65efe8017845a1a4",
+      "verification_mode": "SHA-256 digest"
     },
     {
-      "bytes": 3869,
+      "bytes": 3993,
+      "evidence_source": "public repository governance and documentation",
       "path": "docs/publishing.md",
-      "sha256": "6f36f5c348b9a26c03a7e2381e1d12d7765307ffff63f342e175b122383c0004"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "CC-BY-4.0",
+      "sha256": "531be3bf24eda44fa01d64897594394937164f41d803bfbbb31b1502eb49892f",
+      "verification_mode": "SHA-256 digest"
     },
     {
-      "bytes": 6129,
+      "bytes": 6140,
+      "evidence_source": "public repository governance and documentation",
       "path": "docs/repository_boundary.md",
-      "sha256": "6c568e24d9971e85367533891902d91dbcbbc2da0d7e337c53f350343f9cc84d"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "CC-BY-4.0",
+      "sha256": "28b2478b7e7b85451f9d56897ca8e7f7de07d1cc3523d6300f3c444f31b18334",
+      "verification_mode": "SHA-256 digest"
     },
     {
       "bytes": 2044,
+      "evidence_source": "public repository governance and documentation",
       "path": "docs/reproducing_with_private_engine.md",
-      "sha256": "b0b6430b42db704129b025655757ec9e407b66978cfc6a74e6a8fb105235ade8"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "CC-BY-4.0",
+      "sha256": "b0b6430b42db704129b025655757ec9e407b66978cfc6a74e6a8fb105235ade8",
+      "verification_mode": "SHA-256 digest"
     },
     {
       "bytes": 5767,
+      "evidence_source": "public repository governance and documentation",
       "path": "docs/research_call_coverage.md",
-      "sha256": "a876e4f49907f22fe821e53a131abf0ac6330e2804afd2982c1ff6584ff18f24"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "CC-BY-4.0",
+      "sha256": "a876e4f49907f22fe821e53a131abf0ac6330e2804afd2982c1ff6584ff18f24",
+      "verification_mode": "SHA-256 digest"
     },
     {
       "bytes": 8994,
+      "evidence_source": "public repository governance and documentation",
       "path": "docs/research_program.md",
-      "sha256": "021795bb9388c1eb5dda3030e8a6baf87c9c61d37f035f57a2250cd748cefcc4"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "CC-BY-4.0",
+      "sha256": "021795bb9388c1eb5dda3030e8a6baf87c9c61d37f035f57a2250cd748cefcc4",
+      "verification_mode": "SHA-256 digest"
     },
     {
       "bytes": 704,
+      "evidence_source": "public repository governance and documentation",
       "path": "docs/responsible_use.md",
-      "sha256": "cecf07907716dbb60ec4d49a36887f5da71330892d06cbb757b9d28f157031b2"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "CC-BY-4.0",
+      "sha256": "cecf07907716dbb60ec4d49a36887f5da71330892d06cbb757b9d28f157031b2",
+      "verification_mode": "SHA-256 digest"
     },
     {
       "bytes": 1461,
+      "evidence_source": "public FID-056 protocol and example materials",
       "path": "examples/README.md",
-      "sha256": "ed1f34c46ac5f46811aa569dbd8e4236a21cb630a5ab796266b08aa97aa31eca"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "CC-BY-4.0",
+      "sha256": "ed1f34c46ac5f46811aa569dbd8e4236a21cb630a5ab796266b08aa97aa31eca",
+      "verification_mode": "SHA-256 digest"
     },
     {
       "bytes": 6093,
+      "evidence_source": "public FID-056 protocol and example materials",
       "path": "examples/public_scenarios.jsonl",
-      "sha256": "7d1b758dd0ede2667794fe5fd385c26e28da4a68df7905a27d389ada2d612235"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "CC-BY-4.0",
+      "sha256": "7d1b758dd0ede2667794fe5fd385c26e28da4a68df7905a27d389ada2d612235",
+      "verification_mode": "SHA-256 digest"
     },
     {
       "bytes": 1209,
+      "evidence_source": "public FID-056 protocol and example materials",
       "path": "examples/public_scoring_examples.md",
-      "sha256": "86dae88e749e69a2cdaab6981c713c9b35e8a40b7468cb8d74cc252d0da5f058"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "CC-BY-4.0",
+      "sha256": "86dae88e749e69a2cdaab6981c713c9b35e8a40b7468cb8d74cc252d0da5f058",
+      "verification_mode": "SHA-256 digest"
     },
     {
-      "bytes": 3620,
+      "bytes": 3653,
+      "evidence_source": "public repository governance and documentation",
       "path": "papers/p01-scripture-quotation/README.md",
-      "sha256": "e66f7b4f0d8760fd179b24801a8583b1f96501be23f4ae861ed61d6f536dfbcd"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "CC-BY-4.0",
+      "sha256": "8eb4b7621de4a6d422b6aaefe8e0b8c9f3c58dc36d9a4324ca5b383c63ab7db3",
+      "verification_mode": "SHA-256 digest"
     },
     {
       "bytes": 1216,
+      "evidence_source": "release-safe FID-056-P01 data export",
       "path": "papers/p01-scripture-quotation/data/README.md",
-      "sha256": "94c69bf0527515466ac650a3b3f5e481fd66afa93988ff7dccf5157ff7218e45"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "CC-BY-4.0",
+      "sha256": "94c69bf0527515466ac650a3b3f5e481fd66afa93988ff7dccf5157ff7218e45",
+      "verification_mode": "SHA-256 digest"
     },
     {
       "bytes": 391662,
+      "evidence_source": "deidentified export from the sealed FID-056-P01 confirmatory archive",
       "path": "papers/p01-scripture-quotation/data/fid056_p01_deidentified_trials.csv.gz",
-      "sha256": "21af75d4cbb6880d3aea8f67782afe33a22885e5cb7f1d3d20800b2db1110d3d"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "CC-BY-4.0",
+      "sha256": "21af75d4cbb6880d3aea8f67782afe33a22885e5cb7f1d3d20800b2db1110d3d",
+      "verification_mode": "schema, row-count, uniqueness, factor-level, and headline reconciliation"
     },
     {
       "bytes": 4503,
+      "evidence_source": "release-safe FID-056-P01 data export",
       "path": "papers/p01-scripture-quotation/data/fid056_p01_targets.jsonl",
-      "sha256": "0b1d8be2a7769b7579837d8c329b0c900e04ce4f1b678e41f529c58ef632db2c"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "CC-BY-4.0",
+      "sha256": "0b1d8be2a7769b7579837d8c329b0c900e04ce4f1b678e41f529c58ef632db2c",
+      "verification_mode": "SHA-256 digest"
     },
     {
       "bytes": 1159,
+      "evidence_source": "public repository governance and documentation",
       "path": "papers/p01-scripture-quotation/docs/claims_boundary.md",
-      "sha256": "7463adfa8539fc996e8d42544306756ae5c3c6b55512cb67ab3274a35e8285f3"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "CC-BY-4.0",
+      "sha256": "7463adfa8539fc996e8d42544306756ae5c3c6b55512cb67ab3274a35e8285f3",
+      "verification_mode": "SHA-256 digest"
     },
     {
-      "bytes": 4586,
+      "bytes": 4578,
+      "evidence_source": "public repository governance and documentation",
       "path": "papers/p01-scripture-quotation/docs/contextual_description_review_protocol.md",
-      "sha256": "20d7ba40e13b5ca57e24571aaa376314d874cd2739cba64f3dc9ce1bfe212696"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "CC-BY-4.0",
+      "sha256": "8f16e46eedca0d47ad0279d74cd2e799a93146c55bdef34eb2a6d04b68ab00e6",
+      "verification_mode": "SHA-256 digest"
     },
     {
       "bytes": 4213,
+      "evidence_source": "public repository governance and documentation",
       "path": "papers/p01-scripture-quotation/docs/contributions_and_disclosures.md",
-      "sha256": "10a91d63105dbc24bec453c53b4fec177341dfd227310369ecaed71dda4629ee"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "CC-BY-4.0",
+      "sha256": "10a91d63105dbc24bec453c53b4fec177341dfd227310369ecaed71dda4629ee",
+      "verification_mode": "SHA-256 digest"
     },
     {
-      "bytes": 1953,
+      "bytes": 1921,
+      "evidence_source": "public repository governance and documentation",
       "path": "papers/p01-scripture-quotation/docs/data_availability.md",
-      "sha256": "3b464008c7d0581b9ad18c0d6fa7348125129ea1389fc70cb3caeb85dbeb1676"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "CC-BY-4.0",
+      "sha256": "9bf0ff7aea0e606296b0cfc40acd2a386f81ec3dc9abcc13d7174b09f581a942",
+      "verification_mode": "SHA-256 digest"
     },
     {
-      "bytes": 9717,
+      "bytes": 9766,
+      "evidence_source": "public repository governance and documentation",
       "path": "papers/p01-scripture-quotation/docs/paper_01_public_research_plan.md",
-      "sha256": "cc0be463449a7612a08c59822269137ac275b448e46b0ca88bb986e2df37bf0b"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "CC-BY-4.0",
+      "sha256": "02ff780013ff75efc057a312e456265178cd4e7af18f653a2d033917577def71",
+      "verification_mode": "SHA-256 digest"
     },
     {
       "bytes": 6966,
+      "evidence_source": "public repository governance and documentation",
       "path": "papers/p01-scripture-quotation/docs/reference_audit.md",
-      "sha256": "f0a12398397cdbc057ede814d461bf12d3463a3e5fa1f0d576a59af87043306f"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "CC-BY-4.0",
+      "sha256": "f0a12398397cdbc057ede814d461bf12d3463a3e5fa1f0d576a59af87043306f",
+      "verification_mode": "SHA-256 digest"
+    },
+    {
+      "bytes": 717,
+      "evidence_source": "FID-056-P01 manuscript source and generated publication artifacts",
+      "path": "papers/p01-scripture-quotation/paper/README.md",
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "CC-BY-4.0",
+      "sha256": "2af5cce000eeddd83cb9bb8132ad7a7809839659975e2a5641f97450b293a4b0",
+      "verification_mode": "SHA-256 digest"
+    },
+    {
+      "bytes": 45184,
+      "evidence_source": "FID-056-P01 manuscript source and generated publication artifacts",
+      "path": "papers/p01-scripture-quotation/paper/acl_natbib.bst",
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "LPPL-1.0-or-later",
+      "sha256": "33caf47105f30e9610c65265b8c35b18fe4bc9576172a92b7e845824ebaee6cc",
+      "verification_mode": "SHA-256 digest"
     },
     {
       "bytes": 12022,
+      "evidence_source": "FID-056-P01 manuscript source and generated publication artifacts",
       "path": "papers/p01-scripture-quotation/paper/figures/fig2_condition_outcomes.pdf",
-      "sha256": "f5931bbfe498f3ec34249773cb259441507279e7774360db2b1f5d12c021b8cb"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "CC-BY-4.0",
+      "sha256": "f5931bbfe498f3ec34249773cb259441507279e7774360db2b1f5d12c021b8cb",
+      "verification_mode": "regenerated from released results and visually inspected"
     },
     {
       "bytes": 19935,
+      "evidence_source": "FID-056-P01 manuscript source and generated publication artifacts",
       "path": "papers/p01-scripture-quotation/paper/figures/fig3_passage_difficulty.pdf",
-      "sha256": "0d5d43bee53a64ccff9af6fcfe3dd4d18c392bb1c39dc168b0561f6438c8dae5"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "CC-BY-4.0",
+      "sha256": "0d5d43bee53a64ccff9af6fcfe3dd4d18c392bb1c39dc168b0561f6438c8dae5",
+      "verification_mode": "regenerated from released results and visually inspected"
     },
     {
       "bytes": 24064,
+      "evidence_source": "FID-056-P01 manuscript source and generated publication artifacts",
       "path": "papers/p01-scripture-quotation/paper/figures/figv1_system_overview.pdf",
-      "sha256": "593629f1379d9be065174ab5df470af859c9dad7144dcbffd6fb837323d90710"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "CC-BY-4.0",
+      "sha256": "593629f1379d9be065174ab5df470af859c9dad7144dcbffd6fb837323d90710",
+      "verification_mode": "regenerated from released results and visually inspected"
     },
     {
       "bytes": 14234,
+      "evidence_source": "FID-056-P01 manuscript source and generated publication artifacts",
       "path": "papers/p01-scripture-quotation/paper/figures/figv4_failure_migration.pdf",
-      "sha256": "216a66a4347b20c896db843a983ba69c74a181c93d8017f8a67dcb42f31edd19"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "CC-BY-4.0",
+      "sha256": "216a66a4347b20c896db843a983ba69c74a181c93d8017f8a67dcb42f31edd19",
+      "verification_mode": "regenerated from released results and visually inspected"
     },
     {
       "bytes": 14591,
+      "evidence_source": "FID-056-P01 manuscript source and generated publication artifacts",
       "path": "papers/p01-scripture-quotation/paper/figures/figv5_prompt_family.pdf",
-      "sha256": "dfb1420775e4b0fa60ebf92f1fd80f31913a81129e55e4a935528792823573a7"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "CC-BY-4.0",
+      "sha256": "dfb1420775e4b0fa60ebf92f1fd80f31913a81129e55e4a935528792823573a7",
+      "verification_mode": "regenerated from released results and visually inspected"
     },
     {
-      "bytes": 216273,
+      "bytes": 217084,
+      "evidence_source": "FID-056-P01 manuscript source and generated publication artifacts",
       "path": "papers/p01-scripture-quotation/paper/main.pdf",
-      "sha256": "11cedad4eda8230769be874a5a807847128b526a08380e51522dc4537ea96813"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "CC-BY-4.0",
+      "sha256": "2771b741a0eeac5b813dcc15a57cab81eee363954be3285b2a8ed9acb20bdaf3",
+      "verification_mode": "source compilation, visual inspection, and SHA-256 digest"
     },
     {
-      "bytes": 72726,
+      "bytes": 73144,
+      "evidence_source": "FID-056-P01 manuscript source and generated publication artifacts",
       "path": "papers/p01-scripture-quotation/paper/main.tex",
-      "sha256": "5bb262e5d9b20fd4d04b3d1882defcd6ba1430b49bd0f6439e8f5c6821c731f2"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "CC-BY-4.0",
+      "sha256": "24617b36f5916baef79823d1e9ec84ffca0dfcf0befb83d0ee03e1c8f61c6f64",
+      "verification_mode": "source compilation and SHA-256 digest"
     },
     {
       "bytes": 14317,
+      "evidence_source": "FID-056-P01 manuscript source and generated publication artifacts",
       "path": "papers/p01-scripture-quotation/paper/references.bib",
-      "sha256": "73115665da40dd8dff62d403c7630b55c70d9f0dfe6e93a4e21edb4d2f7addb7"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "CC-BY-4.0",
+      "sha256": "73115665da40dd8dff62d403c7630b55c70d9f0dfe6e93a4e21edb4d2f7addb7",
+      "verification_mode": "SHA-256 digest"
     },
     {
       "bytes": 1246,
+      "evidence_source": "reviewed FID-056-P01 prospective-lock and release records",
       "path": "papers/p01-scripture-quotation/provenance/deviation_summary.md",
-      "sha256": "20bf8b62e5424f92825c6692267e0c364136230672953c09413ed9feb3f7726c"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "CC-BY-4.0",
+      "sha256": "20bf8b62e5424f92825c6692267e0c364136230672953c09413ed9feb3f7726c",
+      "verification_mode": "SHA-256 digest"
     },
     {
       "bytes": 1760,
+      "evidence_source": "reviewed FID-056-P01 prospective-lock and release records",
       "path": "papers/p01-scripture-quotation/provenance/fid056_p01_prospective_lock.json",
-      "sha256": "a848bc18a3f61188cd3755be90aa6f740be802f58e55457c7ee85a1c8feb8ec6"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "CC-BY-4.0",
+      "sha256": "a848bc18a3f61188cd3755be90aa6f740be802f58e55457c7ee85a1c8feb8ec6",
+      "verification_mode": "prospective-lock identity and SHA-256 digest"
+    },
+    {
+      "bytes": 1494,
+      "evidence_source": "reviewed FID-056-P01 prospective-lock and release records",
+      "path": "papers/p01-scripture-quotation/provenance/release_decision_summary.json",
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "CC-BY-4.0",
+      "sha256": "9c75ab73aaae75e5c517f31ba88b58d0fdc9141542aae3afd9b50692e97ebcdb",
+      "verification_mode": "release-decision schema and scope validation"
     },
     {
       "bytes": 42444,
+      "evidence_source": "reviewed FID-056-P01 prospective-lock and release records",
       "path": "papers/p01-scripture-quotation/provenance/source_editions.json",
-      "sha256": "42f25a8432ea2edc6ba8f665446e4f925d3df76806a2d890a157b9233b354271"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "CC-BY-4.0",
+      "sha256": "42f25a8432ea2edc6ba8f665446e4f925d3df76806a2d890a157b9233b354271",
+      "verification_mode": "schema, source-registry provenance, and SHA-256 digest"
     },
     {
       "bytes": 1709,
+      "evidence_source": "analysis of the released FID-056-P01 derived-score dataset",
       "path": "papers/p01-scripture-quotation/results/README.md",
-      "sha256": "a57bbce24577aa5bf7d8157672920365babbedad6e1bd3373c8e800a9c04b3e3"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "CC-BY-4.0",
+      "sha256": "a57bbce24577aa5bf7d8157672920365babbedad6e1bd3373c8e800a9c04b3e3",
+      "verification_mode": "regenerated from released derived scores and compared byte-for-byte"
     },
     {
       "bytes": 13623,
+      "evidence_source": "analysis of the released FID-056-P01 derived-score dataset",
       "path": "papers/p01-scripture-quotation/results/fid056_p01_aggregate_results.csv",
-      "sha256": "1a14cb8e4b553a8724e2195cb4e1aa5fecaf2ce0148456d80d6a3d65b89db88f"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "CC-BY-4.0",
+      "sha256": "1a14cb8e4b553a8724e2195cb4e1aa5fecaf2ce0148456d80d6a3d65b89db88f",
+      "verification_mode": "regenerated from released derived scores and compared byte-for-byte"
     },
     {
       "bytes": 1037,
+      "evidence_source": "analysis of the released FID-056-P01 derived-score dataset",
       "path": "papers/p01-scripture-quotation/results/fid056_p01_cluster_bootstrap.csv",
-      "sha256": "aaa631657a441b47ff84d06777558bee72638b3772d6fe1b194255e8684e4821"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "CC-BY-4.0",
+      "sha256": "aaa631657a441b47ff84d06777558bee72638b3772d6fe1b194255e8684e4821",
+      "verification_mode": "regenerated from released derived scores and compared byte-for-byte"
     },
     {
       "bytes": 1545,
+      "evidence_source": "analysis of the released FID-056-P01 derived-score dataset",
       "path": "papers/p01-scripture-quotation/results/fid056_p01_cluster_robust_sensitivity.csv",
-      "sha256": "e74de56ee1ddf304aae2a58d3dc7e7f1c279de032fb2cdf5e58ab04259423b4c"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "CC-BY-4.0",
+      "sha256": "e74de56ee1ddf304aae2a58d3dc7e7f1c279de032fb2cdf5e58ab04259423b4c",
+      "verification_mode": "regenerated from released derived scores and compared byte-for-byte"
     },
     {
       "bytes": 316332,
+      "evidence_source": "deidentified replay of saved deterministic-rendering outputs",
       "path": "papers/p01-scripture-quotation/results/fid056_p01_permissive_parser_replay.csv",
-      "sha256": "e6b442460cfaed0620efa18e88556ee5bc241c6ff9bb6a7af04f59ea2a7dd50f"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "CC-BY-4.0",
+      "sha256": "e6b442460cfaed0620efa18e88556ee5bc241c6ff9bb6a7af04f59ea2a7dd50f",
+      "verification_mode": "row-level ID and locked-versus-corrected outcome reconciliation"
     },
     {
       "bytes": 5548,
+      "evidence_source": "deidentified replay of saved deterministic-rendering outputs",
       "path": "papers/p01-scripture-quotation/results/fid056_p01_permissive_parser_replay.json",
-      "sha256": "8eed6289ffb04cafc4608db56d940b7ad95b9740f3a76f61a7570b05c7dcecdc"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "CC-BY-4.0",
+      "sha256": "8eed6289ffb04cafc4608db56d940b7ad95b9740f3a76f61a7570b05c7dcecdc",
+      "verification_mode": "row-level ID and locked-versus-corrected outcome reconciliation"
     },
     {
-      "bytes": 6519,
+      "bytes": 6511,
+      "evidence_source": "analysis of the released FID-056-P01 derived-score dataset",
       "path": "papers/p01-scripture-quotation/results/fid056_p01_result_card.md",
-      "sha256": "d56fcac6501c8e82cf249730e608e4bd029b849ec15736ed269059044dfaa6ad"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "CC-BY-4.0",
+      "sha256": "d84b2d4cce279910adaf7faefcef442e59d1b4a4e56c3e269a9cec1d3becc786",
+      "verification_mode": "regenerated from released derived scores and compared byte-for-byte"
     },
     {
       "bytes": 1106,
+      "evidence_source": "analysis of the released FID-056-P01 derived-score dataset",
       "path": "papers/p01-scripture-quotation/results/fid056_p01_target_distribution_summary.csv",
-      "sha256": "99f8b215480be1b0f7ff86200bb6bfd433a7738a6dd9032d06d250a7c6b8c9eb"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "CC-BY-4.0",
+      "sha256": "99f8b215480be1b0f7ff86200bb6bfd433a7738a6dd9032d06d250a7c6b8c9eb",
+      "verification_mode": "regenerated from released derived scores and compared byte-for-byte"
     },
     {
       "bytes": 8748,
+      "evidence_source": "analysis of the released FID-056-P01 derived-score dataset",
       "path": "papers/p01-scripture-quotation/results/fid056_p01_target_level_results.csv",
-      "sha256": "1ab779e1f67ec0d7eff6edc4c21e14e270b1429189ae00f8dbf13bc5392bb76e"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "CC-BY-4.0",
+      "sha256": "1ab779e1f67ec0d7eff6edc4c21e14e270b1429189ae00f8dbf13bc5392bb76e",
+      "verification_mode": "regenerated from released derived scores and compared byte-for-byte"
     },
     {
       "bytes": 6222,
+      "evidence_source": "release-safe FID-056-P01 review materials",
       "path": "papers/p01-scripture-quotation/review/blinded_contextual_descriptions.md",
-      "sha256": "eddee6e49e8ed101e27bfd2b42fa997bf866621ef639d5611c48777c04332464"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "CC-BY-4.0",
+      "sha256": "eddee6e49e8ed101e27bfd2b42fa997bf866621ef639d5611c48777c04332464",
+      "verification_mode": "SHA-256 digest"
     },
     {
       "bytes": 2902,
+      "evidence_source": "release-safe FID-056-P01 review materials",
       "path": "papers/p01-scripture-quotation/review/packet_key.json",
-      "sha256": "ac21d6e530d88ca724d46e2196d5b1f4db1c76103a2cfe9bc848f44ffa34da43"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "CC-BY-4.0",
+      "sha256": "ac21d6e530d88ca724d46e2196d5b1f4db1c76103a2cfe9bc848f44ffa34da43",
+      "verification_mode": "SHA-256 digest"
     },
     {
       "bytes": 217,
+      "evidence_source": "release-safe FID-056-P01 review materials",
       "path": "papers/p01-scripture-quotation/review/reviewer_response_template.csv",
-      "sha256": "242a50912827a2e738f5143288bfdd1dd04207d7774f7cb8e56ddeafb26dce25"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "CC-BY-4.0",
+      "sha256": "242a50912827a2e738f5143288bfdd1dd04207d7774f7cb8e56ddeafb26dce25",
+      "verification_mode": "SHA-256 digest"
     },
     {
       "bytes": 2983,
+      "evidence_source": "public FID-056 protocol and example materials",
       "path": "protocol/executed_prompt_templates.md",
-      "sha256": "a729bb43e379d11de67ab3f956b4c5e7c18252af3c83071f42462b3fd6f474f7"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "CC-BY-4.0",
+      "sha256": "a729bb43e379d11de67ab3f956b4c5e7c18252af3c83071f42462b3fd6f474f7",
+      "verification_mode": "SHA-256 digest"
     },
     {
       "bytes": 815,
+      "evidence_source": "public FID-056 protocol and example materials",
       "path": "protocol/executed_tool_schema.json",
-      "sha256": "ebc895304565043461bb0d1986211692fc0437a90f48d3d447ed0416545b7635"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "CC-BY-4.0",
+      "sha256": "ebc895304565043461bb0d1986211692fc0437a90f48d3d447ed0416545b7635",
+      "verification_mode": "SHA-256 digest"
     },
     {
       "bytes": 2179,
+      "evidence_source": "public FID-056 protocol and example materials",
       "path": "protocol/release_policy.md",
-      "sha256": "25027b957e04bc313f0dc5f2eaf82d74e673d0b2ba4b1f4dc7d9fcab99d26608"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "CC-BY-4.0",
+      "sha256": "25027b957e04bc313f0dc5f2eaf82d74e673d0b2ba4b1f4dc7d9fcab99d26608",
+      "verification_mode": "SHA-256 digest"
     },
     {
       "bytes": 3021,
+      "evidence_source": "public FID-056 protocol and example materials",
       "path": "protocol/scenario_schema.json",
-      "sha256": "d5edb9f18447785968c9889179e2cd4ca82066eda99dea5d60e64cef7774cea9"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "CC-BY-4.0",
+      "sha256": "d5edb9f18447785968c9889179e2cd4ca82066eda99dea5d60e64cef7774cea9",
+      "verification_mode": "SHA-256 digest"
     },
     {
       "bytes": 6435,
+      "evidence_source": "public FID-056 protocol and example materials",
       "path": "protocol/scoring_spec.md",
-      "sha256": "b7b35cb83fc7c030654c1a773eacba3e0a298527157f9714052f0c72fd121ae5"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "CC-BY-4.0",
+      "sha256": "b7b35cb83fc7c030654c1a773eacba3e0a298527157f9714052f0c72fd121ae5",
+      "verification_mode": "SHA-256 digest"
     },
     {
       "bytes": 744,
+      "evidence_source": "public FID-056 protocol and example materials",
       "path": "protocol/scripture_reference.schema.json",
-      "sha256": "4a140d520c42a330ede33d1742822673e72f5c9883b0fccc8bc1df6ff9e55094"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "CC-BY-4.0",
+      "sha256": "4a140d520c42a330ede33d1742822673e72f5c9883b0fccc8bc1df6ff9e55094",
+      "verification_mode": "SHA-256 digest"
     },
     {
       "bytes": 5396,
+      "evidence_source": "public FID-056 protocol and example materials",
       "path": "protocol/source_delivery_protocol.md",
-      "sha256": "55afab0409fd587bd3277924287389ee410aecab7a2325f0c46b861228c2c4ff"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "CC-BY-4.0",
+      "sha256": "55afab0409fd587bd3277924287389ee410aecab7a2325f0c46b861228c2c4ff",
+      "verification_mode": "SHA-256 digest"
     },
     {
       "bytes": 13448,
+      "evidence_source": "public replication and release tooling",
       "path": "scripts/analyze_results.py",
-      "sha256": "5f4468f4f93e027b8234bd382172e7b91d5d2094e3f459302cc1f1ab5f7078f2"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "Apache-2.0",
+      "sha256": "5f4468f4f93e027b8234bd382172e7b91d5d2094e3f459302cc1f1ab5f7078f2",
+      "verification_mode": "SHA-256 digest"
     },
     {
-      "bytes": 3470,
+      "bytes": 4079,
+      "evidence_source": "public replication and release tooling",
       "path": "scripts/build_arxiv_bundle.sh",
-      "sha256": "30b72564c277c4fff8f8d7d6954d34f735d968a38059fb414f5b1b1e04c56d9a"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "Apache-2.0",
+      "sha256": "8207d765ed6e38e4dea30af5fbb1b57365374540fd67484e078b83e4961c69b8",
+      "verification_mode": "SHA-256 digest"
     },
     {
       "bytes": 4837,
+      "evidence_source": "public replication and release tooling",
       "path": "scripts/build_contextual_review_packet.py",
-      "sha256": "e2909836288b44ba47651dced1733ae64ac0a41a7c6636f6e872dc66a1ba13de"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "Apache-2.0",
+      "sha256": "e2909836288b44ba47651dced1733ae64ac0a41a7c6636f6e872dc66a1ba13de",
+      "verification_mode": "SHA-256 digest"
     },
     {
       "bytes": 8956,
+      "evidence_source": "public replication and release tooling",
       "path": "scripts/build_hf_dataset.py",
-      "sha256": "0816381b458664cd64a816cb19ec8be7a1dd9447a6cf73364d6aceae41d977f4"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "Apache-2.0",
+      "sha256": "0816381b458664cd64a816cb19ec8be7a1dd9447a6cf73364d6aceae41d977f4",
+      "verification_mode": "SHA-256 digest"
     },
     {
       "bytes": 1591,
+      "evidence_source": "public replication and release tooling",
       "path": "scripts/build_paper.sh",
-      "sha256": "0e6d1aa740fa8a77a29c361bb17418a3e49c2dfe9dfa51394206538131e67196"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "Apache-2.0",
+      "sha256": "0e6d1aa740fa8a77a29c361bb17418a3e49c2dfe9dfa51394206538131e67196",
+      "verification_mode": "SHA-256 digest"
     },
     {
       "bytes": 23561,
+      "evidence_source": "public replication and release tooling",
       "path": "scripts/build_paper_figures.py",
-      "sha256": "073c2a0e3ebd4b8497a27bd7c8b73ed254a382dafb0547c8ae5fb8fdd92e71bd"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "Apache-2.0",
+      "sha256": "073c2a0e3ebd4b8497a27bd7c8b73ed254a382dafb0547c8ae5fb8fdd92e71bd",
+      "verification_mode": "SHA-256 digest"
     },
     {
-      "bytes": 2175,
+      "bytes": 5714,
+      "evidence_source": "public replication and release tooling",
       "path": "scripts/build_release_manifest.py",
-      "sha256": "1f3b9c47b3679faecb81d3fe62545f06f2b78b98953e4b29b9aa403de13cf15c"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "Apache-2.0",
+      "sha256": "4487b19cfff0651a03f4d42ea5be2a84851a6f5ba8e8f11d2b369542c7d8f7bc",
+      "verification_mode": "SHA-256 digest"
     },
     {
       "bytes": 5334,
+      "evidence_source": "public replication and release tooling",
       "path": "scripts/build_source_editions.py",
-      "sha256": "3d36cb548503981cffab928ec818aba06364c5c7056fcd737226a8aec3e6334d"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "Apache-2.0",
+      "sha256": "3d36cb548503981cffab928ec818aba06364c5c7056fcd737226a8aec3e6334d",
+      "verification_mode": "SHA-256 digest"
     },
     {
       "bytes": 10482,
+      "evidence_source": "public replication and release tooling",
       "path": "scripts/export_deidentified_trials.py",
-      "sha256": "ae5070b1799cb9b411b502fd7e662944311e114534d214e95cfb42471bdd42c4"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "Apache-2.0",
+      "sha256": "ae5070b1799cb9b411b502fd7e662944311e114534d214e95cfb42471bdd42c4",
+      "verification_mode": "SHA-256 digest"
     },
     {
-      "bytes": 2945,
+      "bytes": 2970,
+      "evidence_source": "public replication and release tooling",
       "path": "scripts/release_audit.sh",
-      "sha256": "812d8b84dabe49475b3ccf3bee2757ea77590a056b8a90805267ddf2f6324f6c"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "Apache-2.0",
+      "sha256": "a5cf302443943b19311c84c2d1fbe9cc5d70874c826d0b157774a802fdb1e1e3",
+      "verification_mode": "SHA-256 digest"
     },
     {
       "bytes": 3828,
+      "evidence_source": "public replication and release tooling",
       "path": "scripts/score_contextual_review.py",
-      "sha256": "9ae2ed0c98f62301b7871af0109eca804df845f9385e2ae391567e0df958d4b2"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "Apache-2.0",
+      "sha256": "9ae2ed0c98f62301b7871af0109eca804df845f9385e2ae391567e0df958d4b2",
+      "verification_mode": "SHA-256 digest"
     },
     {
-      "bytes": 10090,
+      "bytes": 14352,
+      "evidence_source": "public replication and release tooling",
       "path": "scripts/verify_release.py",
-      "sha256": "e5ae905bb3adf458b7de1abc8d9ea597dfe97baf6e1b1c07957f55d75289dad3"
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "Apache-2.0",
+      "sha256": "f96082957b1f086f3d27d78118334f33674b7150a57d89a37728f8e153bd6895",
+      "verification_mode": "SHA-256 digest"
     }
   ],
   "hash_algorithm": "sha256",
-  "schema_version": 1,
+  "paper_id": "FID-056-P01",
+  "release_decision": {
+    "decision_authority": "Fide AI",
+    "decision_date": "2026-08-04",
+    "decision_id": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+    "human_review": "completed",
+    "status": "approved_public_reproduction_packet",
+    "summary_path": "papers/p01-scripture-quotation/provenance/release_decision_summary.json"
+  },
+  "research_program_id": "FID-056",
+  "schema_version": 2,
   "study_id": "FID-056-P01"
 }

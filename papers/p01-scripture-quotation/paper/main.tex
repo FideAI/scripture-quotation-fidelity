@@ -54,22 +54,24 @@ failure. A response can be factually accurate, properly cited, and semantically
 faithful, and still be the wrong text.
 
 When the words themselves are the answer, who should be responsible for them?
-We route 8,640 matched Scripture requests through four
+We route 8,640 matched Scripture requests through four delivery
 designs across six model families, three open English editions, and twenty
-passages. Quoting from memory delivered the requested edition exactly 25.00\%
-of the time and an authorized lookup tool 80.09\%. Deterministic insertion
-reached 91.25\%, and 99.91\% when the user named the reference. Supplying the
-exact passage in context, which removes any
-need to find or fetch it, still reached only 93.61\%, meaning models altered
-the text 6.39\% of the time. Connecting a source did not remove failure; it
-moved failure onto whatever the model still decided. Models called the tool in
-95.00\% of cases yet asked it for the right passage in only 84.17\%. A
-non-generative renderer, by contrast, altered the text in 0.10\% of cases once
-it was given a correct reference. Exact quotation is therefore not one skill but a chain---choosing
-the passage, reaching an authorized copy, reproducing it, delivering it
-intact---and each link has to be checked separately. We measure that delivery
-only, not whether a passage was well chosen, rightly interpreted, or pastorally
-appropriate.
+passages, and find that no single design solves the problem. Asking a model to
+quote from memory is the least reliable approach by a wide margin; giving it a
+tool to look the passage up, or a deterministic layer to render it exactly,
+each close most of that gap but not all of it. The central finding is
+\emph{why} the remaining gap persists: connecting a source does not remove
+failure, it relocates failure to whatever decision the model still controls.
+Even when a tool made the correct passage available, models often asked it for
+the wrong one; even when the exact text was placed directly in front of a
+model with nothing left to find or fetch, it still sometimes altered the
+words. Only a delivery path with no remaining generative step approached
+perfect fidelity. Exact quotation is therefore not one skill but a
+chain---choosing the passage, reaching an authorized copy, reproducing it,
+delivering it intact---and each link has to be checked separately, since a
+single aggregate score cannot say which link failed. We measure that delivery
+only, not whether a passage was well chosen, rightly interpreted, or
+pastorally appropriate.
 \end{abstract}
 
 \section{Introduction}
@@ -1043,17 +1045,18 @@ authority.
 \section{Open Evaluation and Reproducibility}
 \label{sec:open-release}
 
-The pre-release repository is private during review. At public release,
-\url{https://github.com/FideAI/scripture-quotation-fidelity} will provide the
+The public repository at
+\url{https://github.com/FideAI/scripture-quotation-fidelity} provides the
 deidentified 8,640-row derived-score dataset, the scoring specification and
 schemas, the executed prompts and tool schema, the source-edition record with
 per-target text digests, the prospective-lock receipt, and standalone analysis
 code. Together these reproduce every quantitative claim in this paper without
 network access or model spend.
 
-Three things are withheld: authoritative passage text, which carries rights
-obligations; raw model outputs and provider response identifiers, which carry
-custody obligations; and private execution code and credentials. Withholding
+Three things are withheld: authoritative passage text from the evaluated
+editions, which carries rights obligations; raw model outputs and provider
+response identifiers, which carry custody obligations; and private execution
+code and credentials. Withholding
 raw outputs is a real limit---a reader cannot inspect what a model actually
 said---and it is the reason the failure review reports mechanisms rather than
 transcripts. An exact rerun against live endpoints is in any case not
@@ -1207,52 +1210,59 @@ record is speaking.
 
 \section*{Data and Code Availability}
 
-The pre-release repository is private during review. At public release,
-\url{https://github.com/FideAI/scripture-quotation-fidelity} will provide the full
+The public repository at
+\url{https://github.com/FideAI/scripture-quotation-fidelity} provides the full
 deidentified derived-score dataset, target registry, executed prompt templates,
 functional tool schema, source-edition record with per-target text digests,
 release-safe prospective-lock and deviation records, and standalone analysis
-code. It excludes generated prose, authoritative passage text, provider
-response identifiers, raw tool traces, credentials, restricted-source
-payloads, and private execution-engine code. The released package reproduces
-the quantitative tables and contrasts without model endpoint access.
+code. It excludes generated prose, authoritative passage text from the
+evaluated editions, provider response identifiers, raw tool traces,
+credentials, restricted-source payloads, and private execution-engine code.
+The released package reproduces the quantitative tables and contrasts without
+model endpoint access.
 
 \section*{Acknowledgments}
 
-We thank The Apologist Project, which developed and maintains the shared
-condition implementation used to execute the four conditions
-\citep{apologist2026impl}, and which contributed to how those conditions were
-operationalized: what each condition had to do in practice for a quotation
-to count as delivered through it. That work shaped the instrument this study
-depends on, and the study would have been materially harder to run without it.
+We thank The Apologist Project. We share a research interest in whether AI
+systems can deliver Scripture reliably, and we collaborated on this study on
+that basis: they contributed the software that runs all four delivery
+conditions in this study \citep{apologist2026impl}, including work on what
+each condition actually requires in practice for a quotation to count as
+"delivered" through it.
 
-The Apologist Project is not an author of this paper. Fide AI set the research
-question and crossed design, held credentials, ran confirmatory execution,
-performed the analysis, held evidence custody, and made the release decision.
-Responsibility for the claims made here, and for any error in them, rests with
-the author alone.
+The Apologist Project is not an author of this paper. Fide AI designed the
+study, held all credentials, ran the experiments, analyzed the results,
+kept custody of the evidence, and made the final call on what to publish.
+The author alone is responsible for the claims in this paper and for any
+errors in them.
 
 \section*{Competing Interests}
 
 The Apologist Project develops commercial technology related to Scripture
-delivery and therefore holds an organizational interest relevant to this study.
-Because it also contributed to how the conditions were operationalized, that
-interest touches the instrument and not only the topic, and readers should
-weigh the results accordingly.
+delivery, so they have a business interest in this study's subject matter. They also
+helped define how the conditions work, which means that interest touches
+the study's methods, not just its topic. Readers should keep that in mind
+when weighing the results.
 
-Three features of the study bear on that concern. The crossed design, condition
-definitions, and planned contrasts were fixed in an internal hash-lock before
-execution; the deterministic parser correction is separately disclosed. Fide
-AI, not the partner, held the credentials, executed the study, performed the
-analysis, and controlled the claims boundary. Because the deterministic
-condition is closest to a product category in which the partner has an
-interest, the paper reports its pooled and conditional results separately:
-91.25\% end to end and 99.90\% after a correct reference handoff. The 93.61\%
-source-supplied ceiling carries different responsibilities and is not treated
-as an equal-burden competitor. The Discussion makes no overall delivery-path
-ranking.
+We built three safeguards against that conflict. First, the study design,
+the definitions of each condition, and the planned comparisons were all
+locked internally, in writing, before we ran a single trial -- so they
+could not be adjusted afterward to favor any outcome. (A separate,
+fully-disclosed correction was later made to the automated parser; see
+above.) Second, Fide AI alone held the credentials, ran the study,
+analyzed the data, and decided what could and could not be claimed --
+the partner did not touch any of that. Third, because the deterministic
+condition is the one closest to the partner's commercial technology, we report
+its results two ways rather than picking the more favorable framing:
+91.25\% accuracy end-to-end, and 99.90\% in the subset where the reference
+lookup itself was correct. A separate condition, where the correct
+Scripture text is simply handed to the model outright, reaches 93.61\% --
+but that condition is solving an easier problem, so we do not treat it as
+a fair head-to-head competitor with the deterministic one. We do not rank
+the delivery methods against each other anywhere in this paper.
 
-The study did not evaluate or certify a deployed commercial product.
+To be clear: this study did not evaluate or certify any deployed
+commercial product.
 
 \section*{Use of AI Systems}
 

@@ -20,8 +20,10 @@ download it. The build therefore fails if `main.tex` contains comments, so
 notes-to-self cannot ship by accident. Keep it that way: if you need a working
 note, put it in a separate file that is not part of the bundle.
 
-The tarball ships a current `main.bbl` so arXiv never needs to run bibtex, and
-includes only `main.tex`, `main.bbl`, the `.bst`, and the figures.
+The tarball ships a current `main.bbl` so arXiv does not need to run bibtex. It
+also includes `references.bib` so the submission remains self-contained if a
+compiler elects to refresh the bibliography, plus `main.tex`, the `.bst`, and
+the manuscript-referenced figures.
 
 ### Submission fields
 

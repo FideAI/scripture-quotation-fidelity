@@ -1,9 +1,10 @@
 # Scripture Quotation Fidelity
 
-Pre-release research on how AI systems deliver exact text from authoritative
-sources, studied through English Scripture quotation. The repository remains
-private during manuscript review and is intended for public release with the
-paper and approved result artifacts.
+Open research on how AI systems deliver exact text from authoritative sources,
+studied through English Scripture quotation. This repository contains the
+approved public research package for Paper 01: the manuscript, protocol,
+deidentified derived scores, reviewed results, provenance records, and
+standalone analysis code.
 
 When someone asks an AI assistant for a passage of Scripture, the reply usually
 sounds right. A fluent answer can blend two translations, drop a verse, or
@@ -98,6 +99,9 @@ availability** (the LSV collapsed to near-zero recall on every model tested,
 while the BSB ranged from 16.7% to 64.2%). Two more — **paraphrase labeling** and **context preservation** — are
 named by the call and owned by nobody.
 
+A sixth study, **cross-lingual and translation fidelity**, requires new
+execution, source-rights work, and native-language expertise.
+
 See [`docs/research_program.md`](docs/research_program.md) for the full agenda,
 evidence, and how to claim a study, and
 [`docs/research_call_coverage.md`](docs/research_call_coverage.md) for what the
@@ -130,7 +134,7 @@ papers/
     paper/       LaTeX source and figures
     data/        deidentified derived scores and release-safe target registry
     results/     reviewed aggregate and target-level results
-    provenance/  prospective lock, deviations, source editions, manifest
+    provenance/  release decision, prospective lock, deviations, source editions, manifest
     review/      blinded reviewer materials
     docs/        paper-scoped plan, claims boundary, and disclosures
 ```
@@ -194,5 +198,10 @@ Machine-readable metadata is in [`CITATION.cff`](CITATION.cff).
 ## License
 
 Content is CC BY 4.0 ([`LICENSE`](LICENSE)). Code in `scripts/` is Apache-2.0
-([`LICENSE-CODE`](LICENSE-CODE)). No authoritative passage text is released;
-passage identity is disclosed through digests only.
+([`LICENSE-CODE`](LICENSE-CODE)). The third-party
+[`acl_natbib.bst`](papers/p01-scripture-quotation/paper/acl_natbib.bst) retains
+LPPL-1.0-or-later. The released study data contains no authoritative passage
+text from the evaluated BSB, WEBU, or LSV editions; passage identity is
+disclosed through digests only. Public examples include KJV wording identified
+as public domain in the United States; verify local rights before
+redistributing it elsewhere.

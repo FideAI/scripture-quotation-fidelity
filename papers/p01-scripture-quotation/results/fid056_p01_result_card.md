@@ -129,6 +129,6 @@ certification, or a general ranking of models or vendors.
   classifications and output hashes.
 - `fid056_p01_permissive_parser_replay.json`: replay provenance and summaries.
 - `../data/fid056_p01_deidentified_trials.csv.gz`: released derived scores.
-- `../paper/main.pdf`: working manuscript.
+- `../paper/main.pdf`: manuscript.
 - `../protocol/source_delivery_protocol.md`: public evaluation methodology.
 - `../protocol/scoring_spec.md`: metric and failure definitions.

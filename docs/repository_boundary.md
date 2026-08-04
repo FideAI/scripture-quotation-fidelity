@@ -96,10 +96,10 @@ Fide private execution                 Partner private execution
        paper + protocol + approved derived artifacts
 ```
 
-The research package remains private during manuscript and release review.
-Files are promoted into its public release only after a paper-specific release
-decision. It must never be used as an execution output directory or as
-temporary storage for raw evidence.
+Research packages remain private during manuscript and release review. Files
+are promoted into a public release only after a paper-specific release
+decision. A public repository must never be used as an execution output
+directory or as temporary storage for raw evidence.
 
 ## Public Result Package
 

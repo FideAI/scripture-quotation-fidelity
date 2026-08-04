@@ -1,0 +1,35 @@
+{
+  "approved_artifacts": [
+    "manuscript",
+    "deidentified_derived_score_dataset",
+    "reviewed_result_tables",
+    "public_reproduction_packet"
+  ],
+  "blocked_artifacts": [
+    "raw_model_outputs",
+    "held_out_prompts",
+    "restricted_source_text",
+    "provider_response_identifiers",
+    "raw_tool_traces",
+    "credentials",
+    "private_execution_engine_source",
+    "partner_private_traces"
+  ],
+  "claims_limit": "Results apply only to the declared FID-056-P01 routes, dates, open editions, target panel, prompt families, and delivery conditions. They do not establish a model leaderboard, theological correctness, pastoral safety, product endorsement, or performance on restricted editions.",
+  "decision_authority": "Fide AI",
+  "decision_date": "2026-08-04",
+  "decision_id": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+  "human_review": "completed",
+  "paper_id": "FID-056-P01",
+  "research_program_id": "FID-056",
+  "review_basis": [
+    "papers/p01-scripture-quotation/docs/claims_boundary.md",
+    "papers/p01-scripture-quotation/docs/data_availability.md",
+    "papers/p01-scripture-quotation/provenance/deviation_summary.md",
+    "papers/p01-scripture-quotation/provenance/fid056_p01_prospective_lock.json",
+    "papers/p01-scripture-quotation/provenance/source_editions.json",
+    "papers/p01-scripture-quotation/results/fid056_p01_result_card.md"
+  ],
+  "schema_version": "fid056_public_release_decision_summary_v1",
+  "status": "approved_public_reproduction_packet"
+}

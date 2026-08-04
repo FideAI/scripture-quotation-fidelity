@@ -15,6 +15,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "papers/p01-scripture-quotation/provenance/release_manifest.json"
 PAPER = "papers/p01-scripture-quotation/"
+RELEASE_DECISION = (
+    ROOT / PAPER / "provenance/release_decision_summary.json"
+)
 
 # Shared, repository-level artifacts plus everything scoped to the paper.
 # Add a new PAPER-style prefix when a second paper is released.
@@ -32,27 +35,84 @@ INCLUDED_PREFIXES = (
     "examples/",
     "protocol/",
     "scripts/",
-    PAPER + "README.md",
-    PAPER + "data/",
-    PAPER + "docs/",
-    PAPER + "provenance/",
-    PAPER + "results/",
-    PAPER + "review/",
-    PAPER + "paper/figures/",
-    PAPER + "paper/main.pdf",
-    PAPER + "paper/main.tex",
-    PAPER + "paper/references.bib",
+    PAPER,
+)
+
+TRANSIENT_PAPER_SUFFIXES = (
+    ".aux",
+    ".bbl",
+    ".blg",
+    ".fdb_latexmk",
+    ".fls",
+    ".log",
+    ".out",
+    ".synctex.gz",
 )
 
 
 def included(relative: str) -> bool:
-    return any(
+    selected = any(
         relative == prefix or relative.startswith(prefix)
         for prefix in INCLUDED_PREFIXES
     )
+    return selected and not relative.endswith(TRANSIENT_PAPER_SUFFIXES)
+
+
+def rights_classification(relative: str) -> str:
+    if relative.startswith("scripts/"):
+        return "Apache-2.0"
+    if relative.endswith("/acl_natbib.bst"):
+        return "LPPL-1.0-or-later"
+    return "CC-BY-4.0"
+
+
+def evidence_source(relative: str) -> str:
+    if relative.endswith("fid056_p01_deidentified_trials.csv.gz"):
+        return "deidentified export from the sealed FID-056-P01 confirmatory archive"
+    if "permissive_parser_replay" in relative:
+        return "deidentified replay of saved deterministic-rendering outputs"
+    if relative.startswith(PAPER + "results/"):
+        return "analysis of the released FID-056-P01 derived-score dataset"
+    if relative.startswith(PAPER + "provenance/"):
+        return "reviewed FID-056-P01 prospective-lock and release records"
+    if relative.startswith(PAPER + "review/"):
+        return "release-safe FID-056-P01 review materials"
+    if relative.startswith(PAPER + "paper/"):
+        return "FID-056-P01 manuscript source and generated publication artifacts"
+    if relative.startswith(PAPER + "data/"):
+        return "release-safe FID-056-P01 data export"
+    if relative.startswith("scripts/"):
+        return "public replication and release tooling"
+    if relative.startswith(("protocol/", "examples/")):
+        return "public FID-056 protocol and example materials"
+    return "public repository governance and documentation"
+
+
+def verification_mode(relative: str) -> str:
+    if relative.endswith("fid056_p01_deidentified_trials.csv.gz"):
+        return "schema, row-count, uniqueness, factor-level, and headline reconciliation"
+    if "permissive_parser_replay" in relative:
+        return "row-level ID and locked-versus-corrected outcome reconciliation"
+    if relative.startswith(PAPER + "results/"):
+        return "regenerated from released derived scores and compared byte-for-byte"
+    if relative.startswith(PAPER + "paper/figures/"):
+        return "regenerated from released results and visually inspected"
+    if relative.endswith("/paper/main.pdf"):
+        return "source compilation, visual inspection, and SHA-256 digest"
+    if relative.endswith("/paper/main.tex"):
+        return "source compilation and SHA-256 digest"
+    if relative.endswith("source_editions.json"):
+        return "schema, source-registry provenance, and SHA-256 digest"
+    if relative.endswith("fid056_p01_prospective_lock.json"):
+        return "prospective-lock identity and SHA-256 digest"
+    if relative.endswith("release_decision_summary.json"):
+        return "release-decision schema and scope validation"
+    return "SHA-256 digest"
 
 
 def main() -> None:
+    release_decision = json.loads(RELEASE_DECISION.read_text())
+    decision_reference = release_decision["decision_id"]
     records = []
     for path in sorted(ROOT.rglob("*")):
         if not path.is_file() or path == OUTPUT:
@@ -66,13 +126,27 @@ def main() -> None:
                 "path": relative,
                 "bytes": len(payload),
                 "sha256": hashlib.sha256(payload).hexdigest(),
+                "rights_classification": rights_classification(relative),
+                "evidence_source": evidence_source(relative),
+                "verification_mode": verification_mode(relative),
+                "release_decision_reference": decision_reference,
             }
         )
     manifest = {
-        "schema_version": 1,
+        "schema_version": 2,
+        "research_program_id": "FID-056",
+        "paper_id": "FID-056-P01",
         "study_id": "FID-056-P01",
         "artifact_scope": "public_replication_package",
         "hash_algorithm": "sha256",
+        "release_decision": {
+            "decision_id": decision_reference,
+            "decision_date": release_decision["decision_date"],
+            "decision_authority": release_decision["decision_authority"],
+            "human_review": release_decision["human_review"],
+            "status": release_decision["status"],
+            "summary_path": RELEASE_DECISION.relative_to(ROOT).as_posix(),
+        },
         "files": records,
     }
     OUTPUT.write_text(json.dumps(manifest, indent=2, sort_keys=True) + "\n")

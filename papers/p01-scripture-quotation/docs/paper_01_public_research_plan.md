@@ -194,12 +194,12 @@ attribution, authorship, and publication permissions.
 
 ### Phase 5: paper and public release
 
-- **In progress.** The manuscript, deidentified derived-score package,
-  analysis code, aggregate and target-level tables, result card, protocol,
-  examples, and claim-evidence mapping are drafted. Final credentialed
-  biblical-scholar,
-  theological, rights, privacy, attribution, and release review remains
-  required before the working manuscript is promoted as a final publication.
+- **Complete for the public research package.** The manuscript, deidentified
+  derived-score package, analysis code, aggregate and target-level tables,
+  result card, protocol, examples, and claim-evidence mapping were approved by
+  the paper-specific human release review on August 4, 2026. Independent
+  credentialed scholarly validation remains open and is reported explicitly as
+  a limitation; it is not represented as completed.
 
 ## Claims Boundary
 
