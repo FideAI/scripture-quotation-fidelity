@@ -90,7 +90,34 @@ if grep -qE '^\s*%|[^\\]%.*[A-Za-z]' "$STAGE/main.tex"; then
 fi
 
 TARBALL="$BUILD_DIR/$(basename "$PAPER_REL")-arxiv.tar.gz"
-( cd "$STAGE" && tar czf "$TARBALL" . )
+python3 - "$STAGE" "$TARBALL" "$SOURCE_DATE_EPOCH" <<'PY'
+import gzip
+import sys
+import tarfile
+from pathlib import Path
+
+stage = Path(sys.argv[1])
+tarball = Path(sys.argv[2])
+mtime = int(sys.argv[3])
+paths = [stage, *sorted(stage.rglob("*"), key=lambda path: path.relative_to(stage).as_posix())]
+
+with tarball.open("wb") as raw:
+    with gzip.GzipFile(filename="", mode="wb", fileobj=raw, mtime=mtime) as compressed:
+        with tarfile.open(fileobj=compressed, mode="w", format=tarfile.USTAR_FORMAT) as archive:
+            for path in paths:
+                arcname = "." if path == stage else f"./{path.relative_to(stage).as_posix()}"
+                info = archive.gettarinfo(str(path), arcname)
+                info.uid = 0
+                info.gid = 0
+                info.uname = "root"
+                info.gname = "root"
+                info.mtime = mtime
+                if info.isfile():
+                    with path.open("rb") as source:
+                        archive.addfile(info, source)
+                else:
+                    archive.addfile(info)
+PY
 
 echo
 echo "==> Wrote $TARBALL"

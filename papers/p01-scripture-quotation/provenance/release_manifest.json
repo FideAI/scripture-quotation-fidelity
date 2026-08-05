@@ -560,12 +560,12 @@
       "verification_mode": "SHA-256 digest"
     },
     {
-      "bytes": 4079,
+      "bytes": 5113,
       "evidence_source": "public replication and release tooling",
       "path": "scripts/build_arxiv_bundle.sh",
       "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
       "rights_classification": "Apache-2.0",
-      "sha256": "8207d765ed6e38e4dea30af5fbb1b57365374540fd67484e078b83e4961c69b8",
+      "sha256": "03bd4d9d0fed2180d7403be63c6f5f2e96678868a898f35f7f7c3520bfc58c83",
       "verification_mode": "SHA-256 digest"
     },
     {
