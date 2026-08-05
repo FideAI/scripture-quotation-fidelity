@@ -62,7 +62,7 @@ non-generative code inserts the text.
 | Deterministic insertion | 91.25% |
 
 These conditions intentionally assign different responsibilities. In
-particular, text supplied in context is a gold-passage preservation ceiling:
+particular, text supplied in context is a best-case copy test:
 the correct reference and text are already given, so the model performs neither
 selection nor retrieval. The four rates describe the staged delivery system;
 they are not equal-burden treatment effects.

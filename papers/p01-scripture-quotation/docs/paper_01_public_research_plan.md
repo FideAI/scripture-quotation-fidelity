@@ -38,14 +38,14 @@ should be evaluated separately.
 
 ## Why Scripture Is the Study Domain
 
-Scripture is the substantive domain of Paper 1. Exact quotation matters in
+Scripture is the substantive domain of Paper 01. Exact quotation matters in
 Christian study, teaching, worship, memorization, and pastoral communication.
 It also supports rigorous evaluation because references and ranges are
 structured, wording differs across translations, public and restricted
 editions coexist, and indirect requests require source selection before
 quotation.
 
-Paper 1 results remain scoped to evaluated Scripture scenarios. Legal,
+Paper 01 results remain scoped to evaluated Scripture scenarios. Legal,
 clinical, regulatory, standards, policy, contractual, and other sacred texts
 motivate related systems questions but require later replication with
 domain-appropriate expertise.
@@ -203,7 +203,7 @@ attribution, authorship, and publication permissions.
 
 ## Claims Boundary
 
-Paper 1 may report authoritative-quotation behavior for named systems, sources, scenarios,
+Paper 01 may report authoritative-quotation behavior for named systems, sources, scenarios,
 configurations, and run dates. It does not establish theological correctness,
 pastoral safety, universal legal compliance, general deployment readiness,
 training-set membership, commercial superiority, or Fide AI endorsement.

@@ -44,35 +44,30 @@
 
 \begin{abstract}
 People increasingly ask AI assistants for Scripture in sermon preparation,
-teaching, and pastoral conversation. These are not ordinary information
-requests: someone asking for a passage wants particular words, in a particular
-translation, from a source they could have opened themselves. A reply that
-blends two translations, drops a verse, or paraphrases inside quotation marks
-satisfies none of that while appearing to satisfy all of it, and the person who
-asked is the one least able to check. Many common evaluations do not isolate
-this failure. A response can be factually accurate, properly cited, and semantically
-faithful, and still be the wrong text.
+teaching, and pastoral conversation. Someone asking for a passage wants
+particular words in a particular translation, from a source they could have
+opened themselves. A reply that blends translations, drops a verse, or
+paraphrases inside quotation marks can appear correct while giving the wrong
+text, and the person who asked is often the one least able to tell. Many
+evaluations do not isolate this failure: a response can be factually accurate,
+properly cited, and semantically faithful yet still fail as a quotation.
 
 When the words themselves are the answer, who should be responsible for them?
-We route 8,640 matched Scripture requests through four delivery
-designs across six model families, three open English editions, and twenty
-passages, and find that no single design solves the problem. Asking a model to
-quote from memory is the least reliable approach by a wide margin; giving it a
-tool to look the passage up, or a deterministic layer to render it exactly,
-each close most of that gap but not all of it. The central finding is
-\emph{why} the remaining gap persists: connecting a source does not remove
-failure, it relocates failure to whatever decision the model still controls.
-Even when a tool made the correct passage available, models often asked it for
-the wrong one; even when the exact text was placed directly in front of a
-model with nothing left to find or fetch, it still sometimes altered the
-words. Once the correct reference reached a non-generative renderer, exact text
-survived in 99.90\% of cases; end-to-end performance was lower because the
-model could still select the wrong passage. Exact quotation is therefore not a
-single skill. It is a chain: choose the passage, reach a copy the system has
-permission to use, preserve the words, and deliver them intact. Each link must
-be checked separately because one aggregate score cannot say which link
-failed. We measure that delivery only, not whether a passage was well chosen,
-rightly interpreted, or pastorally appropriate.
+We routed 8,640 matched requests through four delivery designs across six model
+families, three open English editions, and twenty passages, and no single design
+solved the problem. Quoting from memory was least reliable by a wide margin. A
+lookup tool and a deterministic renderer closed most, but not all, of that gap.
+Connecting a source did not remove failure; it relocated failure to whatever
+decision the model still controlled.
+Models sometimes asked a tool for the wrong passage, and sometimes altered
+exact text placed directly in context. Once the correct reference reached a
+non-generative renderer, exact text survived in 99.90\% of cases; end-to-end
+performance was lower because the model could still choose the wrong passage.
+Exact quotation is therefore a chain: select the passage, reach an authorized
+copy, preserve its words, and deliver them intact. Each link must be checked
+separately because one aggregate score cannot identify which link failed. We
+measure delivery only, not whether a passage was well chosen, rightly
+interpreted, or pastorally appropriate.
 \end{abstract}
 
 \section{Introduction}

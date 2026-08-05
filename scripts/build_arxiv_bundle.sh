@@ -89,6 +89,27 @@ if grep -qE '^\s*%|[^\\]%.*[A-Za-z]' "$STAGE/main.tex"; then
   exit 1
 fi
 
+# Generate the metadata abstract before packaging and enforce arXiv's field
+# limit so an otherwise valid source bundle cannot reach submission unusable.
+python3 - "$PAPER_DIR/main.tex" "$BUILD_DIR/abstract.txt" <<'PY'
+import re
+import sys
+from pathlib import Path
+
+limit = 1920
+src = Path(sys.argv[1]).read_text()
+body = re.search(r"\\begin\{abstract\}(.*?)\\end\{abstract\}", src, re.S).group(1)
+body = body.replace("---", " - ").replace("\\%", "%").replace("``", '"').replace("''", '"')
+body = re.sub(r"\\emph\{([^}]*)\}", r"\1", body)
+paras = [" ".join(paragraph.split()) for paragraph in body.strip().split("\n\n") if paragraph.strip()]
+abstract = "\n\n".join(paras) + "\n"
+length = len(abstract.rstrip("\n"))
+if length > limit:
+    raise SystemExit(f"Abstract is {length} characters; arXiv limit is {limit}")
+Path(sys.argv[2]).write_text(abstract)
+print(f"==> Wrote {sys.argv[2]} ({length}/{limit} characters)")
+PY
+
 TARBALL="$BUILD_DIR/$(basename "$PAPER_REL")-arxiv.tar.gz"
 python3 - "$STAGE" "$TARBALL" "$SOURCE_DATE_EPOCH" <<'PY'
 import gzip
@@ -134,15 +155,3 @@ Submission checklist
   Comments     note the code/data repository URL in the Comments field
   Check        arXiv's own PDF, not a local one; it recompiles from source
 EOF
-
-# Emit the plain-text abstract for the arXiv metadata form.
-python3 - "$PAPER_DIR/main.tex" > "$BUILD_DIR/abstract.txt" <<'PY'
-import re, sys
-src = open(sys.argv[1]).read()
-body = re.search(r"\\begin\{abstract\}(.*?)\\end\{abstract\}", src, re.S).group(1)
-body = body.replace("---", " - ").replace("\\%", "%").replace("``", '"').replace("''", '"')
-body = re.sub(r"\\emph\{([^}]*)\}", r"\1", body)
-paras = [" ".join(p.split()) for p in body.strip().split("\n\n") if p.strip()]
-print("\n\n".join(paras))
-PY
-echo "==> Wrote $BUILD_DIR/abstract.txt"

@@ -22,9 +22,9 @@ say which is which.
 |---|---|---|
 | Sacred-text fidelity verification protocol | Partial | `protocol/source_delivery_protocol.md`, `protocol/scoring_spec.md`. Covers exact quotation and reference validity. Paraphrase and context-preservation obligations are not specified. |
 | Test set of quote, paraphrase, reference, and context-preservation cases | Partial | `papers/p01-scripture-quotation/data/fid056_p01_targets.jsonl`. Twenty targets covering explicit references, multi-verse spans, long passages, and event-style requests. No paraphrase or context-preservation cases. |
-| Error taxonomy for citation and paraphrase failures | Partial | Failure tags in `papers/p01-scripture-quotation/provenance/` and the paper's Appendix D. Covers selection, access, rendering, and output-integrity failures. Paraphrase failures are not taxonomised. |
+| Error taxonomy for citation and paraphrase failures | Partial | Failure tags in `protocol/scoring_spec.md` and the paper's Appendix F. Covers selection, access, rendering, and output-integrity failures. Paraphrase failures are not taxonomised. |
 | Reviewer agreement study comparing automated checks with human review | **Open** | Pre-committed but not yet run. Protocol in `papers/p01-scripture-quotation/docs/contextual_description_review_protocol.md`; blinded packet in `papers/p01-scripture-quotation/review/`. |
-| Public claim template for what fidelity scores can and cannot say | Delivered | `papers/p01-scripture-quotation/docs/claims_boundary.md` and the paper's Appendix E. |
+| Public claim template for what fidelity scores can and cannot say | Delivered | `papers/p01-scripture-quotation/docs/claims_boundary.md` and the paper's Appendix G. |
 
 ## Requested controls
 

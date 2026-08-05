@@ -65,10 +65,10 @@ scoring rules, and the primary endpoint were hash-locked before confirmatory
 execution; Fide AI held credentials, executed, analyzed, and controlled the
 claims boundary; and the condition closest to a deterministic Scripture-delivery
 product is reported both end to end (91.25%) and after a correct reference
-handoff (99.90%). The source-supplied ceiling (93.61%) carries different
-responsibilities and is not treated as an equal-burden competitor. The
-deterministic parser implementation correction is disclosed in the manuscript
-and planned release artifacts.
+handoff (99.90%). The source-supplied condition (93.61%) carries different
+responsibilities; it is a best-case copy test, not an equal-burden competitor.
+The deterministic parser implementation correction is disclosed in the
+manuscript and released artifacts.
 
 The study did not evaluate or certify a deployed commercial product. The author
 must provide any additional personal financial or organizational interests
