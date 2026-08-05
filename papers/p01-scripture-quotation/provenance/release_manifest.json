@@ -272,66 +272,93 @@
       "verification_mode": "SHA-256 digest"
     },
     {
-      "bytes": 12022,
+      "bytes": 16743,
       "evidence_source": "FID-056-P01 manuscript source and generated publication artifacts",
       "path": "papers/p01-scripture-quotation/paper/figures/fig2_condition_outcomes.pdf",
       "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
       "rights_classification": "CC-BY-4.0",
-      "sha256": "f5931bbfe498f3ec34249773cb259441507279e7774360db2b1f5d12c021b8cb",
+      "sha256": "b811143c4fbf3c6882e3f414b4cb9753dce786e03a97a2aa785cfebaf42251db",
       "verification_mode": "regenerated from released results and visually inspected"
     },
     {
-      "bytes": 19935,
+      "bytes": 20083,
       "evidence_source": "FID-056-P01 manuscript source and generated publication artifacts",
       "path": "papers/p01-scripture-quotation/paper/figures/fig3_passage_difficulty.pdf",
       "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
       "rights_classification": "CC-BY-4.0",
-      "sha256": "0d5d43bee53a64ccff9af6fcfe3dd4d18c392bb1c39dc168b0561f6438c8dae5",
+      "sha256": "3fcb7ec1f9b5903e9fb1712a10aafc081ada6baf1df698c7644adf23da8928ed",
       "verification_mode": "regenerated from released results and visually inspected"
     },
     {
-      "bytes": 24064,
+      "bytes": 22622,
+      "evidence_source": "FID-056-P01 manuscript source and generated publication artifacts",
+      "path": "papers/p01-scripture-quotation/paper/figures/fig4_route_condition.pdf",
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "CC-BY-4.0",
+      "sha256": "7793d626ff85f7223afa4195d082c3cf7537cca1ec5c3ee0c11e685bfd6ee5a7",
+      "verification_mode": "regenerated from released results and visually inspected"
+    },
+    {
+      "bytes": 22427,
+      "evidence_source": "FID-056-P01 manuscript source and generated publication artifacts",
+      "path": "papers/p01-scripture-quotation/paper/figures/fig5_component_funnel.pdf",
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "CC-BY-4.0",
+      "sha256": "e8411422d83efb273ef304aae0b003209812a892c1e06730b351273151115df3",
+      "verification_mode": "regenerated from released results and visually inspected"
+    },
+    {
+      "bytes": 21175,
+      "evidence_source": "FID-056-P01 manuscript source and generated publication artifacts",
+      "path": "papers/p01-scripture-quotation/paper/figures/fig6_target_heterogeneity.pdf",
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "CC-BY-4.0",
+      "sha256": "0a8edb16cb380addd256eecca87c74dbd81923717e35f90a80cf104c6576aa3d",
+      "verification_mode": "regenerated from released results and visually inspected"
+    },
+    {
+      "bytes": 31635,
       "evidence_source": "FID-056-P01 manuscript source and generated publication artifacts",
       "path": "papers/p01-scripture-quotation/paper/figures/figv1_system_overview.pdf",
       "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
       "rights_classification": "CC-BY-4.0",
-      "sha256": "593629f1379d9be065174ab5df470af859c9dad7144dcbffd6fb837323d90710",
+      "sha256": "38a95829fa46e1af0e3595fcafe9a7a0c69ad70839ef45ebc1c72a248c29ae16",
       "verification_mode": "regenerated from released results and visually inspected"
     },
     {
-      "bytes": 14234,
+      "bytes": 21012,
       "evidence_source": "FID-056-P01 manuscript source and generated publication artifacts",
       "path": "papers/p01-scripture-quotation/paper/figures/figv4_failure_migration.pdf",
       "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
       "rights_classification": "CC-BY-4.0",
-      "sha256": "216a66a4347b20c896db843a983ba69c74a181c93d8017f8a67dcb42f31edd19",
+      "sha256": "02eb0e486a7084e57f1d6ce08bc4e1c22b269e941391c64f0e0fb91969e39230",
       "verification_mode": "regenerated from released results and visually inspected"
     },
     {
-      "bytes": 14591,
+      "bytes": 15725,
       "evidence_source": "FID-056-P01 manuscript source and generated publication artifacts",
       "path": "papers/p01-scripture-quotation/paper/figures/figv5_prompt_family.pdf",
       "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
       "rights_classification": "CC-BY-4.0",
-      "sha256": "dfb1420775e4b0fa60ebf92f1fd80f31913a81129e55e4a935528792823573a7",
+      "sha256": "5cfa319e2ea556537d4db8ecd1f76fa4b62e5b5bc2987ca518d844f335eb7aa8",
       "verification_mode": "regenerated from released results and visually inspected"
     },
     {
-      "bytes": 217084,
+      "bytes": 295955,
       "evidence_source": "FID-056-P01 manuscript source and generated publication artifacts",
       "path": "papers/p01-scripture-quotation/paper/main.pdf",
       "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
       "rights_classification": "CC-BY-4.0",
-      "sha256": "2771b741a0eeac5b813dcc15a57cab81eee363954be3285b2a8ed9acb20bdaf3",
+      "sha256": "59ddc7c764efaa68fa51b8db465dd693de4f7462493a2b2c713d5852ffb1bcdc",
       "verification_mode": "source compilation, visual inspection, and SHA-256 digest"
     },
     {
-      "bytes": 73144,
+      "bytes": 74832,
       "evidence_source": "FID-056-P01 manuscript source and generated publication artifacts",
       "path": "papers/p01-scripture-quotation/paper/main.tex",
       "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
       "rights_classification": "CC-BY-4.0",
-      "sha256": "24617b36f5916baef79823d1e9ec84ffca0dfcf0befb83d0ee03e1c8f61c6f64",
+      "sha256": "87239d1c5199915f9ebe8bffa715fc95dfa46d1c63566cd2ace3af3e78f0fcd0",
       "verification_mode": "source compilation and SHA-256 digest"
     },
     {
@@ -596,12 +623,12 @@
       "verification_mode": "SHA-256 digest"
     },
     {
-      "bytes": 23561,
+      "bytes": 38357,
       "evidence_source": "public replication and release tooling",
       "path": "scripts/build_paper_figures.py",
       "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
       "rights_classification": "Apache-2.0",
-      "sha256": "073c2a0e3ebd4b8497a27bd7c8b73ed254a382dafb0547c8ae5fb8fdd92e71bd",
+      "sha256": "ff075c7ae2c4a4a664f2e5ee7bb157cdac04da88b6dfd210289068bb40cd7a81",
       "verification_mode": "SHA-256 digest"
     },
     {
