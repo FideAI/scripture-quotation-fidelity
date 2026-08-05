@@ -35,7 +35,7 @@ Terminal provider errors remained failures in the denominator.
 | Reference selection plus deterministic rendering | 1,971 | 2,160 | 91.25% | 89.98%-92.37% |
 
 The conditions intentionally assign different responsibilities. Source
-supplied is a gold-passage preservation ceiling that performs neither selection
+supplied is a best-case copy test that performs neither selection
 nor retrieval, so the pooled rates and paired differences are descriptive and
 must not be read as equal-burden treatment effects.
 

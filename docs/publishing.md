@@ -39,9 +39,9 @@ the manuscript-referenced figures.
 religion-and-technology framing; without it the paper reads to browsers as a
 narrow source-delivery evaluation.
 
-The abstract field is plain text with a **1,920 character limit**. The generated
-file currently uses about 1,820, so there is little headroom — check the count
-if the abstract grows.
+The abstract field is plain text with a **1,920 character limit**. `make arxiv`
+reports the generated character count and refuses to package an abstract that
+exceeds the limit.
 
 ### After submitting
 
@@ -99,14 +99,17 @@ changes, it changes in all three or in none.
 
 ## Release tagging
 
-Papers are versioned independently inside this repository:
+Paper-release tags use the date-based convention already established by Paper
+01:
 
 ```
-p01/v1.0    first public release of Paper 01
-p01/v1.1    revision after review
-p02/v1.0    first release of Paper 02
+p01/release-2026-08-05       Paper 01 release on that date
+p01/release-2026-08-05-v2    second Paper 01 release on the same date, if needed
+p02/release-YYYY-MM-DD        first release of Paper 02
 ```
 
-A tag freezes one paper's replication package while the repository keeps
-growing around it. Record the arXiv identifier in the tag annotation so the tag,
-the paper version, and the dataset revision can be lined up later.
+A tag is immutable and freezes one paper's replication package while the
+repository keeps growing around it. Record the arXiv identifier in the tag
+annotation so the tag, paper version, and dataset revision can be lined up
+later. Use a new date or version suffix for a revision rather than moving a
+published tag.

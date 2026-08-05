@@ -44,34 +44,30 @@
 
 \begin{abstract}
 People increasingly ask AI assistants for Scripture in sermon preparation,
-teaching, and pastoral conversation. These are not ordinary information
-requests: someone asking for a passage wants particular words, in a particular
-translation, from a source they could have opened themselves. A reply that
-blends two translations, drops a verse, or paraphrases inside quotation marks
-satisfies none of that while appearing to satisfy all of it, and the person who
-asked is the one least able to check. Existing evaluation does not see this
-failure. A response can be factually accurate, properly cited, and semantically
-faithful, and still be the wrong text.
+teaching, and pastoral conversation. Someone asking for a passage wants
+particular words in a particular translation, from a source they could have
+opened themselves. A reply that blends translations, drops a verse, or
+paraphrases inside quotation marks can appear correct while giving the wrong
+text, and the person who asked is often the one least able to tell. Many
+evaluations do not isolate this failure: a response can be factually accurate,
+properly cited, and semantically faithful yet still fail as a quotation.
 
 When the words themselves are the answer, who should be responsible for them?
-We route 8,640 matched Scripture requests through four delivery
-designs across six model families, three open English editions, and twenty
-passages, and find that no single design solves the problem. Asking a model to
-quote from memory is the least reliable approach by a wide margin; giving it a
-tool to look the passage up, or a deterministic layer to render it exactly,
-each close most of that gap but not all of it. The central finding is
-\emph{why} the remaining gap persists: connecting a source does not remove
-failure, it relocates failure to whatever decision the model still controls.
-Even when a tool made the correct passage available, models often asked it for
-the wrong one; even when the exact text was placed directly in front of a
-model with nothing left to find or fetch, it still sometimes altered the
-words. Only a delivery path with no remaining generative step approached
-perfect fidelity. Exact quotation is therefore not one skill but a
-chain---choosing the passage, reaching an authorized copy, reproducing it,
-delivering it intact---and each link has to be checked separately, since a
-single aggregate score cannot say which link failed. We measure that delivery
-only, not whether a passage was well chosen, rightly interpreted, or
-pastorally appropriate.
+We routed 8,640 matched requests through four delivery designs across six model
+families, three open English editions, and twenty passages, and no single design
+solved the problem. Quoting from memory was least reliable by a wide margin. A
+lookup tool and a deterministic renderer closed most, but not all, of that gap.
+Connecting a source did not remove failure; it relocated failure to whatever
+decision the model still controlled.
+Models sometimes asked a tool for the wrong passage, and sometimes altered
+exact text placed directly in context. Once the correct reference reached a
+non-generative renderer, exact text survived in 99.90\% of cases; end-to-end
+performance was lower because the model could still choose the wrong passage.
+Exact quotation is therefore a chain: select the passage, reach an authorized
+copy, preserve its words, and deliver them intact. Each link must be checked
+separately because one aggregate score cannot identify which link failed. We
+measure delivery only, not whether a passage was well chosen, rightly
+interpreted, or pastorally appropriate.
 \end{abstract}
 
 \section{Introduction}
@@ -129,8 +125,9 @@ of English editions and conditions, is the purpose of this paper.
 
 We use \emph{authoritative quotation} to mean delivering the requested span, in
 the requested edition, from an identified source of record---a specific,
-versioned text designated as authoritative for that request, rather than an
-abstract notion of authority. A response may be relevant, factually close, or
+versioned text designated as authoritative for that request and one the system
+has permission to access and return. This is not an abstract claim about
+authority. A response may be relevant, factually close, or
 theologically unobjectionable while still failing that narrower task. It may
 silently substitute an edition, blend familiar formulations, omit a verse,
 expand beyond the requested span, or present a paraphrase as a quotation. This
@@ -180,11 +177,10 @@ edition substitution rather than general unfamiliarity: native exactness ranged
 from 41.53\% for the Berean Standard Bible to 5.00\% for the Literal Standard
 Version.
 
-Source-supplied quotation reached 93.61\%. That condition is a ceiling rather
-than a rival, since the correct text is handed over and nothing has to be found
-or fetched, and the instructive part is that the ceiling is not higher: asked
-only to repeat text placed in front of it, the model altered that text in
-6.39\% of observations.
+Text supplied in context reached 93.61\%. This is a best-case copy test rather
+than a competing delivery design: the correct text is handed to the model, so
+nothing has to be identified or retrieved. Even in that favorable setting, the
+model altered the text in 6.39\% of observations.
 
 The central finding is what happened once a source was connected. Failure did
 not disappear; it migrated toward whichever decision the delivery path still
@@ -225,13 +221,13 @@ account of Scripture quotation across twenty passages, three open English
 editions, six model families, and four delivery conditions. Second, it defines
 a \emph{source-delivery chain} that separates source selection, authorized
 access, exact rendering, and final-output integrity, and shows that quotation
-failures are only interpretable when attributed to a stage. Third, it defines
-a planned open release of the evaluation methodology, deidentified derived
+failures are only interpretable when attributed to a stage. Third, it provides
+an open release of the evaluation methodology, deidentified derived
 scores, and reproducible analyses while keeping private execution code, raw model traces, and
 rights-constrained text outside the public artifact. The study answers a public
 call for research on sacred-text fidelity \citep{fid056call}, and the
 repository records which parts of that call remain open. Three questions organize
-the study: how path-adherent exactness differs across the four
+the study: how exact delivery differs across the four
 conditions; at which stage failures occur; and how prompt form, passage
 length, edition, model family, and repeated sampling interact with those
 failures.
@@ -341,6 +337,10 @@ responsible use, not a complete account of responsible use.
 
 \section{Related Work}
 \label{sec:related-work}
+
+Prior work addresses individual parts of the delivery chain---retrieval, tool
+use, factuality, citation, and copying---but does not evaluate the whole chain
+as one observable system.
 
 Retrieval-augmented generation combines parametric sequence models with
 retrieved evidence \citep{lewis2020retrieval}. Later work examines when
@@ -530,9 +530,10 @@ common behavior of asking a general assistant to quote from memory.
 The authoritative span was placed in the model context and the model was asked
 to return it unchanged. Nothing has to be found or fetched, so this condition
 asks one question: once the correct text is already present, does the
-generative layer preserve it? Because the answer is supplied in advance, the
-result is a ceiling on what any retrieval system could deliver rather than a
-score a deployed system could match.
+generative layer preserve it? Because the answer is supplied in advance, this
+is a best-case copy test. It shows what a system could deliver after perfect
+retrieval, not what a complete retrieval system would achieve while still
+having to decide what to fetch.
 
 \paragraph{Tool-mediated retrieval.}
 The model received an authorized \texttt{get\_passage} tool and was instructed
@@ -557,16 +558,19 @@ reconciliation are reported in Appendix~\ref{app:parser-audit}.
 
 \paragraph{Primary and common outcomes.}
 
-The planned endpoint, \eetwo, required strict final-output equality and
-all condition-specific selection, lookup, replacement, and method-adherence
-checks. We call it \emph{path-adherent exactness} throughout; the locked
-materials use the synonymous label \emph{architecture-adherent exactness}. The
-gates differ by condition because the declared delivery paths differ. The
-common cross-condition text outcome is final-output exactness, which asks only
-whether the complete user-visible output equals the requested text. Both are
-reported so that a process failure is not mistaken for a textual mismatch, or
-vice versa. No weighted composite score was used. Terminal errors counted as
-failures in the intention-to-observe denominator.
+The main outcome is \emph{exact delivery}: the final output must match the
+requested text exactly, and the evidence must show that the condition's
+declared delivery path was followed. The prospective materials call this
+endpoint \eetwo{} and use the synonymous technical labels \emph{path-adherent
+exactness} and \emph{architecture-adherent exactness}. Those labels are
+retained in the released data, but we use \emph{exact delivery} in the
+manuscript wherever the distinction is not needed.
+
+We also report final-output exactness, which asks only whether the complete
+user-visible output equals the requested text. Reporting both outcomes keeps a
+process failure from being mistaken for a textual mismatch, or vice versa. No
+weighted composite score was used. Terminal errors counted as failures in the
+intention-to-observe denominator.
 
 The reported exact-delivery outcome leaves the first three conditions unchanged.
 For deterministic rendering, it uses the exact final output produced by the
@@ -590,6 +594,12 @@ translation or edition difference. After the declared handling of wrapper markup
 endpoint compared the final text byte for byte.
 
 \paragraph{Estimands and uncertainty.}
+
+The uncertainty analysis treats repeated observations of the same passage as
+related rather than as independent pieces of evidence. In plain terms, it asks
+whether the large differences between delivery conditions persist across the
+twenty passage targets instead of being driven by a few unusually easy or hard
+passages.
 
 Condition rates use all 2,160 scheduled observations per condition and are
 accompanied by raw counts. The planned primary contrast is the paired risk
@@ -639,12 +649,12 @@ and disclosed metadata gaps, is in the replication package.
 
 \subsection{Source-connected systems quoted far more exactly than generation from memory}
 
-The four conditions do not carry the same burden. Source-supplied quotation is
-a gold-passage preservation ceiling: it receives the correct span and performs
-neither selection nor retrieval. The other paths leave one or both of those
-decisions exposed. We therefore report the pooled rates as a descriptive map
-of the staged system, not as a winner-take-all comparison of equal treatment
-arms; the stage-held comparisons below isolate the narrower mechanisms.
+The four conditions do not carry the same burden. Text supplied in context is
+a best-case copy test: it receives the correct span and performs neither
+selection nor retrieval. The other paths leave one or both decisions exposed.
+The pooled rates therefore map the stages of the system; they are not a
+winner-take-all comparison between equally difficult alternatives. Later
+comparisons hold stages constant to isolate the narrower mechanisms.
 
 Native parametric quotation produced an exact final quotation in one quarter of
 observations (Figure~\ref{fig:condition-outcomes};
@@ -664,10 +674,10 @@ still altered the text in 6.39\% of observations. Whatever else a delivery path
 does, placing authoritative text in a generative context does not guarantee
 that the text survives.
 
-That figure is also a ceiling rather than a competing score, since no deployed
-system is handed the answer in advance. The prompt-family results below make
-the asymmetry visible: when requests became harder to resolve, every condition
-that performs selection degraded and this one did not move
+This best-case copy result is not a competing system score, since a complete
+deployed system must first decide what to retrieve. The prompt-family results
+below make the asymmetry visible: when requests became harder to resolve, every
+condition that performs selection degraded and this one did not move
 (Figure~\ref{fig:prompt}).
 
 \begin{figure}[!ht]
@@ -742,8 +752,21 @@ condition and target).}
 \label{tab:target-distribution}
 \end{table}
 
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.85\textwidth]{fig6_target_heterogeneity.pdf}
+\caption{The per-target rates summarized in Table~\ref{tab:target-distribution},
+one dot per passage target ($N=108$ per dot). Native's spread is wide across
+the whole range; source-supplied and deterministic rendering cluster near
+100\% with a small number of hard targets well below the median, and
+tool-mediated retrieval spreads more continuously between them.}
+\label{fig:target-heterogeneity}
+\end{figure}
+\FloatBarrier
+
 The target distributions show that the pooled condition differences were not driven by one
-or two passages (Table~\ref{tab:target-distribution}), but they also expose
+or two passages (Table~\ref{tab:target-distribution};
+Figure~\ref{fig:target-heterogeneity}), but they also expose
 substantial target heterogeneity. In the post-hoc cluster-robust sensitivity
 model, adjusted risk differences were +68.61 \pp{} for source supplied
 ($t_{19}$ interval [+60.83, +76.39]), +55.09 \pp{} for tool mediated
@@ -802,7 +825,7 @@ deliver it?
 \small
 \begin{tabular}{lrrr}
 \toprule
-Stage reached & Exact & $N$ & Text wrong \\
+Stage reached & Exact deliveries & Cases reaching stage & Error rate \\
 \midrule
 Exact span supplied in context & 2,022 & 2,160 & 6.39\% \\
 Tool retrieved the requested span & 1,730 & 1,818 & 4.84\% \\
@@ -1028,10 +1051,10 @@ degraded under every condition we evaluated.
 These results also put a measured figure beside a widely circulated industry
 estimate that models misquote Scripture between 15\% and 60\% of the time
 \citep{gruenewald2026misquotes}. Native generation failed our strict endpoint
-in 75.00\% of observations, which falls inside that range without replicating
-it: our endpoint demands an exact match to a specified edition on a purposive
-twenty-passage panel, and the circulated estimate states no protocol. The
-comparison is offered as calibration, not confirmation.
+in 75.00\% of observations, above that reported range. The figures are not
+directly comparable: our endpoint demands an exact match to a specified edition
+on a purposive twenty-passage panel, while the circulated estimate states no
+protocol. The comparison provides context, not confirmation.
 
 At the same time, textual fidelity should not be confused with theological
 fidelity. An exact verse can be detached from its literary context, used to
@@ -1093,6 +1116,10 @@ questions to string matching.
 
 \subsection{Limitations of the current study}
 
+The main limitations concern the scope of the evaluation, the versions and
+rights status of the source texts, the measurement choices, and the amount of
+independent validation completed so far.
+
 \paragraph{Purposive target panel.}
 The twenty passages were selected to expose distinct technical behaviors.
 They do not estimate the prevalence of quotation failure across the Bible, all
@@ -1104,14 +1131,13 @@ Reference conventions, translation ecosystems, source authority, and language
 technology differ elsewhere. Cross-lingual and cross-domain claims require new
 studies.
 
-\paragraph{Source supply is a ceiling, not a competing architecture.}
+\paragraph{Source supply is a best-case copy test, not a competing architecture.}
 The source-supplied condition is handed the correct span, so it bypasses
-selection and access entirely. Its rate bounds what perfect retrieval could
-deliver; it does not estimate what a real retrieval-augmented system would
-achieve, since such a system must still decide what to fetch. A design that
-gave every condition the same selection burden---having the model choose a
-reference, retrieving it, then supplying it---would answer a different and
-useful question, and would need its own prospective specification.
+selection and access entirely. It shows what could happen after perfect
+retrieval; it does not estimate what a complete retrieval-augmented system
+would achieve while still deciding what to fetch. Giving every condition the
+same selection burden would answer a different question and would need its own
+prospective specification.
 
 \paragraph{Edition versioning.}
 Ground truth was a fixed stored copy of each edition, verified stable by
@@ -1153,27 +1179,22 @@ review examined mechanisms in a small diagnostic sample; it did not re-annotate
 the full set of observations.
 
 \paragraph{Dependence and fixed-panel inference.}
-Target-cluster bootstrap intervals describe variation within this target
-panel, while model routes and editions remain fixed. Target-level distributions
-and a post-hoc target-cluster-robust fixed-panel sensitivity analysis make this
-dependence visible, but neither supports population inference to all Scripture
-requests, models, or editions. With only twenty target clusters, uncertainty
-estimates remain coarse; population claims would require a larger probability
-sample of passages.
+Repeated observations of one passage are not independent evidence about other
+passages. Our target-cluster bootstrap and fixed-panel sensitivity analysis
+account for that dependence within this panel, but neither supports population
+inference to all Scripture requests, models, or editions. With only twenty
+targets, uncertainty estimates remain coarse; population claims would require
+a larger probability sample of passages.
 
 \paragraph{Contextual-description review.}
-The six revised contextual descriptions received a structurally blinded
-technical reapproval, but the reviewer was an AI system and the same reviewing
-identity that authored the initial critique. This supports an internal
-construct check, not independent credentialed scholarly validation. The
-contextual-prompt results should be read with that limitation attached: a low
-reference-identification rate could reflect system behavior or description
-quality, and the present evidence does not fully separate them. Materials for
-an independent scholarly review of all twenty descriptions---protocol, blinded
-packet, and pre-committed scoring rules---are released with this package so
-that check can be carried out and reported by us or by others. Primary scores
-are frozen, so such a review can qualify how the contextual-prompt findings are
-interpreted but cannot alter any reported quantity.
+An AI reviewer first critiqued all twenty descriptions. After six were revised,
+the same reviewing identity assessed those six under blinding. This is an
+internal construct check, not independent scholarly validation. A low
+reference-identification rate could reflect system behavior, description
+quality, or both; this study does not fully separate them. We therefore release
+the protocol, blinded packet, and pre-committed scoring rules for independent
+review. The primary scores are frozen, so a later review could qualify how the
+contextual results are interpreted but would not change any reported number.
 
 \paragraph{No contextual or theological endpoint.}
 Contextual descriptions test technical reference identification. The study
@@ -1223,12 +1244,10 @@ model endpoint access.
 
 \section*{Acknowledgments}
 
-We thank The Apologist Project. We share a research interest in whether AI
-systems can deliver Scripture reliably, and we collaborated on this study on
-that basis: they contributed the software that runs all four delivery
-conditions in this study \citep{apologist2026impl}, including work on what
-each condition actually requires in practice for a quotation to count as
-"delivered" through it.
+We thank The Apologist Project, which contributed the software used to run all
+four delivery conditions \citep{apologist2026impl}. The collaboration also
+helped clarify what each condition must do for a quotation to count as
+delivered through its declared path.
 
 The Apologist Project is not an author of this paper. Fide AI designed the
 study, held all credentials, ran the experiments, analyzed the results,
@@ -1239,27 +1258,20 @@ errors in them.
 \section*{Competing Interests}
 
 The Apologist Project develops commercial technology related to Scripture
-delivery, so they have a business interest in this study's subject matter. They also
-helped define how the conditions work, which means that interest touches
-the study's methods, not just its topic. Readers should keep that in mind
-when weighing the results.
+delivery and therefore has a business interest in the study's subject matter.
+It also helped define how the conditions work, so that interest touches the
+methods as well as the topic.
 
-We built three safeguards against that conflict. First, the study design,
-the definitions of each condition, and the planned comparisons were all
-locked internally, in writing, before we ran a single trial -- so they
-could not be adjusted afterward to favor any outcome. (A separate,
-fully-disclosed correction was later made to the automated parser; see
-above.) Second, Fide AI alone held the credentials, ran the study,
-analyzed the data, and decided what could and could not be claimed --
-the partner did not touch any of that. Third, because the deterministic
-condition is the one closest to the partner's commercial technology, we report
-its results two ways rather than picking the more favorable framing:
-91.25\% accuracy end-to-end, and 99.90\% in the subset where the reference
-lookup itself was correct. A separate condition, where the correct
-Scripture text is simply handed to the model outright, reaches 93.61\% --
-but that condition is solving an easier problem, so we do not treat it as
-a fair head-to-head competitor with the deterministic one. We do not rank
-the delivery methods against each other anywhere in this paper.
+Three safeguards address this conflict. First, the study design, condition
+definitions, and planned comparisons were locked in writing before execution;
+the later parser correction is disclosed separately. Second, Fide AI alone
+held the credentials, ran the study, analyzed the data, and set the claims
+boundary. Third, because deterministic rendering is closest to the partner's
+commercial technology, we report both its 91.25\% end-to-end rate and its
+99.90\% conditional rate after a correct reference lookup. We also report the
+93.61\% source-supplied result as a best-case copy test, not as an equally
+difficult competitor. The pooled condition rates should not be read as a
+commercial product ranking.
 
 To be clear: this study did not evaluate or certify any deployed
 commercial product.
@@ -1326,6 +1338,18 @@ leaderboard.}
 \label{tab:model}
 \end{table}
 
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.8\textwidth]{fig4_route_condition.pdf}
+\caption{The route-by-condition matrix in Table~\ref{tab:model}, shown as
+exact delivery magnitude. Every route improves sharply over its own native
+condition; the ordering across the other three conditions is route-specific
+rather than a fixed ranking, most visibly where Kimi K3's tool-mediated rate
+(63.89\%) sits well below its own source-supplied and deterministic rates.}
+\label{fig:route-condition}
+\end{figure}
+\FloatBarrier
+
 \pagebreak
 \section{Component Metrics}
 \label{app:component-metrics}
@@ -1348,6 +1372,19 @@ Deterministic rendering & 100.00\% & 91.25\% & 91.34\% & 91.25\% & 91.25\% \\
 general model capability.}
 \label{tab:components}
 \end{table}
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=\textwidth]{fig5_component_funnel.pdf}
+\caption{Each condition traced through its own component stages
+(Table~\ref{tab:components}). Native loses nearly all of its ground between
+``Answered'' and ``Exact text''---the model supplied a response but not the
+requested wording. Source-supplied and deterministic rendering stay nearly
+flat once a source is reached. Tool mediated loses ground twice: once when
+the model's returned text is checked for exactness, and again when tool-use
+adherence is enforced, producing its lower path-adherent rate.}
+\label{fig:component-funnel}
+\end{figure}
 \FloatBarrier
 
 \section{Implementation Correction Audit}

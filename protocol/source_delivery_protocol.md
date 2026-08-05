@@ -34,7 +34,7 @@ contextually or theologically appropriate.
 
 ## Study Domain
 
-Paper 1 studies English Scripture quotation as a substantive faith-domain
+Paper 01 studies English Scripture quotation as a substantive faith-domain
 problem. Exact wording matters in Christian study, teaching, worship,
 memorization, and pastoral communication. Scripture also supports rigorous
 evaluation because:
@@ -49,7 +49,7 @@ evaluation because:
 The methodology can support separate studies of other sacred texts, legal
 clauses, standards, clinical references, regulatory text, policy manuals,
 contract provisions, and other canonical or rights-constrained source
-materials. Paper 1's empirical results remain specific to its English
+materials. Paper 01's empirical results remain specific to its English
 Scripture corpus.
 
 ## Evaluation Conditions

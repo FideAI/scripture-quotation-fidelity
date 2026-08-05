@@ -32,7 +32,9 @@ guarantee — reports of anything they miss are genuinely useful.
 
 ## Source text
 
-No authoritative passage text is released. Passage identity is disclosed
-through normalized-text SHA-256 digests only. If you find passage text from any
-edition in this repository, treat it as a rights disclosure and report it
-privately.
+No authoritative passage text from the evaluated BSB, WEBU, or LSV editions is
+released. Their passage identity is disclosed through normalized-text SHA-256
+digests only. The `examples/` directory intentionally contains a small amount
+of public-domain KJV wording and is not study data. If you find passage text
+from an evaluated edition or outside those declared examples, treat it as a
+rights disclosure and report it privately.

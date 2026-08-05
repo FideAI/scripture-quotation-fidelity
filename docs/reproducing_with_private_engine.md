@@ -1,10 +1,10 @@
 # Reproduction and the Private Execution Boundary
 
-The intended public release defines the evaluation protocol, scenario schema,
+The public research package defines the evaluation protocol, scenario schema,
 scoring specification, exact executed prompts and tool contract, release-safe
-provenance, deidentified derived scores, and analysis code. The repository
-remains private during review. Model execution and raw-trace custody remain in
-private infrastructure before and after release.
+provenance, deidentified derived scores, and analysis code. The execution
+engine and raw-trace custody remain in private infrastructure before and after
+the repository is released.
 
 The protocol separates selection fidelity from rendering fidelity. A reproduction
 should report whether the system selected the correct source/version/span, whether
@@ -41,4 +41,4 @@ route identifiers, source permissions, retries, and deviations.
 
 For this initial study, result packages should identify
 `research_program_id: FID-056` and `paper_id: FID-056-P01`. Follow-on papers must
-use their own paper IDs and must not reuse Paper 1's release decision.
+use their own paper IDs and must not reuse Paper 01's release decision.
