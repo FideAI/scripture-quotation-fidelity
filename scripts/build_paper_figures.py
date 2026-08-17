@@ -246,7 +246,7 @@ def source_delivery_chain_figure() -> None:
     ax.axis("off")
 
     stages = (
-        ("1  Select", "Which work, edition,\nand span?", "Wrong passage or boundary"),
+        ("1  Select", "Which work, source version,\nand span?", "Wrong passage or boundary"),
         (
             "2  Access",
             "Was the declared source\nactually reached?",
@@ -398,7 +398,7 @@ def system_overview_figure() -> None:
         color=COLORS["ink"],
     )
     stages = (
-        ("Select", "Work, edition, span", "Wrong passage"),
+        ("Select", "Work, source version, span", "Wrong passage"),
         ("Access", "Declared source reached", "Bypass or no source"),
         ("Render", "Source words preserved", "Alteration or blending"),
         ("Deliver", "Complete text received", "Truncation or leakage"),

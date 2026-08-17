@@ -54,7 +54,7 @@ properly cited, and semantically faithful yet still fail as a quotation.
 
 When the words themselves are the answer, who should be responsible for them?
 We routed 8,640 matched requests through four delivery designs across six model
-families, three open English editions, and twenty passages, and no single design
+families, three open English translations, and twenty passages, and no single design
 solved the problem. Quoting from memory was least reliable by a wide margin. A
 lookup tool and a deterministic renderer closed most, but not all, of that gap.
 Connecting a source did not remove failure; it relocated failure to whatever
@@ -78,7 +78,7 @@ Ephesians 2:8--9 in the Berean Standard Bible for Sunday's slide.'' ``Quote the
 passage where Jesus compares his being lifted up to Moses' serpent in the
 wilderness.'' ``Send me Revelation 21:1--4 to read at a funeral.''
 Each asks for exact words, but each puts a different decision in the system's
-hands. The first names the passage and the edition, leaving only faithful
+hands. The first names the passage and the translation, leaving only faithful
 reproduction. The second names neither, so the passage must be identified
 before it can be quoted. The third is long enough that truncation, not
 misidentification, is the likely failure. An assistant that answers all three
@@ -100,13 +100,13 @@ leaders found comparable adoption alongside near-absent governance: most
 reported frequent use, while 73\% reported no AI policy of any kind
 \citep{exponential2025aichurch}. Which English translation a person reads is
 itself a durable, measurable feature of American religious life rather than an
-incidental preference \citep{goff2017bible}, so substituting one edition for
-another is not a cosmetic error.
+incidental preference \citep{goff2017bible}, so substituting one translation
+or revision for another is not a cosmetic error.
 
 The stakes are practical and specific. A congregation reads responsively from a
-printed edition while a screen displays different wording. A student memorizes
+printed Bible in one translation while a screen displays different wording. A student memorizes
 a verse in one translation and is later corrected against another. A teacher
-builds an argument on a clause that the quoted edition does not contain.
+builds an argument on a clause that the requested translation does not contain.
 Someone in distress receives a passage with its final line missing. In each case
 the response is fluent, carries the right reference, and is wrong in the way
 that matters. Readers reasonably treat quotation marks and a verse reference as
@@ -118,18 +118,21 @@ platform has publicly estimated that leading models misquote Scripture between
 15\% and 60\% of the time, and has cited that estimate as a reason not to ship
 a Scripture-answering assistant \citep{gruenewald2026misquotes}. The estimate
 is plausible and consequential, but no measurement protocol accompanies it: the
-systems, passages, editions, and criterion for ``misquote'' are unstated, so it
+systems, passages, translations, and criterion for ``misquote'' are unstated, so it
 can be neither checked nor acted on with confidence. Claims of that importance
 deserve a specified, reproducible measurement. Providing one, for a bounded set
-of English editions and conditions, is the purpose of this paper.
+of English translations and conditions, is the purpose of this paper.
 
-We use \emph{authoritative quotation} to mean delivering the requested span, in
-the requested edition, from an identified source of record---a specific,
-versioned text designated as authoritative for that request and one the system
-has permission to access and return. This is not an abstract claim about
-authority. A response may be relevant, factually close, or
+We use \emph{authoritative quotation} to mean delivering the requested span in
+the requested translation from an identified source of record whose version is
+fixed for that request and which the system has permission to access and
+return. This is not an abstract claim about authority. In Bible-specific
+discussion, \emph{translation} means a named English version such as BSB,
+WEBU, or LSV; \emph{source version} means the particular dated or revised text
+used as ground truth. The released dataset retains \texttt{edition} as the
+field name for this combined identity. A response may be relevant, factually close, or
 theologically unobjectionable while still failing that narrower task. It may
-silently substitute an edition, blend familiar formulations, omit a verse,
+silently substitute a translation or revision, blend familiar formulations, omit a verse,
 expand beyond the requested span, or present a paraphrase as a quotation. This
 is a stricter requirement than factuality, attribution, or groundedness: a
 response can be factually supported and properly cited while still failing an
@@ -142,7 +145,7 @@ source-of-record interface. Retrieval can make authoritative text available,
 and a generative layer can still alter it. A model holding a tool can bypass
 the tool or request the wrong span. A deterministic renderer can preserve
 source bytes exactly, but only downstream of a correct decision about source,
-edition, and boundaries. Return to the serpent request above and the point
+version, and boundaries. Return to the serpent request above and the point
 sharpens: a model answering from memory may blend familiar translations; a
 model given the source may shorten it; a tool-enabled model may retrieve the
 neighboring verse; and a deterministic renderer may reproduce the source
@@ -157,14 +160,14 @@ model memory, reproduction of source text supplied in context, retrieval
 through an authorized \texttt{get\_passage} tool, and model selection of a
 structured reference followed by deterministic rendering. The prospectively
 specified and internally hash-locked design contains 8,640 observations across
-six model families, three open English editions, twenty passages, two prompt
+six model families, three open English translations, twenty passages, two prompt
 forms, and three repetitions. This is a matched crossed comparison rather than
 a benchmark or leaderboard, and the primary endpoint is deliberately
 demanding: the user-visible output must equal the requested text exactly, with
 condition-specific evidence that the declared delivery path was actually
 followed. Scripture makes this comparison unusually tractable---verse
 references supply a conventional addressing scheme, multiple English
-translations make edition identity observable rather than assumed, span length
+translations make requested wording observable rather than assumed, span length
 can be varied systematically, and indirect prompts force semantic
 identification before rendering.
 
@@ -172,8 +175,8 @@ The results are stark and more interesting than a ranking. Generating from
 model memory met the exact-delivery endpoint in 25.00\% of observations,
 tool-mediated retrieval in 80.09\%, and deterministic rendering in 91.25\%.
 Because the
-endpoint requires the \emph{requested} edition, much of the native gap is
-edition substitution rather than general unfamiliarity: native exactness ranged
+endpoint requires the \emph{requested} translation and source version, much of
+the native gap is translation substitution rather than general unfamiliarity: native exactness ranged
 from 41.53\% for the Berean Standard Bible to 5.00\% for the Literal Standard
 Version.
 
@@ -199,7 +202,7 @@ exposed.
 
 What transfers from this is the structure, not the numbers. The same shape
 appears wherever a source of record exists: a dosing instruction, a statutory
-subsection, an indemnity clause, and a safety standard each have an edition, a
+subsection, an indemnity clause, and a safety standard each have a version, a
 boundary, and wording that a paraphrase does not preserve, and each can fail at
 selection, access, rendering, or final output. The decomposition and evaluation
 design developed here apply to those settings directly. The measured rates do
@@ -209,7 +212,7 @@ likewise designate specific textual forms as authoritative and treat exact
 wording as consequential, but the unit of authority differs---a source-language
 consonantal text, a recited form, a received translation, a commentary
 tradition---and those differences would change the study design, not only the
-results. We report on English Christian Bible editions and make no claim about
+results. We report on English Christian Bible translations and make no claim about
 any other tradition's texts. Textual fidelity is also not theological fidelity:
 the study evaluates whether a system delivered the requested source faithfully,
 not whether the passage was well chosen, rightly interpreted, or pastorally
@@ -218,7 +221,7 @@ appropriate.
 \paragraph{Contributions.}
 The paper makes three contributions. First, it gives a rigorous empirical
 account of Scripture quotation across twenty passages, three open English
-editions, six model families, and four delivery conditions. Second, it defines
+translations, six model families, and four delivery conditions. Second, it defines
 a \emph{source-delivery chain} that separates source selection, authorized
 access, exact rendering, and final-output integrity, and shows that quotation
 failures are only interpretable when attributed to a stage. Third, it provides
@@ -229,7 +232,7 @@ call for research on sacred-text fidelity \citep{fid056call}, and the
 repository records which parts of that call remain open. Three questions organize
 the study: how exact delivery differs across the four
 conditions; at which stage failures occur; and how prompt form, passage
-length, edition, model family, and repeated sampling interact with those
+length, translation, model family, and repeated sampling interact with those
 failures.
 
 \section{Authoritative Quotation as a Systems Problem}
@@ -253,11 +256,11 @@ source words while holding the user's request fixed.}
 \end{figure}
 
 Formally, let a request specify, explicitly or implicitly, a source work $W$,
-an edition $E$, and a span $B$. Let $T(W,E,B)$ be the authoritative text
+a source version $V$, and a span $B$. Let $T(W,V,B)$ be the authoritative text
 returned by the source of record. We separate four system properties:
 
 \begin{itemize}[leftmargin=*,topsep=4pt,itemsep=2pt]
-  \item $S$: the intended work, edition, and span are selected correctly;
+  \item $S$: the intended work, source version, and span are selected correctly;
   \item $A$: the declared source-access method is followed and the requested
         source is available;
   \item $R$: the selected source text is rendered without alteration; and
@@ -290,7 +293,7 @@ evidence is required to explain it.
 A quotation can be factually supported yet textually wrong. A citation can
 point to the correct document while the quoted span omits a limiting clause.
 A semantic similarity score can treat two Bible translations as nearly
-equivalent even when the user requested one exact edition. Authoritative
+equivalent even when the user requested one exact translation and revision. Authoritative
 quotation is therefore stricter than factuality, attribution, or general
 groundedness.
 
@@ -306,30 +309,30 @@ Scripture warrants study because AI systems increasingly mediate access to
 texts that Christian communities receive, interpret, and transmit as
 authoritative, and because the domain makes the quotation problem measurable. A
 reference such as ``John 3:16'' identifies a conventional verse span but not
-one English wording, so edition identity is observable rather than assumed. An
+one English wording, so translation identity is observable rather than assumed. An
 event-style request adds a prior selection problem: the system must identify
 the intended span before it can quote it. Few domains combine a stable
-addressing convention, multiple simultaneously authoritative editions, and a
+addressing convention, multiple simultaneously authoritative translations, and a
 community that treats exact wording as consequential.
 
-Working here requires textual and theological restraint. The English editions
+Working here requires textual and theological restraint. The English translations
 studied sit within a complex manuscript and translation history in both the
 Hebrew Bible and New Testament \citep{tov2012textual,metzger2005text}, and
 translation requires linguistic and interpretive decisions
-\citep{nida1969theory}. The three editions differ not only in translation
-philosophy but in underlying text-critical basis, so ``edition'' is partly a
-claim about source-language witnesses rather than purely a matter of English
-wording. The twenty targets were not selected to probe variant units, and a
+\citep{nida1969theory}. The three translations differ not only in translation
+philosophy but in underlying text-critical basis. Their differences therefore
+cannot be reduced to style or to alternate printings of the same English text.
+The twenty targets were not selected to probe variant units, and a
 study designed around textual variants would be a distinct and worthwhile
-contribution. Exact reproduction of a selected English edition is therefore not
+contribution. Exact reproduction of a selected English translation is therefore not
 fidelity to the Hebrew, Aramaic, or Greek source texts, and no result here
 establishes that one English translation is doctrinally or linguistically
 superior. The twenty targets all fall within books shared by the major
 Christian canons; the study does not adjudicate canonical boundaries, and the
-three editions carry the Protestant canon.
+three translations carry the Protestant canon.
 
 For churches and Christian institutions, the practical implication is
-correspondingly bounded. A system that quotes the requested edition exactly
+correspondingly bounded. A system that quotes the requested translation exactly
 removes one avoidable textual failure. It does not replace biblical
 scholarship, ecclesial authority, pastoral judgment, or attention to literary
 and canonical context. Exact quotation is a prerequisite for some forms of
@@ -366,7 +369,7 @@ CopyBench measures literal and non-literal reproduction of copyrighted fiction b
 \citep{chen2024copybench}, while Quote-Tuning increases verifiability by
 aligning models to quote verbatim strings found in trusted pretraining corpora
 \citep{zhang2025verifiable}. The present study differs in object and
-architecture: the requested edition and span are specified as source-of-record
+architecture: the requested source version and span are specified as source-of-record
 requirements, and authorized retrieval or deterministic rendering can replace
 parametric reproduction. These works are complementary and bound the novelty
 claim; this paper does not claim to introduce verbatim-copy measurement or
@@ -415,13 +418,13 @@ The primary phase contained:
 20\ \text{targets} \times
 2\ \text{prompt families} \times
 4\ \text{conditions} \times
-3\ \text{editions} \times
+3\ \text{translations} \times
 6\ \text{model routes} \times
 3\ \text{epochs}
 = 8{,}640.
 \end{equation}
 
-The unit of analysis is one target--prompt--condition--edition--model--epoch
+The unit of analysis is one target--prompt--condition--translation--model--epoch
 observation. Conditions are paired within all other factors.
 
 \subsection{Passage targets}
@@ -442,26 +445,26 @@ material. Two known intertextual or adjacent-passage relationships were
 annotated rather than treated as fully independent evidence: the Shema and
 great-commandment pair, and adjacent passages in John 3.
 
-Each target had an explicit-reference prompt and an edition-neutral contextual
+Each target had an explicit-reference prompt and a translation-neutral contextual
 description. The distinction is who supplies the reference. In the
 explicit-reference family the caller names it---``Quote [reference] from the
-[edition] exactly''---so no condition has to identify the passage, and the
+[translation] exactly''---so no condition has to identify the passage, and the
 comparison isolates obtaining and delivering it. In the contextual family the
 caller describes the passage without naming book, chapter, or verse, so
 identification becomes part of the task. Every target was evaluated under both,
 crossed with all four conditions. The contextual descriptions did not name the book, chapter, or
-verse and were designed to avoid distinctive wording from any tested edition.
+verse and were designed to avoid distinctive wording from any tested translation.
 An initial review identified six descriptions that needed revision. The
 revised six were then reviewed again under blinding, and all six were matched
 to the intended reference. Because the original twenty-item review was not
 fully blinded, only this six-item result is reported as blinded evidence.
 
-\subsection{Source editions}
+\subsection{Source translations and versions}
 
-The full four-condition comparison used three open English editions:
+The full four-condition comparison used three open English translations:
 
 \begin{itemize}[leftmargin=*,topsep=4pt,itemsep=2pt]
-  \item Berean Standard Bible (BSB), a modern public-domain edition
+  \item Berean Standard Bible (BSB), using its 2023 public-domain source version
         \citep{berean2023license};
   \item World English Bible Updated (WEBU), a public-domain translation
         \citep{weblicense}; and
@@ -469,28 +472,30 @@ The full four-condition comparison used three open English editions:
         \citep{lsvlicense}.
 \end{itemize}
 
-These editions differ in translation philosophy and in underlying
-text-critical basis, so a requested edition specifies more than a style of
+These translations differ in translation philosophy and in underlying
+text-critical basis, so a requested translation specifies more than a style of
 English.
 
-A source of record is a versioned artifact, so edition identity is disclosed
-rather than left to the edition name. The public package includes a
-release-safe source-edition record giving, for each edition, the provider and
-provider-side source identifier, the edition designation, the rights basis, and
+A source of record is a versioned artifact, so the exact source version is
+disclosed rather than inferred from the translation name alone. The public
+package includes a release-safe artifact named the \emph{source-edition
+record}, retaining the repository's existing schema terminology. For each
+translation, it gives the provider and provider-side source identifier, the
+edition-or-revision designation, the rights basis, and
 a normalized-text SHA-256 digest for each of the twenty targets. Ground truth
 was verified at \texttt{2026-07-26T20:38:10Z} by two uncached retrievals
 through the pinned shared runtime with matching digests; this establishes
 retrieval stability, not independence of the upstream provider. The same stored
 text then served as ground truth for every observation. Because the digests are
 computed over whitespace-collapsed UTF-8 text, a replicator can hash their own
-copy of a passage and confirm they hold the same edition text without either
+copy of a passage and confirm they hold the same source-version text without either
 party transmitting it. The record is derived from the source registry fixed by
 the prospective lock and carries that artifact's digest, so the disclosure can
 be checked against a commitment made before confirmatory execution.
 
 Authoritative source text was retained privately for scoring. The public result
 package contains aggregate metrics and no LSV passage text. Four restricted
-editions were present in the locked registry but excluded from the primary
+translations were present in the locked registry but excluded from the primary
 phase pending source and source-to-model authorization; they are listed in the
 source-edition record with that status.
 
@@ -544,11 +549,11 @@ an executable call did not count as tool use.
 \paragraph{Structured selection and deterministic rendering.}
 The model was instructed to return exactly one placeholder of the form
 \texttt{<quote>\{\{QUOTE:<reference>\}\}</quote>}. A local deterministic
-layer parsed the reference, fetched the selected edition and span, and replaced
+layer parsed the reference, fetched the selected translation and span, and replaced
 the placeholder. During execution, the runner incorrectly rejected an otherwise
 valid reference when the model redundantly appended the already requested
-edition. We corrected that implementation error by accepting one valid
-reference followed by a textual edition annotation and replaying all 2,160
+translation label. We corrected that implementation error by accepting one
+valid reference followed by a textual translation annotation and replaying all 2,160
 saved deterministic responses through the original source fixtures. No model
 response was regenerated. The original literal-interface result and complete
 reconciliation are reported in Appendix~\ref{app:parser-audit}.
@@ -590,7 +595,7 @@ We also report:
 \end{itemize}
 
 Normalization covered limited surface variation and was never used to erase a
-translation or edition difference. After the declared handling of wrapper markup, the strict
+translation or revision difference. After the declared handling of wrapper markup, the strict
 endpoint compared the final text byte for byte.
 
 \paragraph{Estimands and uncertainty.}
@@ -609,14 +614,14 @@ come from a 10,000-resample target-cluster bootstrap with seed 5601. Clustering
 by target acknowledges repeated observations of the same passage while
 preserving the crossed cells inside each resample.
 
-Model, prompt, edition, and passage-stratum analyses are descriptive
+Model, prompt, translation, and passage-stratum analyses are descriptive
 interactions. The study was not designed to rank vendors, estimate population
 prevalence across Scripture, or infer training-set membership. Model routes
-and editions are a fixed evaluation panel; the bootstrap does not support
-generalization to untested routes or editions.
+and translations are a fixed evaluation panel; the bootstrap does not support
+generalization to untested routes or translations.
 
 We additionally report target-level rate distributions and a post-hoc linear
-probability sensitivity model with condition, route, edition, prompt-family,
+probability sensitivity model with condition, route, translation, prompt-family,
 passage-stratum, and epoch fixed effects and target-cluster-robust standard
 errors using a $t_{19}$ reference distribution. This model was not part of the
 prospective lock and is used only to test whether the primary fixed-panel
@@ -747,7 +752,7 @@ Deterministic rendering & 99.07\% & [90.28, 100.00] & 56.48\% & 100.00\% \\
 \bottomrule
 \end{tabular}
 \caption{Distribution of exact delivery across the twenty targets. Each target
-rate pools the balanced route, edition, prompt, and epoch panel ($N=108$ per
+rate pools the balanced route, translation, prompt, and epoch panel ($N=108$ per
 condition and target).}
 \label{tab:target-distribution}
 \end{table}
@@ -884,7 +889,7 @@ largest declines in the tool-mediated and deterministic conditions.}
 \label{fig:prompt}
 \end{figure}
 
-\subsection{The requested edition mattered most without a source}
+\subsection{The requested translation mattered most without a source}
 
 \begin{table}[htbp]
 \centering
@@ -899,14 +904,14 @@ Tool mediated & 80.97\% & 79.72\% & 79.58\% \\
 Deterministic rendering & 92.22\% & 90.56\% & 90.97\% \\
 \bottomrule
 \end{tabular}
-\caption{Exact delivery by requested edition ($N=720$ per cell).}
-\label{tab:edition}
+\caption{Exact delivery by requested translation ($N=720$ per cell).}
+\label{tab:translation}
 \end{table}
 
-Native exactness varied sharply by edition (Table~\ref{tab:edition}), reaching
+Native exactness varied sharply by translation (Table~\ref{tab:translation}), reaching
 41.53\% for BSB and 5.00\% for LSV. Source-connected conditions were less
-edition-sensitive. These results establish an interaction with requested
-edition in this panel. They do not identify its cause and cannot be used to
+translation-sensitive. These results establish an interaction with requested
+translation in this panel. They do not identify its cause and cannot be used to
 infer undisclosed training-data frequency.
 
 \subsection{Long passages remained difficult even with source access}
@@ -957,7 +962,7 @@ substantive alteration or omission. Tool failures separated into bypass,
 tool-like text without an executable call, and genuine calls that retrieved the
 wrong boundaries. Deterministic selection failures frequently expanded an
 event to include narrative setup, narrowed a requested range to its most
-salient verse, or appended an edition label that violated the strict interface.
+salient verse, or appended a translation label that violated the strict interface.
 
 The pattern is consistent with the staged reading above: each condition
 failed at the decision it still owned. These are mechanisms, not prevalence
@@ -987,8 +992,8 @@ Two request properties made that migration visible. Contextual descriptions
 barely mattered when the exact source was already supplied, but exposed
 boundary and selection errors whenever the system had to identify a passage
 first: this is not noise around the same task, it is an additional reasoning
-stage. And the requested edition mattered most when the model answered from
-memory, which is where edition identity is least constrained.
+stage. And the requested translation mattered most when the model answered from
+memory, which is where translation identity is least constrained.
 
 The study therefore does not show that deterministic rendering is the best
 delivery path overall. It delivered exact text in 91.25\% of observations, with
@@ -1009,7 +1014,7 @@ principles.
 \begin{enumerate}[leftmargin=*,topsep=4pt,itemsep=2pt]
   \item \textbf{Treat exact quotation as an intent class.} A system should
         distinguish requests for meaning from requests for exact source text.
-  \item \textbf{Make the source of record explicit.} Work, edition, span,
+  \item \textbf{Make the source of record explicit.} Work, source version, span,
         authorization, and retrieval provenance should be represented in the
         system state rather than inferred only from generated prose.
   \item \textbf{Separate selection from rendering.} Structured selection makes
@@ -1031,13 +1036,13 @@ domain-specific replication.
 \subsection{Implications for Christian institutions}
 
 The results give Christian organizations a reason to distinguish ``the model
-knows this passage'' from ``the system delivered this edition faithfully.''
+knows this passage'' from ``the system delivered this translation faithfully.''
 Native generation was especially unreliable for long passages and for the LSV
-edition. A fluent response should not be assumed to preserve the requested
+translation. A fluent response should not be assumed to preserve the requested
 translation.
 
 Four checks follow directly from the results and can be applied to a system an
-institution is evaluating. Ask whether the requested edition is named and
+institution is evaluating. Ask whether the requested translation is named and
 carried through to the delivered text rather than inferred. Ask for evidence
 that an authorized source was actually consulted for the requested span, since
 the availability of a lookup tool did not establish its correct use here. Ask
@@ -1052,7 +1057,8 @@ These results also put a measured figure beside a widely circulated industry
 estimate that models misquote Scripture between 15\% and 60\% of the time
 \citep{gruenewald2026misquotes}. Native generation failed our strict endpoint
 in 75.00\% of observations, above that reported range. The figures are not
-directly comparable: our endpoint demands an exact match to a specified edition
+directly comparable: our endpoint demands an exact match to a specified
+translation and source version
 on a purposive twenty-passage panel, while the circulated estimate states no
 protocol. The comparison provides context, not confirmation.
 
@@ -1077,7 +1083,7 @@ code. Together these reproduce every quantitative claim in this paper without
 network access or model spend.
 
 Three things are withheld: authoritative passage text from the evaluated
-editions, which carries rights obligations; raw model outputs and provider
+translations, which carries rights obligations; raw model outputs and provider
 response identifiers, which carry custody obligations; and private execution
 code and credentials. Withholding
 raw outputs is a real limit---a reader cannot inspect what a model actually
@@ -1100,7 +1106,7 @@ This work is a measurement study. It is not legal advice, copyright clearance,
 theological certification, pastoral-safety approval, product endorsement, or
 deployment authorization.
 
-Rights status constrains which conditions are available at all: an edition
+Rights status constrains which conditions are available at all: a translation
 that cannot be sent to a model cannot be supplied in context or returned by a
 tool. BSB and WEBU were evaluated as
 public-domain sources; LSV was used under its stated open license, with no LSV
@@ -1126,7 +1132,7 @@ They do not estimate the prevalence of quotation failure across the Bible, all
 Christian use cases, or ordinary user traffic.
 
 \paragraph{English and Scripture only.}
-The experiment used three English editions and one sacred-text domain.
+The experiment used three English translations and one sacred-text domain.
 Reference conventions, translation ecosystems, source authority, and language
 technology differ elsewhere. Cross-lingual and cross-domain claims require new
 studies.
@@ -1139,17 +1145,18 @@ would achieve while still deciding what to fetch. Giving every condition the
 same selection burden would answer a different question and would need its own
 prospective specification.
 
-\paragraph{Edition versioning.}
-Ground truth was a fixed stored copy of each edition, verified stable by
+\paragraph{Translation revision and source versioning.}
+Ground truth was a fixed stored copy of each translation's designated source
+version, verified stable by
 repeat-fetch digests across the run and disclosed in the released
-source-edition record. Open English editions are nonetheless revised over
-time, so an exact replication requires the same edition version, not merely
-the same edition name; the released per-target digests let a replicator
+source-edition record. Open English translations are nonetheless revised over
+time, so an exact replication requires the same source version, not merely
+the same translation name; the released per-target digests let a replicator
 confirm that condition before running anything. The digests establish that our
 ground truth was internally stable and externally checkable, not that the
 upstream provider's text is itself authoritative for a given publisher.
 
-\paragraph{Open editions only.}
+\paragraph{Open translations only.}
 The primary experiment does not measure restricted translations. It therefore
 cannot establish how licensing, provider quotation policies, or source-transfer
 permissions affect the four conditions.
@@ -1167,7 +1174,7 @@ parameters.
 
 \paragraph{Implementation correction.}
 The deterministic runner initially rejected correct references carrying a
-redundant edition annotation. We report the complete corrected replay as the
+redundant translation annotation. We report the complete corrected replay as the
 substantive exact-delivery result. Because the correction followed failure
 inspection, a replication should specify it prospectively; the original score,
 rule, and reconciliation remain available in Appendix~\ref{app:parser-audit}.
@@ -1182,7 +1189,7 @@ the full set of observations.
 Repeated observations of one passage are not independent evidence about other
 passages. Our target-cluster bootstrap and fixed-panel sensitivity analysis
 account for that dependence within this panel, but neither supports population
-inference to all Scripture requests, models, or editions. With only twenty
+inference to all Scripture requests, models, or translations. With only twenty
 targets, uncertainty estimates remain coarse; population claims would require
 a larger probability sample of passages.
 
@@ -1205,7 +1212,7 @@ exegetical, or pastoral response to a real person's situation.
 \label{sec:conclusion}
 
 AI systems should not always generate. In this study, native parametric
-quotation delivered the requested edition exactly in 25.00\% of observations.
+quotation delivered the requested translation exactly in 25.00\% of observations.
 Supplying authoritative text, connecting a source tool, or delegating final
 rendering to a deterministic layer all produced large improvements, but none
 eliminated failure. Each condition moved failure to the decision it still
@@ -1220,7 +1227,8 @@ establish what the user actually received.
 
 Return to the opening request about Jesus and the serpent in the wilderness.
 The system should be able to show whether the model identified the intended
-passage, whether an authorized source supplied the requested edition, and
+passage, whether an authorized source supplied the requested translation and
+source version, and
 whether the final words survived intact. If the answer is wrong, the same
 chain should reveal whether the error was selection, access, or rendering.
 
@@ -1237,7 +1245,7 @@ deidentified derived-score dataset, target registry, executed prompt templates,
 functional tool schema, source-edition record with per-target text digests,
 release-safe prospective-lock and deviation records, and standalone analysis
 code. It excludes generated prose, authoritative passage text from the
-evaluated editions, provider response identifiers, raw tool traces,
+evaluated translations, provider response identifiers, raw tool traces,
 credentials, restricted-source payloads, and private execution-engine code.
 The released package reproduces the quantitative tables and contrasts without
 model endpoint access.
@@ -1392,13 +1400,13 @@ adherence is enforced, producing its lower path-adherent rate.}
 
 The executed deterministic runner required a literal reference payload and
 therefore rejected correct references when a model redundantly appended the
-already requested edition, for example
+already requested translation label, for example
 \texttt{\{\{QUOTE:Matthew 22:37--40 LSV\}\}}. This was an implementation defect
 relative to the intended construct: passage selection and exact delivery, not
 adherence to a bespoke placeholder grammar.
 
 We replayed all 2,160 saved deterministic responses through a corrected parser
-that accepts one valid reference followed by a textual edition annotation while
+that accepts one valid reference followed by a textual translation annotation while
 rejecting a second reference or alternate range. The replay used the original
 source fixtures and made no new model calls.
 
@@ -1433,13 +1441,13 @@ source-supplied text mismatches are represented primarily through exact,
 normalized, coverage, and answer-presence metrics rather than these
 condition-specific tags. As reconciled in
 Table~\ref{tab:parser-audit}, 158 deterministic failures were unambiguous
-correct references with textual edition annotations.
+correct references with textual translation annotations.
 
 \section{Claims Boundary}
 \label{app:claims}
 
 Results apply only to the named routes, dates, twenty-target panel, two prompt
-families, three open English editions, four delivery conditions, and
+families, three open English translations, four delivery conditions, and
 declared scoring protocol. The study does not establish:
 
 \begin{itemize}[leftmargin=*,topsep=4pt,itemsep=2pt]

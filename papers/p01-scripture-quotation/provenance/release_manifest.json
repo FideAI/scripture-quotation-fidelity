@@ -317,12 +317,12 @@
       "verification_mode": "regenerated from released results and visually inspected"
     },
     {
-      "bytes": 31635,
+      "bytes": 31636,
       "evidence_source": "FID-056-P01 manuscript source and generated publication artifacts",
       "path": "papers/p01-scripture-quotation/paper/figures/figv1_system_overview.pdf",
       "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
       "rights_classification": "CC-BY-4.0",
-      "sha256": "38a95829fa46e1af0e3595fcafe9a7a0c69ad70839ef45ebc1c72a248c29ae16",
+      "sha256": "b7edfa53e5e48a5c65a2c87097fac726cde7d70329f8a2751d04aeca0f4e0085",
       "verification_mode": "regenerated from released results and visually inspected"
     },
     {
@@ -344,21 +344,21 @@
       "verification_mode": "regenerated from released results and visually inspected"
     },
     {
-      "bytes": 295754,
+      "bytes": 296382,
       "evidence_source": "FID-056-P01 manuscript source and generated publication artifacts",
       "path": "papers/p01-scripture-quotation/paper/main.pdf",
       "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
       "rights_classification": "CC-BY-4.0",
-      "sha256": "e5f4b155ad9fa73c1fd5194ba171fdffd3f9287206f323d228e594d2478f43ec",
+      "sha256": "837a8a6ca8ef18fc40de9e868443be47a2a834d59a9e6fdfb1891f32c7ff8acf",
       "verification_mode": "source compilation, visual inspection, and SHA-256 digest"
     },
     {
-      "bytes": 74441,
+      "bytes": 75324,
       "evidence_source": "FID-056-P01 manuscript source and generated publication artifacts",
       "path": "papers/p01-scripture-quotation/paper/main.tex",
       "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
       "rights_classification": "CC-BY-4.0",
-      "sha256": "3df748725af1d81656b549005e8c07be1d9536ef49f51b2891af48cd7eedc8da",
+      "sha256": "55924bb7318f54a806781bf155474c3d77830b7985966aa8a9ea61535ba7a40f",
       "verification_mode": "source compilation and SHA-256 digest"
     },
     {
@@ -623,12 +623,12 @@
       "verification_mode": "SHA-256 digest"
     },
     {
-      "bytes": 38357,
+      "bytes": 38371,
       "evidence_source": "public replication and release tooling",
       "path": "scripts/build_paper_figures.py",
       "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
       "rights_classification": "Apache-2.0",
-      "sha256": "ff075c7ae2c4a4a664f2e5ee7bb157cdac04da88b6dfd210289068bb40cd7a81",
+      "sha256": "d66d7a570a37fef903c282f65cff8d60d3578be1cf4df30b383395762e58ba5b",
       "verification_mode": "SHA-256 digest"
     },
     {
