@@ -47,12 +47,12 @@
       "verification_mode": "SHA-256 digest"
     },
     {
-      "bytes": 648,
+      "bytes": 1012,
       "evidence_source": "public repository governance and documentation",
       "path": "Makefile",
       "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
       "rights_classification": "CC-BY-4.0",
-      "sha256": "c274c24f30decc90ac80eec8c6a54c0626477bb1ac0f3321e29ad0e6394f7cee",
+      "sha256": "41f4d7f778a37f26758674df5f26fdeb3782d13bc199bd11988f592b0352abc3",
       "verification_mode": "SHA-256 digest"
     },
     {
@@ -65,12 +65,12 @@
       "verification_mode": "SHA-256 digest"
     },
     {
-      "bytes": 9601,
+      "bytes": 11456,
       "evidence_source": "public repository governance and documentation",
       "path": "README.md",
       "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
       "rights_classification": "CC-BY-4.0",
-      "sha256": "f64cc25356803725b767a5f959a4ec6a4c28e11dd0a7fd1faaecc62954510f74",
+      "sha256": "069f877050c43aaee0a3e0a4b95d92e2f833aff630a06b25a10bfd105c2f5843",
       "verification_mode": "SHA-256 digest"
     },
     {
@@ -110,21 +110,21 @@
       "verification_mode": "SHA-256 digest"
     },
     {
-      "bytes": 5749,
+      "bytes": 6011,
       "evidence_source": "public repository governance and documentation",
       "path": "docs/research_call_coverage.md",
       "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
       "rights_classification": "CC-BY-4.0",
-      "sha256": "18c2dbe5bd06a959ba0ee475953429d3a88d7a16474406f011e5ca487669097c",
+      "sha256": "f073dc3cb76d320e90f40cc2697a4f9a590d5c6e089d685f9a7cecb518d7baee",
       "verification_mode": "SHA-256 digest"
     },
     {
-      "bytes": 8994,
+      "bytes": 9094,
       "evidence_source": "public repository governance and documentation",
       "path": "docs/research_program.md",
       "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
       "rights_classification": "CC-BY-4.0",
-      "sha256": "021795bb9388c1eb5dda3030e8a6baf87c9c61d37f035f57a2250cd748cefcc4",
+      "sha256": "3e8b502fc87b89f0ac9981977ea2262c1badfb086c72854e154b95c05ff3d1a1",
       "verification_mode": "SHA-256 digest"
     },
     {
@@ -578,6 +578,42 @@
       "verification_mode": "SHA-256 digest"
     },
     {
+      "bytes": 22899,
+      "evidence_source": "public replication and release tooling",
+      "path": "scripts/__pycache__/analyze_p02_results.cpython-314.pyc",
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "Apache-2.0",
+      "sha256": "4675f5fb5884c737591d4f54ed3140cecdecbf45b418cb38e5fc935b7aa79fdd",
+      "verification_mode": "SHA-256 digest"
+    },
+    {
+      "bytes": 12902,
+      "evidence_source": "public replication and release tooling",
+      "path": "scripts/__pycache__/build_p02_figures.cpython-314.pyc",
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "Apache-2.0",
+      "sha256": "4b0da3ab5701f1675a3481debbc54b2c017b53a288d4e776b4df8ebbd93b7f40",
+      "verification_mode": "SHA-256 digest"
+    },
+    {
+      "bytes": 4453,
+      "evidence_source": "public replication and release tooling",
+      "path": "scripts/__pycache__/verify_p02_release.cpython-314.pyc",
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "Apache-2.0",
+      "sha256": "fd1770e1c8592048932533adabd13090a5df9e3290da8cb61db7cf20db60eebb",
+      "verification_mode": "SHA-256 digest"
+    },
+    {
+      "bytes": 24574,
+      "evidence_source": "public replication and release tooling",
+      "path": "scripts/analyze_p02_results.py",
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "Apache-2.0",
+      "sha256": "f19465525ddea2c7ca6465bb0cfa7d9e99ae91ca407b2da0c394813280dd4fa8",
+      "verification_mode": "SHA-256 digest"
+    },
+    {
       "bytes": 13448,
       "evidence_source": "public replication and release tooling",
       "path": "scripts/analyze_results.py",
@@ -611,6 +647,33 @@
       "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
       "rights_classification": "Apache-2.0",
       "sha256": "0816381b458664cd64a816cb19ec8be7a1dd9447a6cf73364d6aceae41d977f4",
+      "verification_mode": "SHA-256 digest"
+    },
+    {
+      "bytes": 7122,
+      "evidence_source": "public replication and release tooling",
+      "path": "scripts/build_p02_figures.py",
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "Apache-2.0",
+      "sha256": "78ca6c3132284849a2aa545a3919887560531d87b1a0c1385298532159138f9e",
+      "verification_mode": "SHA-256 digest"
+    },
+    {
+      "bytes": 893,
+      "evidence_source": "public replication and release tooling",
+      "path": "scripts/build_p02_paper.sh",
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "Apache-2.0",
+      "sha256": "efcf64bf4eb980a9ff56a6850f2c22e2b48f92584ae9aa769c1254068a663df6",
+      "verification_mode": "SHA-256 digest"
+    },
+    {
+      "bytes": 2180,
+      "evidence_source": "public replication and release tooling",
+      "path": "scripts/build_p02_release_manifest.py",
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "Apache-2.0",
+      "sha256": "7d22c7a9630bad3c5a5f8a078e4d56c90fb3242c4c315336241c60f4e74feebd",
       "verification_mode": "SHA-256 digest"
     },
     {
@@ -674,6 +737,15 @@
       "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
       "rights_classification": "Apache-2.0",
       "sha256": "9ae2ed0c98f62301b7871af0109eca804df845f9385e2ae391567e0df958d4b2",
+      "verification_mode": "SHA-256 digest"
+    },
+    {
+      "bytes": 12325,
+      "evidence_source": "public replication and release tooling",
+      "path": "scripts/verify_p02_release.py",
+      "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
+      "rights_classification": "Apache-2.0",
+      "sha256": "f3d8c249aaeb1dc7b5017336934a587fd3c78c0316ee05bd3bdbe29ddfd00fc3",
       "verification_mode": "SHA-256 digest"
     },
     {

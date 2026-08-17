@@ -1,0 +1,33 @@
+{
+  "schema_version": "fid056_p02_public_lock_v1",
+  "study_id": "FID-056-P02",
+  "locked_at": "2026-08-11T20:59:12-07:00",
+  "lock_timing": "before_confirmatory_execution",
+  "registration_type": "internal_sha256_lock_not_public_registry",
+  "implementation": {
+    "shared_repository": "apologist-project/llm-scripture-fidelity",
+    "shared_commit": "dbb1514cde5c7a8e17944d09cf16d0ed1ee619cc",
+    "private_analysis_commit": "c9fe36472da7fbdfa8a66249dc2ef26ee7bb8e09"
+  },
+  "artifacts": {
+    "confirmatory_manifest_sha256": "28fb5850dcee03db2c856e4ae3eb59c7ef645171c8afebd7eaec2eecbbf8435c",
+    "treatment_matrix_sha256": "6783e18668ea854cc1f8a6da8f74dc2acdd8078e5c104616d6f46c6ffb4e0d45",
+    "target_snapshot_sha256": "c878a40207d281af4d61419b7187a6d033b2f7a381a2b2996aa61afea205f78b",
+    "protocol_sha256": "4c427021b65f4d4c935fb3ab42f1b2e16dc528922bc91f20526d6eab05708fdc",
+    "preregistration_sha256": "ccc0749a332bd2aaa4be644e165777761d87e6fd7d1f8bd877bfd6409835ad49",
+    "scoring_rubric_sha256": "6def0cbd0bbdadded3f455206ddda288eff940e8f2170e6f6c665a86d5a586b3",
+    "analysis_source_sha256": "4c35d670a3cf31c72c90b94b9fdc7bb33b1ab70f58497bdcd07800c7bfd18daf",
+    "source_registry_sha256": "d9e4c2b18045288252aa6b12bdf7f4ee413b0fdacf437f60ff34e1199574d1f1"
+  },
+  "execution_contract": {
+    "observations": 4800,
+    "target_clusters": 20,
+    "model_routes": 6,
+    "prompt_families": 2,
+    "treatment_cells": 4,
+    "repetitions": 5,
+    "bootstrap_iterations": 10000,
+    "bootstrap_seed": 5602,
+    "calibration_in_confirmatory_analysis": false
+  }
+}

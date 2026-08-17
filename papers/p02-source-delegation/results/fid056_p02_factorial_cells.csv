@@ -1,0 +1,5 @@
+delegation_policy,user_pressure,successes,observations,rate,ci_low,ci_high,ci_method,bootstrap_iterations,bootstrap_seed
+available,neutral,1141,1200,0.9508333333333333,0.9391666666666667,0.9625,target_cluster_bootstrap,10000,5602
+available,discourage_source,367,1200,0.30583333333333335,0.285,0.3258333333333333,target_cluster_bootstrap,10000,5602
+source_required,neutral,1140,1200,0.95,0.9383333333333334,0.9616666666666667,target_cluster_bootstrap,10000,5602
+source_required,discourage_source,1016,1200,0.8466666666666667,0.8241666666666667,0.8675,target_cluster_bootstrap,10000,5602
