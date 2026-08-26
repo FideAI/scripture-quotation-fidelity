@@ -6,32 +6,33 @@ a public call for research. The call is deliberately larger than one paper, so
 the program is a set of narrow, individually auditable studies rather than one
 study attempting to cover every form of sacred-text fidelity.
 
-Paper 01 is complete. This document is the agenda for what comes next.
+Paper 01 is complete, and the confirmatory study for Paper 02 has been
+executed. This document records those papers and the agenda for what comes
+next.
 
 [`research_call_coverage.md`](research_call_coverage.md) tracks which of the
 call's requested outputs are delivered, partial, or open.
 
 ## Getting involved
 
-Every study below is unclaimed. Fide AI does not intend to run all of them, and
-several would be done better by people with expertise we do not have — biblical
-scholars, translators, scholars of other traditions, and researchers in
-adjacent fields.
+P02 is led by Fide AI. The remaining studies are unclaimed, and several would
+be done better by people with expertise we do not have — biblical scholars,
+translators, scholars of other traditions, and researchers in adjacent fields.
 
 To take one up, open a `Claim or help with an idea` issue on
 [`FideAI/research-ideas`](https://github.com/FideAI/research-ideas) referencing
 FID-056 and the study ID. Claiming is not exclusive ownership; it signals active
 work so effort is not duplicated.
 
-Three studies can begin immediately against the released Paper 01 dataset with
-no new model spend and no restricted sources. Those are marked **data in hand**.
+Two remaining studies can begin immediately against released data with no new
+model spend and no restricted sources. Those are marked **data in hand**.
 
 ## Agenda
 
 | ID | Study | Readiness |
 |---|---|---|
 | P01 | Scripture quotation across four delivery conditions | Complete |
-| P02 | Model delegation to sources of record | Data in hand |
+| P02 | Model delegation to sources of record | Confirmatory study complete |
 | P03 | Reference selection | Data in hand |
 | P04 | Source availability and parametric recall | Data in hand |
 | P05 | Paraphrase and quotation labeling | Needs construct design |
@@ -49,32 +50,24 @@ finding a reviewer. See
 ## Studies that explain Paper 01's open results
 
 Paper 01 recorded several diagnostics and deliberately declined to explain
-them. Each is now a study, and each can start with data already released.
+them. P02 has now tested source delegation experimentally; P03 and P04 can
+start with data already released.
 
 ### P02 · Model delegation to sources of record
 
-Paper 01 reports a tool invoked in 95.00% of tool observations. That pooled
-figure conceals a binary split:
+Paper 02 asks what makes a model treat an available source of record as
+necessary before quoting. Its 4,800-request factorial experiment crosses an
+available-versus-required source policy with neutral-versus-anti-tool user
+wording. Under ordinary requests, models delegated about 95% of the time under
+both policies. Under conflicting user pressure, delegation was 30.6% when the
+source was merely available and 84.7% when its use was required. Among
+delegated requests, 89.1% named the intended passage; conditional on that
+selection, 93.5% reproduced the source span exactly.
 
-| Route | Tool invoked | Used for the requested span |
-|---|---|---|
-| GPT-5.6 Sol | 100.0% | 93.3% |
-| Claude Sonnet 5 | 100.0% | 87.2% |
-| Gemini 3.5 Flash | 99.7% | 89.4% |
-| DeepSeek V4 Pro | 99.7% | 84.2% |
-| GLM-5.2 | 99.4% | 85.8% |
-| Kimi K3 | **71.1%** | **65.0%** |
-
-Five routes essentially always delegate; one bypasses roughly three times in
-ten. This is not a performance spectrum but a difference in whether the model
-treats an authorized source as necessary at all.
-
-**Question.** What makes a model decide a source of record is unnecessary, and
-can delegation be made reliable through prompt, harness, or interface design
-rather than through model choice?
-
-**Needs.** Released Paper 01 data for the descriptive result; new execution to
-test interventions. No restricted sources.
+The study therefore separates three questions that Paper 01 pooled together:
+whether the model delegates, whether it asks for the intended passage, and
+whether it preserves the returned text. The manuscript and reproducible
+release candidate are in [`papers/p02-source-delegation/`](../papers/p02-source-delegation/).
 
 ### P03 · Reference selection
 

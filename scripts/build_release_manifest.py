@@ -19,8 +19,8 @@ RELEASE_DECISION = (
     ROOT / PAPER / "provenance/release_decision_summary.json"
 )
 
-# Shared, repository-level artifacts plus everything scoped to the paper.
-# Add a new PAPER-style prefix when a second paper is released.
+# Shared repository artifacts plus all Paper 01 artifacts. Later papers use
+# paper-scoped release inventories and manifests.
 INCLUDED_PREFIXES = (
     "CITATION.cff",
     "CODE_OF_CONDUCT.md",
@@ -48,14 +48,30 @@ TRANSIENT_PAPER_SUFFIXES = (
     ".out",
     ".synctex.gz",
 )
+TRANSIENT_PATH_PARTS = {
+    "__pycache__",
+    ".mypy_cache",
+    ".pytest_cache",
+    ".ruff_cache",
+}
+TRANSIENT_FILE_SUFFIXES = (".pyc", ".pyo")
 
 
 def included(relative: str) -> bool:
+    path = Path(relative)
+    paper_02_tool = (
+        relative.startswith("scripts/") and "p02" in path.name.lower()
+    )
     selected = any(
         relative == prefix or relative.startswith(prefix)
         for prefix in INCLUDED_PREFIXES
     )
-    return selected and not relative.endswith(TRANSIENT_PAPER_SUFFIXES)
+    transient = (
+        any(part in TRANSIENT_PATH_PARTS for part in path.parts)
+        or relative.endswith(TRANSIENT_PAPER_SUFFIXES)
+        or relative.endswith(TRANSIENT_FILE_SUFFIXES)
+    )
+    return selected and not transient and not paper_02_tool
 
 
 def rights_classification(relative: str) -> str:
@@ -116,6 +132,8 @@ def main() -> None:
     records = []
     for path in sorted(ROOT.rglob("*")):
         if not path.is_file() or path == OUTPUT:
+            continue
+        if path.is_symlink():
             continue
         relative = path.relative_to(ROOT).as_posix()
         if not included(relative):

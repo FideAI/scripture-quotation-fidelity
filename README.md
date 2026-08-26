@@ -2,7 +2,7 @@
 
 Open research on how AI systems deliver exact text from authoritative sources,
 studied through English Scripture quotation. This repository contains the
-approved public research package for Paper 01: the manuscript, protocol,
+public research packages for Papers 01 and 02: manuscripts, protocols,
 deidentified derived scores, reviewed results, provenance records, and
 standalone analysis code.
 
@@ -25,15 +25,15 @@ source of truth. This repository is the work answering one of them:
 > paraphrase, reference, and contextualize sacred texts faithfully within a
 > specified text edition, translation, canon, and interpretive context?
 
-That is why released artifacts carry `fid056_p01_` identifiers. The prefix is
-the trace: `FID-056` names the public call, `p01` names the first paper
-answering it. The identifiers link every released file to the call, to the
-prospective lock, and to the release manifest, which is why they are not
-renamed to something friendlier.
+That is why released artifacts carry paper-scoped identifiers such as
+`fid056_p01_` and `fid056_p02_`. `FID-056` names the public call, while `p01`
+or `p02` names the paper answering it. These identifiers link each released
+file to the call, prospective lock, and release manifest.
 
-Paper 01 answers the **quote** and **reference** parts of the call, for English
-Christian Scripture. It does not answer paraphrase, contextualization, or other
-traditions. [`docs/research_call_coverage.md`](docs/research_call_coverage.md)
+Paper 01 addresses quotation delivery and reference selection for English
+Christian Scripture. Paper 02 asks when models defer to an available source of
+record. Neither paper answers paraphrase, contextualization, or questions about
+other traditions. [`docs/research_call_coverage.md`](docs/research_call_coverage.md)
 tracks exactly which requested outputs are delivered, partial, or still open.
 
 This is an open evaluation methodology, not a leaderboard.
@@ -84,22 +84,47 @@ for interpretation and limits, and the
 [claims boundary](papers/p01-scripture-quotation/docs/claims_boundary.md) for
 what the study does not establish.
 
+### [Paper 02 — Source Delegation](papers/p02-source-delegation/)
+
+> **Knowing When to Defer: How Language Models Use and Bypass Sources of Record**
+
+📄 [Read the paper (PDF)](papers/p02-source-delegation/paper/main.pdf) ·
+[LaTeX source](papers/p02-source-delegation/paper/main.tex) ·
+[dataset](papers/p02-source-delegation/data/)
+
+Paper 02 tests whether a model actually uses an available Scripture source
+before answering. It crosses a system policy that either makes source use
+available or requires it with user wording that either remains neutral or asks
+the model to avoid tools and answer from memory.
+
+Across 4,800 requests, ordinary prompts produced approximately 95% source use
+under both system policies. Under conflicting user pressure, source use fell
+to 30.6% when the source was merely available but remained at 84.7% when the
+system required it. Source use was still not sufficient for correct delivery:
+89.1% of delegated requests named the intended passage, and 93.5% of those
+reproduced the source span exactly.
+
+These are fixed-route results from six tested model configurations, not a
+provider ranking or evidence about theological interpretation. See the
+[result card](papers/p02-source-delegation/results/fid056_p02_result_card.md)
+and [claims boundary](papers/p02-source-delegation/docs/claims_boundary.md).
+
 ## Open research
 
-Paper 01 answers one part of the call. Six studies remain open, and Fide AI
+Papers 01 and 02 answer quotation-delivery and source-delegation questions from
+the call. Five studies remain open, and Fide AI
 does not intend to run them all — several would be done better by biblical
 scholars, translators, scholars of other traditions, or researchers in adjacent
 fields.
 
-Three can begin immediately against the released Paper 01 dataset with no new
-model spend: **delegation to sources of record** (one route bypassed its tool
-29% of the time while five others essentially never did), **reference
-selection** (now separated from literal interface compliance), and **source
-availability** (the LSV collapsed to near-zero recall on every model tested,
-while the BSB ranged from 16.7% to 64.2%). Two more — **paraphrase labeling** and **context preservation** — are
+Two can begin immediately against released data with no new model spend:
+**reference selection** (now separated from literal interface compliance) and
+**source availability** (the LSV collapsed to near-zero recall on every model
+tested, while the BSB ranged from 16.7% to 64.2%). Two more — **paraphrase
+labeling** and **context preservation** — are
 named by the call and owned by nobody.
 
-A sixth study, **cross-lingual and translation fidelity**, requires new
+A fifth study, **cross-lingual and translation fidelity**, requires new
 execution, source-rights work, and native-language expertise.
 
 See [`docs/research_program.md`](docs/research_program.md) for the full agenda,
@@ -137,11 +162,17 @@ papers/
     provenance/  release decision, prospective lock, deviations, source editions, manifest
     review/      blinded reviewer materials
     docs/        paper-scoped plan, claims boundary, and disclosures
+  p02-source-delegation/
+    paper/       LaTeX source and figures
+    data/        deidentified behavioral rows and release-safe targets
+    results/     factorial effects, route sensitivity, and delegation pipeline
+    provenance/  prospective lock, execution seal, deviations, and manifest
+    docs/        protocol, prompts, claims boundary, and disclosures
 ```
 
-Artifacts keep their `fid056_p01_` prefixes on purpose: they trace each file
-back to public research call FID-056 and to the prospective lock. See
-[above](#this-repository-answers-a-public-research-call).
+Artifacts keep their `fid056_p01_` or `fid056_p02_` prefixes on purpose: they
+trace each file back to public research call FID-056, the corresponding paper,
+and the prospective lock. See [above](#this-repository-answers-a-public-research-call).
 
 ## What is not included
 
@@ -157,11 +188,15 @@ With [`uv`](https://docs.astral.sh/uv/) and
 [`tectonic`](https://tectonic-typesetting.github.io/) installed:
 
 ```bash
-make analyze          # regenerate results from released derived scores
-make verify-release   # check the manifest and reconcile headline counts
-make paper            # rebuild figures and compile the PDF
+make analyze          # regenerate results for both papers
+make verify           # check both manifests and reconcile headline counts
+make papers           # rebuild figures and compile both PDFs
 make release-audit    # scan for secrets, private paths, forbidden artifacts
 ```
+
+Paper-specific targets remain available as `make p01-analyze`, `make paper`,
+`make verify-release`, `make p02-analyze`, `make p02-paper`, and
+`make p02-verify`.
 
 `make analyze` calls no model endpoint. An exact rerun against hosted models is
 not guaranteed, since endpoints, routing, and provider defaults change.
@@ -182,6 +217,8 @@ Maintainers: build and release procedures are in
 
 ## Citation
 
+Paper 01:
+
 ```bibtex
 @misc{chao2026whennottogenerate,
   title  = {When Not to Generate: How AI Systems Quote Scripture,
@@ -193,7 +230,22 @@ Maintainers: build and release procedures are in
 }
 ```
 
-Machine-readable metadata is in [`CITATION.cff`](CITATION.cff).
+Paper 02:
+
+```bibtex
+@misc{chao2026knowingwhentodefer,
+  title  = {Knowing When to Defer: How Language Models Use and Bypass
+            Sources of Record},
+  author = {Chao, Alex},
+  year   = {2026},
+  note   = {Fide AI. Study FID-056-P02.},
+  url    = {https://github.com/FideAI/scripture-quotation-fidelity}
+}
+```
+
+Repository-level machine-readable metadata is in
+[`CITATION.cff`](CITATION.cff); paper-scoped citation guidance is included with
+each paper package.
 
 ## License
 

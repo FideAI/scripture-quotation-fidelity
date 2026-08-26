@@ -7,6 +7,11 @@ analysis code, and is what both other venues point back to.
 Both build targets stage into `build/` and upload nothing. Publishing is a
 separate, deliberate step.
 
+The current `make arxiv` and `make hf-dataset` targets package Paper 01 only.
+Paper 02's GitHub release candidate is reproducible with `make p02-paper` and
+`make p02-verify`; add paper-scoped arXiv and dataset staging targets before
+submitting or uploading P02 rather than reusing Paper 01's bundles.
+
 ## arXiv
 
 ```bash

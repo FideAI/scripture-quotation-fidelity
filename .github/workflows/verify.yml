@@ -28,8 +28,8 @@ jobs:
       - name: Fail if regenerated results differ from committed results
         run: git diff --exit-code -- papers/*/results
 
-      - name: Verify release manifest and headline counts
-        run: make verify-release
+      - name: Verify release manifests and headline counts
+        run: make verify
 
       - name: Release audit
         run: make release-audit
@@ -49,8 +49,8 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Compile
-        run: make paper
+      - name: Compile both papers
+        run: make papers
 
       - name: Stage arXiv submission bundle
         run: make arxiv

@@ -1,0 +1,27 @@
+{
+  "schema_version": "fid056_p02_public_execution_seal_v1",
+  "study_id": "FID-056-P02",
+  "run_id": "RUN-DELEGATION-CONFIRMATORY-001",
+  "execution_started_at": "2026-08-11T21:01:24-07:00",
+  "execution_completed_at": "2026-08-11T22:21:24-07:00",
+  "status": "complete_and_reconciled",
+  "counts": {
+    "blocks": 12,
+    "scheduled": 4800,
+    "observed": 4800,
+    "completed": 4800,
+    "terminal_errors": 0,
+    "missing": 0,
+    "unique_observation_ids": 4800,
+    "balanced_route_prompt_treatment_cells": 48,
+    "observations_per_cell": 100
+  },
+  "private_evidence_commitments": {
+    "artifact_inventory_sha256": "53c00ba327a38651a2ce2eced30246e0fbdf4569d48b061da68402e5be84c080",
+    "block_index_sha256": "458bc65fcf807a7ab001461e8e1040af017cbe2400ca4e80cd103a9f99b62dbf",
+    "combined_trials_sha256": "547ffbb4411b15e998e72408ba301eba1274273daa6aad7d56f56c7180e5a4c0",
+    "summary_sha256": "cce9a7a9113a068024884a188748c1b8ce2bfe5398fcc85fca88e34b78bcb053"
+  },
+  "provider_reported_cost_usd": 27.60787294,
+  "raw_evidence_public": false
+}
