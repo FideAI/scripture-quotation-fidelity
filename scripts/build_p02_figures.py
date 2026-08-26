@@ -82,8 +82,13 @@ def architecture() -> None:
     )
     for start, end in arrows:
         ax.add_patch(FancyArrowPatch(start, end, arrowstyle="-|>", mutation_scale=10, linewidth=1, color=COLORS["muted"]))
-    ax.text(0.2, 4.14, "The tool is optional in every condition", fontsize=11, fontweight="bold")
-    ax.text(0.2, 3.91, "Policy and user pressure change instructions, not technical access.", color=COLORS["muted"])
+    ax.text(0.2, 4.14, "A source tool can be present without governing the answer", fontsize=11, fontweight="bold")
+    ax.text(
+        0.2,
+        3.91,
+        "The source-required policy changes the instruction, not the model's technical ability to bypass it.",
+        color=COLORS["muted"],
+    )
     fig.savefig(OUTPUT / "fig1_delegation_design.pdf", metadata=PDF_METADATA)
     plt.close(fig)
 
@@ -145,6 +150,7 @@ def route_forest() -> None:
     ax.axvline(0, color=COLORS["muted"], linewidth=0.9)
     ax.errorbar(estimates, y, xerr=np.vstack([estimates - lows, highs - estimates]), fmt="o", color=COLORS["required"], ecolor=COLORS["ink"], capsize=3)
     ax.set_yticks(y, labels, fontsize=9)
+    ax.tick_params(axis="y", length=0)
     ax.invert_yaxis()
     ax.set_xlim(-5, 105)
     ax.set_xlabel(
@@ -159,12 +165,106 @@ def route_forest() -> None:
     plt.close(fig)
 
 
+def delegation_pipeline() -> None:
+    with (RESULTS / "fid056_p02_delegation_pipeline.csv").open(newline="") as handle:
+        rows = list(csv.DictReader(handle))
+    overall = {
+        row["conditional_metric"]: row
+        for row in rows
+        if row["delegation_policy"] == "overall" and row["user_pressure"] == "all"
+    }
+    correct = overall["correct_reference_given_delegation"]
+    exact = overall["quote_span_exact_given_correct_reference"]
+    bypass = overall["quote_span_exact_given_bypass"]
+    delegated = int(correct["observations"])
+    bypassed = int(bypass["observations"])
+    total = delegated + bypassed
+
+    fig, ax = plt.subplots(figsize=(11.3, 4.2))
+    ax.set_xlim(0, 13.3)
+    ax.set_ylim(0.1, 4.15)
+    ax.axis("off")
+
+    boxes = (
+        (0.2, 2.05, "All requests", f"{total:,}\nconfirmatory observations", COLORS["ink"]),
+        (
+            3.45,
+            2.05,
+            "Source invoked",
+            f"{delegated:,} / {total:,}\n({100 * delegated / total:.1f}% of requests)",
+            COLORS["required"],
+        ),
+        (
+            6.7,
+            2.05,
+            "Intended reference",
+            f"{int(correct['successes']):,} / {delegated:,}\n({100 * float(correct['rate']):.1f}% of calls)",
+            COLORS["required"],
+        ),
+        (
+            9.95,
+            2.05,
+            "Exact quotation span",
+            f"{int(exact['successes']):,} / {int(exact['observations']):,}\n({100 * float(exact['rate']):.1f}% after selection)",
+            COLORS["exact"],
+        ),
+        (
+            3.45,
+            0.25,
+            "Source bypassed",
+            f"{bypassed:,} / {total:,}; {int(bypass['successes']):,} exact from memory\n({100 * float(bypass['rate']):.1f}% of bypasses)",
+            COLORS["pressure"],
+        ),
+    )
+    for x, y_pos, title, body, color in boxes:
+        width = 2.55 if title != "Source bypassed" else 3.35
+        ax.add_patch(
+            Rectangle(
+                (x, y_pos),
+                width,
+                1.15,
+                facecolor=COLORS["paper"],
+                edgecolor=color,
+                linewidth=1.3,
+            )
+        )
+        ax.text(x + 0.16, y_pos + 0.88, title, fontweight="bold", color=color, va="top")
+        ax.text(x + 0.16, y_pos + 0.59, body, va="top", fontsize=8.4, linespacing=1.18)
+
+    for start, end in (
+        ((2.78, 2.63), (3.37, 2.63)),
+        ((6.03, 2.63), (6.62, 2.63)),
+        ((9.28, 2.63), (9.87, 2.63)),
+        ((2.0, 2.02), (3.37, 1.12)),
+    ):
+        ax.add_patch(
+            FancyArrowPatch(
+                start,
+                end,
+                arrowstyle="-|>",
+                mutation_scale=10,
+                linewidth=1,
+                color=COLORS["muted"],
+            )
+        )
+    ax.text(0.2, 3.88, "A source call begins, rather than completes, exact delivery", fontsize=11, fontweight="bold")
+    ax.text(
+        0.2,
+        3.64,
+        "The main path reports conditional counts; bypassed requests are shown separately.",
+        color=COLORS["muted"],
+    )
+    fig.savefig(OUTPUT / "fig4_delegation_pipeline.pdf", metadata=PDF_METADATA)
+    plt.close(fig)
+
+
 def main() -> None:
     configure()
     architecture()
     if (RESULTS / "fid056_p02_aggregate_results.csv").exists():
         delegation_cells()
         route_forest()
+        delegation_pipeline()
     print(f"Wrote Paper 02 figures to {OUTPUT}")
 
 

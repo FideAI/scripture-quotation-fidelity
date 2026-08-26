@@ -216,6 +216,8 @@ Maintainers: build and release procedures are in
 
 ## Citation
 
+Paper 01:
+
 ```bibtex
 @misc{chao2026whennottogenerate,
   title  = {When Not to Generate: How AI Systems Quote Scripture,
@@ -227,7 +229,22 @@ Maintainers: build and release procedures are in
 }
 ```
 
-Machine-readable metadata is in [`CITATION.cff`](CITATION.cff).
+Paper 02:
+
+```bibtex
+@misc{chao2026knowingwhentodefer,
+  title  = {Knowing When to Defer: How Language Models Use and Bypass
+            Sources of Record},
+  author = {Chao, Alex},
+  year   = {2026},
+  note   = {Fide AI. Study FID-056-P02.},
+  url    = {https://github.com/FideAI/scripture-quotation-fidelity}
+}
+```
+
+Repository-level machine-readable metadata is in
+[`CITATION.cff`](CITATION.cff); paper-scoped citation guidance is included with
+each paper package.
 
 ## License
 

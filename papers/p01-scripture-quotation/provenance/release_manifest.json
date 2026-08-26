@@ -2,12 +2,12 @@
   "artifact_scope": "public_replication_package",
   "files": [
     {
-      "bytes": 1200,
+      "bytes": 1241,
       "evidence_source": "public repository governance and documentation",
       "path": "CITATION.cff",
       "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
       "rights_classification": "CC-BY-4.0",
-      "sha256": "766a9c0706bd5b663975b416ae6b1fbb53c7141bbb204a8466e89d4b6c61ff1b",
+      "sha256": "bc533dab5b477522f9fc3074008c5ebad1c8853662938421456753ced908aa29",
       "verification_mode": "SHA-256 digest"
     },
     {
@@ -65,12 +65,12 @@
       "verification_mode": "SHA-256 digest"
     },
     {
-      "bytes": 11456,
+      "bytes": 11870,
       "evidence_source": "public repository governance and documentation",
       "path": "README.md",
       "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
       "rights_classification": "CC-BY-4.0",
-      "sha256": "069f877050c43aaee0a3e0a4b95d92e2f833aff630a06b25a10bfd105c2f5843",
+      "sha256": "a88f253dedc8c84a5104ec9bad349a4ee06fe0ec9bf24386bd6826a279b53829",
       "verification_mode": "SHA-256 digest"
     },
     {
@@ -83,12 +83,12 @@
       "verification_mode": "SHA-256 digest"
     },
     {
-      "bytes": 4180,
+      "bytes": 4482,
       "evidence_source": "public repository governance and documentation",
       "path": "docs/publishing.md",
       "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
       "rights_classification": "CC-BY-4.0",
-      "sha256": "940f71a614f0569605b42962d7eb5d4df89df0b6b08b6d89a9b67c5eed1a8048",
+      "sha256": "cda21c9632b5cf1f87deeadd5307550ef32aeedc5a6004f47b6f725b5b2870a0",
       "verification_mode": "SHA-256 digest"
     },
     {
@@ -110,12 +110,12 @@
       "verification_mode": "SHA-256 digest"
     },
     {
-      "bytes": 6011,
+      "bytes": 6008,
       "evidence_source": "public repository governance and documentation",
       "path": "docs/research_call_coverage.md",
       "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
       "rights_classification": "CC-BY-4.0",
-      "sha256": "f073dc3cb76d320e90f40cc2697a4f9a590d5c6e089d685f9a7cecb518d7baee",
+      "sha256": "1570afab45598412d15e800e833d4d0def05f237a31b19986e9c3d7a16dea9a3",
       "verification_mode": "SHA-256 digest"
     },
     {
@@ -650,12 +650,12 @@
       "verification_mode": "SHA-256 digest"
     },
     {
-      "bytes": 7122,
+      "bytes": 10458,
       "evidence_source": "public replication and release tooling",
       "path": "scripts/build_p02_figures.py",
       "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
       "rights_classification": "Apache-2.0",
-      "sha256": "78ca6c3132284849a2aa545a3919887560531d87b1a0c1385298532159138f9e",
+      "sha256": "67761f934eaece4e43ebec985afaa52007678b76a446bc84e89f497c173d55f5",
       "verification_mode": "SHA-256 digest"
     },
     {
@@ -668,12 +668,12 @@
       "verification_mode": "SHA-256 digest"
     },
     {
-      "bytes": 2180,
+      "bytes": 2167,
       "evidence_source": "public replication and release tooling",
       "path": "scripts/build_p02_release_manifest.py",
       "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
       "rights_classification": "Apache-2.0",
-      "sha256": "7d22c7a9630bad3c5a5f8a078e4d56c90fb3242c4c315336241c60f4e74feebd",
+      "sha256": "df7313c130f61b3b242b5e6f3efec11f6c980e5e030030e3399b712f12fba9f8",
       "verification_mode": "SHA-256 digest"
     },
     {

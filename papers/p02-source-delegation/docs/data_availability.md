@@ -1,6 +1,6 @@
 # Data Availability
 
-The intended public release includes deidentified derived scores sufficient to
+The public release candidate includes deidentified derived scores sufficient to
 reproduce every aggregate rate, contrast, interval, and figure in Paper 02
 without network access. The release also includes analysis scripts, a
 release-safe target registry, exact treatment templates, the public derivative

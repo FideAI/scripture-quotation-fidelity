@@ -12,6 +12,7 @@ paper/acl_natbib.bst
 paper/figures/fig1_delegation_design.pdf
 paper/figures/fig2_delegation_cells.pdf
 paper/figures/fig3_route_effects.pdf
+paper/figures/fig4_delegation_pipeline.pdf
 paper/main.pdf
 paper/main.tex
 paper/references.bib

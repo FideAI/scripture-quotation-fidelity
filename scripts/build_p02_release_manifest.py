@@ -48,7 +48,7 @@ def main() -> None:
     payload = {
         "schema_version": "fid056_p02_release_manifest_v1",
         "study_id": "FID-056-P02",
-        "status": "private_manuscript_draft_not_yet_approved_for_public_release",
+        "status": "public_release_candidate_pending_final_approval",
         "artifacts": artifacts,
         "excluded": [
             "raw model outputs",

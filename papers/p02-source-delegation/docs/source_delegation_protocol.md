@@ -115,10 +115,11 @@ The public analysis script is a release-safe reimplementation of the
 hash-locked private analysis, not the locked file itself. Release verification
 confirms that it reproduces the reported contrasts from the deidentified data.
 
-The contextual-description instrument has not yet received the credentialed,
-external biblical-scholar review specified by the research program's separate
-release gate. The completed AI-assisted review and same-reviewer blinded
-reapproval are described as such rather than as independent human validation.
+The contextual-description instrument has not received credentialed, external
+biblical-scholar review. The completed AI-assisted review and same-reviewer
+blinded reapproval are described as such rather than as independent human
+validation. External scholarly review remains a future validation opportunity,
+not a claim made by this release.
 
 ## Exclusions
 

@@ -56,7 +56,7 @@ readiness:
 | Open study | Why it is next | Readiness |
 |---|---|---|
 | Reviewer agreement study | Closes a requested output of the call; already specified and packaged | Needs a reviewer, nothing else |
-| P02 delegation | Confirmatory study complete; manuscript and reproducible release candidate in `papers/p02-source-delegation/` | Complete pending release decision |
+| P02 delegation | Confirmatory study complete; manuscript and reproducible release candidate in `papers/p02-source-delegation/` | Release candidate under review |
 | P03 selection, P04 availability | Each explains a diagnostic Paper 01 recorded and declined to interpret | Released data in hand |
 | P05 paraphrase, P06 context preservation | Named by the call; the clearest gaps in coverage | Need construct definitions first |
 | P07 cross-lingual | Most of the world's Scripture reading is not in English | Needs new execution and rights |
