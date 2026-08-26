@@ -64,4 +64,11 @@ All cells exposed the same technically optional `get_passage` function. It
 accepted one string argument named `reference`. A successful call returned the
 canonical reference, the BSB edition identity, and the exact locally frozen
 passage. The public result package omits that passage text but releases the
-tool-contract hash recorded for every observation.
+historically named `tool_contract_sha256` field recorded for every observation.
+In the executed implementation, that value hashes the source code of the
+`get_passage` tool factory, not a provider-neutral serialization of its JSON
+schema. Its expected value is
+`78702c91e308a2399b070df0d01f617559dbfba5fae39364c9c72e0bbabbe5ed`,
+which can be checked against the pinned public partner revision. The public
+verifier enforces that commitment but does not imply that the schema digest can
+be reconstructed from this document alone.

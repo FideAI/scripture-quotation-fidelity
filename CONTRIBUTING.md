@@ -11,9 +11,9 @@ does not intend to run every study in
 done better by biblical scholars, translators, scholars of other traditions, or
 researchers in adjacent fields.
 
-Three studies can begin immediately against the released Paper 01 dataset with
-no new model spend. Two more are named by the research call and owned by
-nobody.
+Two follow-on papers can begin immediately against the released Paper 01 data
+with no new model spend. A separate reviewer-agreement study is also ready, and
+additional topics named by the research call remain unclaimed.
 
 To claim one, open a `Claim or help with an idea` issue on
 [`FideAI/research-ideas`](https://github.com/FideAI/research-ideas) referencing
@@ -52,21 +52,25 @@ Never submit:
 ### Before opening a pull request
 
 ```bash
-make analyze          # must reproduce committed results with no diff
-make verify-release   # manifest digests and headline counts
+make analyze          # must reproduce both papers' committed results with no diff
+make verify           # both release manifests and headline counts
 make release-audit    # secrets, private paths, forbidden artifacts
+make papers           # both manuscripts compile with their generated figures
 ```
 
-If you changed a released artifact, run `make manifest` as well, or
-verification will fail on a digest mismatch. CI runs all of these.
+If you changed a Paper 01 or shared repository release artifact, run
+`make manifest`. Run `make p02-manifest` after changing a Paper 02 release
+artifact. A shared artifact may require both manifests. CI regenerates both
+analyses, verifies both packages, audits the repository, and compiles both
+papers.
 
 Two constraints that are easy to trip over:
 
 - **Reported numbers must reconcile with the released dataset.** If an analysis
   changes, update the paper and rerun the checks together.
-- **Released artifacts keep their `fid056_p01_` identifiers.** They link every
-  file to the research call and the prospective lock. Renaming breaks the
-  trace.
+- **Released artifacts keep their `fid056_p01_` or `fid056_p02_`
+  identifiers.** They link every file to the research call and the applicable
+  prospective lock. Renaming breaks the trace.
 
 ## Reporting problems
 

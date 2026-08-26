@@ -15,7 +15,10 @@ evidence and are not included in confirmatory estimates.
 - `fid056_p02_delegation_pipeline.csv` contains explicitly conditional,
   post-treatment descriptive rates.
 - `fid056_p02_sensitivity_analysis.csv` contains route-as-unit,
-  leave-one-route-out, and leave-one-target-out sensitivity analyses.
+  leave-one-route-out, leave-one-target-out, and post-hoc
+  correlation-component sensitivity analyses. The latter resamples the 17
+  connected components in the target registry so declared related passages
+  receive the same bootstrap multiplicity.
 - `fid056_p02_repetition_sensitivity.csv` reports each treatment cell by
   repetition to make time-order drift inspectable.
 - `fid056_p02_aggregate_results.csv` is a broad descriptive table. Its
@@ -28,6 +31,9 @@ released analysis script: after sorting 10,000 estimates, the lower and upper
 bounds are the observations at indices
 `floor(0.025 * (B - 1))` and `floor(0.975 * (B - 1))`. This records the exact
 executed convention rather than implying interpolation between estimates.
+The preregistered intervals retain the locked 20-target clustering rule. The
+correlation-component rows are explicitly post hoc and do not replace those
+primary estimates.
 
 The released `text_before_source` column is a sealed historical field with a
 post-execution specification mismatch. It must not be interpreted as visible

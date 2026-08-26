@@ -320,8 +320,8 @@ user describes the passage without naming its location, so the model must
 identify a reference before retrieval. The contextual descriptions received an
 AI-assisted construct review and a blinded same-reviewer check of six revisions,
 but not independent validation by a biblical scholar. We therefore treat their
-results as instrument-dependent. Adjacent and intertextually linked passages are
-flagged in the released passage list rather than treated as independent evidence.
+results as instrument-dependent. The released passage list also flags adjacent
+and intertextually linked passages for a correlation-aware sensitivity analysis.
 
 \subsection{Source and tool contract}
 
@@ -389,6 +389,14 @@ Uncertainty comes from a bootstrap that resamples whole passages rather than
 individual requests, so the interval reflects the fact that only 20 passages
 were tested; we use 10,000 resamples and seed 5602.
 
+That preregistered analysis treats the 20 passages as 20 clusters. The passage
+registry also identifies a three-passage John--Numbers family and a two-passage
+Deuteronomy--Matthew family. Because those relationships could reduce the
+panel's effective independence, we add a post-hoc sensitivity that resamples
+the resulting 17 connected components and always keeps related passages
+together. This sensitivity supplements rather than replaces the locked
+analysis.
+
 These intervals treat the six routes as fixed. They describe uncertainty
 arising from the passage panel, not uncertainty about language models in
 general. Two further analyses---treating routes as the resampling unit, and
@@ -407,8 +415,12 @@ descriptive effect sizes rather than as additional tests.
 Each run recorded the route and upstream provider actually used, the condition
 it was assigned, its repetition number, the ordered sequence of assistant
 messages, tool calls, tool results, and final answer, and cryptographic digests
-of the exact prompts and tool definition. Timing, token usage, cost, and any
-terminal error were also stored.
+of the exact prompts and tool implementation source. Timing, token usage, cost,
+and any terminal error were also stored. The historically named tool-contract
+digest hashes the executed \texttt{get\_passage} factory's source code rather
+than a provider-neutral JSON schema. The public verifier checks that digest
+against the pinned partner revision; the released prompt and treatment digests
+are reconstructed locally.
 
 Delegation is scored from the ordered trace, not from whether the answer
 resembles the source. Correct-reference delegation is scored against the frozen
@@ -432,8 +444,9 @@ implementation deviation and audit without using the affected field as evidence.
 All 4,800 confirmatory observations completed. The twelve route--prompt blocks
 each contributed their scheduled 400 rows, with no missing rows, duplicate
 observation identifiers, or terminal provider errors. Every row retained the
-pre-run prompt and tool-contract digests, all tool results came from the frozen
-local copies, and the resolved providers matched the six preflighted routes.
+pre-run prompt and historically named tool-contract digests, all tool results
+came from the frozen local copies, and the resolved providers matched the six
+preflighted routes.
 Collection ran from August 11 to 12, 2026 and incurred approximately USD 27.61
 in provider-reported cost. Delegation rates showed no drift across the five
 repetitions. These checks establish execution integrity, not model quality.
@@ -448,6 +461,8 @@ source-available observations (95.1\%) and 1,140 of 1,200 source-required
 observations (95.0\%). The required policy therefore came out 0.1 points lower
 than mere availability, with a 95\% interval from $-1.4$ to $1.2$ percentage
 points. The preregistered primary hypothesis was not supported.
+The correlation-component sensitivity gave an interval from $-1.4$ to $1.2$
+points, leaving that conclusion unchanged.
 The result is best read as a ceiling: five routes invoked the source on
 essentially every neutral request under both policies, while Kimi K3
 delegated on 70.5\% under each. Changing neutral policy wording could not
@@ -474,6 +489,11 @@ drop of 10.3 points ($-12.4$ to $-8.3$). Equivalently, when the user
 discouraged source use, the required policy raised delegation by 54.1 points
 (51.5 to 56.8). The interaction between policy and pressure was 54.2 points
 (51.5 to 56.8).
+
+Keeping the declared related passages together produced intervals of 51.4 to
+56.9 points for the conflict policy effect and 51.2 to 57.1 points for the
+interaction. The panel-correlation sensitivity therefore does not change the
+substantive result.
 
 Those intervals treat the six routes as fixed. Across routes, the conflict
 effect ranged from 0 to 90.5 points. Resampling routes rather than passages
@@ -556,7 +576,9 @@ The neutral exactness contrast was sensitive to one passage: dropping each
 passage in turn moved it between 1.3 and 3.5 points, with the minimum after
 excluding Matthew 5:3--10. We therefore treat the nominally positive interval
 as a fragile, unadjusted secondary result rather than independent confirmation
-of a rendering effect.
+of a rendering effect. Grouping the declared related passages gave a similar
+post-hoc interval of 0.2 to 7.5 points; it does not resolve the single-passage
+sensitivity.
 
 \section{Discussion}
 \label{sec:discussion}
@@ -654,7 +676,11 @@ but no trace reveals a model's private intention. Route-specific differences
 are also inseparable from the evaluated endpoint, upstream provider, and date;
 they should not be generalized to vendors or future models. The headline
 intervals likewise treat these six routes as fixed; the route-level sensitivity
-analyses show wider uncertainty for broader generalization.
+analyses show wider uncertainty for broader generalization. The preregistered
+bootstrap also treats 20 targets as separate clusters. A post-hoc analysis that
+groups the declared adjacent and intertextual relationships produces the same
+substantive conclusions, but a larger independently sampled passage panel would
+provide a stronger basis for population inference.
 
 \Needspace{9\baselineskip}
 \paragraph{Theological boundary.}

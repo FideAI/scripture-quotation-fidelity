@@ -11,9 +11,12 @@
 ## Primary Estimate
 
 The source-required policy changed delegation under neutral user wording by
--0.08 percentage points (95% target-cluster
-bootstrap interval -1.42 to
-1.17).
+-0.08 percentage points (95% target-cluster bootstrap
+interval -1.42 to 1.17).
+
+A post-hoc sensitivity that keeps the declared related passages together gives
+a 95% interval of -1.37 to 1.23
+percentage points.
 
 ## Boundary
 

@@ -188,14 +188,15 @@ With [`uv`](https://docs.astral.sh/uv/) and
 [`tectonic`](https://tectonic-typesetting.github.io/) installed:
 
 ```bash
-make analyze          # regenerate results from released derived scores
-make verify-release   # check the manifest and reconcile headline counts
-make paper            # rebuild figures and compile the PDF
+make analyze          # regenerate results for both papers
+make verify           # check both manifests and reconcile headline counts
+make papers           # rebuild figures and compile both PDFs
 make release-audit    # scan for secrets, private paths, forbidden artifacts
-make p02-analyze      # regenerate Paper 02 results
-make p02-paper        # rebuild Paper 02 figures and PDF
-make p02-verify       # reconcile Paper 02 data and release hashes
 ```
+
+Paper-specific targets remain available as `make p01-analyze`, `make paper`,
+`make verify-release`, `make p02-analyze`, `make p02-paper`, and
+`make p02-verify`.
 
 `make analyze` calls no model endpoint. An exact rerun against hosted models is
 not guaranteed, since endpoints, routing, and provider defaults change.

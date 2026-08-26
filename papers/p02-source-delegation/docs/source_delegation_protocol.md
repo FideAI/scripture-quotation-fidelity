@@ -86,6 +86,12 @@ under neutral user wording. The six model families receive equal weight. A
 target-cluster bootstrap with 10,000 resamples and seed 5602 produces the 95%
 interval.
 
+The preregistered bootstrap treats the 20 targets as 20 clusters. The released
+registry also identifies adjacent or intertextually related passages. A
+post-hoc sensitivity joins those links into 17 connected components and
+resamples each component as a unit, keeping related passages together. It is
+reported alongside, not substituted for, the locked analysis.
+
 These intervals condition on the six evaluated routes. Route-as-unit and
 leave-one-route-out results are reported as sensitivity analyses for broader
 route generalization, not as replacements for the preregistered estimand.
@@ -107,8 +113,9 @@ Completion-conditional estimates are sensitivity analyses.
 
 Private evidence records ordered assistant, tool-call, tool-result, and final
 assistant events plus prompt, policy, treatment, tool-contract, and source
-digests. The public package contains deidentified derived scores,
-release-safe provenance, exact treatment templates, and release-safe target
+digests. The historically named tool-contract digest commits to the executed
+tool factory's source code. The public package contains deidentified derived
+scores, release-safe provenance, exact treatment templates, and release-safe target
 descriptions. Calibration runs are excluded from confirmatory estimates.
 
 The public analysis script is a release-safe reimplementation of the

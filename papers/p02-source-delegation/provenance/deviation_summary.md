@@ -15,6 +15,13 @@ receipt already fixed the snapshot's digest and designated it as the
 confirmatory target artifact. The stale label was not changed because that
 would alter a locked input; it had no effect on content, execution, or analysis.
 
+The preregistered bootstrap treated all 20 targets as separate clusters, while
+the public target registry also records two connected families of adjacent or
+intertextually related passages. The locked analysis is retained. A post-hoc
+sensitivity additionally resamples the resulting 17 connected components and
+keeps every related passage at the same bootstrap multiplicity. This affects
+uncertainty estimates only; it does not change observations or point estimates.
+
 Post-execution review also found specification mismatches in three secondary
 fields. The executed `text_before_source` field counted serialized reasoning
 content and bypass answers rather than only visible pre-call text;

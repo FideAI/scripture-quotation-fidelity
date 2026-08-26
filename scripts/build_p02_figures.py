@@ -16,7 +16,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.patches import FancyArrowPatch, Rectangle
 
-
 ROOT = Path(__file__).resolve().parents[1]
 RESULTS = ROOT / "papers/p02-source-delegation/results"
 OUTPUT = ROOT / "papers/p02-source-delegation/paper/figures"
@@ -61,15 +60,60 @@ def architecture() -> None:
     ax.set_ylim(0.5, 4.35)
     ax.axis("off")
     boxes = (
-        (0.2, 2.7, "System policy", "Source available\nor source required", COLORS["required"]),
-        (0.2, 0.7, "User request", "Neutral or asks to\navoid the source", COLORS["pressure"]),
-        (3.8, 1.7, "Model decision", "Invoke get_passage\nor answer from memory", COLORS["ink"]),
-        (7.2, 2.7, "Source action", "Reference requested\nand passage returned", COLORS["required"]),
-        (7.2, 0.7, "Bypass", "No source event before\nthe final answer", COLORS["available"]),
-        (10.2, 1.7, "Final answer", "Returned text may still\nbe preserved or altered", COLORS["exact"]),
+        (
+            0.2,
+            2.7,
+            "System policy",
+            "Source available\nor source required",
+            COLORS["required"],
+        ),
+        (
+            0.2,
+            0.7,
+            "User request",
+            "Neutral or asks to\navoid the source",
+            COLORS["pressure"],
+        ),
+        (
+            3.8,
+            1.7,
+            "Model decision",
+            "Invoke get_passage\nor answer from memory",
+            COLORS["ink"],
+        ),
+        (
+            7.2,
+            2.7,
+            "Source action",
+            "Reference requested\nand passage returned",
+            COLORS["required"],
+        ),
+        (
+            7.2,
+            0.7,
+            "Bypass",
+            "No source event before\nthe final answer",
+            COLORS["available"],
+        ),
+        (
+            10.2,
+            1.7,
+            "Final answer",
+            "Returned text may still\nbe preserved or altered",
+            COLORS["exact"],
+        ),
     )
     for x, y, title, body, color in boxes:
-        ax.add_patch(Rectangle((x, y), 2.35, 1.08, facecolor=COLORS["paper"], edgecolor=color, linewidth=1.25))
+        ax.add_patch(
+            Rectangle(
+                (x, y),
+                2.35,
+                1.08,
+                facecolor=COLORS["paper"],
+                edgecolor=color,
+                linewidth=1.25,
+            )
+        )
         ax.text(x + 0.15, y + 0.83, title, fontweight="bold", color=color, va="top")
         ax.text(x + 0.15, y + 0.55, body, va="top", fontsize=8.4, linespacing=1.2)
     arrows = (
@@ -81,8 +125,23 @@ def architecture() -> None:
         ((9.58, 1.24), (10.12, 2.05)),
     )
     for start, end in arrows:
-        ax.add_patch(FancyArrowPatch(start, end, arrowstyle="-|>", mutation_scale=10, linewidth=1, color=COLORS["muted"]))
-    ax.text(0.2, 4.14, "A source tool can be present without governing the answer", fontsize=11, fontweight="bold")
+        ax.add_patch(
+            FancyArrowPatch(
+                start,
+                end,
+                arrowstyle="-|>",
+                mutation_scale=10,
+                linewidth=1,
+                color=COLORS["muted"],
+            )
+        )
+    ax.text(
+        0.2,
+        4.14,
+        "A source tool can be present without governing the answer",
+        fontsize=11,
+        fontweight="bold",
+    )
     ax.text(
         0.2,
         3.91,
@@ -107,16 +166,41 @@ def delegation_cells() -> None:
         ("source_required", "neutral"),
         ("source_required", "discourage_source"),
     ]
-    selected = [next(row for row in rows if (row["delegation_policy"], row["user_pressure"]) == key) for key in order]
+    selected = [
+        next(
+            row
+            for row in rows
+            if (row["delegation_policy"], row["user_pressure"]) == key
+        )
+        for key in order
+    ]
     values = np.array([100 * float(row["rate"]) for row in selected])
     lower = values - np.array([100 * float(row["ci_low"]) for row in selected])
     upper = np.array([100 * float(row["ci_high"]) for row in selected]) - values
-    labels = ["Available\nNeutral", "Available\nAvoid source", "Required\nNeutral", "Required\nAvoid source"]
-    colors = [COLORS["available"], COLORS["pressure"], COLORS["required"], COLORS["required"]]
+    labels = [
+        "Available\nNeutral",
+        "Available\nAvoid source",
+        "Required\nNeutral",
+        "Required\nAvoid source",
+    ]
+    colors = [
+        COLORS["available"],
+        COLORS["pressure"],
+        COLORS["required"],
+        COLORS["required"],
+    ]
     fig, ax = plt.subplots(figsize=(8.8, 4.4))
     x = np.arange(4)
     bars = ax.bar(x, values, color=colors, width=0.66)
-    ax.errorbar(x, values, yerr=np.vstack([lower, upper]), fmt="none", ecolor=COLORS["ink"], capsize=3, linewidth=1)
+    ax.errorbar(
+        x,
+        values,
+        yerr=np.vstack([lower, upper]),
+        fmt="none",
+        ecolor=COLORS["ink"],
+        capsize=3,
+        linewidth=1,
+    )
     ax.set_ylim(0, 105)
     ax.set_ylabel("Delegated to source (%)")
     ax.set_xticks(x, labels)
@@ -124,8 +208,18 @@ def delegation_cells() -> None:
     ax.set_axisbelow(True)
     ax.spines[["top", "right"]].set_visible(False)
     for bar, value in zip(bars, values):
-        ax.text(bar.get_x() + bar.get_width() / 2, min(value + 2.5, 101), f"{value:.1f}%", ha="center", fontweight="bold")
-    ax.set_title("Observed source delegation in the four conditions", loc="left", fontweight="bold")
+        ax.text(
+            bar.get_x() + bar.get_width() / 2,
+            min(value + 2.5, 101),
+            f"{value:.1f}%",
+            ha="center",
+            fontweight="bold",
+        )
+    ax.set_title(
+        "Observed source delegation in the four conditions",
+        loc="left",
+        fontweight="bold",
+    )
     fig.savefig(OUTPUT / "fig2_delegation_cells.pdf", metadata=PDF_METADATA)
     plt.close(fig)
 
@@ -142,13 +236,23 @@ def route_forest() -> None:
         "zai-glm-5-2-together": "GLM-5.2",
     }
     labels = [display_names.get(row["model_route"], row["model_route"]) for row in rows]
-    estimates = np.array([100 * float(row["policy_effect_discourage_source"]) for row in rows])
+    estimates = np.array(
+        [100 * float(row["policy_effect_discourage_source"]) for row in rows]
+    )
     lows = np.array([100 * float(row["conflict_ci_low"]) for row in rows])
     highs = np.array([100 * float(row["conflict_ci_high"]) for row in rows])
     y = np.arange(len(rows))
     fig, ax = plt.subplots(figsize=(9.1, 5.2))
     ax.axvline(0, color=COLORS["muted"], linewidth=0.9)
-    ax.errorbar(estimates, y, xerr=np.vstack([estimates - lows, highs - estimates]), fmt="o", color=COLORS["required"], ecolor=COLORS["ink"], capsize=3)
+    ax.errorbar(
+        estimates,
+        y,
+        xerr=np.vstack([estimates - lows, highs - estimates]),
+        fmt="o",
+        color=COLORS["required"],
+        ecolor=COLORS["ink"],
+        capsize=3,
+    )
     ax.set_yticks(y, labels, fontsize=9)
     ax.tick_params(axis="y", length=0)
     ax.invert_yaxis()
@@ -160,7 +264,11 @@ def route_forest() -> None:
     ax.grid(axis="x", color=COLORS["grid"], linewidth=0.7)
     ax.set_axisbelow(True)
     ax.spines[["top", "right", "left"]].set_visible(False)
-    ax.set_title("Instruction-conflict effects vary across evaluated routes", loc="left", fontweight="bold")
+    ax.set_title(
+        "Instruction-conflict effects vary across evaluated routes",
+        loc="left",
+        fontweight="bold",
+    )
     fig.savefig(OUTPUT / "fig3_route_effects.pdf", metadata=PDF_METADATA)
     plt.close(fig)
 
@@ -186,7 +294,13 @@ def delegation_pipeline() -> None:
     ax.axis("off")
 
     boxes = (
-        (0.2, 2.05, "All requests", f"{total:,}\nconfirmatory observations", COLORS["ink"]),
+        (
+            0.2,
+            2.05,
+            "All requests",
+            f"{total:,}\nconfirmatory observations",
+            COLORS["ink"],
+        ),
         (
             3.45,
             2.05,
@@ -247,7 +361,13 @@ def delegation_pipeline() -> None:
                 color=COLORS["muted"],
             )
         )
-    ax.text(0.2, 3.88, "A source call begins, rather than completes, exact delivery", fontsize=11, fontweight="bold")
+    ax.text(
+        0.2,
+        3.88,
+        "A source call begins, rather than completes, exact delivery",
+        fontsize=11,
+        fontweight="bold",
+    )
     ax.text(
         0.2,
         3.64,

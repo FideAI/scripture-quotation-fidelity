@@ -10,7 +10,6 @@ import hashlib
 import json
 from pathlib import Path
 
-
 ROOT = Path(__file__).resolve().parents[1]
 PAPER_ROOT = ROOT / "papers/p02-source-delegation"
 MANIFEST = PAPER_ROOT / "provenance/release_manifest.json"
@@ -27,6 +26,15 @@ def main() -> None:
         for line in INVENTORY.read_text().splitlines()
         if line.strip() and not line.startswith("#")
     }
+    public_symlinks = {
+        str(path.relative_to(PAPER_ROOT))
+        for path in PAPER_ROOT.rglob("*")
+        if path.is_symlink()
+    }
+    if public_symlinks:
+        raise ValueError(
+            f"Paper 02 release package may not contain symlinks: {sorted(public_symlinks)}"
+        )
     actual_public_files = {
         str(path.relative_to(PAPER_ROOT))
         for path in PAPER_ROOT.rglob("*")
@@ -41,7 +49,16 @@ def main() -> None:
         )
     artifacts = {}
     for relative in sorted(intended):
-        path = (PAPER_ROOT / relative).resolve()
+        inventory_path = PAPER_ROOT / relative
+        if inventory_path.is_symlink():
+            raise ValueError(f"Release inventory may not contain symlinks: {relative}")
+        path = inventory_path.resolve()
+        try:
+            path.relative_to(ROOT)
+        except ValueError as exc:
+            raise ValueError(
+                f"Release inventory path escapes the repository: {relative}"
+            ) from exc
         if not path.is_file():
             raise ValueError(f"Missing intended release artifact: {relative}")
         artifacts[relative] = digest(path)

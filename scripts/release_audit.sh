@@ -7,6 +7,7 @@ repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$repo_root"
 
 failed=0
+credential_pattern='(api[_-]?key|secret|token|password)[[:space:]]*[:=][[:space:]]*[A-Za-z0-9_\-]{12,}|BEGIN (RSA |OPENSSH |EC )?PRIVATE KEY'
 
 report_matches() {
   local label="$1"
@@ -21,11 +22,11 @@ report_matches() {
 
 report_matches "absolute local paths found" \
   rg -n '/Users/|/home/[^/]+/|\.codex/' . \
-  --glob '!papers/p01-scripture-quotation/paper/main.pdf' --glob '!scripts/release_audit.sh'
+  --glob '!papers/*/paper/main.pdf' --glob '!scripts/release_audit.sh'
 
 report_matches "possible credentials or private keys found" \
-  rg -n -i '(api[_-]?key|secret|token|password)[[:space:]]*[:=][[:space:]]*[A-Za-z0-9_\-]{12,}|BEGIN (RSA |OPENSSH |EC )?PRIVATE KEY' . \
-  --glob '!papers/p01-scripture-quotation/paper/main.pdf' --glob '!scripts/release_audit.sh' \
+  rg -n -i "$credential_pattern" . \
+  --glob '!papers/*/paper/main.pdf' --glob '!scripts/release_audit.sh' \
   --glob '!SECURITY.md' --glob '!CONTRIBUTING.md'
 
 if [[ -f papers/p01-scripture-quotation/data/fid056_p01_deidentified_trials.csv.gz ]]; then
@@ -41,11 +42,34 @@ if [[ -f papers/p01-scripture-quotation/data/fid056_p01_deidentified_trials.csv.
   fi
   decompressed_matches="$(
     gzip -cd papers/p01-scripture-quotation/data/fid056_p01_deidentified_trials.csv.gz |
-      rg -n -i '/Users/|/home/[^/]+/|\.codex/|BEGIN (RSA |OPENSSH |EC )?PRIVATE KEY' ||
+      rg -n -i "/Users/|/home/[^/]+/|\\.codex/|$credential_pattern" ||
       true
   )"
   if [[ -n "$decompressed_matches" ]]; then
     printf 'FAIL: private path or key material in released trial file\n%s\n' \
+      "$decompressed_matches"
+    failed=1
+  fi
+fi
+
+if [[ -f papers/p02-source-delegation/data/fid056_p02_deidentified_trials.csv.gz ]]; then
+  decompressed_header="$(
+    gzip -cd papers/p02-source-delegation/data/fid056_p02_deidentified_trials.csv.gz |
+      awk 'NR == 1 { header = $0 } END { print header }'
+  )"
+  if printf '%s\n' "$decompressed_header" | \
+      rg -qi '(^|,)(raw_output|final_output|answer|source_text|provider_response_ids|actual_providers|error|trial_id|execution_request_id)(,|$)'; then
+    printf 'FAIL: forbidden raw-data column in Paper 02 trial file\n%s\n' \
+      "$decompressed_header"
+    failed=1
+  fi
+  decompressed_matches="$(
+    gzip -cd papers/p02-source-delegation/data/fid056_p02_deidentified_trials.csv.gz |
+      rg -n -i "/Users/|/home/[^/]+/|\\.codex/|$credential_pattern" ||
+      true
+  )"
+  if [[ -n "$decompressed_matches" ]]; then
+    printf 'FAIL: private path or key material in Paper 02 trial file\n%s\n' \
       "$decompressed_matches"
     failed=1
   fi
@@ -58,17 +82,25 @@ report_matches "forbidden private artifact filenames found" \
     -iname '*credential*' -o -iname '*private*manifest*' \
   \) -not -path './.git/*'
 
+report_matches "symbolic links found in public package" \
+  find . -type l -not -path './.git/*'
+
 report_matches "private engine source-like paths found" \
   find . -type d \( -name 'fide-eval-engine' -o -name 'raw_outputs' -o \
     -name 'product_traces' -o -name 'source_corpora' \) -not -path './.git/*'
 
-if [[ -d papers/p01-scripture-quotation/results ]]; then
+for results_dir in papers/*/results; do
+  [[ -d "$results_dir" ]] || continue
   report_matches "unapproved result artifact types found" \
-    find papers/p01-scripture-quotation/results -type f ! -name '*.md' ! -name '*.csv' ! -name '*.json' \
+    find "$results_dir" -type f ! -name '*.md' ! -name '*.csv' ! -name '*.json' \
     ! -name '*.png' ! -name '*.pdf'
-fi
+done
 
 if ! uv run --script scripts/verify_release.py; then
+  failed=1
+fi
+
+if ! uv run --script scripts/verify_p02_release.py; then
   failed=1
 fi
 
@@ -81,4 +113,4 @@ if (( failed )); then
   exit 1
 fi
 
-printf 'Release audit passed. Human release review is recorded in the public decision summary.\n'
+printf 'Release audit passed. Each paper records its release status in its provenance package.\n'

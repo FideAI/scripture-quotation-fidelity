@@ -8,14 +8,15 @@ from __future__ import annotations
 
 import csv
 import gzip
+import json
 import random
 from collections import defaultdict
 from math import sqrt
 from pathlib import Path
 
-
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "papers/p02-source-delegation/data/fid056_p02_deidentified_trials.csv.gz"
+TARGETS = ROOT / "papers/p02-source-delegation/data/fid056_p02_targets.jsonl"
 RESULTS = ROOT / "papers/p02-source-delegation/results"
 METRICS = (
     "delegated_to_source",
@@ -32,6 +33,37 @@ BOOTSTRAP_SEED = 5602
 def load_rows() -> list[dict[str, str]]:
     with gzip.open(DATA, "rt", newline="") as handle:
         return list(csv.DictReader(handle))
+
+
+def load_correlation_components() -> list[tuple[str, ...]]:
+    """Return connected target groups declared in the public target registry."""
+    targets = [
+        json.loads(line) for line in TARGETS.read_text().splitlines() if line.strip()
+    ]
+    target_ids = {target["target_id"] for target in targets}
+    graph = {target_id: set() for target_id in target_ids}
+    for target in targets:
+        target_id = target["target_id"]
+        for peer in target.get("correlated_target_ids", []):
+            if peer not in target_ids:
+                raise ValueError(f"Unknown correlated target: {peer}")
+            graph[target_id].add(peer)
+            graph[peer].add(target_id)
+
+    components = []
+    unseen = set(target_ids)
+    while unseen:
+        pending = [min(unseen)]
+        component = set()
+        while pending:
+            target_id = pending.pop()
+            if target_id in component:
+                continue
+            component.add(target_id)
+            pending.extend(graph[target_id] - component)
+        unseen -= component
+        components.append(tuple(sorted(component)))
+    return sorted(components)
 
 
 def mean(values: list[float]) -> float:
@@ -93,9 +125,7 @@ def equal_route_pressure_effect(
             if row["user_pressure"] == "discourage_source"
         ]
         neutral = [
-            outcome(row, metric)
-            for row in members
-            if row["user_pressure"] == "neutral"
+            outcome(row, metric) for row in members if row["user_pressure"] == "neutral"
         ]
         effects.append(mean(discouraged) - mean(neutral))
     return mean(effects)
@@ -111,9 +141,7 @@ def bootstrap_ci(rows: list[dict[str, str]], statistic) -> tuple[float, float]:
         raise ValueError(
             "Target-level bootstrap shortcut requires balanced target clusters"
         )
-    target_statistics = {
-        target: statistic(by_target[target]) for target in targets
-    }
+    target_statistics = {target: statistic(by_target[target]) for target in targets}
     rng = random.Random(BOOTSTRAP_SEED)
     draws = []
     for _ in range(BOOTSTRAP_ITERATIONS):
@@ -130,9 +158,98 @@ def bootstrap_ci(rows: list[dict[str, str]], statistic) -> tuple[float, float]:
     )
 
 
-def clustered_rate_ci(
-    rows: list[dict[str, str]], metric: str
+def correlation_component_bootstrap_ci(
+    rows: list[dict[str, str]],
+    statistic,
+    components: list[tuple[str, ...]],
 ) -> tuple[float, float]:
+    """Post-hoc cluster bootstrap that keeps declared related targets together."""
+    grouped: dict[str, list[dict[str, str]]] = defaultdict(list)
+    for row in rows:
+        grouped[row["target_id"]].append(row)
+    observed_targets = set(grouped)
+    component_targets = {target for component in components for target in component}
+    if observed_targets != component_targets:
+        raise ValueError("Correlation components do not cover the observed targets")
+
+    cluster_sizes = {len(grouped[target]) for target in observed_targets}
+    if len(cluster_sizes) != 1:
+        raise ValueError(
+            "Correlation-component bootstrap shortcut requires balanced targets"
+        )
+    target_statistics = {
+        target: statistic(grouped[target]) for target in observed_targets
+    }
+
+    rng = random.Random(BOOTSTRAP_SEED)
+    draws = []
+    for _ in range(BOOTSTRAP_ITERATIONS):
+        sampled_components = [rng.choice(components) for _ in components]
+        sampled_statistics = [
+            target_statistics[target]
+            for component in sampled_components
+            for target in component
+        ]
+        # Every target has the same route/treatment/repetition design. The
+        # statistic over resampled components is therefore the mean of the
+        # included target-level statistics, including all members of a related
+        # component with the same bootstrap multiplicity.
+        draws.append(mean(sampled_statistics))
+    draws.sort()
+    return (
+        draws[int(0.025 * (BOOTSTRAP_ITERATIONS - 1))],
+        draws[int(0.975 * (BOOTSTRAP_ITERATIONS - 1))],
+    )
+
+
+def effect_specifications():
+    policy_neutral = lambda sample: equal_route_policy_effect(
+        sample, "delegated_to_source", "neutral"
+    )
+    policy_conflict = lambda sample: equal_route_policy_effect(
+        sample, "delegated_to_source", "discourage_source"
+    )
+    return (
+        ("primary_policy_effect_neutral", policy_neutral),
+        ("policy_effect_discourage_source", policy_conflict),
+        (
+            "pressure_effect_available",
+            lambda sample: equal_route_pressure_effect(
+                sample, "delegated_to_source", "available"
+            ),
+        ),
+        (
+            "pressure_effect_source_required",
+            lambda sample: equal_route_pressure_effect(
+                sample, "delegated_to_source", "source_required"
+            ),
+        ),
+        (
+            "correct_reference_policy_effect_neutral",
+            lambda sample: equal_route_policy_effect(
+                sample, "correct_reference_delegation", "neutral"
+            ),
+        ),
+        (
+            "quote_span_exactness_policy_effect_neutral",
+            lambda sample: equal_route_policy_effect(
+                sample, "quote_span_exact", "neutral"
+            ),
+        ),
+        (
+            "final_exactness_policy_effect_neutral",
+            lambda sample: equal_route_policy_effect(
+                sample, "final_output_exact", "neutral"
+            ),
+        ),
+        (
+            "policy_by_pressure_interaction",
+            lambda sample: policy_conflict(sample) - policy_neutral(sample),
+        ),
+    )
+
+
+def clustered_rate_ci(rows: list[dict[str, str]], metric: str) -> tuple[float, float]:
     """Target-cluster bootstrap interval for one observed binary rate."""
     by_target: dict[str, tuple[int, int]] = {}
     grouped: dict[str, list[dict[str, str]]] = defaultdict(list)
@@ -187,17 +304,20 @@ def write_factorial_cells(rows: list[dict[str, str]]) -> None:
             )
     path = RESULTS / "fid056_p02_factorial_cells.csv"
     with path.open("w", newline="") as handle:
-        writer = csv.DictWriter(
-            handle, fieldnames=list(output[0]), lineterminator="\n"
-        )
+        writer = csv.DictWriter(handle, fieldnames=list(output[0]), lineterminator="\n")
         writer.writeheader()
         writer.writerows(output)
 
 
 def write_aggregates(rows: list[dict[str, str]]) -> None:
     group_specs = [("overall", ())]
-    group_specs.extend(("route", (route,)) for route in sorted({r["model_route"] for r in rows}))
-    group_specs.extend(("prompt_family", (prompt,)) for prompt in sorted({r["prompt_family"] for r in rows}))
+    group_specs.extend(
+        ("route", (route,)) for route in sorted({r["model_route"] for r in rows})
+    )
+    group_specs.extend(
+        ("prompt_family", (prompt,))
+        for prompt in sorted({r["prompt_family"] for r in rows})
+    )
     output = []
     for level, keys in group_specs:
         for policy in ("available", "source_required"):
@@ -210,7 +330,9 @@ def write_aggregates(rows: list[dict[str, str]]) -> None:
                     and (
                         level == "overall"
                         or (level == "route" and row["model_route"] == keys[0])
-                        or (level == "prompt_family" and row["prompt_family"] == keys[0])
+                        or (
+                            level == "prompt_family" and row["prompt_family"] == keys[0]
+                        )
                     )
                 ]
                 for metric in METRICS:
@@ -238,14 +360,14 @@ def write_aggregates(rows: list[dict[str, str]]) -> None:
                     )
     path = RESULTS / "fid056_p02_aggregate_results.csv"
     with path.open("w", newline="") as handle:
-        writer = csv.DictWriter(
-            handle, fieldnames=list(output[0]), lineterminator="\n"
-        )
+        writer = csv.DictWriter(handle, fieldnames=list(output[0]), lineterminator="\n")
         writer.writeheader()
         writer.writerows(output)
 
 
-def effect_row(name: str, estimate: float, ci: tuple[float, float]) -> dict[str, object]:
+def effect_row(
+    name: str, estimate: float, ci: tuple[float, float]
+) -> dict[str, object]:
     return {
         "estimand": name,
         "estimate": estimate,
@@ -257,62 +379,11 @@ def effect_row(name: str, estimate: float, ci: tuple[float, float]) -> dict[str,
 
 
 def write_effects(rows: list[dict[str, str]]) -> list[dict[str, object]]:
-    specs = [
-        (
-            "primary_policy_effect_neutral",
-            lambda sample: equal_route_policy_effect(sample, "delegated_to_source", "neutral"),
-        ),
-        (
-            "policy_effect_discourage_source",
-            lambda sample: equal_route_policy_effect(
-                sample, "delegated_to_source", "discourage_source"
-            ),
-        ),
-        (
-            "pressure_effect_available",
-            lambda sample: equal_route_pressure_effect(
-                sample, "delegated_to_source", "available"
-            ),
-        ),
-        (
-            "pressure_effect_source_required",
-            lambda sample: equal_route_pressure_effect(
-                sample, "delegated_to_source", "source_required"
-            ),
-        ),
-        (
-            "correct_reference_policy_effect_neutral",
-            lambda sample: equal_route_policy_effect(
-                sample, "correct_reference_delegation", "neutral"
-            ),
-        ),
-        (
-            "quote_span_exactness_policy_effect_neutral",
-            lambda sample: equal_route_policy_effect(
-                sample, "quote_span_exact", "neutral"
-            ),
-        ),
-        (
-            "final_exactness_policy_effect_neutral",
-            lambda sample: equal_route_policy_effect(
-                sample, "final_output_exact", "neutral"
-            ),
-        ),
+    specs = effect_specifications()
+    effects = [
+        effect_row(name, statistic(rows), bootstrap_ci(rows, statistic))
+        for name, statistic in specs
     ]
-    effects = [effect_row(name, statistic(rows), bootstrap_ci(rows, statistic)) for name, statistic in specs]
-    primary = effects[0]
-    pressured = effects[1]
-    interaction_stat = lambda sample: (  # noqa: E731
-        equal_route_policy_effect(sample, "delegated_to_source", "discourage_source")
-        - equal_route_policy_effect(sample, "delegated_to_source", "neutral")
-    )
-    effects.append(
-        effect_row(
-            "policy_by_pressure_interaction",
-            float(pressured["estimate"]) - float(primary["estimate"]),
-            bootstrap_ci(rows, interaction_stat),
-        )
-    )
     path = RESULTS / "fid056_p02_effect_estimates.csv"
     with path.open("w", newline="") as handle:
         writer = csv.DictWriter(
@@ -327,10 +398,10 @@ def write_route_effects(rows: list[dict[str, str]]) -> None:
     output = []
     for route in sorted({row["model_route"] for row in rows}):
         members = [row for row in rows if row["model_route"] == route]
-        neutral_statistic = lambda sample: equal_route_policy_effect(  # noqa: E731
+        neutral_statistic = lambda sample: equal_route_policy_effect(
             sample, "delegated_to_source", "neutral"
         )
-        conflict_statistic = lambda sample: equal_route_policy_effect(  # noqa: E731
+        conflict_statistic = lambda sample: equal_route_policy_effect(
             sample, "delegated_to_source", "discourage_source"
         )
         neutral_estimate = neutral_statistic(members)
@@ -361,9 +432,7 @@ def write_route_effects(rows: list[dict[str, str]]) -> None:
         )
     path = RESULTS / "fid056_p02_route_effects.csv"
     with path.open("w", newline="") as handle:
-        writer = csv.DictWriter(
-            handle, fieldnames=list(output[0]), lineterminator="\n"
-        )
+        writer = csv.DictWriter(handle, fieldnames=list(output[0]), lineterminator="\n")
         writer.writeheader()
         writer.writerows(output)
 
@@ -373,7 +442,7 @@ def write_subgroup_effects(rows: list[dict[str, str]]) -> None:
     for dimension in ("prompt_family", "passage_stratum"):
         for value in sorted({row[dimension] for row in rows}):
             members = [row for row in rows if row[dimension] == value]
-            statistic = lambda sample: equal_route_policy_effect(  # noqa: E731
+            statistic = lambda sample: equal_route_policy_effect(
                 sample, "delegated_to_source", "neutral"
             )
             estimate = statistic(members)
@@ -390,9 +459,7 @@ def write_subgroup_effects(rows: list[dict[str, str]]) -> None:
             )
     path = RESULTS / "fid056_p02_subgroup_effects.csv"
     with path.open("w", newline="") as handle:
-        writer = csv.DictWriter(
-            handle, fieldnames=list(output[0]), lineterminator="\n"
-        )
+        writer = csv.DictWriter(handle, fieldnames=list(output[0]), lineterminator="\n")
         writer.writeheader()
         writer.writerows(output)
 
@@ -460,9 +527,7 @@ def write_delegation_pipeline(rows: list[dict[str, str]]) -> None:
             )
     path = RESULTS / "fid056_p02_delegation_pipeline.csv"
     with path.open("w", newline="") as handle:
-        writer = csv.DictWriter(
-            handle, fieldnames=list(output[0]), lineterminator="\n"
-        )
+        writer = csv.DictWriter(handle, fieldnames=list(output[0]), lineterminator="\n")
         writer.writeheader()
         writer.writerows(output)
 
@@ -491,7 +556,9 @@ def route_as_unit_interval(values: list[float]) -> tuple[float, float]:
     return center - half, center + half
 
 
-def write_sensitivity_analysis(rows: list[dict[str, str]]) -> None:
+def write_sensitivity_analysis(
+    rows: list[dict[str, str]], components: list[tuple[str, ...]]
+) -> list[dict[str, object]]:
     routes = sorted({row["model_route"] for row in rows})
     conflict = route_effects(rows, "discourage_source")
     neutral = route_effects(rows, "neutral")
@@ -540,15 +607,29 @@ def write_sensitivity_analysis(rows: list[dict[str, str]]) -> None:
         }
     )
 
+    for estimand, statistic in effect_specifications():
+        low, high = correlation_component_bootstrap_ci(rows, statistic, components)
+        output.append(
+            {
+                "analysis": f"{estimand}_correlation_components",
+                "estimate": statistic(rows),
+                "lower": low,
+                "upper": high,
+                "method": "correlation_component_bootstrap_10000_seed5602",
+                "detail": (
+                    "post-hoc sensitivity; resamples 17 connected components "
+                    "and keeps declared related targets together"
+                ),
+            }
+        )
+
     targets = sorted({row["target_id"] for row in rows})
     leave_target_out = []
     for target in targets:
         members = [row for row in rows if row["target_id"] != target]
         leave_target_out.append(
             (
-                equal_route_policy_effect(
-                    members, "quote_span_exact", "neutral"
-                ),
+                equal_route_policy_effect(members, "quote_span_exact", "neutral"),
                 target,
             )
         )
@@ -561,18 +642,15 @@ def write_sensitivity_analysis(rows: list[dict[str, str]]) -> None:
             "lower": target_min[0],
             "upper": target_max[0],
             "method": "leave_one_target_out_range",
-            "detail": (
-                f"minimum drops {target_min[1]}; maximum drops {target_max[1]}"
-            ),
+            "detail": (f"minimum drops {target_min[1]}; maximum drops {target_max[1]}"),
         }
     )
     path = RESULTS / "fid056_p02_sensitivity_analysis.csv"
     with path.open("w", newline="") as handle:
-        writer = csv.DictWriter(
-            handle, fieldnames=list(output[0]), lineterminator="\n"
-        )
+        writer = csv.DictWriter(handle, fieldnames=list(output[0]), lineterminator="\n")
         writer.writeheader()
         writer.writerows(output)
+    return output
 
 
 def write_repetition_sensitivity(rows: list[dict[str, str]]) -> None:
@@ -603,16 +681,25 @@ def write_repetition_sensitivity(rows: list[dict[str, str]]) -> None:
                 )
     path = RESULTS / "fid056_p02_repetition_sensitivity.csv"
     with path.open("w", newline="") as handle:
-        writer = csv.DictWriter(
-            handle, fieldnames=list(output[0]), lineterminator="\n"
-        )
+        writer = csv.DictWriter(handle, fieldnames=list(output[0]), lineterminator="\n")
         writer.writeheader()
         writer.writerows(output)
 
 
-def write_result_card(rows: list[dict[str, str]], effects: list[dict[str, object]]) -> None:
+def write_result_card(
+    rows: list[dict[str, str]],
+    effects: list[dict[str, object]],
+    sensitivities: list[dict[str, object]],
+) -> None:
     errors = sum(int(row["terminal_error"]) for row in rows)
-    primary = next(row for row in effects if row["estimand"] == "primary_policy_effect_neutral")
+    primary = next(
+        row for row in effects if row["estimand"] == "primary_policy_effect_neutral"
+    )
+    correlation_sensitivity = next(
+        row
+        for row in sensitivities
+        if row["analysis"] == "primary_policy_effect_neutral_correlation_components"
+    )
     text = f"""# FID-056-P02 Result Card
 
 ## Execution
@@ -620,15 +707,18 @@ def write_result_card(rows: list[dict[str, str]], effects: list[dict[str, object
 - Scheduled observations: 4,800
 - Released derived observations: {len(rows):,}
 - Terminal errors: {errors:,}
-- Target clusters: {len({row['target_id'] for row in rows})}
-- Model-family routes: {len({row['model_route'] for row in rows})}
+- Target clusters: {len({row["target_id"] for row in rows})}
+- Model-family routes: {len({row["model_route"] for row in rows})}
 
 ## Primary Estimate
 
 The source-required policy changed delegation under neutral user wording by
-{100 * float(primary['estimate']):.2f} percentage points (95% target-cluster
-bootstrap interval {100 * float(primary['ci_low']):.2f} to
-{100 * float(primary['ci_high']):.2f}).
+{100 * float(primary["estimate"]):.2f} percentage points (95% target-cluster bootstrap
+interval {100 * float(primary["ci_low"]):.2f} to {100 * float(primary["ci_high"]):.2f}).
+
+A post-hoc sensitivity that keeps the declared related passages together gives
+a 95% interval of {100 * float(correlation_sensitivity["lower"]):.2f} to {100 * float(correlation_sensitivity["upper"]):.2f}
+percentage points.
 
 ## Boundary
 
@@ -642,10 +732,15 @@ model ranking or a claim about theological interpretation.
 
 def main() -> None:
     rows = load_rows()
+    components = load_correlation_components()
     if len(rows) != 4_800:
         raise ValueError(f"Expected 4,800 observations, found {len(rows)}")
     if len({row["observation_id"] for row in rows}) != len(rows):
         raise ValueError("Duplicate observation IDs")
+    if len(components) != 17:
+        raise ValueError(
+            f"Expected 17 declared correlation components, found {len(components)}"
+        )
     RESULTS.mkdir(parents=True, exist_ok=True)
     write_aggregates(rows)
     write_factorial_cells(rows)
@@ -653,9 +748,9 @@ def main() -> None:
     write_route_effects(rows)
     write_subgroup_effects(rows)
     write_delegation_pipeline(rows)
-    write_sensitivity_analysis(rows)
+    sensitivities = write_sensitivity_analysis(rows, components)
     write_repetition_sensitivity(rows)
-    write_result_card(rows, effects)
+    write_result_card(rows, effects, sensitivities)
     print(f"Analyzed {len(rows)} observations")
 
 

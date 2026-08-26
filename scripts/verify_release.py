@@ -326,6 +326,14 @@ def main() -> None:
         for field in ("rights_classification", "evidence_source", "verification_mode"):
             if not record[field].strip():
                 raise SystemExit(f"Manifest {field} is empty for {record['path']}")
+        manifest_path = Path(record["path"])
+        if (
+            "__pycache__" in manifest_path.parts
+            or manifest_path.suffix in {".pyc", ".pyo"}
+        ):
+            raise SystemExit(
+                f"Manifest contains a transient Python artifact: {record['path']}"
+            )
         path = ROOT / record["path"]
         if not path.is_file():
             raise SystemExit(f"Manifest file is missing: {record['path']}")
