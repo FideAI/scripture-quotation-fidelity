@@ -20,6 +20,7 @@ provenance/README.md
 provenance/deviation_summary.md
 provenance/fid056_p02_execution_seal.json
 provenance/fid056_p02_prospective_lock.json
+provenance/release_decision_summary.json
 provenance/release_inventory.txt
 results/README.md
 results/fid056_p02_aggregate_results.csv

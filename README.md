@@ -196,7 +196,9 @@ make release-audit    # scan for secrets, private paths, forbidden artifacts
 
 Paper-specific targets remain available as `make p01-analyze`, `make paper`,
 `make verify-release`, `make p02-analyze`, `make p02-paper`, and
-`make p02-verify`.
+`make p02-verify`. Publication bundles are staged without upload through
+`make arxiv` and `make hf-dataset` for Paper 01 or `make p02-arxiv` and
+`make p02-hf-dataset` for Paper 02.
 
 `make analyze` calls no model endpoint. An exact rerun against hosted models is
 not guaranteed, since endpoints, routing, and provider defaults change.

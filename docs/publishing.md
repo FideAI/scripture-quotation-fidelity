@@ -7,18 +7,20 @@ analysis code, and is what both other venues point back to.
 Both build targets stage into `build/` and upload nothing. Publishing is a
 separate, deliberate step.
 
-The current `make arxiv` and `make hf-dataset` targets package Paper 01 only.
-Paper 02's GitHub release candidate is reproducible with `make p02-paper` and
-`make p02-verify`; add paper-scoped arXiv and dataset staging targets before
-submitting or uploading P02 rather than reusing Paper 01's bundles.
+The unprefixed `make arxiv` and `make hf-dataset` targets package Paper 01.
+Use `make p02-arxiv` and `make p02-hf-dataset` for Paper 02. Each command stages
+locally and uploads nothing.
 
 ## arXiv
 
 ```bash
 make arxiv
+make p02-arxiv
 ```
 
 Produces `build/arxiv/<paper>-arxiv.tar.gz` and `build/arxiv/abstract.txt`.
+The abstract file describes whichever paper was staged most recently; the
+tarball names are paper-specific.
 
 **arXiv publishes the LaTeX source you submit, not just the PDF.** Anyone can
 download it. The build therefore fails if `main.tex` contains comments, so
@@ -61,10 +63,14 @@ README, and the Hugging Face dataset card.
 
 ```bash
 make hf-dataset
+make p02-hf-dataset
 ```
 
 Produces `build/huggingface/` containing `trials.parquet` (8,640 rows),
 `targets.parquet` (20 rows), and a dataset card.
+
+Paper 02 stages separately under `build/huggingface/p02-source-delegation/`
+with 4,800 trial rows, 20 target rows, and its own dataset card.
 
 Parquet rather than the released `.csv.gz` because the Hub's dataset viewer
 renders parquet natively, which is most of the value of publishing there — a
@@ -80,13 +86,18 @@ Upload:
 ```bash
 uv run --with huggingface_hub hf upload-large-folder \
   --repo-type=dataset FideAI/scripture-quotation-fidelity-p01 build/huggingface
+
+uv run --with huggingface_hub hf upload-large-folder \
+  --repo-type=dataset FideAI/scripture-quotation-fidelity-p02 \
+  build/huggingface/p02-source-delegation
 ```
 
 ### Card maintenance
 
-The dataset card lives in `scripts/build_hf_dataset.py` and is regenerated on
-every build, so edit it there rather than on the Hub. Anything edited in the web
-UI will be overwritten by the next upload.
+The dataset cards live in `scripts/build_hf_dataset.py` and
+`scripts/build_p02_hf_dataset.py` and are regenerated on every build, so edit
+them there rather than on the Hub. Anything edited in the web UI will be
+overwritten by the next upload.
 
 ## Keeping the three in sync
 
