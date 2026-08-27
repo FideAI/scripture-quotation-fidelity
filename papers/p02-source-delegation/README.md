@@ -36,7 +36,7 @@ Exact executed templates are documented in
 
 ## Repository boundary
 
-This public release candidate contains the manuscript, deidentified derived
+This public reproduction package contains the manuscript, deidentified derived
 scores, aggregate results, figures, prospective lock receipt, and analysis
 needed to reproduce reported quantities without calling a model endpoint. Raw
 model traces, credentials, private execution code, and source passage text
@@ -57,11 +57,12 @@ These commands make no model or source API calls.
 
 ## Release status
 
-The package is complete and reproducible, but remains a release candidate until
-final publication approval and merge. The pinned shared implementation revision
+Fide AI approved this public reproduction package on 2026-08-26. The release
+decision and artifact boundary are recorded in
+`provenance/release_decision_summary.json`. The pinned shared implementation revision
 is publicly reachable at partner commit
 [`dbb1514`](https://github.com/apologist-project/llm-scripture-fidelity/commit/dbb1514cde5c7a8e17944d09cf16d0ed1ee619cc).
-The release manifest must be regenerated after final review.
+The release manifest must be regenerated after any approved artifact changes.
 
 ## Citation
 

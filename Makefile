@@ -1,4 +1,4 @@
-.PHONY: paper papers figures clean-paper clean-papers analyze p01-analyze manifest verify verify-release release-audit arxiv hf-dataset p02-paper p02-figures p02-analyze p02-manifest p02-verify
+.PHONY: paper papers figures clean-paper clean-papers analyze p01-analyze manifest verify verify-release release-audit arxiv hf-dataset p02-paper p02-figures p02-analyze p02-manifest p02-verify p02-arxiv p02-hf-dataset
 
 paper: figures
 	./scripts/build_paper.sh
@@ -66,3 +66,9 @@ p02-figures:
 
 p02-paper: p02-figures
 	./scripts/build_p02_paper.sh
+
+p02-arxiv:
+	./scripts/build_arxiv_bundle.sh papers/p02-source-delegation
+
+p02-hf-dataset:
+	uv run --script scripts/build_p02_hf_dataset.py

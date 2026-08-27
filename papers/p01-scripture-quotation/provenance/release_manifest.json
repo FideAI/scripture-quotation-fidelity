@@ -47,12 +47,12 @@
       "verification_mode": "SHA-256 digest"
     },
     {
-      "bytes": 1838,
+      "bytes": 2003,
       "evidence_source": "public repository governance and documentation",
       "path": "Makefile",
       "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
       "rights_classification": "CC-BY-4.0",
-      "sha256": "0ab31b1066b5f59609a4b39d48a8874ac79d6107f69baf43223a0097ded7748c",
+      "sha256": "ed67715bba8ddac78aa2b32a87db781d5007198efa3b0a328d040af61a701883",
       "verification_mode": "SHA-256 digest"
     },
     {
@@ -65,12 +65,12 @@
       "verification_mode": "SHA-256 digest"
     },
     {
-      "bytes": 11847,
+      "bytes": 12009,
       "evidence_source": "public repository governance and documentation",
       "path": "README.md",
       "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
       "rights_classification": "CC-BY-4.0",
-      "sha256": "6aa5c9ae7a4897f3daeee171a8fc4c1812bee15bb74ab40fc880ced06b333114",
+      "sha256": "5839a7d78399490324ee3b45b629562275a1e47c7b38ce9e59deb56ed99e7746",
       "verification_mode": "SHA-256 digest"
     },
     {
@@ -83,12 +83,12 @@
       "verification_mode": "SHA-256 digest"
     },
     {
-      "bytes": 4482,
+      "bytes": 4855,
       "evidence_source": "public repository governance and documentation",
       "path": "docs/publishing.md",
       "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
       "rights_classification": "CC-BY-4.0",
-      "sha256": "cda21c9632b5cf1f87deeadd5307550ef32aeedc5a6004f47b6f725b5b2870a0",
+      "sha256": "a5b70816462d8f49ab274707bcf08925f67d084972ce590321186aab27da9c01",
       "verification_mode": "SHA-256 digest"
     },
     {
@@ -110,21 +110,21 @@
       "verification_mode": "SHA-256 digest"
     },
     {
-      "bytes": 6008,
+      "bytes": 5984,
       "evidence_source": "public repository governance and documentation",
       "path": "docs/research_call_coverage.md",
       "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
       "rights_classification": "CC-BY-4.0",
-      "sha256": "1570afab45598412d15e800e833d4d0def05f237a31b19986e9c3d7a16dea9a3",
+      "sha256": "2268fc92f074fa784cb9482c510884787fff1cd52c6a629c452d5e96b659af4a",
       "verification_mode": "SHA-256 digest"
     },
     {
-      "bytes": 9094,
+      "bytes": 9074,
       "evidence_source": "public repository governance and documentation",
       "path": "docs/research_program.md",
       "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
       "rights_classification": "CC-BY-4.0",
-      "sha256": "3e8b502fc87b89f0ac9981977ea2262c1badfb086c72854e154b95c05ff3d1a1",
+      "sha256": "e6745200d1c02d93b2f8a784ccc9cd6458e7ac152af724f1ab3436ea44f612a3",
       "verification_mode": "SHA-256 digest"
     },
     {
@@ -587,12 +587,12 @@
       "verification_mode": "SHA-256 digest"
     },
     {
-      "bytes": 5488,
+      "bytes": 5879,
       "evidence_source": "public replication and release tooling",
       "path": "scripts/build_arxiv_bundle.sh",
       "release_decision_reference": "FID-056-P01-PUBLIC-RELEASE-2026-08-04",
       "rights_classification": "Apache-2.0",
-      "sha256": "c72566411b4415625525e047a77efbc306ed6cfe20fabc4d31342bc86a2d69f6",
+      "sha256": "a7773852eea7beea6add305e67d975988c4917177f8667b97ec0dbba36ffbfc2",
       "verification_mode": "SHA-256 digest"
     },
     {

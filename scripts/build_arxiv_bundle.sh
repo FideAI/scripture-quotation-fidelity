@@ -14,15 +14,19 @@
 
 set -euo pipefail
 
-# Match the reproducible-build epoch used by scripts/build_paper.sh so staging
-# an arXiv bundle does not change the committed PDF's digest.
-export SOURCE_DATE_EPOCH="${SOURCE_DATE_EPOCH:-1753574400}"
-
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 PAPER_REL="${1:-papers/p01-scripture-quotation}"
 PAPER_DIR="$ROOT_DIR/$PAPER_REL/paper"
 BUILD_DIR="$ROOT_DIR/build/arxiv"
 STAGE="$BUILD_DIR/$(basename "$PAPER_REL")"
+
+# Match each paper's reproducible-build epoch so refreshing the bibliography
+# cannot silently change the committed PDF while staging an arXiv source bundle.
+if [[ "$(basename "$PAPER_REL")" == "p02-source-delegation" ]]; then
+  export SOURCE_DATE_EPOCH="${SOURCE_DATE_EPOCH:-1786492800}"
+else
+  export SOURCE_DATE_EPOCH="${SOURCE_DATE_EPOCH:-1753574400}"
+fi
 
 find_tectonic() {
   if [[ -n "${TECTONIC:-}" && -x "$TECTONIC" ]]; then
@@ -139,6 +143,10 @@ with tarball.open("wb") as raw:
                 else:
                     archive.addfile(info)
 PY
+
+# The staged tarball now owns the generated bibliography. Keep the source paper
+# directory clean so fail-closed release inventories do not see build products.
+rm -f "$PAPER_DIR/main.aux" "$PAPER_DIR/main.bbl" "$PAPER_DIR/main.out"
 
 echo
 echo "==> Wrote $TARBALL"

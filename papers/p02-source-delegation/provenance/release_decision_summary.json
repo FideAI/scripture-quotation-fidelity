@@ -1,0 +1,36 @@
+{
+  "schema_version": "fid056_public_release_decision_summary_v1",
+  "status": "approved_public_reproduction_packet",
+  "decision_id": "FID-056-P02-PUBLIC-RELEASE-2026-08-26",
+  "decision_authority": "Fide AI",
+  "decision_date": "2026-08-26",
+  "human_review": "completed",
+  "research_program_id": "FID-056",
+  "paper_id": "FID-056-P02",
+  "approved_artifacts": [
+    "manuscript",
+    "deidentified_derived_score_dataset",
+    "reviewed_result_tables",
+    "public_reproduction_packet"
+  ],
+  "blocked_artifacts": [
+    "raw_model_outputs",
+    "provider_response_identifiers",
+    "raw_tool_traces",
+    "source_passage_text",
+    "credentials",
+    "private_execution_engine_source",
+    "calibration_traces"
+  ],
+  "claims_limit": "Results apply only to the declared FID-056-P02 endpoints, run window, English prompts, Berean Standard Bible source edition, target panel, treatment wording, and scoring protocol. They do not establish a model leaderboard, theological correctness, exegetical quality, pastoral safety, product endorsement, universal tool-use behavior, or performance on other translations, languages, sacred texts, or sources of record.",
+  "review_basis": [
+    "papers/p02-source-delegation/docs/claims_boundary.md",
+    "papers/p02-source-delegation/docs/contributions_and_disclosures.md",
+    "papers/p02-source-delegation/docs/data_availability.md",
+    "papers/p02-source-delegation/docs/source_delegation_protocol.md",
+    "papers/p02-source-delegation/provenance/deviation_summary.md",
+    "papers/p02-source-delegation/provenance/fid056_p02_execution_seal.json",
+    "papers/p02-source-delegation/provenance/fid056_p02_prospective_lock.json",
+    "papers/p02-source-delegation/results/fid056_p02_result_card.md"
+  ]
+}

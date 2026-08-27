@@ -20,6 +20,7 @@ TARGETS = ROOT / "papers/p02-source-delegation/data/fid056_p02_targets.jsonl"
 PAPER_ROOT = ROOT / "papers/p02-source-delegation"
 MANIFEST_PATH = PAPER_ROOT / "provenance/release_manifest.json"
 INVENTORY_PATH = PAPER_ROOT / "provenance/release_inventory.txt"
+DECISION_PATH = PAPER_ROOT / "provenance/release_decision_summary.json"
 FORBIDDEN_COLUMNS = {
     "raw_output",
     "final_output",
@@ -373,8 +374,41 @@ def main() -> None:
         raise ValueError("Paper 02 release manifest has the wrong schema version")
     if manifest["study_id"] != "FID-056-P02":
         raise ValueError("Paper 02 release manifest has the wrong study ID")
-    if manifest["status"] != "public_release_candidate_pending_final_approval":
+    if manifest["status"] != "approved_public_reproduction_packet":
         raise ValueError("Paper 02 release manifest has the wrong release status")
+    decision = json.loads(DECISION_PATH.read_text())
+    expected_decision_fields = {
+        "schema_version",
+        "status",
+        "decision_id",
+        "decision_authority",
+        "decision_date",
+        "human_review",
+        "research_program_id",
+        "paper_id",
+        "approved_artifacts",
+        "blocked_artifacts",
+        "claims_limit",
+        "review_basis",
+    }
+    if set(decision) != expected_decision_fields:
+        raise ValueError("Paper 02 release decision fields do not match its schema")
+    expected_decision_values = {
+        "schema_version": "fid056_public_release_decision_summary_v1",
+        "status": "approved_public_reproduction_packet",
+        "decision_id": "FID-056-P02-PUBLIC-RELEASE-2026-08-26",
+        "decision_authority": "Fide AI",
+        "decision_date": "2026-08-26",
+        "human_review": "completed",
+        "research_program_id": "FID-056",
+        "paper_id": "FID-056-P02",
+    }
+    for field, expected in expected_decision_values.items():
+        if decision[field] != expected:
+            raise ValueError(f"Paper 02 release decision has wrong {field}")
+    for relative in decision["review_basis"]:
+        if not (ROOT / relative).is_file():
+            raise ValueError(f"Paper 02 review basis is missing: {relative}")
     if (
         len(manifest["excluded"]) != len(EXPECTED_MANIFEST_EXCLUSIONS)
         or set(manifest["excluded"]) != EXPECTED_MANIFEST_EXCLUSIONS

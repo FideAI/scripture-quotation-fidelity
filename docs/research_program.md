@@ -32,7 +32,7 @@ model spend and no restricted sources. Those are marked **data in hand**.
 | ID | Study | Readiness |
 |---|---|---|
 | P01 | Scripture quotation across four delivery conditions | Complete |
-| P02 | Model delegation to sources of record | Confirmatory study complete |
+| P02 | Model delegation to sources of record | Published |
 | P03 | Reference selection | Data in hand |
 | P04 | Source availability and parametric recall | Data in hand |
 | P05 | Paraphrase and quotation labeling | Needs construct design |
@@ -67,7 +67,7 @@ selection, 93.5% reproduced the source span exactly.
 The study therefore separates three questions that Paper 01 pooled together:
 whether the model delegates, whether it asks for the intended passage, and
 whether it preserves the returned text. The manuscript and reproducible
-release candidate are in [`papers/p02-source-delegation/`](../papers/p02-source-delegation/).
+release package are in [`papers/p02-source-delegation/`](../papers/p02-source-delegation/).
 
 ### P03 · Reference selection
 
